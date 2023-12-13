@@ -46,12 +46,15 @@ public class MainMenu {
                     break;
 
                 case 0:
+                next();
                     cls();
                     System.out.println("Menutup aplikasi");
                     System.exit(0);
                     break;
 
                 default:
+                    System.out.println("\nPilihan tidak ada");
+                    next();
                     break;
             }
         } while (true);
@@ -112,36 +115,40 @@ public class MainMenu {
             System.out.print("\nPilihan : ");
             ch2 = input.nextInt();
             input.nextLine();
-
-            next();
-
+            
             switch (ch2) {
                 case 1:
-                    fitur1();
+                next();
+                fitur1();
                     break;
 
                 case 2:
+                next();
                     fitur2();
                     break;
 
                 case 3:
+                next();
                     fitur3();
                     break;
 
                 case 4:
+                next();
                     fitur4();
                     break;
 
                 case 5:
+                next();
                     fitur5();
                     break;
 
                 case 0:
-                    System.out.println("Ini Keluar");
+                next();
                     break;
 
                 default:
-                    System.out.println("Pilihan tidak ada");
+                    System.out.println("\nPilihan tidak ada");
+                    next();
                     break;
             }
 
@@ -164,35 +171,39 @@ public class MainMenu {
             ch2 = input.nextInt();
             input.nextLine();
 
-            next();
-
             switch (ch2) {
                 case 1:
-                    fitur1();
+                next();
+                fitur1();
                     break;
 
                 case 2:
+                next();
                     fitur2();
                     break;
 
                 case 3:
+                next();
                     fitur3();
                     break;
 
                 case 4:
+                next();
                     fitur4();
                     break;
 
                 case 5:
+                next();
                     fitur5();
                     break;
 
                 case 0:
-                    System.out.println("Ini Keluar");
+                next();
                     break;
 
                 default:
-                    System.out.println("Pilihan tidak ada");
+                    System.out.println("\nPilihan tidak ada");
+                    next();
                     break;
             }
 
@@ -238,7 +249,7 @@ public class MainMenu {
 
     public void cls() {
         try {
-            
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         } catch (Exception e) {
             System.err.println("Error : cls()");
         }
