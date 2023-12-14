@@ -1,4 +1,4 @@
-package Logic.Master;
+package Domain.Master;
 
 public class MasterKamar {
 }

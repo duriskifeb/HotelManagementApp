@@ -1,9 +1,9 @@
-package Menu.MainMenu;
+package View.MainMenu;
 
-import java.util.Scanner;
+
+import static Statics.Statics.input;
 
 public class MainMenu {
-    Scanner input = new Scanner(System.in);;
 
     int ch1 = 0;
     int ch2 = 0;

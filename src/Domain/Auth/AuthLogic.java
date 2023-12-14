@@ -1,4 +1,4 @@
-package Logic.Auth;
+package Domain.Auth;
 
 public class AuthLogic {
 }

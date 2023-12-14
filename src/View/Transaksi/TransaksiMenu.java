@@ -1,4 +1,4 @@
-package Menu.Transaksi;
+package View.Transaksi;
 
 public class TransaksiMenu {
 }

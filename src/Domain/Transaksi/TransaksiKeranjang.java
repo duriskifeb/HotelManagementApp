@@ -1,4 +1,4 @@
-package Logic.Transaksi;
+package Domain.Transaksi;
 
 public class TransaksiKeranjang {
 }

@@ -1,4 +1,4 @@
-package Menu.Auth;
+package View.Auth;
 
 public class AuthMenu {
 }

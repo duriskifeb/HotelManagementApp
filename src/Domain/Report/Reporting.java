@@ -1,4 +1,4 @@
-package Logic.Report;
+package Domain.Report;
 
 public class Reporting {
 }

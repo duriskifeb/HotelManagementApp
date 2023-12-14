@@ -1,4 +1,4 @@
-package Menu.Master;
+package View.Master;
 
 public class MasterMenu {
 }
