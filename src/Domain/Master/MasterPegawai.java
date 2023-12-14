@@ -22,7 +22,8 @@ public class MasterPegawai {
 
     void deletePegawai(String userId){
         if(cekUser(userId)){
-            dataSource.deletePegawai(userId);
+            User usr = dataSource.getListPegawai().stream().filter(user -> user.getUserID().equals(userId)).findFirst().orElse(null);
+            dataSource.deletePegawai(usr);
         }else {
             System.out.println("Data Tidak Ditemukan");
         }

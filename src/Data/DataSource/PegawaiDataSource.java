@@ -28,13 +28,13 @@ public class PegawaiDataSource {
     );
 
     public void addNewPegawai(User user) {
-        // check if user already exists
+
         listPegawai.add(user);
 
     }
 
-    public void deletePegawai(String userId) {
-        User usr = listPegawai.stream().filter(user -> user.getUserID().equals(userId)).findFirst().orElse(null);
+    public void deletePegawai(User usr) {
+
         listPegawai.remove(usr);
     }
 
@@ -42,15 +42,19 @@ public class PegawaiDataSource {
         return listPegawai;
     }
 
+    public void editPegawai(int index, User user) {
+        listPegawai.set(index, user);
+    }
+
+    public void setListPegawai(ArrayList<User> listPegawai) {
+        this.listPegawai = listPegawai;
+    }
+
     public User authenticateUser(String email, String password) {
         return listPegawai.stream().filter(
                 cekUser -> cekUser.getEmail().equals(email) &&
                         cekUser.getPassword().equals(Encryption.hashPassword(password))
         ).findFirst().orElse(null);
-    }
-
-    public void setListPegawai(ArrayList<User> listPegawai) {
-        this.listPegawai = listPegawai;
     }
 
 
