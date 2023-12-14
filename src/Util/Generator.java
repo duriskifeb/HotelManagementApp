@@ -20,7 +20,7 @@ public class Generator {
                 break;
         }
 
-        return result;
+        return result.toUpperCase();
     }
 
     public static String generateReportNumber(String picName, String dateCreated, String totalPrice, String transaksiNumberSum){

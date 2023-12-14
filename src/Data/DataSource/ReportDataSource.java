@@ -7,11 +7,7 @@ import java.util.Arrays;
 
 public class ReportDataSource {
 
-    private ArrayList<ReportModel> listReports = new ArrayList<ReportModel>(
-            Arrays.asList(
-                    // TODO
-            )
-    );
+    private ArrayList<ReportModel> listReports = new ArrayList<>();
 
     public ArrayList<ReportModel> getListReports() {
         return listReports;
