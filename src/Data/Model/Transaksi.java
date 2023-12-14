@@ -1,10 +1,9 @@
-package DataSource.Model;
+package Data.Model;
 
-import DataSource.Enums.Enums;
+import Data.Enums.Enums;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.stream.Collectors;
 
 public class Transaksi {
 

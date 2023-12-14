@@ -1,4 +1,4 @@
-package DataSource.Enums;
+package Data.Enums;
 
 public class Enums {
     // put enums here

@@ -1,6 +1,6 @@
-package DataSource.Model;
+package Data.Model;
 
-import DataSource.Enums.Enums;
+import Data.Enums.Enums;
 
 public class User {
     private String userID, email, nama, password;
@@ -11,6 +11,7 @@ public class User {
         this.email = email;
         this.nama = nama;
         this.role = role;
+        this.password = password;
     }
 
     public String getUserID() {
