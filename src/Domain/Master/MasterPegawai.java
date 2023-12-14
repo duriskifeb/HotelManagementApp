@@ -10,7 +10,6 @@ public class MasterPegawai {
         this.dataSource = dataSource;
     }
 
-
     void addNewPegawai(User user) {
         // check if user already exists
         if(!cekUser(user)){
@@ -38,9 +37,7 @@ public class MasterPegawai {
         }
     }
 
-
-
-        boolean cekUser(User user){
+    boolean cekUser(User user){
         User cek = dataSource.getListPegawai().stream().filter(
                 cekUser -> {
                     return cekUser.getNama().equals(user.getNama()) ||
