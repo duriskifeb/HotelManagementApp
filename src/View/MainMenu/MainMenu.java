@@ -1,6 +1,9 @@
 package View.MainMenu;
 
+import Statics.StaticsInput;
+
 import static Statics.StaticsInput.readInt;
+import static Statics.StaticsInput.cls;
 import static Statics.StaticsInput.readLine;
 
 import java.io.IOException;
@@ -17,7 +20,7 @@ public class MainMenu {
     String pw;
 
     public void header() {
-        cls();
+        StaticsInput.cls();
 
         System.out.println("==============================");
         System.out.println(" HOTEL MANAGEMENT APLICATION ");
@@ -158,23 +161,6 @@ public class MainMenu {
         System.out.println("\n==============================");
         System.out.print("\nTekan ENTER untuk melanjutkan");
         readLine();
-    }
-
-    public void cls() {
-    // wont work on IDE
-        try {
-            final String os = System.getProperty("os.name");
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
-            if (os.contains("Windows")) {
-                Runtime.getRuntime().exec("cls");
-            } else {
-                Runtime.getRuntime().exec("clear");
-            }
-        } catch (final Exception e) {
-            //  Handle any exceptions.
-            System.err.println("Error : cls() failed: " + e.getMessage());
-        }
     }
 
 }
