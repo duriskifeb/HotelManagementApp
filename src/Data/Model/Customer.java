@@ -1,4 +1,4 @@
-package DataSource.Model;
+package Data.Model;
 
 public class Customer {
     private String NIK, nama, email, telp;
