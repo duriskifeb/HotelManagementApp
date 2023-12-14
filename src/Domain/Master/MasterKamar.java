@@ -20,7 +20,6 @@ public class MasterKamar {
         }
     }
 
-
     void deleteKamar(String nomorKamar){
         if(cekKamar(nomorKamar)){
             Kamar kamar = dataSource.getListKamar().stream().filter(cekKamar -> cekKamar.getNoKamar().equals(nomorKamar)).findFirst().orElse(null);
@@ -30,6 +29,16 @@ public class MasterKamar {
         }
     }
 
+    public void editDataKamar(Kamar oldDData, Kamar newDData){
+        // find the data's index
+        if(cekKamar(oldDData.getNoKamar())){
+            int index = dataSource.getListKamar().indexOf(oldDData);
+            dataSource.editKamar(index, newDData);
+        }else{
+            // data not found
+            System.out.println("Data Tidak Ditemukan");
+        }
+    }
 
     public Kamar getKamar(String nomorKamar){
         if(cekKamar(nomorKamar)){
