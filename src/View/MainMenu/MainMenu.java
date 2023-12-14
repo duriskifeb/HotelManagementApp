@@ -39,12 +39,12 @@ public class MainMenu {
             switch (ch1) {
                 case 1:
                     next();
-                    loginPegawai();
+                    loginUser("Pegawai");
                     break;
 
                 case 2:
                     next();
-                    loginManager();
+                    loginUser("Manager");
                     break;
 
                 case 0:
@@ -63,9 +63,9 @@ public class MainMenu {
 
     }
 
-    public void loginPegawai() throws IOException {
+    public void loginUser(String UserRole) throws IOException {
         header();
-        System.out.println("Login : Pegawai\n");
+        System.out.println("Login : " + UserRole + "\n");
 
         System.out.print("ID\t  : ");
         ID_Pegawai = readLine();
@@ -77,26 +77,11 @@ public class MainMenu {
         next();
 
         // test (misal input benar)
-        menuPegawai();
-
-        // pengecekan kalau input salah kembali ke login()
-
-    }
-
-    public void loginManager() throws IOException {
-        header();
-        System.out.println("Login : Manager\n");
-        System.out.print("ID\t  : ");
-        ID_Manager = readLine();
-        System.out.print("Email\t  : ");
-        email = readLine();
-        System.out.print("Password  : ");
-        pw = readLine();
-
-        next();
-
-        // test (misal input benar)
-        menuManager();
+        if ("Pegawai".equals(UserRole)) {
+            menuPegawai();
+        } else if ("Manager".equals(UserRole)) {
+            menuManager();
+        }
 
         // pengecekan kalau input salah kembali ke login()
 
@@ -108,10 +93,6 @@ public class MainMenu {
             header();
             System.out.println("Menu : Pegawai\n");
             System.out.println("1. Fitur 1");
-            System.out.println("2. Fitur 2");
-            System.out.println("3. Fitur 3");
-            System.out.println("4. Fitur 4");
-            System.out.println("5. Fitur 5");
             System.out.println("0. Kembali");
 
             System.out.print("\nPilihan : ");
@@ -121,26 +102,6 @@ public class MainMenu {
                 case 1:
                     next();
                     fitur1();
-                    break;
-
-                case 2:
-                    next();
-                    fitur2();
-                    break;
-
-                case 3:
-                    next();
-                    fitur3();
-                    break;
-
-                case 4:
-                    next();
-                    fitur4();
-                    break;
-
-                case 5:
-                    next();
-                    fitur5();
                     break;
 
                 case 0:
@@ -162,10 +123,6 @@ public class MainMenu {
             header();
             System.out.println("Menu : Manager\n");
             System.out.println("1. Fitur 1");
-            System.out.println("2. Fitur 2");
-            System.out.println("3. Fitur 3");
-            System.out.println("4. Fitur 4");
-            System.out.println("5. Fitur 5");
             System.out.println("0. Kembali");
 
             System.out.print("\nPilihan : ");
@@ -175,26 +132,6 @@ public class MainMenu {
                 case 1:
                     next();
                     fitur1();
-                    break;
-
-                case 2:
-                    next();
-                    fitur2();
-                    break;
-
-                case 3:
-                    next();
-                    fitur3();
-                    break;
-
-                case 4:
-                    next();
-                    fitur4();
-                    break;
-
-                case 5:
-                    next();
-                    fitur5();
                     break;
 
                 case 0:
@@ -214,30 +151,6 @@ public class MainMenu {
     public void fitur1() throws IOException {
         header();
         System.out.println("\nIni Fitur 1");
-        next();
-    }
-
-    public void fitur2() throws IOException {
-        header();
-        System.out.println("\nIni Fitur 2");
-        next();
-    }
-
-    public void fitur3() throws IOException {
-        header();
-        System.out.println("\nIni Fitur 3");
-        next();
-    }
-
-    public void fitur4() throws IOException {
-        header();
-        System.out.println("\nIni Fitur 4");
-        next();
-    }
-
-    public void fitur5() throws IOException {
-        header();
-        System.out.println("\nIni Fitur 5");
         next();
     }
 
