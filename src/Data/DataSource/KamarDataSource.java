@@ -69,6 +69,10 @@ public class KamarDataSource {
                             Enums.JenisKamar.BUSINESS,
                             700000.0,
                             5,
-                            Enums.StatusKamar.AVAILABLE)));
+                            Enums.StatusKamar.AVAILABLE)
+            )
+    );
+
+
 
 }
