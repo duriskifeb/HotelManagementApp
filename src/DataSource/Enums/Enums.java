@@ -2,26 +2,35 @@ package DataSource.Enums;
 
 public class Enums {
     // put enums here
-    enum StatusKamar {
+    public enum StatusKamar {
         AVAILABLE,
         OCCUPIED,
         BOOKED,
         CLEANING
     }
 
-    enum UserRole {
+    public enum JenisKamar{
+        SINGLE,
+        DOUBLE,
+        FAMILY,
+        VIP,
+        BUSINESS
+    }
+
+    public enum UserRole {
         PEGAWAI,
         MANAGER
     }
 
-    enum Pembayaran{
+    public enum Pembayaran{
         BANK,
         CASH
     }
 
-    enum StatusTransaksi{
+    public enum StatusTransaksi{
         PENDING,
         ONGOING,
         DONE
     }
+
 }
