@@ -16,6 +16,12 @@ public class CustomerDataSource {
                             "David",
                             "david-ntb@gmail.com",
                             "01923910239"
+                    ),
+                    new Customer(
+                            "1201230016",
+                            "Ryan",
+                            "ryanadika09@gmail.com",
+                            "08123867390"
                     )
             )
     );
