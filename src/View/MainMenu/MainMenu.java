@@ -1,8 +1,7 @@
 package View.MainMenu;
 
-import static Statics.Statics.input;
-import static Statics.Statics.readInt;
-import static Statics.Statics.readLine;
+import static Statics.StaticsInput.readInt;
+import static Statics.StaticsInput.readLine;
 
 import java.io.IOException;
 

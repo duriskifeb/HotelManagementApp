@@ -3,10 +3,8 @@ package Statics;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.Buffer;
-import java.util.Scanner;
 
-public class Statics {
+public class StaticsInput {
 
     public static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 
@@ -21,8 +19,8 @@ public class Statics {
 
     public static int readInt(){
         try {
-            return Integer.parseInt(readLine());
-        } catch (NumberFormatException e) {
+            return Integer.parseInt(input.readLine());
+        } catch (NumberFormatException | IOException e) {
             System.err.println("Input tidak valid. masukkan Integer");
             return readInt(); // rekursif
         }
