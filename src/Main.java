@@ -15,13 +15,13 @@ public class Main {
 
     public static void main(String[] args) throws IOException{
 
-        String reportNumber = Generator.generateReportNumber(
-                "Aayam",
-                Formatting.formatDate(new Date()),
-                "10000000",
-                "ayam-ayam-ayam"
-                );
-        System.out.println(reportNumber);
+//        String reportNumber = Generator.generateReportNumber(
+//                "Aayam",
+//                Formatting.formatDate(new Date()),
+//                "10000000",
+//                "ayam-ayam-ayam"
+//                );
+        System.out.println(Enums.Pembayaran.BANK);
 
 //        MainMenu menu = new MainMenu();
 //

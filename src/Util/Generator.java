@@ -30,9 +30,9 @@ public class Generator {
         return result.toUpperCase();
     }
 
-    public static String generateTransaksiID(String tanggalTransaksi, String chekcIn, String chekcOut, String totalPrice, String orderName, String picName){
+    public static String generateTransaksiID(String tanggalTransaksi, String totalPrice, String orderName, String picName, Enums.Pembayaran payment){
         String result;
-        result = picName +"-"+ tanggalTransaksi + "-"+ totalPrice + "-"+ chekcIn + "-"+ chekcOut + "-" + orderName;
+        result = picName +"-"+ tanggalTransaksi + "-"+ totalPrice + "-" + "-" + orderName + "-"+ payment;
         result = Encryption.hashID(result, 10);
         return result.toLowerCase();
     }

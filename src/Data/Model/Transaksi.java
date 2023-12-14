@@ -1,6 +1,8 @@
 package Data.Model;
 
 import Data.Enums.Enums;
+import Util.Formatting;
+import Util.Generator;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,6 +31,33 @@ public class Transaksi {
             ArrayList<Kamar> kamarOrdered
     ) {
         this.noTransaksi = noTransaksi;
+        this.tanggalTransaksi = tanggalTransaksi;
+        this.statusTransaksi = statusTransaksi;
+        this.pembayaran = pembayaran;
+        this.pegawai = pegawai;
+        this.customers = customers;
+        this.kamarOrdered = kamarOrdered;
+        calculateTotal();
+    }
+
+
+    public Transaksi(
+            Date tanggalTransaksi,
+            Enums.StatusTransaksi statusTransaksi,
+            Enums.Pembayaran pembayaran,
+            User pegawai,
+            ArrayList<Customer> customers,
+            ArrayList<Kamar> kamarOrdered
+    ) {
+        calculateTotal();
+        this.noTransaksi = Generator.generateTransaksiID(
+                Formatting.formatDate(tanggalTransaksi),
+                String.valueOf(this.getTotal()),
+                customers.get(0).getNama(),
+                pegawai.getNama(),
+                pembayaran
+        );
+
         this.tanggalTransaksi = tanggalTransaksi;
         this.statusTransaksi = statusTransaksi;
         this.pembayaran = pembayaran;
