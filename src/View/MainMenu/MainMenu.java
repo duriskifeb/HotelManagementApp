@@ -1,12 +1,15 @@
 package View.MainMenu;
 
-
 import static Statics.Statics.input;
+import static Statics.Statics.readInt;
+import static Statics.Statics.readLine;
+
+import java.io.IOException;
 
 public class MainMenu {
 
-    int ch1 = 0;
-    int ch2 = 0;
+    int ch1;
+    int ch2;
 
     // sementara
     String ID_Pegawai;
@@ -22,7 +25,7 @@ public class MainMenu {
         System.out.println("==============================");
     }
 
-    public void login() {
+    public void login() throws IOException {
         do {
             header();
             System.out.println("\nSilahkan pilih menu login");
@@ -31,8 +34,8 @@ public class MainMenu {
             System.out.println("0. Keluar");
 
             System.out.print("\nPilihan : ");
-            ch1 = input.nextInt();
-            input.nextLine();
+            ch1 = readInt();
+
 
             switch (ch1) {
                 case 1:
@@ -46,7 +49,7 @@ public class MainMenu {
                     break;
 
                 case 0:
-                next();
+                    next();
                     cls();
                     System.out.println("Menutup aplikasi");
                     System.exit(0);
@@ -61,16 +64,16 @@ public class MainMenu {
 
     }
 
-    public void loginPegawai() {
+    public void loginPegawai() throws IOException {
         header();
         System.out.println("Login : Pegawai\n");
 
         System.out.print("ID\t  : ");
-        ID_Pegawai = input.nextLine();
+        ID_Pegawai = readLine();
         System.out.print("Email\t  : ");
-        email = input.nextLine();
+        email = readLine();
         System.out.print("Password  : ");
-        pw = input.nextLine();
+        pw = readLine();
 
         next();
 
@@ -81,15 +84,15 @@ public class MainMenu {
 
     }
 
-    public void loginManager() {
+    public void loginManager() throws IOException {
         header();
         System.out.println("Login : Manager\n");
         System.out.print("ID\t  : ");
-        ID_Manager = input.nextLine();
+        ID_Manager = readLine();
         System.out.print("Email\t  : ");
-        email = input.nextLine();
+        email = readLine();
         System.out.print("Password  : ");
-        pw = input.nextLine();
+        pw = readLine();
 
         next();
 
@@ -100,7 +103,7 @@ public class MainMenu {
 
     }
 
-    public void menuPegawai() {
+    public void menuPegawai() throws IOException{
         do {
 
             header();
@@ -113,37 +116,36 @@ public class MainMenu {
             System.out.println("0. Kembali");
 
             System.out.print("\nPilihan : ");
-            ch2 = input.nextInt();
-            input.nextLine();
-            
+            ch2 = readInt();
+
             switch (ch2) {
                 case 1:
-                next();
-                fitur1();
+                    next();
+                    fitur1();
                     break;
 
                 case 2:
-                next();
+                    next();
                     fitur2();
                     break;
 
                 case 3:
-                next();
+                    next();
                     fitur3();
                     break;
 
                 case 4:
-                next();
+                    next();
                     fitur4();
                     break;
 
                 case 5:
-                next();
+                    next();
                     fitur5();
                     break;
 
                 case 0:
-                next();
+                    next();
                     break;
 
                 default:
@@ -155,7 +157,7 @@ public class MainMenu {
         } while (ch2 != 0);
     }
 
-    public void menuManager() {
+    public void menuManager() throws IOException {
         do {
 
             header();
@@ -168,37 +170,36 @@ public class MainMenu {
             System.out.println("0. Kembali");
 
             System.out.print("\nPilihan : ");
-            ch2 = input.nextInt();
-            input.nextLine();
+            ch2 = readInt();
 
             switch (ch2) {
                 case 1:
-                next();
-                fitur1();
+                    next();
+                    fitur1();
                     break;
 
                 case 2:
-                next();
+                    next();
                     fitur2();
                     break;
 
                 case 3:
-                next();
+                    next();
                     fitur3();
                     break;
 
                 case 4:
-                next();
+                    next();
                     fitur4();
                     break;
 
                 case 5:
-                next();
+                    next();
                     fitur5();
                     break;
 
                 case 0:
-                next();
+                    next();
                     break;
 
                 default:
@@ -211,40 +212,40 @@ public class MainMenu {
 
     }
 
-    public void fitur1() {
+    public void fitur1() throws IOException {
         header();
         System.out.println("\nIni Fitur 1");
         next();
     }
 
-    public void fitur2() {
+    public void fitur2() throws IOException {
         header();
         System.out.println("\nIni Fitur 2");
         next();
     }
 
-    public void fitur3() {
+    public void fitur3() throws IOException {
         header();
         System.out.println("\nIni Fitur 3");
         next();
     }
 
-    public void fitur4() {
+    public void fitur4() throws IOException {
         header();
         System.out.println("\nIni Fitur 4");
         next();
     }
 
-    public void fitur5() {
+    public void fitur5() throws IOException {
         header();
         System.out.println("\nIni Fitur 5");
         next();
     }
 
-    public void next() {
+    public void next() throws IOException{
         System.out.println("\n==============================");
         System.out.print("\nTekan ENTER untuk melanjutkan");
-        input.nextLine();
+        readLine();
     }
 
     public void cls() {
