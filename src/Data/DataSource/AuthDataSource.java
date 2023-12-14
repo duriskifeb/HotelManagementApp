@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class AuthDataSource {
-     private ArrayList<User> listPegawai = new ArrayList<>(
+    private ArrayList<User> listPegawai = new ArrayList<>(
             Arrays.asList(
                     new User(
                             "ADM01",
@@ -27,52 +27,31 @@ public class AuthDataSource {
             )
     );
 
-     void addNewPegawai(User user) {
+    public void addNewPegawai(User user) {
         // check if user already exists
-        if(!cekUser(user)){
-            listPegawai.add(user);
-        }else {
-            System.out.println("Data Pegawai Sudah Ada");
-        }
+        listPegawai.add(user);
+
     }
 
-     void deletePegawai(String userId){
-        if(cekUser(userId)){
-            listPegawai.remove(userId);
-        }else {
-            System.out.println("Data Tidak Ditemukan");
-        }
+    public void deletePegawai(String userId) {
+        User usr = listPegawai.stream().filter(user -> user.getUserID().equals(userId)).findFirst().orElse(null);
+        listPegawai.remove(usr);
     }
 
-    public  ArrayList<User> getListPegawai() {
+    public ArrayList<User> getListPegawai() {
         return listPegawai;
     }
 
-
-    public User authenticateUser(String email, String password){
-         return listPegawai.stream().filter(
-                 cekUser -> cekUser.getEmail().equals(email) &&
-                         cekUser.getPassword().equals(Encryption.hashPassword(password))
-         ).findFirst().orElse(null);
+    public User authenticateUser(String email, String password) {
+        return listPegawai.stream().filter(
+                cekUser -> cekUser.getEmail().equals(email) &&
+                        cekUser.getPassword().equals(Encryption.hashPassword(password))
+        ).findFirst().orElse(null);
     }
 
     public void setListPegawai(ArrayList<User> listPegawai) {
         this.listPegawai = listPegawai;
     }
 
-     boolean cekUser(User user){
-        User cek = listPegawai.stream().filter(
-                cekUser -> {
-                    return cekUser.getNama().equals(user.getNama()) ||
-                            cekUser.getEmail().equals(user.getEmail());
-                }
-        ).findFirst().orElse(null);
-        return cek != null; // return userIs Found when cek is not null
-    }
-     boolean cekUser(String userId){
-        User cek = listPegawai.stream().filter(
-                cekUser -> cekUser.getUserID().equals(userId)
-        ).findFirst().orElse(null);
-        return cek != null; // return userIs Found when cek is not null
-    }
+
 }
