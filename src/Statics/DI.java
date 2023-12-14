@@ -10,6 +10,10 @@ import Domain.Report.Reporting;
 import Domain.Transaksi.TransaksiUseCase;
 import ViewModel.AuthViewModel.AuthViewModel;
 import ViewModel.MasterViewModel.MasterKamarViewModel;
+import ViewModel.MasterViewModel.MasterPegawaiViewModel;
+import ViewModel.MasterViewModel.MasterReportingViewModel;
+import ViewModel.MasterViewModel.MasterTransaksiViewModel;
+import ViewModel.ReportViewModel.ReportingViewModel;
 
 public class DI {
 
@@ -42,6 +46,11 @@ public class DI {
 
     // ViewModel
     public static AuthViewModel authViewModel = new AuthViewModel(DI.authUserCase);
-    public  static MasterKamarViewModel masterKamarVM = new MasterKamarViewModel();
+    public  static MasterKamarViewModel masterKamarVM = new MasterKamarViewModel(DI.masterKamar);
+    public static MasterPegawaiViewModel masterPegawaiVM = new MasterPegawaiViewModel(DI.masterPegawai);
+    public static MasterTransaksiViewModel masterTransaksiVM = new MasterTransaksiViewModel(DI.masterTransaksi);
+    public static MasterReportingViewModel masterReportingVM = new MasterReportingViewModel(DI.masterReporting);
+    public static ReportingViewModel reportingVM = new ReportingViewModel(DI.reporting);
+
 
 }
