@@ -17,6 +17,8 @@ public class CustomerDataSource {
                             "david-ntb@gmail.com",
                             "01923910239"
                     )
+
+                    // TODO @Ryan lanjutin yan, buat data yang agak banyak
             )
     );
 

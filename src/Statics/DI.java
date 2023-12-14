@@ -23,11 +23,7 @@ public class DI {
     public static CustomerDataSource customerDataSource = new CustomerDataSource();
     public static KamarDataSource kamarDataSource = new KamarDataSource();
     public static TransaksiDataSource transaksiDataSource = new TransaksiDataSource();
-    public static ReportDataSource reportDataSource = new ReportDataSource(
-            DI.customerDataSource,
-            DI.kamarDataSource,
-            DI.transaksiDataSource
-    );
+    public static ReportDataSource reportDataSource = new ReportDataSource();
 
 
     //Domains
