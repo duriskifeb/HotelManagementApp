@@ -1,6 +1,7 @@
 package Data.DataSource;
 
 import Data.Enums.Enums;
+import Data.Model.Customer;
 import Data.Model.Kamar;
 import Util.Encryption;
 
@@ -74,5 +75,24 @@ public class KamarDataSource {
     );
 
 
+    public ArrayList<Kamar> getListKamar() {
+        return listKamar;
+    }
+
+    public void setListKamar(ArrayList<Kamar> listKamar) {
+        this.listKamar = listKamar;
+    }
+
+    public void addNewKamar(Kamar kamar) {
+        this.listKamar.add(kamar);
+    }
+
+    public void removeKamar(Kamar kamar) {
+        this.listKamar.remove(kamar);
+    }
+
+    public void editKamar(int index, Kamar kamar) {
+        this.listKamar.set(index, kamar);
+    }
 
 }

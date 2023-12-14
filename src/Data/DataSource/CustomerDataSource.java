@@ -29,5 +29,16 @@ public class CustomerDataSource {
     }
 
 
+    public void addCustomer(Customer customer) {
+        listCustomer.add(customer);
+    }
+
+    public void removeCustomer(Customer customer){
+        listCustomer.remove(customer);
+    }
+    public void editCustomer(int index , Customer customer){
+        listCustomer.set(index, customer);
+    }
+
 
 }
