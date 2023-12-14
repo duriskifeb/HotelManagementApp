@@ -7,7 +7,7 @@ import Util.Encryption;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class AuthDataSource {
+public class PegawaiDataSource {
     private ArrayList<User> listPegawai = new ArrayList<>(
             Arrays.asList(
                     new User(

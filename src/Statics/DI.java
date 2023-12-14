@@ -1,6 +1,6 @@
 package Statics;
 
-import Data.DataSource.AuthDataSource;
+import Data.DataSource.PegawaiDataSource;
 import Data.DataSource.CustomerDataSource;
 import Data.DataSource.KamarDataSource;
 import Data.DataSource.TransaksiDataSource;
@@ -10,7 +10,7 @@ import ViewModel.AuthViewModel.AuthViewModel;
 public class DI {
 
     // Datasources
-    public static AuthDataSource authDataSource = new AuthDataSource();
+    public static PegawaiDataSource authDataSource = new PegawaiDataSource();
     public static CustomerDataSource customerDataSource = new CustomerDataSource();
     public static KamarDataSource kamarDataSource = new KamarDataSource();
     public static TransaksiDataSource transaksiDataSource = new TransaksiDataSource();

@@ -1,13 +1,13 @@
 package Domain.Auth;
 
-import Data.DataSource.AuthDataSource;
+import Data.DataSource.PegawaiDataSource;
 import Data.Model.User;
 import Util.Encryption;
 
 public class AuthUserCase {
 
-    AuthDataSource dataSource;
-    public AuthUserCase(AuthDataSource dataSource) {
+    PegawaiDataSource dataSource;
+    public AuthUserCase(PegawaiDataSource dataSource) {
         this.dataSource = dataSource;
     }
 
@@ -16,42 +16,6 @@ public class AuthUserCase {
     public void doLogin(String userId, String password){
         String strippedPass = password.strip();
         String hashedPass = Encryption.hashPassword(strippedPass);
+        loggedUser = dataSource.authenticateUser(userId, hashedPass);
     }
-
-
-    void addNewPegawai(User user) {
-        // check if user already exists
-        if(!cekUser(user)){
-            dataSource.addNewPegawai(user);
-        }else {
-            System.out.println("Data Pegawai Sudah Ada");
-        }
-    }
-
-    void deletePegawai(String userId){
-        if(cekUser(userId)){
-            dataSource.deletePegawai(userId);
-        }else {
-            System.out.println("Data Tidak Ditemukan");
-        }
-    }
-
-
-
-    boolean cekUser(User user){
-        User cek = dataSource.getListPegawai().stream().filter(
-                cekUser -> {
-                    return cekUser.getNama().equals(user.getNama()) ||
-                            cekUser.getEmail().equals(user.getEmail());
-                }
-        ).findFirst().orElse(null);
-        return cek != null; // return userIs Found when cek is not null
-    }
-    boolean cekUser(String userId){
-        User cek = dataSource.getListPegawai().stream().filter(
-                cekUser -> cekUser.getUserID().equals(userId)
-        ).findFirst().orElse(null);
-        return cek != null; // return userIs Found when cek is not null
-    }
-
 }
