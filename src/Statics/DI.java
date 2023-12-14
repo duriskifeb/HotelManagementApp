@@ -13,37 +13,68 @@ import ViewModel.TransaksiViewModel.TransaksiViewModel;
 public class DI {
 
     // Datasources
-    public static PegawaiDataSource pegawaiDataSource = new PegawaiDataSource();
-    public static CustomerDataSource customerDataSource = new CustomerDataSource();
-    public static KamarDataSource kamarDataSource = new KamarDataSource();
-    public static TransaksiDataSource transaksiDataSource = new TransaksiDataSource();
-    public static ReportDataSource reportDataSource = new ReportDataSource();
-
+    public static PegawaiDataSource pegawaiDataSource;
+    public static CustomerDataSource customerDataSource;
+    public static KamarDataSource kamarDataSource;
+    public static TransaksiDataSource transaksiDataSource;
+    public static ReportDataSource reportDataSource;
 
     //Domains
-    public static AuthUserCase authUserCase = new AuthUserCase(DI.pegawaiDataSource);
-    public static MasterPegawai masterPegawai = new MasterPegawai(DI.pegawaiDataSource);
-    public static MasterKamar masterKamar = new MasterKamar(DI.kamarDataSource);
-    public static MasterTransaksi masterTransaksi = new MasterTransaksi(DI.transaksiDataSource);
-    public static MasterReporting masterReporting = new MasterReporting(DI.reportDataSource);
-    public static MasterCustomer masterCustomer = new MasterCustomer(DI.customerDataSource);
-    public static Reporting reporting = new Reporting(
-            DI.customerDataSource,
-            DI.kamarDataSource,
-            DI.transaksiDataSource,
-            DI.reportDataSource
-    );
-    public static TransaksiUseCase transaksiUseCase = new TransaksiUseCase(DI.transaksiDataSource);
+    public static AuthUserCase authUserCase;
+    public static MasterPegawai masterPegawai;
+    public static MasterKamar masterKamar;
+    public static MasterTransaksi masterTransaksi;
+    public static MasterReporting masterReporting;
+    public static MasterCustomer masterCustomer;
+    public static Reporting reporting;
+    public static TransaksiUseCase transaksiUseCase;
 
     // ViewModel
-    public static AuthViewModel authViewModel = new AuthViewModel(DI.authUserCase);
-    public  static MasterKamarViewModel masterKamarVM = new MasterKamarViewModel(DI.masterKamar);
-    public static MasterPegawaiViewModel masterPegawaiVM = new MasterPegawaiViewModel(DI.masterPegawai);
-    public static MasterTransaksiViewModel masterTransaksiVM = new MasterTransaksiViewModel(DI.masterTransaksi);
-    public static MasterReportingViewModel masterReportingVM = new MasterReportingViewModel(DI.masterReporting);
-    public static MasterCustomerViewModel masterCustomerVM = new MasterCustomerViewModel(DI.masterCustomer);
-    public static ReportingViewModel reportingVM = new ReportingViewModel(DI.reporting);
-    public static TransaksiViewModel transaksiVM = new TransaksiViewModel(DI.transaksiUseCase);
+    public static AuthViewModel authViewModel;
+    public static MasterKamarViewModel masterKamarVM;
+    public static MasterPegawaiViewModel masterPegawaiVM;
+    public static MasterTransaksiViewModel masterTransaksiVM;
+    public static MasterReportingViewModel masterReportingVM;
+    public static MasterCustomerViewModel masterCustomerVM ;
+    public static ReportingViewModel reportingVM;
+    public static TransaksiViewModel transaksiVM;
+
+    public static void init() {
+        System.out.println("Initializing Dependency Injection (Don't you dare to interrupt)");
+        // Datasources
+        pegawaiDataSource = new PegawaiDataSource();
+        customerDataSource = new CustomerDataSource();
+        kamarDataSource = new KamarDataSource();
+        transaksiDataSource = new TransaksiDataSource();
+        reportDataSource = new ReportDataSource();
+
+        //Domains
+        authUserCase = new AuthUserCase(DI.pegawaiDataSource);
+        masterPegawai = new MasterPegawai(DI.pegawaiDataSource);
+        masterKamar = new MasterKamar(DI.kamarDataSource);
+        masterTransaksi = new MasterTransaksi(DI.transaksiDataSource);
+        masterReporting = new MasterReporting(DI.reportDataSource);
+        masterCustomer = new MasterCustomer(DI.customerDataSource);
+        reporting = new Reporting(
+                DI.customerDataSource,
+                DI.kamarDataSource,
+                DI.transaksiDataSource,
+                DI.reportDataSource
+        );
+        transaksiUseCase = new TransaksiUseCase(DI.transaksiDataSource);
+
+        // ViewModel
+        authViewModel = new AuthViewModel(DI.authUserCase);
+        masterKamarVM = new MasterKamarViewModel(DI.masterKamar);
+        masterPegawaiVM = new MasterPegawaiViewModel(DI.masterPegawai);
+        masterTransaksiVM = new MasterTransaksiViewModel(DI.masterTransaksi);
+        masterReportingVM = new MasterReportingViewModel(DI.masterReporting);
+        masterCustomerVM = new MasterCustomerViewModel(DI.masterCustomer);
+        reportingVM = new ReportingViewModel(DI.reporting);
+        transaksiVM = new TransaksiViewModel(DI.transaksiUseCase);
+
+        System.out.println("Dependencies are ready and loaded");
+    }
 
 
 }

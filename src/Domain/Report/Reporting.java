@@ -17,5 +17,7 @@ public class Reporting {
         this.transaksiDataSource = transaksiDataSource;
         this.reportDataSource = reportDataSource;
     }
-    
+
+    // TODO logic to create, and handle the Reporting Model
+
 }

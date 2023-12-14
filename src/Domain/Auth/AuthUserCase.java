@@ -10,14 +10,22 @@ public class AuthUserCase {
     public AuthUserCase(PegawaiDataSource dataSource) {
         this.dataSource = dataSource;
     }
-    User loggedUser;
+    public User loggedUser;
     public void doLogin(String userId, String password){
-        String strippedPass = password.strip();
-        String hashedPass = Encryption.hashPassword(strippedPass);
+        String hashedPass = Encryption.hashPassword(password);
         loggedUser = dataSource.authenticateUser(userId, hashedPass);
+        if(loggedUser != null){
+            System.out.println("Login Success");
+        }else {
+            System.out.println("Login Failed Akun Tidak Ditemukan");
+        }
     }
 
     public void doLogout() {
         loggedUser = null;
+    }
+
+    public User getLoggedInUser() {
+        return loggedUser;
     }
 }
