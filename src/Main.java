@@ -1,5 +1,10 @@
 import java.io.IOException;
+import java.util.Date;
 import java.util.Scanner;
+
+import Data.Enums.Enums;
+import Util.Formatting;
+import Util.Generator;
 import View.MainMenu.MainMenu;
 
 import Util.Encryption;
@@ -10,9 +15,16 @@ public class Main {
 
     public static void main(String[] args) throws IOException{
 
-        String ayamHashed = Encryption.hashPassword("ayam");
-        MainMenu menu = new MainMenu();
+        String reportNumber = Generator.generateReportNumber(
+                "Aayam",
+                Formatting.formatDate(new Date()),
+                "10000000",
+                "ayam-ayam-ayam"
+                );
+        System.out.println(reportNumber);
 
-        menu.login();
+//        MainMenu menu = new MainMenu();
+//
+//        menu.login();
     }
 } 
