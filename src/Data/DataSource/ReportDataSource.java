@@ -1,13 +1,35 @@
 package Data.DataSource;
 
-public class ReportDataSource {
-    CustomerDataSource customerDataSource;
-    KamarDataSource kamarDataSource;
-    TransaksiDataSource transaksiDataSource;
+import Data.Model.ReportModel;
 
-    public ReportDataSource(CustomerDataSource customerDataSource, KamarDataSource kamarDataSource, TransaksiDataSource transaksiDataSource) {
-        this.customerDataSource = customerDataSource;
-        this.kamarDataSource = kamarDataSource;
-        this.transaksiDataSource = transaksiDataSource;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class ReportDataSource {
+
+    private ArrayList<ReportModel> listReports = new ArrayList<ReportModel>(
+            Arrays.asList(
+                    // TODO
+            )
+    );
+
+    public ArrayList<ReportModel> getListReports() {
+        return listReports;
+    }
+
+    public void setListReports(ArrayList<ReportModel> listReports) {
+        this.listReports = listReports;
+    }
+
+    public void addNewReport(ReportModel report){
+        this.listReports.add(report);
+    }
+
+    public void removeReport(ReportModel report){
+        this.listReports.remove(report);
+    }
+
+    public void editReport(int index, ReportModel report){
+        this.listReports.set(index, report);
     }
 }

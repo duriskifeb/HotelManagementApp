@@ -15,4 +15,15 @@ public class TransaksiDataSource {
         this.listTransaksi = listTransaksi;
     }
 
+    public void addNewTransaksi(Transaksi newTransaksi) {
+        this.listTransaksi.add(newTransaksi);
+    }
+
+    public void removeTransaksi(Transaksi newTransaksi) {
+        this.listTransaksi.remove(newTransaksi);
+    }
+
+    public void editTransasi(int index, Transaksi newTransaksi) {
+        this.listTransaksi.set(index, newTransaksi);
+    }
 }

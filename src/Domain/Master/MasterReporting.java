@@ -4,8 +4,11 @@ import Data.DataSource.ReportDataSource;
 
 public class MasterReporting {
     ReportDataSource dataSource;
-
     public MasterReporting(ReportDataSource dataSource) {
         this.dataSource = dataSource;
+    }
+
+    boolean cekReport (){
+        return false;
     }
 }

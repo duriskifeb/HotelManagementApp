@@ -10,7 +10,6 @@ public class MasterPegawai {
         this.dataSource = dataSource;
     }
 
-
     void addNewPegawai(User user) {
         // check if user already exists
         if(!cekUser(user)){
@@ -38,9 +37,18 @@ public class MasterPegawai {
         }
     }
 
+    public void editDataPegawai(User oldDData, User newDData){
+        // find the data's index
+        if(cekUser(oldDData)){
+            int index = dataSource.getListPegawai().indexOf(oldDData);
+            dataSource.editPegawai(index, newDData);
+        }else{
+            // data not found
+            System.out.println("Data Tidak Ditemukan");
+        }
+    }
 
-
-        boolean cekUser(User user){
+    boolean cekUser(User user){
         User cek = dataSource.getListPegawai().stream().filter(
                 cekUser -> {
                     return cekUser.getNama().equals(user.getNama()) ||

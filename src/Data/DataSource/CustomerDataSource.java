@@ -23,6 +23,8 @@ public class CustomerDataSource {
                             "ryanadika09@gmail.com",
                             "08123867390"
                     )
+
+                    // TODO @Ryan lanjutin yan, buat data yang agak banyak
             )
     );
 
@@ -34,6 +36,17 @@ public class CustomerDataSource {
         this.listCustomer = listCustomer;
     }
 
+
+    public void addCustomer(Customer customer) {
+        listCustomer.add(customer);
+    }
+
+    public void removeCustomer(Customer customer){
+        listCustomer.remove(customer);
+    }
+    public void editCustomer(int index , Customer customer){
+        listCustomer.set(index, customer);
+    }
 
 
 }

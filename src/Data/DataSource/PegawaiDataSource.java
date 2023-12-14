@@ -28,13 +28,10 @@ public class PegawaiDataSource {
     );
 
     public void addNewPegawai(User user) {
-
         listPegawai.add(user);
-
     }
 
     public void deletePegawai(User usr) {
-
         listPegawai.remove(usr);
     }
 
