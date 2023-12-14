@@ -108,10 +108,6 @@ public class MainMenu {
             header();
             System.out.println("Menu : Pegawai\n");
             System.out.println("1. Fitur 1");
-            System.out.println("2. Fitur 2");
-            System.out.println("3. Fitur 3");
-            System.out.println("4. Fitur 4");
-            System.out.println("5. Fitur 5");
             System.out.println("0. Kembali");
 
             System.out.print("\nPilihan : ");
@@ -121,26 +117,6 @@ public class MainMenu {
                 case 1:
                     next();
                     fitur1();
-                    break;
-
-                case 2:
-                    next();
-                    fitur2();
-                    break;
-
-                case 3:
-                    next();
-                    fitur3();
-                    break;
-
-                case 4:
-                    next();
-                    fitur4();
-                    break;
-
-                case 5:
-                    next();
-                    fitur5();
                     break;
 
                 case 0:
@@ -162,10 +138,6 @@ public class MainMenu {
             header();
             System.out.println("Menu : Manager\n");
             System.out.println("1. Fitur 1");
-            System.out.println("2. Fitur 2");
-            System.out.println("3. Fitur 3");
-            System.out.println("4. Fitur 4");
-            System.out.println("5. Fitur 5");
             System.out.println("0. Kembali");
 
             System.out.print("\nPilihan : ");
@@ -175,26 +147,6 @@ public class MainMenu {
                 case 1:
                     next();
                     fitur1();
-                    break;
-
-                case 2:
-                    next();
-                    fitur2();
-                    break;
-
-                case 3:
-                    next();
-                    fitur3();
-                    break;
-
-                case 4:
-                    next();
-                    fitur4();
-                    break;
-
-                case 5:
-                    next();
-                    fitur5();
                     break;
 
                 case 0:
@@ -214,30 +166,6 @@ public class MainMenu {
     public void fitur1() throws IOException {
         header();
         System.out.println("\nIni Fitur 1");
-        next();
-    }
-
-    public void fitur2() throws IOException {
-        header();
-        System.out.println("\nIni Fitur 2");
-        next();
-    }
-
-    public void fitur3() throws IOException {
-        header();
-        System.out.println("\nIni Fitur 3");
-        next();
-    }
-
-    public void fitur4() throws IOException {
-        header();
-        System.out.println("\nIni Fitur 4");
-        next();
-    }
-
-    public void fitur5() throws IOException {
-        header();
-        System.out.println("\nIni Fitur 5");
         next();
     }
 
