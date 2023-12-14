@@ -161,7 +161,7 @@ public class MainMenu {
     }
 
     public void cls() {
-
+    // wont work on IDE
         try {
             final String os = System.getProperty("os.name");
             System.out.print("\033[H\033[2J");
