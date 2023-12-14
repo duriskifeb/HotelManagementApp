@@ -9,5 +9,5 @@ public class TransaksiUseCase {
         this.dataSource = dataSource;
     }
 
-    //TODO logic to create a new instance of Transaksi
+    // TODO logic to create a new instance of Transaksi
 }
