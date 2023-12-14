@@ -17,4 +17,5 @@ public class Reporting {
         this.transaksiDataSource = transaksiDataSource;
         this.reportDataSource = reportDataSource;
     }
+    
 }

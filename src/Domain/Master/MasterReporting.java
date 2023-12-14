@@ -21,7 +21,7 @@ public class MasterReporting {
     }
     void deleteReport(String reportNumber){
         if(cekReport(reportNumber)){
-            ReportModel report = dataSource.getListReports().stream().filter(cekReport -> cekReport.getReportNumber().equals(reportNumber)).findFirst().orElse(null);
+            ReportModel report = getReport(reportNumber);
             dataSource.removeReport(report);
         }else {
             System.out.println("Data Tidak Ditemukan");
@@ -37,9 +37,9 @@ public class MasterReporting {
             System.out.println("Data Tidak Ditemukan");
         }
     }
-    public ReportModel getReport(String nomorKamar){
-        if(cekReport(nomorKamar)){
-            return dataSource.getListReports().stream().filter(kamar -> kamar.getReportNumber().equals(nomorKamar)).findFirst().orElse(null);
+    public ReportModel getReport(String reportNumber){
+        if(cekReport(reportNumber)){
+            return dataSource.getListReports().stream().filter(kamar -> kamar.getReportNumber().equals(reportNumber)).findFirst().orElse(null);
         }else {
             System.out.println("Data Tidak Ditemukan");
             return null;

@@ -10,8 +10,6 @@ public class MasterCustomer {
     public MasterCustomer(CustomerDataSource dataSource) {
         this.dataSource = dataSource;
     }
-
-
     void addCustomer(Customer customer) {
         // check if customer already exists
         if(!cekCustomer(customer.getNIK())){
@@ -23,13 +21,12 @@ public class MasterCustomer {
 
     void deleteCustomer(String NIK){
         if(cekCustomer(NIK)){
-            Customer kamar = dataSource.getListCustomer().stream().filter(cekKamar -> cekKamar.getNIK().equals(NIK)).findFirst().orElse(null);
+            Customer kamar = getCustomer(NIK);
             dataSource.removeCustomer(kamar);
         }else {
             System.out.println("Data Tidak Ditemukan");
         }
     }
-
     public void editDataKamar(Customer oldDData,Customer newDData){
         // find the data's index
         if(cekCustomer(oldDData.getNIK())){

@@ -21,7 +21,7 @@ public class MasterPegawai {
 
     void deletePegawai(String userId){
         if(cekUser(userId)){
-            User usr = dataSource.getListPegawai().stream().filter(user -> user.getUserID().equals(userId)).findFirst().orElse(null);
+            User usr = getPegawai(userId);
             dataSource.deletePegawai(usr);
         }else {
             System.out.println("Data Tidak Ditemukan");
@@ -48,7 +48,7 @@ public class MasterPegawai {
         }
     }
 
-    boolean cekUser(User user){
+    private boolean cekUser(User user){
         User cek = dataSource.getListPegawai().stream().filter(
                 cekUser -> {
                     return cekUser.getNama().equals(user.getNama()) ||
@@ -57,7 +57,7 @@ public class MasterPegawai {
         ).findFirst().orElse(null);
         return cek != null; // return userIs Found when cek is not null
     }
-    boolean cekUser(String userId){
+    private boolean cekUser(String userId){
         User cek = dataSource.getListPegawai().stream().filter(
                 cekUser -> cekUser.getUserID().equals(userId)
         ).findFirst().orElse(null);
