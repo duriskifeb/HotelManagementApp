@@ -87,7 +87,7 @@ public class MainMenu {
         
     }
 
-    public void menuPegawai() throws IOException{
+    public void menuPegawai() throws IOException {
         do {
 
             header();
@@ -154,17 +154,26 @@ public class MainMenu {
         next();
     }
 
-    public void next() throws IOException{
+    public void next() throws IOException {
         System.out.println("\n==============================");
         System.out.print("\nTekan ENTER untuk melanjutkan");
         readLine();
     }
 
     public void cls() {
+
         try {
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        } catch (Exception e) {
-            System.err.println("Error : cls()");
+            final String os = System.getProperty("os.name");
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+            if (os.contains("Windows")) {
+                Runtime.getRuntime().exec("cls");
+            } else {
+                Runtime.getRuntime().exec("clear");
+            }
+        } catch (final Exception e) {
+            //  Handle any exceptions.
+            System.err.println("Error : cls() failed: " + e.getMessage());
         }
     }
 
