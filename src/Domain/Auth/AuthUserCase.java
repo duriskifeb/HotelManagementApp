@@ -22,7 +22,7 @@ public class AuthUserCase {
     void addNewPegawai(User user) {
         // check if user already exists
         if(!cekUser(user)){
-            dataSource.addPegawai(user);
+            dataSource.addNewPegawai(user);
         }else {
             System.out.println("Data Pegawai Sudah Ada");
         }
@@ -30,7 +30,7 @@ public class AuthUserCase {
 
     void deletePegawai(String userId){
         if(cekUser(userId)){
-            listPegawai.remove(userId);
+            dataSource.deletePegawai(userId);
         }else {
             System.out.println("Data Tidak Ditemukan");
         }
