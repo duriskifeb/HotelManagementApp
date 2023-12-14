@@ -10,12 +10,14 @@ public class AuthUserCase {
     public AuthUserCase(PegawaiDataSource dataSource) {
         this.dataSource = dataSource;
     }
-
-
     User loggedUser;
     public void doLogin(String userId, String password){
         String strippedPass = password.strip();
         String hashedPass = Encryption.hashPassword(strippedPass);
         loggedUser = dataSource.authenticateUser(userId, hashedPass);
+    }
+
+    public void doLogout() {
+        loggedUser = null;
     }
 }

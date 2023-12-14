@@ -9,6 +9,7 @@ import Domain.Master.MasterTransaksi;
 import Domain.Report.Reporting;
 import Domain.Transaksi.TransaksiUseCase;
 import ViewModel.AuthViewModel.AuthViewModel;
+import ViewModel.MasterViewModel.MasterKamarViewModel;
 
 public class DI {
 
@@ -41,5 +42,6 @@ public class DI {
 
     // ViewModel
     public static AuthViewModel authViewModel = new AuthViewModel(DI.authUserCase);
+    public  static MasterKamarViewModel masterKamarVM = new MasterKamarViewModel();
 
 }
