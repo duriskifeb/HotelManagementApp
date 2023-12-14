@@ -39,12 +39,12 @@ public class MainMenu {
             switch (ch1) {
                 case 1:
                     next();
-                    loginPegawai();
+                    loginUser("Pegawai");
                     break;
 
                 case 2:
                     next();
-                    loginManager();
+                    loginUser("Manager");
                     break;
 
                 case 0:
@@ -63,9 +63,9 @@ public class MainMenu {
 
     }
 
-    public void loginPegawai() throws IOException {
+    public void loginUser(String UserRole) throws IOException {
         header();
-        System.out.println("Login : Pegawai\n");
+        System.out.println("Login : " + UserRole + "\n");
 
         System.out.print("ID\t  : ");
         ID_Pegawai = readLine();
@@ -77,26 +77,11 @@ public class MainMenu {
         next();
 
         // test (misal input benar)
-        menuPegawai();
-
-        // pengecekan kalau input salah kembali ke login()
-
-    }
-
-    public void loginManager() throws IOException {
-        header();
-        System.out.println("Login : Manager\n");
-        System.out.print("ID\t  : ");
-        ID_Manager = readLine();
-        System.out.print("Email\t  : ");
-        email = readLine();
-        System.out.print("Password  : ");
-        pw = readLine();
-
-        next();
-
-        // test (misal input benar)
-        menuManager();
+        if ("Pegawai".equals(UserRole)) {
+            menuPegawai();
+        } else if ("Manager".equals(UserRole)) {
+            menuManager();
+        }
 
         // pengecekan kalau input salah kembali ke login()
 
