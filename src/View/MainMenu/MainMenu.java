@@ -76,15 +76,15 @@ public class MainMenu {
 
         next();
 
+        // pengecekan kalau input salah kembali ke login()
+
         // test (misal input benar)
         if ("Pegawai".equals(UserRole)) {
             menuPegawai();
         } else if ("Manager".equals(UserRole)) {
             menuManager();
         }
-
-        // pengecekan kalau input salah kembali ke login()
-
+        
     }
 
     public void menuPegawai() throws IOException{
