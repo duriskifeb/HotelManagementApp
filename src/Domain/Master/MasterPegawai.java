@@ -29,9 +29,18 @@ public class MasterPegawai {
         }
     }
 
+    public User getPegawai(String userId){
+        if(cekUser(userId)){
+            return dataSource.getListPegawai().stream().filter(user -> user.getUserID().equals(userId)).findFirst().orElse(null);
+        }else {
+            System.out.println("Data Tidak Ditemukan");
+            return null;
+        }
+    }
 
 
-    boolean cekUser(User user){
+
+        boolean cekUser(User user){
         User cek = dataSource.getListPegawai().stream().filter(
                 cekUser -> {
                     return cekUser.getNama().equals(user.getNama()) ||
