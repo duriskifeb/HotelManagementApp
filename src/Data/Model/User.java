@@ -11,6 +11,7 @@ public class User {
         this.email = email;
         this.nama = nama;
         this.role = role;
+        this.password = password;
     }
 
     public String getUserID() {
