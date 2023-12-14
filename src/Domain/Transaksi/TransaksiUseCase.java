@@ -2,10 +2,10 @@ package Domain.Transaksi;
 
 import Data.DataSource.TransaksiDataSource;
 
-public class TransaksiKeranjang {
+public class TransaksiUseCase {
     TransaksiDataSource dataSource;
 
-    public TransaksiKeranjang(TransaksiDataSource dataSource) {
+    public TransaksiUseCase(TransaksiDataSource dataSource) {
         this.dataSource = dataSource;
     }
 }
