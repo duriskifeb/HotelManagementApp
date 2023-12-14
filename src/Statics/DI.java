@@ -14,6 +14,7 @@ import ViewModel.MasterViewModel.MasterPegawaiViewModel;
 import ViewModel.MasterViewModel.MasterReportingViewModel;
 import ViewModel.MasterViewModel.MasterTransaksiViewModel;
 import ViewModel.ReportViewModel.ReportingViewModel;
+import ViewModel.TransaksiViewModel.TransaksiViewModel;
 
 public class DI {
 
@@ -51,6 +52,7 @@ public class DI {
     public static MasterTransaksiViewModel masterTransaksiVM = new MasterTransaksiViewModel(DI.masterTransaksi);
     public static MasterReportingViewModel masterReportingVM = new MasterReportingViewModel(DI.masterReporting);
     public static ReportingViewModel reportingVM = new ReportingViewModel(DI.reporting);
+    public static TransaksiViewModel transaksiVM = new TransaksiViewModel(DI.transaksiUseCase);
 
 
 }
