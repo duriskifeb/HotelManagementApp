@@ -1,6 +1,7 @@
 package Data.Model;
 
 import Data.Enums.Enums;
+import Util.Generator;
 
 public class User {
     private String userID, email, nama, password;
@@ -13,6 +14,15 @@ public class User {
         this.role = role;
         this.password = password;
     }
+
+    public User(String email, String nama, Enums.UserRole role, String password) {
+        this.userID = Generator.generatePegawaiID(nama, role, email);
+        this.email = email;
+        this.nama = nama;
+        this.role = role;
+        this.password = password;
+    }
+
 
     public String getUserID() {
         return userID;

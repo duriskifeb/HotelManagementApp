@@ -37,7 +37,7 @@ public class Transaksi {
         this.pegawai = pegawai;
         this.customers = customers;
         this.kamarOrdered = kamarOrdered;
-        calculateTotal();
+
     }
 
 
@@ -49,7 +49,7 @@ public class Transaksi {
             ArrayList<Customer> customers,
             ArrayList<Kamar> kamarOrdered
     ) {
-        calculateTotal();
+
         this.noTransaksi = Generator.generateTransaksiID(
                 Formatting.formatDate(tanggalTransaksi),
                 String.valueOf(this.getTotal()),
@@ -131,6 +131,7 @@ public class Transaksi {
     }
 
     public double getTotal() {
+        calculateTotal();
         return total;
     }
 
