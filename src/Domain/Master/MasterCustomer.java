@@ -4,6 +4,8 @@ import Data.DataSource.CustomerDataSource;
 import Data.Model.Customer;
 import Data.Model.Kamar;
 
+import static Util.Formatting.formatMessageOutput;
+
 public class MasterCustomer {
     CustomerDataSource dataSource;
 
@@ -15,7 +17,7 @@ public class MasterCustomer {
         if(!cekCustomer(customer.getNIK())){
             dataSource.addCustomer(customer);
         }else {
-            System.out.println("Data Kamar Sudah Ada");
+            formatMessageOutput("Data Kamar Sudah Ada");
         }
     }
 
@@ -24,7 +26,7 @@ public class MasterCustomer {
             Customer kamar = getCustomer(NIK);
             dataSource.removeCustomer(kamar);
         }else {
-            System.out.println("Data Tidak Ditemukan");
+            formatMessageOutput("Data Tidak Ditemukan");
         }
     }
     public void editDataKamar(Customer oldDData,Customer newDData){
@@ -34,7 +36,7 @@ public class MasterCustomer {
             dataSource.editCustomer(index, newDData);
         }else{
             // data not found
-            System.out.println("Data Tidak Ditemukan");
+            formatMessageOutput("Data Tidak Ditemukan");
         }
     }
 
@@ -42,7 +44,7 @@ public class MasterCustomer {
         if(cekCustomer(nomorKamar)){
             return dataSource.getListCustomer().stream().filter(customer -> customer.getNIK().equals(nomorKamar)).findFirst().orElse(null);
         }else {
-            System.out.println("Data Tidak Ditemukan");
+            formatMessageOutput("Data Tidak Ditemukan");
             return null;
         }
     }

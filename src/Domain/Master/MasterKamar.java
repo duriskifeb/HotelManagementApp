@@ -4,6 +4,8 @@ import Data.DataSource.KamarDataSource;
 import Data.Model.Kamar;
 import Data.Model.User;
 
+import static Util.Formatting.formatMessageOutput;
+
 public class MasterKamar {
     KamarDataSource dataSource;
 
@@ -15,7 +17,7 @@ public class MasterKamar {
         if(!cekKamar(kamar.getNoKamar())){
             dataSource.addNewKamar(kamar);
         }else {
-            System.out.println("Data Kamar Sudah Ada");
+            formatMessageOutput("Data Kamar Sudah Ada");
         }
     }
     void deleteKamar(String nomorKamar){
@@ -23,7 +25,7 @@ public class MasterKamar {
             Kamar kamar = getKamar(nomorKamar);
             dataSource.removeKamar(kamar);
         }else {
-            System.out.println("Data Tidak Ditemukan");
+            formatMessageOutput("Data Tidak Ditemukan");
         }
     }
     public void editDataKamar(Kamar oldDData, Kamar newDData){
@@ -33,7 +35,7 @@ public class MasterKamar {
             dataSource.editKamar(index, newDData);
         }else{
             // data not found
-            System.out.println("Data Tidak Ditemukan");
+            formatMessageOutput("Data Tidak Ditemukan");
         }
     }
     public Kamar getKamar(String nomorKamar){

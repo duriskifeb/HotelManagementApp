@@ -5,10 +5,13 @@ import Domain.Auth.AuthUserCase;
 import Domain.Master.*;
 import Domain.Report.Reporting;
 import Domain.Transaksi.TransaksiUseCase;
+import Util.Formatting;
 import ViewModel.AuthViewModel.AuthViewModel;
 import ViewModel.MasterViewModel.*;
 import ViewModel.ReportViewModel.ReportingViewModel;
 import ViewModel.TransaksiViewModel.TransaksiViewModel;
+
+import static Util.Formatting.formatMessageOutput;
 
 public class DI {
 
@@ -40,7 +43,7 @@ public class DI {
     public static TransaksiViewModel transaksiVM;
 
     public static void init() {
-        System.out.println("Initializing Dependency Injection (Don't you dare to interrupt)");
+        formatMessageOutput("Initializing Dependency Injection (Don't you dare to interrupt)");
         // Datasources
         pegawaiDataSource = new PegawaiDataSource();
         customerDataSource = new CustomerDataSource();
@@ -73,7 +76,7 @@ public class DI {
         reportingVM = new ReportingViewModel(DI.reporting);
         transaksiVM = new TransaksiViewModel(DI.transaksiUseCase);
 
-        System.out.println("Dependencies are ready and loaded");
+        formatMessageOutput("Dependencies are ready and loaded");
     }
 
 

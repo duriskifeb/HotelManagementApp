@@ -3,6 +3,8 @@ package Domain.Master;
 import Data.DataSource.PegawaiDataSource;
 import Data.Model.User;
 
+import static Util.Formatting.formatMessageOutput;
+
 public class MasterPegawai {
     PegawaiDataSource dataSource;
 
@@ -15,7 +17,7 @@ public class MasterPegawai {
         if(!cekUser(user)){
             dataSource.addNewPegawai(user);
         }else {
-            System.out.println("Data Pegawai Sudah Ada");
+            formatMessageOutput("Data Pegawai Sudah Ada");
         }
     }
 
@@ -24,7 +26,7 @@ public class MasterPegawai {
             User usr = getPegawai(userId);
             dataSource.deletePegawai(usr);
         }else {
-            System.out.println("Data Tidak Ditemukan");
+            formatMessageOutput("Data Tidak Ditemukan");
         }
     }
 
@@ -44,7 +46,7 @@ public class MasterPegawai {
             dataSource.editPegawai(index, newDData);
         }else{
             // data not found
-            System.out.println("Data Tidak Ditemukan");
+            formatMessageOutput("Data Tidak Ditemukan");
         }
     }
 

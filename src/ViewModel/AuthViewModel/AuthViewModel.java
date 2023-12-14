@@ -11,7 +11,7 @@ public class AuthViewModel {
     }
 
     public User getLoggedInUser() {
-        return authUseCase.getLoggedInUser();
+         return authUseCase.loggedUser;
     }
 
 

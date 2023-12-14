@@ -4,6 +4,8 @@ import Data.DataSource.ReportDataSource;
 import Data.Model.Kamar;
 import Data.Model.ReportModel;
 
+import static Util.Formatting.formatMessageOutput;
+
 public class MasterReporting {
     ReportDataSource dataSource;
 
@@ -16,7 +18,7 @@ public class MasterReporting {
         if(!cekReport(report.getReportNumber())){
             dataSource.addNewReport(report);
         }else {
-            System.out.println("Data Kamar Sudah Ada");
+            formatMessageOutput("Data Kamar Sudah Ada");
         }
     }
     void deleteReport(String reportNumber){
@@ -24,7 +26,7 @@ public class MasterReporting {
             ReportModel report = getReport(reportNumber);
             dataSource.removeReport(report);
         }else {
-            System.out.println("Data Tidak Ditemukan");
+            formatMessageOutput("Data Tidak Ditemukan");
         }
     }
     public void editDataReport(ReportModel oldDData, ReportModel newDData){
@@ -34,7 +36,7 @@ public class MasterReporting {
             dataSource.editReport(index, newDData);
         }else{
             // data not found
-            System.out.println("Data Tidak Ditemukan");
+            formatMessageOutput("Data Tidak Ditemukan");
         }
     }
     public ReportModel getReport(String reportNumber){

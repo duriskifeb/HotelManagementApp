@@ -4,6 +4,8 @@ import Data.DataSource.TransaksiDataSource;
 import Data.Model.ReportModel;
 import Data.Model.Transaksi;
 
+import static Util.Formatting.formatMessageOutput;
+
 public class MasterTransaksi {
     TransaksiDataSource dataSource;
     public MasterTransaksi(TransaksiDataSource dataSource) {
@@ -16,7 +18,7 @@ public class MasterTransaksi {
         if(!cekTransaksi(report.getNoTransaksi())){
             dataSource.addNewTransaksi(report);
         }else {
-            System.out.println("Data Kamar Sudah Ada");
+            formatMessageOutput("Data Kamar Sudah Ada");
         }
     }
     void deleteTransaksi(String noTransaksi){
@@ -34,14 +36,14 @@ public class MasterTransaksi {
             dataSource.editTransasi(index, newDData);
         }else{
             // data not found
-            System.out.println("Data Tidak Ditemukan");
+            formatMessageOutput("Data Tidak Ditemukan");
         }
     }
     public Transaksi getTransaksi(String noTransaksi){
         if(cekTransaksi(noTransaksi)){
             return dataSource.getListTransaksi().stream().filter(kamar -> kamar.getNoTransaksi().equals(noTransaksi)).findFirst().orElse(null);
         }else {
-            System.out.println("Data Tidak Ditemukan");
+            formatMessageOutput("Data Tidak Ditemukan");
             return null;
         }
     }
