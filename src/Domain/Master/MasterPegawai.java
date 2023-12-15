@@ -3,6 +3,10 @@ package Domain.Master;
 import Data.DataSource.PegawaiDataSource;
 import Data.Model.User;
 
+import java.util.ArrayList;
+
+import static Util.Formatting.formatMessageOutput;
+
 public class MasterPegawai {
     PegawaiDataSource dataSource;
 
@@ -10,31 +14,30 @@ public class MasterPegawai {
         this.dataSource = dataSource;
     }
 
-    void addNewPegawai(User user) {
+    public ArrayList<User> getAllPegawai(){
+        return dataSource.getListPegawai();
+    }
+
+    public void addNewPegawai(User user) {
         // check if user already exists
         if(!cekUser(user)){
             dataSource.addNewPegawai(user);
         }else {
-            System.out.println("Data Pegawai Sudah Ada");
+            formatMessageOutput("Data Pegawai Sudah Ada");
         }
     }
 
-    void deletePegawai(String userId){
+    public void deletePegawai(String userId){
         if(cekUser(userId)){
-            User usr = dataSource.getListPegawai().stream().filter(user -> user.getUserID().equals(userId)).findFirst().orElse(null);
+            User usr = dataSource.getPegawai(userId);
             dataSource.deletePegawai(usr);
         }else {
-            System.out.println("Data Tidak Ditemukan");
+            formatMessageOutput("Data Tidak Ditemukan");
         }
     }
 
     public User getPegawai(String userId){
-        if(cekUser(userId)){
-            return dataSource.getListPegawai().stream().filter(user -> user.getUserID().equals(userId)).findFirst().orElse(null);
-        }else {
-            System.out.println("Data Tidak Ditemukan");
-            return null;
-        }
+        return dataSource.getPegawai(userId);
     }
 
     public void editDataPegawai(User oldDData, User newDData){
@@ -44,11 +47,11 @@ public class MasterPegawai {
             dataSource.editPegawai(index, newDData);
         }else{
             // data not found
-            System.out.println("Data Tidak Ditemukan");
+            formatMessageOutput("Data Tidak Ditemukan");
         }
     }
 
-    boolean cekUser(User user){
+    private boolean cekUser(User user){
         User cek = dataSource.getListPegawai().stream().filter(
                 cekUser -> {
                     return cekUser.getNama().equals(user.getNama()) ||
@@ -57,7 +60,7 @@ public class MasterPegawai {
         ).findFirst().orElse(null);
         return cek != null; // return userIs Found when cek is not null
     }
-    boolean cekUser(String userId){
+    private boolean cekUser(String userId){
         User cek = dataSource.getListPegawai().stream().filter(
                 cekUser -> cekUser.getUserID().equals(userId)
         ).findFirst().orElse(null);

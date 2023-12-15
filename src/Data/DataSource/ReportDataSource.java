@@ -1,17 +1,14 @@
 package Data.DataSource;
 
 import Data.Model.ReportModel;
+import Data.Model.Transaksi;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ReportDataSource {
 
-    private ArrayList<ReportModel> listReports = new ArrayList<ReportModel>(
-            Arrays.asList(
-                    // TODO
-            )
-    );
+    private ArrayList<ReportModel> listReports = new ArrayList<>();
 
     public ArrayList<ReportModel> getListReports() {
         return listReports;
@@ -19,6 +16,12 @@ public class ReportDataSource {
 
     public void setListReports(ArrayList<ReportModel> listReports) {
         this.listReports = listReports;
+    }
+
+    public ReportModel getReport(String noReport){
+        return listReports.stream().filter(
+                cekReport -> cekReport.getReportNumber().equals(noReport)
+        ).findFirst().orElse(null);
     }
 
     public void addNewReport(ReportModel report){

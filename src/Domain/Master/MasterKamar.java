@@ -4,6 +4,10 @@ import Data.DataSource.KamarDataSource;
 import Data.Model.Kamar;
 import Data.Model.User;
 
+import java.util.ArrayList;
+
+import static Util.Formatting.formatMessageOutput;
+
 public class MasterKamar {
     KamarDataSource dataSource;
 
@@ -11,24 +15,25 @@ public class MasterKamar {
         this.dataSource = dataSource;
     }
 
-    void addKamar(Kamar kamar) {
+    public ArrayList<Kamar> getAllKamar(){
+        return dataSource.getListKamar();
+    }
+    public void addKamar(Kamar kamar) {
         // check if kamar already exists
         if(!cekKamar(kamar.getNoKamar())){
             dataSource.addNewKamar(kamar);
         }else {
-            System.out.println("Data Kamar Sudah Ada");
+            formatMessageOutput("Data Kamar Sudah Ada");
         }
     }
-
-    void deleteKamar(String nomorKamar){
+    public void deleteKamar(String nomorKamar){
         if(cekKamar(nomorKamar)){
-            Kamar kamar = dataSource.getListKamar().stream().filter(cekKamar -> cekKamar.getNoKamar().equals(nomorKamar)).findFirst().orElse(null);
+            Kamar kamar = getKamar(nomorKamar);
             dataSource.removeKamar(kamar);
         }else {
-            System.out.println("Data Tidak Ditemukan");
+            formatMessageOutput("Data Tidak Ditemukan");
         }
     }
-
     public void editDataKamar(Kamar oldDData, Kamar newDData){
         // find the data's index
         if(cekKamar(oldDData.getNoKamar())){
@@ -36,19 +41,12 @@ public class MasterKamar {
             dataSource.editKamar(index, newDData);
         }else{
             // data not found
-            System.out.println("Data Tidak Ditemukan");
+            formatMessageOutput("Data Tidak Ditemukan");
         }
     }
-
     public Kamar getKamar(String nomorKamar){
-        if(cekKamar(nomorKamar)){
-            return dataSource.getListKamar().stream().filter(kamar -> kamar.getNoKamar().equals(nomorKamar)).findFirst().orElse(null);
-        }else {
-            System.out.println("Data Tidak Ditemukan");
-            return null;
-        }
+       return dataSource.getKamar(nomorKamar);
     }
-
     private boolean cekKamar(String noKamar) {
         Kamar cek = dataSource.getListKamar().stream().filter(
                 cekKamar -> cekKamar.getNoKamar().equals(noKamar)

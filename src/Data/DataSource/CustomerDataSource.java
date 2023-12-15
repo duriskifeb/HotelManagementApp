@@ -35,12 +35,9 @@ public class CustomerDataSource {
     public void setListCustomer(ArrayList<Customer> listCustomer) {
         this.listCustomer = listCustomer;
     }
-
-
     public void addCustomer(Customer customer) {
         listCustomer.add(customer);
     }
-
     public void removeCustomer(Customer customer){
         listCustomer.remove(customer);
     }
@@ -48,5 +45,10 @@ public class CustomerDataSource {
         listCustomer.set(index, customer);
     }
 
+    public Customer getCustomer(String NIK){
+        return listCustomer.stream().filter(
+                cekCust -> cekCust.getNIK().equals(NIK)
+        ).findFirst().orElse(null);
+    }
 
 }

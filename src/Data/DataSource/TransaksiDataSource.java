@@ -10,6 +10,12 @@ public class TransaksiDataSource {
     public ArrayList<Transaksi> getListTransaksi() {
         return listTransaksi;
     }
+    
+    public Transaksi getTransaksiDetail(String noTransaksi){
+        return listTransaksi.stream().filter(
+                cekTransaksi -> cekTransaksi.getNoTransaksi().equals(noTransaksi)
+        ).findFirst().orElse(null);
+    }
 
     public void setListTransaksi(ArrayList<Transaksi> listTransaksi) {
         this.listTransaksi = listTransaksi;

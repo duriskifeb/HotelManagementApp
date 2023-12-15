@@ -47,10 +47,16 @@ public class PegawaiDataSource {
         this.listPegawai = listPegawai;
     }
 
-    public User authenticateUser(String email, String password) {
+    public User getPegawai(String ID){
         return listPegawai.stream().filter(
-                cekUser -> cekUser.getEmail().equals(email) &&
-                        cekUser.getPassword().equals(Encryption.hashPassword(password))
+                cekUser -> cekUser.getUserID().equals(ID)
+        ).findFirst().orElse(null);
+    }
+
+    public User authenticateUser(String emailOrID, String password) {
+        return listPegawai.stream().filter(
+                cekUser -> (cekUser.getEmail().equals(emailOrID) || cekUser.getUserID().equals(emailOrID)) &&
+                        cekUser.getPassword().equals(password)
         ).findFirst().orElse(null);
     }
 

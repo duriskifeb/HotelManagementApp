@@ -7,7 +7,6 @@ import java.util.Locale;
 public class Formatting {
 
     // date format, currency, etc
-
     public static String formatRupiah(double nominal) {
         String hasil = String.format("%,.0f", nominal).replaceAll(",", ".");
         return "Rp" + hasil;
@@ -18,6 +17,12 @@ public class Formatting {
         DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, locale);
         String dateResult = dateFormat.format(new Date());
         return dateResult;
+    }
+
+    public static void formatMessageOutput(String message){
+        System.out.println();
+        System.out.println("[ " + message + " ]");
+        System.out.println();
     }
 
 }

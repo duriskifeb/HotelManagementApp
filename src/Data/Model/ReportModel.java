@@ -1,9 +1,16 @@
 package Data.Model;
 
+import Util.Formatting;
+import Util.Generator;
+import Util.Generator.*;
+
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
+
 
 public class ReportModel {
+
     private String reportNumber;
     private Date dateCreated, dateUpdated;
     private List<Transaksi> listTransaksi;
@@ -19,6 +26,27 @@ public class ReportModel {
         this.reportNumber = reportNumber;
         this.dateCreated = dateCreated;
         this.dateUpdated = dateUpdated;
+        this.listTransaksi = listTransaksi;
+        this.reportPIC = reportPIC;
+    }
+
+    public ReportModel(
+            Date dateCreated,
+            List<Transaksi> listTransaksi,
+            User reportPIC
+    ) {
+        String totalPrice = String.valueOf(
+          listTransaksi.stream().mapToDouble(Transaksi::getTotal).sum()
+        );
+        String transaksiNumberSum = listTransaksi.stream().map(Transaksi::getNoTransaksi).collect(Collectors.joining("-"));
+
+        this.reportNumber = Generator.generateReportNumber(
+                reportPIC.getNama(),
+                Formatting.formatDate(dateCreated),
+                totalPrice,
+                transaksiNumberSum
+                );
+        this.dateCreated = dateCreated;
         this.listTransaksi = listTransaksi;
         this.reportPIC = reportPIC;
     }
