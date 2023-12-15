@@ -10,7 +10,7 @@ public class AuthViewModel {
         this.authUseCase = userCase;
     }
 
-    public User getLoggedInUser() {
+    public User getLoggedInUser() throws NullPointerException{
          return authUseCase.loggedUser;
     }
 

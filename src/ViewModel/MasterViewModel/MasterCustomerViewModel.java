@@ -14,7 +14,6 @@ public class MasterCustomerViewModel {
     public void selectCustomer(String nik){
         this.currentSelectedCustomer = masterCustomer.getCustomer(nik);
     }
-
     public void viewDataSelectedCustomer(){
         if(currentSelectedCustomer != null){
             headerViewCustomer();
@@ -25,7 +24,6 @@ public class MasterCustomerViewModel {
             System.out.format("%10s %25s \t%20s \t%20s\n", idCustomer, namaCustomer, telp, email);
         }
     }
-
     public void viewAllDataCustomer(){
         headerViewCustomer();
         masterCustomer.getListCustomer()
@@ -42,7 +40,6 @@ public class MasterCustomerViewModel {
                         }
                 );
     }
-
     public void addNewCustomer(String NIK, String nama, String email, String telp){
         // TODO implement the parameters
         Customer customer = new Customer(
