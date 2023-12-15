@@ -18,7 +18,6 @@ public class Transaksi {
     private ArrayList<Customer> customers; // get(0) customers is the one who order
     private double total;
     private ArrayList<Kamar> kamarOrdered;
-
     private double paid=0;
 
 
@@ -145,10 +144,6 @@ public class Transaksi {
             this.total += kamar.getHarga()*interval;
         }
 
-    }
-
-    public ArrayList<Kamar> getAllKamarOrdered() {
-        return kamarOrdered;
     }
 
     public void setKamarOrdered(ArrayList<Kamar> kamarOrdered) {
