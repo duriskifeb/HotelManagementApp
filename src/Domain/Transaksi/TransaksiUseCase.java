@@ -39,7 +39,7 @@ public class TransaksiUseCase {
 
     public void commitTransaksi(){
         if(currentActiveTransaksi != null){
-            // TODO Implement : save to transaksiDataSource
+
             int cekIndex = transaksiDataSource.getListTransaksi().indexOf(currentActiveTransaksi);
             if(cekIndex != -1){
                 transaksiDataSource.addNewTransaksi(currentActiveTransaksi);
@@ -53,7 +53,7 @@ public class TransaksiUseCase {
         // TODO implement
         if(currentActiveTransaksi != null){
             if(currentActiveTransaksi.getStatusPembayaran() != StatusTransaksiBayar.LUNAS){
-                //TODO Lunasi Transaksi Dulu
+                //TODO @Ryan Lunasi Transaksi Dulu
 
             }else{
                 currentActiveTransaksi.setCheckOut(new Date());
@@ -61,7 +61,7 @@ public class TransaksiUseCase {
             }
 
         }else{
-            // TODO print error message
+            // TODO @Ryan print error message
         }
     }
 
@@ -72,10 +72,10 @@ public class TransaksiUseCase {
                 currentActiveTransaksi.setCheckIn(new Date());
                 currentActiveTransaksi.setStatusTransaksi(Enums.StatusTransaksi.ONGOING);
             }else {
-             // TODO error lakukan pembayaran dulu
+             // TODO @Ryan error lakukan pembayaran dulu
             }
         }else{
-            // TODO print error message
+            // TODO @Ryan print error message
         }
     }
 
@@ -102,13 +102,13 @@ public class TransaksiUseCase {
 
 
         }else{
-            // TODO print error message
+            // TODO @Ryan print error message
         }
     }
 
     public void viewDetailTransaksi(){
         if(currentActiveTransaksi != null){
-            //TODO print detail transaksi
+            //TODO @Ryan print detail transaksi
 
         }else {
             Formatting.formatMessageOutput("Belum ada data transaksi yang dipilih");
