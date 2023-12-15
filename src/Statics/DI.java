@@ -51,7 +51,7 @@ public class DI {
         transaksiDataSource = new TransaksiDataSource();
         reportDataSource = new ReportDataSource();
 
-        //Domains
+        //Domains usecase
         authUserCase = new AuthUserCase(DI.pegawaiDataSource);
         masterPegawai = new MasterPegawai(DI.pegawaiDataSource);
         masterKamar = new MasterKamar(DI.kamarDataSource);

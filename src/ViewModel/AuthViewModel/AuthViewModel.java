@@ -25,4 +25,10 @@ public class AuthViewModel {
     public void doLogout(){
         authUseCase.doLogout();
     }
+
+    public void showProfile(){
+        if(getLoggedInUser() != null){
+            // TODO implement : show the user profile
+        }
+    }
 }
