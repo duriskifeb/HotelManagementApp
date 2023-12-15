@@ -3,6 +3,8 @@ package Domain.Master;
 import Data.DataSource.PegawaiDataSource;
 import Data.Model.User;
 
+import java.util.ArrayList;
+
 import static Util.Formatting.formatMessageOutput;
 
 public class MasterPegawai {
@@ -12,7 +14,11 @@ public class MasterPegawai {
         this.dataSource = dataSource;
     }
 
-    void addNewPegawai(User user) {
+    public ArrayList<User> getAllPegawai(){
+        return dataSource.getListPegawai();
+    }
+
+    public void addNewPegawai(User user) {
         // check if user already exists
         if(!cekUser(user)){
             dataSource.addNewPegawai(user);
@@ -21,7 +27,7 @@ public class MasterPegawai {
         }
     }
 
-    void deletePegawai(String userId){
+    public void deletePegawai(String userId){
         if(cekUser(userId)){
             User usr = getPegawai(userId);
             dataSource.deletePegawai(usr);

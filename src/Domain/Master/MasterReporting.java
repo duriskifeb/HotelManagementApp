@@ -4,6 +4,8 @@ import Data.DataSource.ReportDataSource;
 import Data.Model.Kamar;
 import Data.Model.ReportModel;
 
+import java.util.ArrayList;
+
 import static Util.Formatting.formatMessageOutput;
 
 public class MasterReporting {
@@ -13,7 +15,10 @@ public class MasterReporting {
         this.dataSource = dataSource;
     }
 
-    void addReport(ReportModel report) {
+    public ArrayList<ReportModel> getAllReport(){
+        return dataSource.getListReports();
+    }
+    public void addReport(ReportModel report) {
         // check if data already exists
         if(!cekReport(report.getReportNumber())){
             dataSource.addNewReport(report);
@@ -21,7 +26,7 @@ public class MasterReporting {
             formatMessageOutput("Data Kamar Sudah Ada");
         }
     }
-    void deleteReport(String reportNumber){
+    public void deleteReport(String reportNumber){
         if(cekReport(reportNumber)){
             ReportModel report = getReport(reportNumber);
             dataSource.removeReport(report);

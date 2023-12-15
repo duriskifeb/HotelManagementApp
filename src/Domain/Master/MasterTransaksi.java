@@ -4,6 +4,8 @@ import Data.DataSource.TransaksiDataSource;
 import Data.Model.ReportModel;
 import Data.Model.Transaksi;
 
+import java.util.ArrayList;
+
 import static Util.Formatting.formatMessageOutput;
 
 public class MasterTransaksi {
@@ -12,8 +14,11 @@ public class MasterTransaksi {
         this.dataSource = dataSource;
     }
 
+    public ArrayList<Transaksi> getAllTransaksi() {
+        return dataSource.getListTransaksi();
+    }
 
-    void addReport(Transaksi report) {
+    public void addReport(Transaksi report) {
         // check if data already exists
         if(!cekTransaksi(report.getNoTransaksi())){
             dataSource.addNewTransaksi(report);
@@ -21,7 +26,7 @@ public class MasterTransaksi {
             formatMessageOutput("Data Kamar Sudah Ada");
         }
     }
-    void deleteTransaksi(String noTransaksi){
+    public void deleteTransaksi(String noTransaksi){
         if(cekTransaksi(noTransaksi)){
             Transaksi transaksi = getTransaksi(noTransaksi);
             dataSource.removeTransaksi(transaksi);
