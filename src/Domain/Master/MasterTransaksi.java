@@ -14,6 +14,7 @@ public class MasterTransaksi {
         this.dataSource = dataSource;
     }
 
+    public Transaksi selectedTransaksi;
     public ArrayList<Transaksi> getAllTransaksi() {
         return dataSource.getListTransaksi();
     }
@@ -27,7 +28,7 @@ public class MasterTransaksi {
     }
     public void deleteTransaksi(String noTransaksi){
         if(cekTransaksi(noTransaksi)){
-            Transaksi transaksi = getTransaksi(noTransaksi);
+            Transaksi transaksi = dataSource.getTransaksiDetail(noTransaksi);
             dataSource.removeTransaksi(transaksi);
         }else {
             formatMessageOutput("Data Tidak Ditemukan");
@@ -43,17 +44,12 @@ public class MasterTransaksi {
             formatMessageOutput("Data Tidak Ditemukan");
         }
     }
-    public Transaksi getTransaksi(String noTransaksi){
-        if(cekTransaksi(noTransaksi)){
-            return dataSource.getListTransaksi().stream().filter(kamar -> kamar.getNoTransaksi().equals(noTransaksi)).findFirst().orElse(null);
-        }else {
-            formatMessageOutput("Data Tidak Ditemukan");
-            return null;
-        }
+    public void selectTransaksi(String noTransaksi){
+         selectedTransaksi = dataSource.getTransaksiDetail(noTransaksi);
     }
     private boolean cekTransaksi(String reportNumber) {
         Transaksi cek = dataSource.getListTransaksi().stream().filter(
-                cekKamar -> cekKamar.getNoTransaksi().equals(reportNumber)
+                transaksi -> transaksi.getNoTransaksi().equals(reportNumber)
         ).findFirst().orElse(null);
         return cek != null; // return data is Found when cek is not nul
     }
