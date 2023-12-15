@@ -2,6 +2,7 @@ package ViewModel.AuthViewModel;
 
 import Data.Model.User;
 import Domain.Auth.AuthUserCase;
+import Util.Formatting;
 
 public class AuthViewModel {
     AuthUserCase authUseCase;
@@ -9,17 +10,17 @@ public class AuthViewModel {
     public AuthViewModel(AuthUserCase userCase) {
         this.authUseCase = userCase;
     }
-
-    public User getLoggedInUser() throws NullPointerException{
-         return authUseCase.loggedUser;
-    }
-
-
+    public User loggedUser;
     public void doLogin(
             String username, // bisa id bisa email
             String password
     ){
         authUseCase.doLogin(username, password);
+        if(authUseCase.loggedUser != null){
+            this.loggedUser = authUseCase.loggedUser;
+        }else{
+            Formatting.formatMessageOutput("User Not Found");
+        }
     }
 
     public void doLogout(){
@@ -27,8 +28,12 @@ public class AuthViewModel {
     }
 
     public void showProfile(){
-        if(getLoggedInUser() != null){
+        if(loggedUser != null){
             // TODO implement : show the user profile
         }
+    }
+
+    public void changePassword(String userID, String oldPassword, String newPassword){
+        // TODO
     }
 }

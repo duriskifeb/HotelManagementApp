@@ -15,9 +15,9 @@ public class Main {
 
         authViewModel.doLogin("ADM01", "ayamgoyeng");
         try{
-            System.out.println(authViewModel.getLoggedInUser().getNama());
-        }catch (Exception e){
-            Formatting.formatMessageOutput("User Not Found");
+            System.out.println(authViewModel.loggedUser.getNama());
+        } catch (Exception e){
+
         }
 
 //        masterCustomerVM.viewAllDataCustomer();
