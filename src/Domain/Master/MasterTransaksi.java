@@ -46,6 +46,9 @@ public class MasterTransaksi {
     }
     public void selectTransaksi(String noTransaksi){
          selectedTransaksi = dataSource.getTransaksiDetail(noTransaksi);
+         if(selectedTransaksi == null){
+             formatMessageOutput("Data Tidak Ditemukan");
+         }
     }
     private boolean cekTransaksi(String reportNumber) {
         Transaksi cek = dataSource.getListTransaksi().stream().filter(

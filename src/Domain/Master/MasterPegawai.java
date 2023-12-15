@@ -29,7 +29,7 @@ public class MasterPegawai {
 
     public void deletePegawai(String userId){
         if(cekUser(userId)){
-            User usr = getPegawai(userId);
+            User usr = dataSource.getPegawai(userId);
             dataSource.deletePegawai(usr);
         }else {
             formatMessageOutput("Data Tidak Ditemukan");
@@ -37,12 +37,9 @@ public class MasterPegawai {
     }
 
     public User getPegawai(String userId){
-        if(cekUser(userId)){
-            return dataSource.getListPegawai().stream().filter(user -> user.getUserID().equals(userId)).findFirst().orElse(null);
-        }else {
-            formatMessageOutput("Data Tidak Ditemukan");
-            return null;
-        }
+        return dataSource.getPegawai(userId);
+
+//        formatMessageOutput("Data Tidak Ditemukan");
     }
 
     public void editDataPegawai(User oldDData, User newDData){

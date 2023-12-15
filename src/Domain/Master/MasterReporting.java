@@ -13,7 +13,6 @@ public class MasterReporting {
     public MasterReporting(ReportDataSource dataSource) {
         this.dataSource = dataSource;
     }
-
     ReportModel selectedReport;
     public ArrayList<ReportModel> getAllReport(){
         return dataSource.getListReports();
@@ -23,7 +22,7 @@ public class MasterReporting {
         if(!cekReport(report.getReportNumber())){
             dataSource.addNewReport(report);
         }else {
-            formatMessageOutput("Data Kamar Sudah Ada");
+            formatMessageOutput("Data laporan Sudah Ada");
         }
     }
     public void deleteReport(String reportNumber){
@@ -46,8 +45,10 @@ public class MasterReporting {
     }
     public void selectReport(String reportNumber){
         this.selectedReport = dataSource.getReport(reportNumber);
+        if(selectedReport == null){
+            formatMessageOutput("Data Tidak Ditemukan");
+        }
     }
-
     private boolean cekReport(String reportNumber) {
         ReportModel cek = dataSource.getListReports().stream().filter(
                 cekKamar -> cekKamar.getReportNumber().equals(reportNumber)
