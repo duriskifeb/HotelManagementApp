@@ -40,7 +40,7 @@ public class MasterPegawai {
         if(cekUser(userId)){
             return dataSource.getListPegawai().stream().filter(user -> user.getUserID().equals(userId)).findFirst().orElse(null);
         }else {
-            System.out.println("Data Tidak Ditemukan");
+            formatMessageOutput("Data Tidak Ditemukan");
             return null;
         }
     }
