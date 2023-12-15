@@ -50,10 +50,28 @@ public class Reporting {
 
         Formatting.formatMessageOutput("Report Generated");
     }
+
+    public void generateReport(String reportNumber , Date rangeStart, Date rangeEnd, String picID, Date dateCreated) {
+        Formatting.formatMessageOutput("Generating Report");
+
+        User pic = pegawaiDataSource.getPegawai(picID);
+        ArrayList<Transaksi> listTransaksi = transaksiDataSource.getListTransaksi().stream().filter(
+                transaksi -> transaksi.getTanggalTransaksi().after(rangeStart) && transaksi.getTanggalTransaksi().before(rangeEnd)
+        ).collect(Collectors.toCollection(ArrayList::new));
+
+        generatedReport = new ReportModel(
+                reportNumber,
+                dateCreated,
+                new Date(),
+                listTransaksi,
+                pic
+        );
+
+        Formatting.formatMessageOutput("Report Generated");
+    }
     public void saveReport(){
         Formatting.formatMessageOutput("Saving Report");
         if(this.generatedReport != null){
-
             ReportModel cekReport = reportDataSource.getReport(this.generatedReport.getReportNumber());
             if(cekReport != null){
                 int index = reportDataSource.getListReports().indexOf(cekReport);

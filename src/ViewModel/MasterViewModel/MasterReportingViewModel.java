@@ -40,9 +40,17 @@ public class MasterReportingViewModel {
 //        reportingUseCase.saveReport();
     }
 
+
     public void editReport(Date rangeStart, Date rangeEnd, String picID){
+        // edit
         if(selectedReport != null){
-            reportingUseCase.generateReport(rangeStart, rangeEnd, picID);
+            reportingUseCase.generateReport(
+                    selectedReport.getReportNumber(),
+                    rangeStart,
+                    rangeEnd,
+                    picID,
+                    selectedReport.getDateCreated()
+            );
             ReportModel newData = reportingUseCase.getGeneratedReport();
             masterReporting.editDataReport(selectedReport, newData);
         }else{
