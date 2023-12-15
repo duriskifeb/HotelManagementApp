@@ -30,7 +30,7 @@ public class MasterTransaksi {
             Transaksi transaksi = getTransaksi(noTransaksi);
             dataSource.removeTransaksi(transaksi);
         }else {
-            System.out.println("Data Tidak Ditemukan");
+            formatMessageOutput("Data Tidak Ditemukan");
         }
     }
     public void editDataTransaksi(Transaksi oldDData, Transaksi newDData){
