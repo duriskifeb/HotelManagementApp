@@ -32,6 +32,10 @@ public class Reporting {
 
     ReportModel generatedReport;
 
+    public ReportModel getGeneratedReport(){
+        return generatedReport;
+    }
+
     public void generateReport(Date rangeStart, Date rangeEnd, String picID) {
         Formatting.formatMessageOutput("Generating Report");
 

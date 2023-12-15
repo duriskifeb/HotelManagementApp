@@ -5,6 +5,9 @@ import Data.Model.ReportModel;
 import Data.Model.User;
 import Domain.Master.MasterReporting;
 import Domain.Report.Reporting;
+import Util.Formatting;
+
+import java.util.Date;
 
 import static Util.Formatting.formatMessageOutput;
 
@@ -25,9 +28,33 @@ public class MasterReportingViewModel {
         }
     }
 
-//    public void addNewReport(User PIC){
-//
-//    }
+    public void generateNewReport(Date rangeStart, Date rangeEnd, String picID){
+        reportingUseCase.generateReport(rangeStart, rangeEnd, picID);
+        selectedReport = reportingUseCase.getGeneratedReport();
+    }
+
+    public void saveNewGeneratedReport(){
+        if(selectedReport != null){
+            masterReporting.addReport(selectedReport);
+        }
+//        reportingUseCase.saveReport();
+    }
+
+    public void editReport(Date rangeStart, Date rangeEnd, String picID){
+        if(selectedReport != null){
+            reportingUseCase.generateReport(rangeStart, rangeEnd, picID);
+            ReportModel newData = reportingUseCase.getGeneratedReport();
+            masterReporting.editDataReport(selectedReport, newData);
+        }else{
+            Formatting.formatMessageOutput("Pilih data untuk di edit");
+            // print tidak ada data yang dipilih untuk diedit
+        }
+
+    }
+
+    public void deleteReport(String reportNumber){
+        masterReporting.deleteReport(reportNumber);
+    }
 
     public void viewAllReports(){
         masterReporting.getAllReport()
