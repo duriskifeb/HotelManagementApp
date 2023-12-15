@@ -11,22 +11,19 @@ import java.util.Date;
 import java.util.stream.Collectors;
 
 public class Reporting {
-//    CustomerDataSource customerDataSource;
-//    KamarDataSource kamarDataSource;
+
 
     PegawaiDataSource pegawaiDataSource;
     TransaksiDataSource transaksiDataSource;
     ReportDataSource reportDataSource;
 
     public Reporting(
-//            CustomerDataSource customerDataSource,
-//            KamarDataSource kamarDataSource,
             PegawaiDataSource pegawaiDataSource,
             TransaksiDataSource transaksiDataSource,
             ReportDataSource reportDataSource
     ) {
-//        this.customerDataSource = customerDataSource;
-//        this.kamarDataSource = kamarDataSource;
+
+        this.pegawaiDataSource = pegawaiDataSource;
         this.transaksiDataSource = transaksiDataSource;
         this.reportDataSource = reportDataSource;
     }

@@ -17,7 +17,6 @@ public class MasterTransaksi {
     public ArrayList<Transaksi> getAllTransaksi() {
         return dataSource.getListTransaksi();
     }
-
     public void addNewTransaksi(Transaksi report) {
         // check if data already exists
         if(!cekTransaksi(report.getNoTransaksi())){
