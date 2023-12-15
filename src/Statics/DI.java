@@ -74,8 +74,8 @@ public class DI {
         authViewModel = new AuthViewModel(DI.authUserCase);
         masterKamarVM = new MasterKamarViewModel(DI.masterKamar);
         masterPegawaiVM = new MasterPegawaiViewModel(DI.masterPegawai);
-        masterTransaksiVM = new MasterTransaksiViewModel(DI.masterTransaksi);
-        masterReportingVM = new MasterReportingViewModel(DI.masterReporting);
+        masterTransaksiVM = new MasterTransaksiViewModel(DI.masterTransaksi, DI.transaksiUseCase);
+        masterReportingVM = new MasterReportingViewModel(DI.masterReporting, DI.reporting);
         masterCustomerVM = new MasterCustomerViewModel(DI.masterCustomer);
         reportingVM = new ReportingViewModel(DI.reporting);
         transaksiVM = new TransaksiViewModel(DI.transaksiUseCase);

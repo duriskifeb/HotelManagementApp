@@ -31,7 +31,7 @@ public class TransaksiUseCase {
 
     Transaksi currentActiveTransaksi;
 
-    // TODO logic to create a new instance of Transaksi
+    // logic to create a new instance of Transaksi, and save the transaction
 
     public void createTransaksi(){
         // TODO Implement

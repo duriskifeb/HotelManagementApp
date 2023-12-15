@@ -2,15 +2,18 @@ package ViewModel.MasterViewModel;
 
 import Data.Enums.Enums;
 import Data.Model.ReportModel;
+import Data.Model.User;
 import Domain.Master.MasterReporting;
+import Domain.Report.Reporting;
 
 import static Util.Formatting.formatMessageOutput;
 
 public class MasterReportingViewModel {
     MasterReporting masterReporting;
-
-    public MasterReportingViewModel(MasterReporting masterReporting) {
+    Reporting reportingUseCase;
+    public MasterReportingViewModel(MasterReporting masterReporting, Reporting reportingUseCase) {
         this.masterReporting = masterReporting;
+        this.reportingUseCase = reportingUseCase;
     }
 
     ReportModel selectedReport;
@@ -21,6 +24,10 @@ public class MasterReportingViewModel {
             formatMessageOutput("Data Tidak Ditemukan");
         }
     }
+
+//    public void addNewReport(User PIC){
+//
+//    }
 
     public void viewAllReports(){
         masterReporting.getAllReport()

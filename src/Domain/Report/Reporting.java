@@ -28,7 +28,7 @@ public class Reporting {
         this.reportDataSource = reportDataSource;
     }
 
-    // TODO logic to create, and handle the Reporting Model
+    //logic to create, and handle the Reporting Model
 
     ReportModel generatedReport;
 
