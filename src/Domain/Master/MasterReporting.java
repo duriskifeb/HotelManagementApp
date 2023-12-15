@@ -13,42 +13,45 @@ public class MasterReporting {
     public MasterReporting(ReportDataSource dataSource) {
         this.dataSource = dataSource;
     }
-    ReportModel selectedReport;
-    public ArrayList<ReportModel> getAllReport(){
+
+    //    public ReportModel selectedReport;
+    public ArrayList<ReportModel> getAllReport() {
         return dataSource.getListReports();
     }
+
     public void addReport(ReportModel report) {
         // check if data already exists
-        if(!cekReport(report.getReportNumber())){
+        if (!cekReport(report.getReportNumber())) {
             dataSource.addNewReport(report);
-        }else {
+        } else {
             formatMessageOutput("Data laporan Sudah Ada");
         }
     }
-    public void deleteReport(String reportNumber){
-        if(cekReport(reportNumber)){
+
+    public void deleteReport(String reportNumber) {
+        if (cekReport(reportNumber)) {
             ReportModel report = dataSource.getReport(reportNumber);
             dataSource.removeReport(report);
-        }else {
+        } else {
             formatMessageOutput("Data Tidak Ditemukan");
         }
     }
-    public void editDataReport(ReportModel oldDData, ReportModel newDData){
+
+    public void editDataReport(ReportModel oldDData, ReportModel newDData) {
         // find the data's index
-        if(cekReport(oldDData.getReportNumber())){
+        if (cekReport(oldDData.getReportNumber())) {
             int index = dataSource.getListReports().indexOf(oldDData);
             dataSource.editReport(index, newDData);
-        }else{
+        } else {
             // data not found
             formatMessageOutput("Data Tidak Ditemukan");
         }
     }
-    public void selectReport(String reportNumber){
-        this.selectedReport = dataSource.getReport(reportNumber);
-        if(selectedReport == null){
-            formatMessageOutput("Data Tidak Ditemukan");
-        }
+
+    public ReportModel selectReport(String reportNumber) {
+        return dataSource.getReport(reportNumber);
     }
+
     private boolean cekReport(String reportNumber) {
         ReportModel cek = dataSource.getListReports().stream().filter(
                 cekKamar -> cekKamar.getReportNumber().equals(reportNumber)

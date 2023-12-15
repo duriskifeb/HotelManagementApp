@@ -38,8 +38,6 @@ public class MasterPegawai {
 
     public User getPegawai(String userId){
         return dataSource.getPegawai(userId);
-
-//        formatMessageOutput("Data Tidak Ditemukan");
     }
 
     public void editDataPegawai(User oldDData, User newDData){
