@@ -18,16 +18,17 @@ public class MasterCustomer {
     public ArrayList<Customer> getListCustomer(){
         return dataSource.getListCustomer();
     }
-    void addCustomer(Customer customer) {
+    public void addCustomer(Customer customer) {
         // check if customer already exists
         if(!cekCustomer(customer.getNIK())){
             dataSource.addCustomer(customer);
+            formatMessageOutput("Data Berhasil Ditambahkan");
         }else {
-            formatMessageOutput("Data Kamar Sudah Ada");
+            formatMessageOutput("Data Pelanggan Sudah Ada");
         }
     }
 
-    void deleteCustomer(String NIK){
+    public void deleteCustomer(String NIK){
         if(cekCustomer(NIK)){
             Customer kamar = getCustomer(NIK);
             dataSource.removeCustomer(kamar);

@@ -40,5 +40,14 @@ public class MasterCustomerViewModel {
                 );
     }
 
+    public void addNewCustomer(){
+        Customer customer = new Customer(
+                "NIK",
+                "nama",
+                "email",
+                "telp"
+        );
+        masterCustomer.addCustomer(customer);
 
+    }
 }
