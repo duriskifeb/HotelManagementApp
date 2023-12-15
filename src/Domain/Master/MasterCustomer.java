@@ -47,9 +47,9 @@ public class MasterCustomer {
         }
     }
 
-    public Customer getCustomer(String nomorKamar){
-        if(cekCustomer(nomorKamar)){
-            return dataSource.getListCustomer().stream().filter(customer -> customer.getNIK().equals(nomorKamar)).findFirst().orElse(null);
+    public Customer getCustomer(String NIK){
+        if(cekCustomer(NIK)){
+            return dataSource.getListCustomer().stream().filter(customer -> customer.getNIK().equals(NIK)).findFirst().orElse(null);
         }else {
             formatMessageOutput("Data Tidak Ditemukan");
             return null;
