@@ -10,7 +10,7 @@ import java.util.Date;
 public class Transaksi {
 
     private String noTransaksi;
-    private Date tanggalTransaksi, checkIn, checkOut;
+    private Date tanggalTransaksi, checkIn, checkOut, startDate, endDate;
     private Enums.StatusTransaksi statusTransaksi;
     private Enums.Pembayaran pembayaran;
     private Enums.StatusTransaksiBayar statusPembayaran;
@@ -140,8 +140,9 @@ public class Transaksi {
     public void calculateTotal() {
         // sum the total
         this.total = 0;
+        int interval = endDate.compareTo(startDate);
         for(Kamar kamar : this.kamarOrdered){
-            this.total += kamar.getHarga();
+            this.total += kamar.getHarga()*interval;
         }
 
     }
@@ -179,5 +180,21 @@ public class Transaksi {
 
     public void setStatusPembayaran(Enums.StatusTransaksiBayar statusPembayaran) {
         this.statusPembayaran = statusPembayaran;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 }
