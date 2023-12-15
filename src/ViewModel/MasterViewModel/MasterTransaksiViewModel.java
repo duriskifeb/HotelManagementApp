@@ -9,4 +9,6 @@ public class MasterTransaksiViewModel {
     public MasterTransaksiViewModel(MasterTransaksi masterTransaksi) {
         this.masterTransaksi = masterTransaksi;
     }
+
+    // TODO implement
 }

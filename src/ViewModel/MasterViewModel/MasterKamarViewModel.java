@@ -28,6 +28,7 @@ public class MasterKamarViewModel {
             String noKamar = currentSelectedKamar.getNoKamar();
             int kapasitas = currentSelectedKamar.getKapasitas();
             String harga = Formatting.formatRupiah(currentSelectedKamar.getHarga());
+            Enums.JenisKamar jenis = currentSelectedKamar.getJenisKamar();
             Enums.StatusKamar status = currentSelectedKamar.getStatusKamar();
             System.out.format("%10s %10s \t%15s \t%10s \t%10s\n", noKamar, kapasitas, harga, jenis, status);
         }

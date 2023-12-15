@@ -46,7 +46,7 @@ public class MasterCustomerViewModel {
                 );
     }
     public void addNewCustomer(String NIK, String nama, String email, String telp){
-        // TODO implement the parameters
+
         Customer customer = new Customer(
                 NIK,
                 nama,

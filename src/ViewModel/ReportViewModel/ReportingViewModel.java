@@ -8,4 +8,6 @@ public class ReportingViewModel {
     public ReportingViewModel(Reporting reporting) {
         this.reporting = reporting;
     }
+
+    //TODO implement
 }
