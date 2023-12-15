@@ -36,7 +36,7 @@ public class MasterCustomer {
             formatMessageOutput("Data Tidak Ditemukan");
         }
     }
-    public void editDataKamar(Customer oldDData,Customer newDData){
+    public void editDataCustomer(Customer oldDData,Customer newDData){
         // find the data's index
         if(cekCustomer(oldDData.getNIK())){
             int index = dataSource.getListCustomer().indexOf(oldDData);

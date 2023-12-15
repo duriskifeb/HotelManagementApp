@@ -26,7 +26,6 @@ public class MasterCustomerViewModel {
         }
     }
 
-
     public void viewAllDataCustomer(){
         headerViewCustomer();
         masterCustomer.getListCustomer()
@@ -44,15 +43,30 @@ public class MasterCustomerViewModel {
                 );
     }
 
-    public void addNewCustomer(){
+    public void addNewCustomer(String NIK, String nama, String email, String telp){
         // TODO implement the parameters
         Customer customer = new Customer(
-                "NIK",
-                "nama",
-                "email",
-                "telp"
+                NIK,
+                nama,
+                email,
+                telp
         );
         masterCustomer.addCustomer(customer);
+    }
+    public void deleteCustomer(String NIK) {
+        masterCustomer.deleteCustomer(NIK);
+    }
+    public void editCustomer(String NIK, String nama, String email, String telp){
+        Customer newData = new Customer(
+                NIK,
+                nama,
+                email,
+                telp
+        );
+
+        if(currentSelectedCustomer != null){
+            masterCustomer.editDataCustomer(currentSelectedCustomer, newData);
+        }
     }
 
 
