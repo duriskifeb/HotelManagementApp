@@ -9,4 +9,6 @@ public class TransaksiViewModel {
     public TransaksiViewModel(TransaksiUseCase transaksiUseCase) {
         this.transaksiUseCase = transaksiUseCase;
     }
+
+    // TODO implement
 }

@@ -11,16 +11,18 @@ public class Transaksi {
 
     private String noTransaksi;
     private Date tanggalTransaksi, checkIn, checkOut;
-
     private Enums.StatusTransaksi statusTransaksi;
     private Enums.Pembayaran pembayaran;
-
+    private Enums.StatusTransaksiBayar statusPembayaran;
     private User pegawai;
-
     private ArrayList<Customer> customers; // get(0) customers is the one who order
-
     private double total;
     private ArrayList<Kamar> kamarOrdered;
+
+    private double paid=0;
+
+
+
     public Transaksi(
             String noTransaksi,
             Date tanggalTransaksi,
@@ -158,5 +160,24 @@ public class Transaksi {
 
     public void removeKamar(Kamar k){
         this.kamarOrdered.remove(k);
+    }
+    public ArrayList<Kamar> getKamarOrdered() {
+        return kamarOrdered;
+    }
+
+    public double getPaid() {
+        return paid;
+    }
+
+    public void setPaid(double paid) {
+        this.paid = paid;
+    }
+
+    public Enums.StatusTransaksiBayar getStatusPembayaran() {
+        return statusPembayaran;
+    }
+
+    public void setStatusPembayaran(Enums.StatusTransaksiBayar statusPembayaran) {
+        this.statusPembayaran = statusPembayaran;
     }
 }

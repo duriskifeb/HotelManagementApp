@@ -58,7 +58,6 @@ public class Reporting {
         }else {
             Formatting.formatMessageOutput("No generated report found");
         }
-
     }
 
 }

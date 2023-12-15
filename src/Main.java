@@ -13,7 +13,7 @@ public class Main {
         DI.init();
         StaticsInput.cls();
 
-        authViewModel.doLogin("ADM01", "ayamg oyeng");
+        authViewModel.doLogin("ADM01", "ayamgoyeng");
         try{
             System.out.println(authViewModel.getLoggedInUser().getNama());
         }catch (Exception e){

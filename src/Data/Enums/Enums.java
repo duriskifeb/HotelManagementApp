@@ -32,5 +32,10 @@ public class Enums {
         ONGOING,
         DONE
     }
+    public enum StatusTransaksiBayar{
+        PENDING_PAYMENT, // belum dibayar sama sekali
+        PAID, // sudah dibayar tapi belum lunas
+        LUNAS,
+    }
 
 }
