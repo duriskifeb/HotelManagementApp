@@ -11,20 +11,24 @@ public class MasterCustomerViewModel {
 
     Customer currentSelectedCustomer;
 
-    public void selecCustomer(String nik){
+    public void selectCustomer(String nik){
         this.currentSelectedCustomer = masterCustomer.getCustomer(nik);
     }
 
-    public void viewDataCustomer(String NIK){
+    public void viewDataSelectedCustomer(){
         if(currentSelectedCustomer != null){
-            // TODO PRINT ALL DATA CUSTOMERS
+            headerViewCustomer();
+            String idCustomer = currentSelectedCustomer.getNIK();
+            String namaCustomer = currentSelectedCustomer.getNama();
+            String telp = currentSelectedCustomer.getTelp();
+            String email = currentSelectedCustomer.getEmail();
+            System.out.format("%10s %25s \t%20s \t%20s\n", idCustomer, namaCustomer, telp, email);
         }
     }
 
+
     public void viewAllDataCustomer(){
-        System.out.println("_______________________________________________________________________________________");
-        System.out.format("%10s %25s %20s %20s\n", "NIK", "Nama", "No telp", "Email");
-        System.out.println("_______________________________________________________________________________________");
+        headerViewCustomer();
         masterCustomer.getListCustomer()
                 .stream()
                 .iterator()
@@ -48,6 +52,13 @@ public class MasterCustomerViewModel {
                 "telp"
         );
         masterCustomer.addCustomer(customer);
+    }
 
+
+    // TODO Move this method to View Layer
+    private void headerViewCustomer(){
+        System.out.println("_______________________________________________________________________________________");
+        System.out.format("%10s %25s %20s %20s\n", "NIK", "Nama", "No telp", "Email");
+        System.out.println("_______________________________________________________________________________________");
     }
 }
