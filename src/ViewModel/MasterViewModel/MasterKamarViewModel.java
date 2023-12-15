@@ -1,9 +1,11 @@
 package ViewModel.MasterViewModel;
 
+import Data.Enums.Enums;
 import Data.Model.Customer;
 import Data.Model.Kamar;
 import Domain.Master.MasterKamar;
 import Domain.Master.MasterTransaksi;
+import Util.Formatting;
 
 import static Util.Formatting.formatMessageOutput;
 
@@ -23,61 +25,65 @@ public class MasterKamarViewModel {
 
     public void viewDataSelectedKamar(){
         if(currentSelectedKamar != null){
-            // TODO implement
-//            String idCustomer = currentSelectedCustomer.getNIK();
-//            String namaCustomer = currentSelectedCustomer.getNama();
-//            String telp = currentSelectedCustomer.getTelp();
-//            String email = currentSelectedCustomer.getEmail();
-//            System.out.format("%10s %25s \t%20s \t%20s\n", idCustomer, namaCustomer, telp, email);
+            String noKamar = currentSelectedKamar.getNoKamar();
+            int kapasitas = currentSelectedKamar.getKapasitas();
+            String harga = Formatting.formatRupiah(currentSelectedKamar.getHarga());
+            Enums.StatusKamar status = currentSelectedKamar.getStatusKamar();
+            System.out.format("%10s %10s \t%15s \t%10s \t%10s\n", noKamar, kapasitas, harga, jenis, status);
         }
     }
     public void viewAllDataKamar(){
-
         masterKamar.getAllKamar()
                 .stream()
                 .iterator()
                 .forEachRemaining(
                         kamar -> {
-                            // TODO implement
-//                            String idCustomer = cust.getNIK();
-//                            String namaCustomer = cust.getNama();
-//                            String telp = cust.getTelp();
-//                            String email = cust.getEmail();
-//                            System.out.format("%10s %25s \t%20s \t%20s\n", idCustomer, namaCustomer, telp, email);
+                            String noKamar = kamar.getNoKamar();
+                            int kapasitas = kamar.getKapasitas();
+                            String harga = Formatting.formatRupiah(kamar.getHarga());
+                            Enums.JenisKamar jenis = kamar.getJenisKamar();
+                            Enums.StatusKamar status = kamar.getStatusKamar();
+                            System.out.format("%10s %10s \t%15s \t%10s \t%10s\n", noKamar, kapasitas, harga, jenis, status);
 
                         }
                 );
     }
     public void addNewKamar(
-//            String NIK, String nama, String email, String telp
+            String noKamar,
+            int kapasitas,
+            Enums.JenisKamar jenis,
+            double harga,
+            Enums.StatusKamar statusKamar
     ){
-        // TODO implement
-//        Kamar kamar = new Kamar(
-//                NIK,
-//                nama,
-//                email,
-//                telp
-//        );
-//        masterKamar.addKamar(kamar);
+        Kamar kamar = new Kamar(
+                noKamar,
+                jenis,
+                harga,
+                kapasitas,
+                statusKamar
+        );
+        masterKamar.addKamar(kamar);
     }
-    public void deleteKamar(String NIK) {
-        masterKamar.deleteKamar(NIK);
+    public void deleteKamar(String noKamar) {
+        masterKamar.deleteKamar(noKamar);
     }
     public void editKamar(
-//            String NIK, String nama, String email, String telp
+            String noKamar,
+            int kapasitas,
+            Enums.JenisKamar jenis,
+            double harga,
+            Enums.StatusKamar statusKamar
     ){
-
-        // TODO Implement
-//        Customer newData = new Customer(
-//                NIK,
-//                nama,
-//                email,
-//                telp
-//        );
-//
-//        if(currentSelectedKamar != null){
-//            masterKamar.editDataKamar(currentSelectedKamar, newData);
-//        }
+        Kamar kamar = new Kamar(
+                noKamar,
+                jenis,
+                harga,
+                kapasitas,
+                statusKamar
+        );
+        if(currentSelectedKamar != null){
+            masterKamar.editDataKamar(currentSelectedKamar, kamar);
+        }
     }
 
 
