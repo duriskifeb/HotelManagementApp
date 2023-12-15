@@ -4,6 +4,8 @@ import Data.DataSource.KamarDataSource;
 import Data.Model.Kamar;
 import Data.Model.User;
 
+import java.util.ArrayList;
+
 import static Util.Formatting.formatMessageOutput;
 
 public class MasterKamar {
@@ -12,7 +14,11 @@ public class MasterKamar {
     public MasterKamar(KamarDataSource dataSource) {
         this.dataSource = dataSource;
     }
-    void addKamar(Kamar kamar) {
+
+    public ArrayList<Kamar> getAllKamar(){
+        return dataSource.getListKamar();
+    }
+    public void addKamar(Kamar kamar) {
         // check if kamar already exists
         if(!cekKamar(kamar.getNoKamar())){
             dataSource.addNewKamar(kamar);
@@ -20,7 +26,7 @@ public class MasterKamar {
             formatMessageOutput("Data Kamar Sudah Ada");
         }
     }
-    void deleteKamar(String nomorKamar){
+    public void deleteKamar(String nomorKamar){
         if(cekKamar(nomorKamar)){
             Kamar kamar = getKamar(nomorKamar);
             dataSource.removeKamar(kamar);
