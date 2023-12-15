@@ -45,6 +45,7 @@ public class MasterCustomerViewModel {
     }
 
     public void addNewCustomer(){
+        // TODO implement the parameters
         Customer customer = new Customer(
                 "NIK",
                 "nama",
