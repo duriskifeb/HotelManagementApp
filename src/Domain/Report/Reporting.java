@@ -29,13 +29,10 @@ public class Reporting {
     }
 
     //logic to create, and handle the Reporting Model
-
     ReportModel generatedReport;
-
     public ReportModel getGeneratedReport(){
         return generatedReport;
     }
-
     public void generateReport(Date rangeStart, Date rangeEnd, String picID) {
         Formatting.formatMessageOutput("Generating Report");
 
@@ -53,11 +50,17 @@ public class Reporting {
 
         Formatting.formatMessageOutput("Report Generated");
     }
-
     public void saveReport(){
         Formatting.formatMessageOutput("Saving Report");
         if(this.generatedReport != null){
-            reportDataSource.addNewReport(this.generatedReport);
+
+            ReportModel cekReport = reportDataSource.getReport(this.generatedReport.getReportNumber());
+            if(cekReport != null){
+                int index = reportDataSource.getListReports().indexOf(cekReport);
+                reportDataSource.editReport(index, this.generatedReport);
+            }else {
+                reportDataSource.addNewReport(this.generatedReport);
+            }
             Formatting.formatMessageOutput("Report saved");
         }else {
             Formatting.formatMessageOutput("No generated report found");
