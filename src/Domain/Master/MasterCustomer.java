@@ -4,6 +4,8 @@ import Data.DataSource.CustomerDataSource;
 import Data.Model.Customer;
 import Data.Model.Kamar;
 
+import java.util.ArrayList;
+
 import static Util.Formatting.formatMessageOutput;
 
 public class MasterCustomer {
@@ -11,6 +13,10 @@ public class MasterCustomer {
 
     public MasterCustomer(CustomerDataSource dataSource) {
         this.dataSource = dataSource;
+    }
+
+    public ArrayList<Customer> getListCustomer(){
+        return dataSource.getListCustomer();
     }
     void addCustomer(Customer customer) {
         // check if customer already exists
