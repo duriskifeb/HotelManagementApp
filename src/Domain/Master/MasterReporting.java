@@ -1,7 +1,6 @@
 package Domain.Master;
 
 import Data.DataSource.ReportDataSource;
-import Data.Model.Kamar;
 import Data.Model.ReportModel;
 
 import java.util.ArrayList;
@@ -15,6 +14,7 @@ public class MasterReporting {
         this.dataSource = dataSource;
     }
 
+    ReportModel selectedReport;
     public ArrayList<ReportModel> getAllReport(){
         return dataSource.getListReports();
     }
@@ -28,7 +28,7 @@ public class MasterReporting {
     }
     public void deleteReport(String reportNumber){
         if(cekReport(reportNumber)){
-            ReportModel report = getReport(reportNumber);
+            ReportModel report = dataSource.getReport(reportNumber);
             dataSource.removeReport(report);
         }else {
             formatMessageOutput("Data Tidak Ditemukan");
@@ -44,13 +44,8 @@ public class MasterReporting {
             formatMessageOutput("Data Tidak Ditemukan");
         }
     }
-    public ReportModel getReport(String reportNumber){
-        if(cekReport(reportNumber)){
-            return dataSource.getListReports().stream().filter(kamar -> kamar.getReportNumber().equals(reportNumber)).findFirst().orElse(null);
-        }else {
-            System.out.println("Data Tidak Ditemukan");
-            return null;
-        }
+    public void selectReport(String reportNumber){
+        this.selectedReport = dataSource.getReport(reportNumber);
     }
 
     private boolean cekReport(String reportNumber) {

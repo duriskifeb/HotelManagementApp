@@ -51,7 +51,7 @@ public class TransaksiUseCase {
         // TODO Implement
     }
 
-    public void getTransaksi(String noTransaksi){
+    public void selectTransaksi(String noTransaksi){
         this.currentActiveTransaksi = transaksiDataSource.getTransaksiDetail(noTransaksi);
         if(currentActiveTransaksi == null){
             Formatting.formatMessageOutput("Data Not Found");
