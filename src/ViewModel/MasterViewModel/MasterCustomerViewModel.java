@@ -3,6 +3,8 @@ package ViewModel.MasterViewModel;
 import Data.Model.Customer;
 import Domain.Master.MasterCustomer;
 
+import static Util.Formatting.formatMessageOutput;
+
 public class MasterCustomerViewModel {
     MasterCustomer masterCustomer;
     public MasterCustomerViewModel(MasterCustomer masterCustomer) {
@@ -13,6 +15,9 @@ public class MasterCustomerViewModel {
 
     public void selectCustomer(String nik){
         this.currentSelectedCustomer = masterCustomer.getCustomer(nik);
+        if(this.currentSelectedCustomer == null) {
+            formatMessageOutput("Data Tidak Ditemukan");
+        }
     }
     public void viewDataSelectedCustomer(){
         if(currentSelectedCustomer != null){

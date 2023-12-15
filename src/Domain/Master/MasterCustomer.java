@@ -15,45 +15,42 @@ public class MasterCustomer {
         this.dataSource = dataSource;
     }
 
-    public ArrayList<Customer> getListCustomer(){
+    public ArrayList<Customer> getListCustomer() {
         return dataSource.getListCustomer();
     }
+
     public void addCustomer(Customer customer) {
         // check if customer already exists
-        if(!cekCustomer(customer.getNIK())){
+        if (!cekCustomer(customer.getNIK())) {
             dataSource.addCustomer(customer);
             formatMessageOutput("Data Berhasil Ditambahkan");
-        }else {
+        } else {
             formatMessageOutput("Data Pelanggan Sudah Ada");
         }
     }
 
-    public void deleteCustomer(String NIK){
-        if(cekCustomer(NIK)){
+    public void deleteCustomer(String NIK) {
+        if (cekCustomer(NIK)) {
             Customer kamar = getCustomer(NIK);
             dataSource.removeCustomer(kamar);
-        }else {
+        } else {
             formatMessageOutput("Data Tidak Ditemukan");
         }
     }
-    public void editDataCustomer(Customer oldDData,Customer newDData){
+
+    public void editDataCustomer(Customer oldDData, Customer newDData) {
         // find the data's index
-        if(cekCustomer(oldDData.getNIK())){
+        if (cekCustomer(oldDData.getNIK())) {
             int index = dataSource.getListCustomer().indexOf(oldDData);
             dataSource.editCustomer(index, newDData);
-        }else{
+        } else {
             // data not found
             formatMessageOutput("Data Tidak Ditemukan");
         }
     }
 
-    public Customer getCustomer(String NIK){
-        if(cekCustomer(NIK)){
-            return dataSource.getListCustomer().stream().filter(customer -> customer.getNIK().equals(NIK)).findFirst().orElse(null);
-        }else {
-            formatMessageOutput("Data Tidak Ditemukan");
-            return null;
-        }
+    public Customer getCustomer(String NIK) {
+        return dataSource.getCustomer(NIK);
     }
 
     private boolean cekCustomer(String NIK) {

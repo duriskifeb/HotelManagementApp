@@ -79,6 +79,11 @@ public class KamarDataSource {
         return listKamar;
     }
 
+    public Kamar getKamar(String noKamar) {
+        return listKamar.stream().filter(
+                selectedKamar -> selectedKamar.getNoKamar().equals(noKamar)
+        ).findFirst().orElse(null);
+    }
     public void setListKamar(ArrayList<Kamar> listKamar) {
         this.listKamar = listKamar;
     }

@@ -5,6 +5,8 @@ import Data.Model.Kamar;
 import Domain.Master.MasterKamar;
 import Domain.Master.MasterTransaksi;
 
+import static Util.Formatting.formatMessageOutput;
+
 public class MasterKamarViewModel {
     MasterKamar masterKamar;
 
@@ -14,6 +16,9 @@ public class MasterKamarViewModel {
     Kamar currentSelectedKamar;
     public void selectKamar(String noKamar){
         this.currentSelectedKamar = masterKamar.getKamar(noKamar);
+        if(currentSelectedKamar == null){
+            formatMessageOutput("Data Tidak Ditemukan");
+        }
     }
 
     public void viewDataSelectedKamar(){

@@ -45,12 +45,7 @@ public class MasterKamar {
         }
     }
     public Kamar getKamar(String nomorKamar){
-        if(cekKamar(nomorKamar)){
-            return dataSource.getListKamar().stream().filter(kamar -> kamar.getNoKamar().equals(nomorKamar)).findFirst().orElse(null);
-        }else {
-            System.out.println("Data Tidak Ditemukan");
-            return null;
-        }
+       return dataSource.getKamar(nomorKamar);
     }
     private boolean cekKamar(String noKamar) {
         Kamar cek = dataSource.getListKamar().stream().filter(
