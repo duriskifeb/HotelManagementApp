@@ -18,12 +18,12 @@ public class MasterTransaksi {
         return dataSource.getListTransaksi();
     }
 
-    public void addReport(Transaksi report) {
+    public void addNewTransaksi(Transaksi report) {
         // check if data already exists
         if(!cekTransaksi(report.getNoTransaksi())){
             dataSource.addNewTransaksi(report);
         }else {
-            formatMessageOutput("Data Kamar Sudah Ada");
+            formatMessageOutput("Data Transaksi Sudah Ada");
         }
     }
     public void deleteTransaksi(String noTransaksi){

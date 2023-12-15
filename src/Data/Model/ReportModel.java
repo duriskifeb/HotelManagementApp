@@ -32,7 +32,6 @@ public class ReportModel {
 
     public ReportModel(
             Date dateCreated,
-            Date dateUpdated,
             List<Transaksi> listTransaksi,
             User reportPIC
     ) {
@@ -48,7 +47,6 @@ public class ReportModel {
                 transaksiNumberSum
                 );
         this.dateCreated = dateCreated;
-        this.dateUpdated = dateUpdated;
         this.listTransaksi = listTransaksi;
         this.reportPIC = reportPIC;
     }

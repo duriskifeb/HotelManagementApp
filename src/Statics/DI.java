@@ -59,12 +59,15 @@ public class DI {
         masterReporting = new MasterReporting(DI.reportDataSource);
         masterCustomer = new MasterCustomer(DI.customerDataSource);
         reporting = new Reporting(
-                DI.customerDataSource,
-                DI.kamarDataSource,
+//                DI.customerDataSource,
+//                DI.kamarDataSource,
+                DI.pegawaiDataSource,
                 DI.transaksiDataSource,
                 DI.reportDataSource
         );
-        transaksiUseCase = new TransaksiUseCase(DI.transaksiDataSource);
+        transaksiUseCase = new TransaksiUseCase(
+                DI.transaksiDataSource
+        );
 
         // ViewModel
         authViewModel = new AuthViewModel(DI.authUserCase);

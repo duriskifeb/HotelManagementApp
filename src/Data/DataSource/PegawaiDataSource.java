@@ -47,6 +47,12 @@ public class PegawaiDataSource {
         this.listPegawai = listPegawai;
     }
 
+    public User getPegawai(String ID){
+        return listPegawai.stream().filter(
+                cekUser -> cekUser.getUserID().equals(ID)
+        ).findFirst().orElse(null);
+    }
+
     public User authenticateUser(String emailOrID, String password) {
         return listPegawai.stream().filter(
                 cekUser -> (cekUser.getEmail().equals(emailOrID) || cekUser.getUserID().equals(emailOrID)) &&
