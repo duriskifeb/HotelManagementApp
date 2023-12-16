@@ -42,13 +42,16 @@ public class Reporting {
                 transaksi -> transaksi.getTanggalTransaksi().after(rangeStart) && transaksi.getTanggalTransaksi().before(rangeEnd)
         ).collect(Collectors.toCollection(ArrayList::new));
 
-        generatedReport = new ReportModel(
-                dateCreated,
-                listTransaksi,
-                pic
-        );
-
-        Formatting.formatMessageOutput("Report Generated");
+        if(pic != null){
+            generatedReport = new ReportModel(
+                    dateCreated,
+                    listTransaksi,
+                    pic
+            );
+            Formatting.formatMessageOutput("Report Generated");
+        }else{
+            Formatting.formatMessageOutput("Data PIC tidak ditemukan");
+        }
     }
 
     public void generateReport(String reportNumber , Date rangeStart, Date rangeEnd, String picID, Date dateCreated) {
@@ -59,15 +62,20 @@ public class Reporting {
                 transaksi -> transaksi.getTanggalTransaksi().after(rangeStart) && transaksi.getTanggalTransaksi().before(rangeEnd)
         ).collect(Collectors.toCollection(ArrayList::new));
 
-        generatedReport = new ReportModel(
-                reportNumber,
-                dateCreated,
-                new Date(),
-                listTransaksi,
-                pic
-        );
+        if(pic != null){
+            generatedReport = new ReportModel(
+                    reportNumber,
+                    dateCreated,
+                    new Date(),
+                    listTransaksi,
+                    pic
+            );
 
-        Formatting.formatMessageOutput("Report Generated");
+            Formatting.formatMessageOutput("Report Generated");
+        }else{
+            Formatting.formatMessageOutput("Data PIC tidak ditemukan");
+        }
+
     }
     public void saveReport(){
         Formatting.formatMessageOutput("Saving Report");
