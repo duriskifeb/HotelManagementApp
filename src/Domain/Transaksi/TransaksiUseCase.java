@@ -72,31 +72,45 @@ public class TransaksiUseCase {
     }
 
     // UPDATES the transaction
-    public void addKamar(Kamar kamar){
+    public void addKamar(String noKamar){
         if(currentActiveTransaksi != null){
+            Kamar kamar = kamarDataSource.getKamar(noKamar);
             ArrayList<Kamar> listKamar = currentActiveTransaksi.getKamarOrdered();
             listKamar.add(kamar);
             currentActiveTransaksi.setKamarOrdered(listKamar);
+            updateStatusKamar(kamar, StatusKamar.BOOKED); //
         }
     }
-    public void removeKamar(Kamar kamar){
+
+    private void updateStatusKamar(Kamar kamar, StatusKamar statusKamar) {
+        Kamar oldData = kamarDataSource.getKamar(kamar.getNoKamar());
+        kamar.setStatusKamar(statusKamar);
+        int index = kamarDataSource.getListKamar().indexOf(oldData);
+        kamarDataSource.editKamar(index, kamar);
+    }
+
+    public void removeKamar(String noKamar){
         if(currentActiveTransaksi != null){
+            Kamar kamar = kamarDataSource.getKamar(noKamar);
             ArrayList<Kamar> listKamar = currentActiveTransaksi.getKamarOrdered();
             if(listKamar.size() > 1){
                 listKamar.remove(kamar);
                 currentActiveTransaksi.setKamarOrdered(listKamar);
+                updateStatusKamar(kamar, StatusKamar.AVAILABLE);
             }
         }
     }
-    public void addCustomer(Customer customer) {
+    public void addCustomer(String NIK) {
         if(currentActiveTransaksi != null){
+            Customer customer = customerDataSource.getCustomer(NIK);
             ArrayList<Customer> listPelanggan = currentActiveTransaksi.getCustomers();
             listPelanggan.add(customer);
             currentActiveTransaksi.setCustomers(listPelanggan);
         }
     }
-    public void removeCustomer(Customer customer){
+    public void removeCustomer(String NIK){
         if(currentActiveTransaksi != null){
+            Customer customer = customerDataSource.getCustomer(NIK);
             ArrayList<Customer> listPelanggan = currentActiveTransaksi.getCustomers();
             if(listPelanggan.size() > 1){
                 listPelanggan.remove(customer);
@@ -113,6 +127,13 @@ public class TransaksiUseCase {
             } else {
                 currentActiveTransaksi.setCheckOut(new Date());
                 currentActiveTransaksi.setStatusTransaksi(Enums.StatusTransaksi.DONE);
+
+                // update all status kamar to cleaniong
+                for (Kamar kamar : currentActiveTransaksi.getKamarOrdered()) {
+                    updateStatusKamar(kamar, StatusKamar.CLEANING);
+                }
+                commitTransaksi();
+
             }
 
         } else {
@@ -125,6 +146,14 @@ public class TransaksiUseCase {
             if (currentActiveTransaksi.getStatusPembayaran() != Enums.StatusTransaksiBayar.PENDING_PAYMENT) {
                 currentActiveTransaksi.setCheckIn(new Date());
                 currentActiveTransaksi.setStatusTransaksi(Enums.StatusTransaksi.ONGOING);
+
+                // update all status kamar to occupied
+                for (Kamar kamar : currentActiveTransaksi.getKamarOrdered()) {
+                    updateStatusKamar(kamar, StatusKamar.OCCUPIED);
+                }
+
+                commitTransaksi();
+
             } else {
                 // TODO @Ryan error lakukan pembayaran dulu
             }
