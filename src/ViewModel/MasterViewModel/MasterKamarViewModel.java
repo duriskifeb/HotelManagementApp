@@ -21,32 +21,6 @@ public class MasterKamarViewModel {
         }
     }
 
-    public void viewDataSelectedKamar(){
-        if(currentSelectedKamar != null){
-            String noKamar = currentSelectedKamar.getNoKamar();
-            int kapasitas = currentSelectedKamar.getKapasitas();
-            String harga = Formatting.formatRupiah(currentSelectedKamar.getHarga());
-            AppEnums.JenisKamar jenis = currentSelectedKamar.getJenisKamar();
-            AppEnums.StatusKamar status = currentSelectedKamar.getStatusKamar();
-            System.out.format("%10s %10s \t%15s \t%10s \t%10s\n", noKamar, kapasitas, harga, jenis, status);
-        }
-    }
-    public void viewAllDataKamar(){
-        masterKamar.getAllKamar()
-                .stream()
-                .iterator()
-                .forEachRemaining(
-                        kamar -> {
-                            String noKamar = kamar.getNoKamar();
-                            int kapasitas = kamar.getKapasitas();
-                            String harga = Formatting.formatRupiah(kamar.getHarga());
-                            AppEnums.JenisKamar jenis = kamar.getJenisKamar();
-                            AppEnums.StatusKamar status = kamar.getStatusKamar();
-                            System.out.format("%10s %10s \t%15s \t%10s \t%10s\n", noKamar, kapasitas, harga, jenis, status);
-
-                        }
-                );
-    }
     public void addNewKamar(
             String noKamar,
             int kapasitas,

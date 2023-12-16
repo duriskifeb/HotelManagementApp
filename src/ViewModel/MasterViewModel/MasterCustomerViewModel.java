@@ -4,6 +4,7 @@ import Data.Model.Customer;
 import Domain.Master.MasterCustomer;
 
 import static Util.Formatting.formatMessageOutput;
+import static View.Components.CustomerView.headerViewCustomer;
 
 public class MasterCustomerViewModel {
     MasterCustomer masterCustomer;
@@ -19,32 +20,7 @@ public class MasterCustomerViewModel {
             formatMessageOutput("Data Tidak Ditemukan");
         }
     }
-    public void viewDataSelectedCustomer(){
-        if(currentSelectedCustomer != null){
-            headerViewCustomer();
-            String idCustomer = currentSelectedCustomer.getNIK();
-            String namaCustomer = currentSelectedCustomer.getNama();
-            String telp = currentSelectedCustomer.getTelp();
-            String email = currentSelectedCustomer.getEmail();
-            System.out.format("%10s %25s \t%20s \t%20s\n", idCustomer, namaCustomer, telp, email);
-        }
-    }
-    public void viewAllDataCustomer(){
-        headerViewCustomer();
-        masterCustomer.getListCustomer()
-                .stream()
-                .iterator()
-                .forEachRemaining(
-                        cust -> {
-                            String idCustomer = cust.getNIK();
-                            String namaCustomer = cust.getNama();
-                            String telp = cust.getTelp();
-                            String email = cust.getEmail();
-                            System.out.format("%10s %25s \t%20s \t%20s\n", idCustomer, namaCustomer, telp, email);
 
-                        }
-                );
-    }
     public void addNewCustomer(String NIK, String nama, String email, String telp){
 
         Customer customer = new Customer(
@@ -72,10 +48,4 @@ public class MasterCustomerViewModel {
     }
 
 
-    // TODO Move this method to View Layer
-    private void headerViewCustomer(){
-        System.out.println("_______________________________________________________________________________________");
-        System.out.format("%10s %25s %20s %20s\n", "NIK", "Nama", "No telp", "Email");
-        System.out.println("_______________________________________________________________________________________");
-    }
 }

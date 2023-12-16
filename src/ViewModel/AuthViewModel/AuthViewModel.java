@@ -27,11 +27,7 @@ public class AuthViewModel {
         authUseCase.doLogout();
     }
 
-    public void showProfile(){
-        if(loggedUser != null){
-            // TODO implement : show the user profile
-        }
-    }
+
 
     public void changePassword(String userID, String oldPassword, String newPassword){
         // TODO

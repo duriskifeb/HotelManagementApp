@@ -62,27 +62,6 @@ public class MasterReportingViewModel {
         masterReporting.deleteReport(reportNumber);
     }
 
-    public void viewAllReports(){
-        masterReporting.getAllReport()
-                .stream()
-                .iterator()
-                .forEachRemaining(
-                        selectedReport -> {
 
-                            // TODO @David show preview data report
-//                            String idPegawai = user.getUserID();
-//                            String nama = user.getNama();
-//                            String email = user.getEmail();
-//                            Enums.UserRole role = user.getRole();
-//                            System.out.format("%10s %10s \t%15s \t%10s\n", idPegawai, nama, email, role);
-
-                        }
-                );
-    }
-    public void viewDetailSelectedReport(){
-        if(selectedReport != null){
-            // TODO @David show all data in report (detail)
-        }
-    }
 
 }
