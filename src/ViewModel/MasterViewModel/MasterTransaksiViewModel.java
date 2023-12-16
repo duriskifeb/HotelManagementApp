@@ -96,7 +96,7 @@ public class MasterTransaksiViewModel {
                 .stream()
                 .iterator()
                 .forEachRemaining(
-                        selectedReport -> {
+                        selectedTransaksi -> {
 
                             // TODO @David show preview data transaksi
 //                            String idPegawai = user.getUserID();
