@@ -37,29 +37,16 @@ public class TransaksiUseCase {
 
     Transaksi currentActiveTransaksi;
 
-    // logic to create a new instance of Transaksi, and save the transaction
-
-    public void createInitialTransaksi(Customer pelanggan, User pegawai, Kamar kamar, Pembayaran payment) {
-        Transaksi transaksi = new Transaksi(
-                new Date(),
-                StatusTransaksi.PENDING,
-                payment,
-                pegawai,
-                new ArrayList<Customer>(
-                        Arrays.asList(pelanggan)
-                ),
-                new ArrayList<Kamar>(
-                        Arrays.asList(kamar)
-                )
-        );
-
-        this.currentActiveTransaksi = transaksi;
-    }
-
     public Transaksi getCurrentActiveTransaksi() {
         return currentActiveTransaksi;
     }
 
+    public ArrayList<Transaksi> getAllTransaksi() {
+        return transaksiDataSource.getListTransaksi();
+    }
+
+
+    // logic to create a new instance of Transaksi, and save the transaction
     public void commitTransaksi() {
         if (currentActiveTransaksi != null) {
             int cekIndex = transaksiDataSource.getListTransaksi().indexOf(currentActiveTransaksi);
@@ -71,14 +58,41 @@ public class TransaksiUseCase {
         }
     }
 
+    public void createInitialTransaksi(String nik, User pegawai, String noKamar, Pembayaran payment) {
+        Customer customer = customerDataSource.getCustomer(nik);
+        Kamar kamar = kamarDataSource.getKamar(noKamar);
+        if(customer == null){
+            Formatting.formatMessageOutput("Data Customer Tidak Diperlukan");
+        } else if (kamar.getStatusKamar() != StatusKamar.AVAILABLE) {
+            Formatting.formatMessageOutput("Kamar Sedang Digunakan");
+        }else{
+            this.currentActiveTransaksi = new Transaksi(
+                    new Date(),
+                    StatusTransaksi.PENDING,
+                    payment,
+                    pegawai,
+                    new ArrayList<Customer>(
+                            Arrays.asList(customer)
+                    ),
+                    new ArrayList<Kamar>(
+                            Arrays.asList(kamar)
+                    )
+            );
+        }
+
+    }
+
     // UPDATES the transaction
     public void addKamar(String noKamar) {
         if (currentActiveTransaksi != null) {
             Kamar kamar = kamarDataSource.getKamar(noKamar);
-            ArrayList<Kamar> listKamar = currentActiveTransaksi.getKamarOrdered();
-            listKamar.add(kamar);
-            currentActiveTransaksi.setKamarOrdered(listKamar);
-            updateStatusKamar(kamar, StatusKamar.BOOKED); //
+            if(kamar != null && kamar.getStatusKamar() == StatusKamar.AVAILABLE){
+                ArrayList<Kamar> listKamar = currentActiveTransaksi.getKamarOrdered();
+                listKamar.add(kamar);
+                currentActiveTransaksi.setKamarOrdered(listKamar);
+                updateStatusKamar(kamar, StatusKamar.BOOKED); //
+            }
+
         }
     }
 
@@ -92,11 +106,13 @@ public class TransaksiUseCase {
     public void removeKamar(String noKamar) {
         if (currentActiveTransaksi != null) {
             Kamar kamar = kamarDataSource.getKamar(noKamar);
-            ArrayList<Kamar> listKamar = currentActiveTransaksi.getKamarOrdered();
-            if (listKamar.size() > 1) {
-                listKamar.remove(kamar);
-                currentActiveTransaksi.setKamarOrdered(listKamar);
-                updateStatusKamar(kamar, StatusKamar.AVAILABLE);
+            if(kamar != null) {
+                ArrayList<Kamar> listKamar = currentActiveTransaksi.getKamarOrdered();
+                if (listKamar.size() > 1) {
+                    listKamar.remove(kamar);
+                    currentActiveTransaksi.setKamarOrdered(listKamar);
+                    updateStatusKamar(kamar, StatusKamar.AVAILABLE);
+                }
             }
         }
     }
