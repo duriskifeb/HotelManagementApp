@@ -69,31 +69,31 @@ public class HotelManagementApp {
                     break;
 
                 case MASTER_KAMAR:
-
+                    this.masterKamarMenu.showMasterKamarMenu();
                     break;
 
                 case MASTER_PEGAWAI:
-
+                    this.masterPegawaiMenu.showMasterPegawaiMenu();
                     break;
 
                 case MASTER_CUSTOMER:
-
+                    this.masterCustomerMenu.showMasterCustomerMenu();
                     break;
 
                 case MASTER_REPORTING:
-
+                    this.masterReportingMenu.showMasterReportingMenu();
                     break;
 
                 case MASTER_TRANSAKSI:
-
+                    this.masterTransaksiMenu.showMasterTransaksiMenu();
                     break;
 
                 case TRANSAKSI:
-
+                    this.transaksiMenu.showTransaksiMenu();
                     break;
 
                 case REPORTING:
-
+                    this.reportingMenu.showReportingMenu();
                     break;
 
                 case EXIT:

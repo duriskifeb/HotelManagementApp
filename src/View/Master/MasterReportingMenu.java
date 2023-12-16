@@ -8,4 +8,7 @@ public class MasterReportingMenu {
     public MasterReportingMenu(MasterReportingViewModel masterReportingVM) {
         this.masterReportingVM = masterReportingVM;
     }
+
+    public void showMasterReportingMenu() {
+    }
 }

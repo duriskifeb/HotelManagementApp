@@ -9,6 +9,9 @@ public class MasterCustomerMenu {
         this.masterCustomerVM = masterCustomerVM;
     }
 
+    public void showMasterCustomerMenu() {
+    }
+
     // TODO @David
     // add new menu methods to Create (Register), View, Update, and Delete Customer
 }

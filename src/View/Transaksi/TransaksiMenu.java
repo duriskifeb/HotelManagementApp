@@ -15,4 +15,7 @@ public class TransaksiMenu {
     public TransaksiMenu(TransaksiViewModel transaksiVM) {
         this.transaksiVM = transaksiVM;
     }
+
+    public void showTransaksiMenu() {
+    }
 }

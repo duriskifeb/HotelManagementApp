@@ -8,4 +8,7 @@ public class MasterTransaksiMenu {
     public MasterTransaksiMenu(MasterTransaksiViewModel masterTransaksiVM) {
         this.masterTransaksiVM = masterTransaksiVM;
     }
+
+    public void showMasterTransaksiMenu() {
+    }
 }

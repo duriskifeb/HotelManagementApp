@@ -8,4 +8,7 @@ public class ReportingMenu {
     public ReportingMenu(ReportingViewModel reportingVM) {
         this.reportingVM = reportingVM;
     }
+
+    public void showReportingMenu() {
+    }
 }

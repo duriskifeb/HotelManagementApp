@@ -8,6 +8,9 @@ public class MasterPegawaiMenu {
     public MasterPegawaiMenu(MasterPegawaiViewModel masterPegawaiVM) {
         this.masterPegawaiVM = masterPegawaiVM;
     }
+
+    public void showMasterPegawaiMenu() {
+    }
     // TODO @David
     // add new sub menu menu methods to Create (Register), View, Update, and Delete Pegawai / User
 }
