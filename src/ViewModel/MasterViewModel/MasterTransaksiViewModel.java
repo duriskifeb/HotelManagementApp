@@ -5,6 +5,8 @@ import Domain.Master.MasterTransaksi;
 import Domain.Transaksi.TransaksiUseCase;
 import Util.Formatting;
 
+import java.util.Date;
+
 public class MasterTransaksiViewModel {
     MasterTransaksi masterTransaksi;
     TransaksiUseCase transaksiUseCase;
@@ -18,12 +20,11 @@ public class MasterTransaksiViewModel {
 
     public void editTransaksi(){
         if(selectedTransaksi != null){
-
+            // TODO
         }else{
-            Formatting.formatMessageOutput("Pilih transaksi yang mau di edit");
+            Formatting.formatMessageOutput("Pilih transaksi yang akan di edit");
         }
     }
-
     public void deleteTransaksi(String noTransaksi){
         masterTransaksi.deleteTransaksi(noTransaksi);
     }
