@@ -168,4 +168,6 @@ public class MainMenu {
         readLine();
     }
 
+    public void showMainMenu() {
+    }
 }

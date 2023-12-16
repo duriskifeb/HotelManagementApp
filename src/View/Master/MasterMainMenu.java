@@ -9,6 +9,9 @@ public class MasterMainMenu {
         this.authViewModel = authViewModel;
     }
 
+    public void showMasterMainMenu() {
+    }
+
     // TODO @David add main menu master to access the all submenus
 
 }

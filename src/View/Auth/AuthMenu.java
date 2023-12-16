@@ -9,6 +9,6 @@ public class AuthMenu {
         this.authViewModel = authViewModel;
     }
 
-    public void ShowLogin() {
+    public void showLogin() {
     }
 }
