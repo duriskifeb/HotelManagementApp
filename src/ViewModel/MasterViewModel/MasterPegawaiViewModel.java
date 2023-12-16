@@ -1,11 +1,9 @@
 package ViewModel.MasterViewModel;
 
-import Data.Enums.Enums;
-import Data.Model.Kamar;
+import Data.AppEnums.AppEnums;
 import Data.Model.User;
 import Domain.Master.MasterPegawai;
 import Util.Encryption;
-import Util.Formatting;
 
 import static Util.Formatting.formatMessageOutput;
 
@@ -29,7 +27,7 @@ public class MasterPegawaiViewModel {
             String nama,
             String email,
             String password,
-            Enums.UserRole role
+            AppEnums.UserRole role
     ){
         User newData = new User(email, nama,  role, Encryption.hashPassword(password));
         masterPegawai.addNewPegawai(newData);
@@ -41,7 +39,7 @@ public class MasterPegawaiViewModel {
     public void editDataPegawai(
             String nama,
             String email,
-            Enums.UserRole role
+            AppEnums.UserRole role
     ){
         User newData = new User(email, nama,  role, selectedPegawai.getPassword());
 
@@ -59,7 +57,7 @@ public class MasterPegawaiViewModel {
                             String idPegawai = user.getUserID();
                             String nama = user.getNama();
                             String email = user.getEmail();
-                            Enums.UserRole role = user.getRole();
+                            AppEnums.UserRole role = user.getRole();
                             System.out.format("%10s %10s \t%15s \t%10s\n", idPegawai, nama, email, role);
 
                         }
@@ -72,7 +70,7 @@ public class MasterPegawaiViewModel {
             String idPegawai = selectedPegawai.getUserID();
             String nama = selectedPegawai.getNama();
             String email = selectedPegawai.getEmail();
-            Enums.UserRole role = selectedPegawai.getRole();
+            AppEnums.UserRole role = selectedPegawai.getRole();
             System.out.format("%10s %10s \t%15s \t%10s\n", idPegawai, nama, email, role);
         }
     }

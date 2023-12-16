@@ -1,6 +1,6 @@
 package View.Components;
 
-import Data.Enums.Enums;
+import Data.AppEnums.AppEnums;
 import Data.Model.Transaksi;
 import Util.Formatting;
 
@@ -16,7 +16,7 @@ public class TransaksiView {
                         selectedTransaksi -> {
                             String noTransaksi = selectedTransaksi.getNoTransaksi();
                             String user = selectedTransaksi.getCustomers().get(0).getNama();
-                            Enums.StatusTransaksi status = selectedTransaksi.getStatusTransaksi();
+                            AppEnums.StatusTransaksi status = selectedTransaksi.getStatusTransaksi();
                             String tanggalTransaksi = Formatting.formatDate(selectedTransaksi.getTanggalTransaksi());
                             System.out.format("%20s %25s \t%20s \t%20s\n", noTransaksi, user, status, tanggalTransaksi);
 
@@ -29,7 +29,7 @@ public class TransaksiView {
             String noTransaksi = selectedTransaksi.getNoTransaksi();
             String user = selectedTransaksi.getPegawai().getUserID();
             ;
-            Enums.StatusTransaksi status = selectedTransaksi.getStatusTransaksi();
+            AppEnums.StatusTransaksi status = selectedTransaksi.getStatusTransaksi();
             String tanggalTransaksi = Formatting.formatDate(selectedTransaksi.getTanggalTransaksi());
 
             System.out.println("========================================= DETAIL TRANSAKSI =========================================");

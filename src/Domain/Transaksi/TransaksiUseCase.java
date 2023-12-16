@@ -4,8 +4,8 @@ import Data.DataSource.CustomerDataSource;
 import Data.DataSource.KamarDataSource;
 import Data.DataSource.PegawaiDataSource;
 import Data.DataSource.TransaksiDataSource;
-import Data.Enums.Enums;
-import Data.Enums.Enums.*;
+import Data.AppEnums.AppEnums;
+import Data.AppEnums.AppEnums.*;
 import Data.Model.Customer;
 import Data.Model.Kamar;
 import Data.Model.Transaksi;
@@ -146,7 +146,7 @@ public class TransaksiUseCase {
             } else {
 
                 currentActiveTransaksi.setCheckOut(new Date());
-                currentActiveTransaksi.setStatusTransaksi(Enums.StatusTransaksi.DONE);
+                currentActiveTransaksi.setStatusTransaksi(AppEnums.StatusTransaksi.DONE);
 
                 // update all status kamar to cleaniong
                 for (Kamar kamar : currentActiveTransaksi.getKamarOrdered()) {
@@ -164,9 +164,9 @@ public class TransaksiUseCase {
     public void checkIn() {
         // TODO implement
         if (currentActiveTransaksi != null) {
-            if (currentActiveTransaksi.getStatusPembayaran() != Enums.StatusTransaksiBayar.PENDING_PAYMENT) {
+            if (currentActiveTransaksi.getStatusPembayaran() != AppEnums.StatusTransaksiBayar.PENDING_PAYMENT) {
                 currentActiveTransaksi.setCheckIn(new Date());
-                currentActiveTransaksi.setStatusTransaksi(Enums.StatusTransaksi.ONGOING);
+                currentActiveTransaksi.setStatusTransaksi(AppEnums.StatusTransaksi.ONGOING);
                 // update all status kamar to occupied
                 for (Kamar kamar : currentActiveTransaksi.getKamarOrdered()) {
                     updateStatusKamar(kamar, StatusKamar.OCCUPIED);
@@ -181,13 +181,13 @@ public class TransaksiUseCase {
         }
     }
 
-    public void bayar(Enums.Pembayaran metodeBayar, double amountBayar) {
+    public void bayar(AppEnums.Pembayaran metodeBayar, double amountBayar) {
         if (currentActiveTransaksi != null) {
             if (currentActiveTransaksi.getStatusPembayaran() == StatusTransaksiBayar.LUNAS) {
                 Formatting.formatMessageOutput("Tidak Bisa bayar karena transaksi sudah lunas");
             } else {
                 currentActiveTransaksi.setPembayaran(metodeBayar);
-                currentActiveTransaksi.setStatusTransaksi(Enums.StatusTransaksi.ONGOING);
+                currentActiveTransaksi.setStatusTransaksi(AppEnums.StatusTransaksi.ONGOING);
                 currentActiveTransaksi.setPaid(
                         currentActiveTransaksi.getPaid() + amountBayar
                 );

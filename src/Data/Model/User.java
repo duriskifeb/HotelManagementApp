@@ -1,13 +1,13 @@
 package Data.Model;
 
-import Data.Enums.Enums;
+import Data.AppEnums.AppEnums;
 import Util.Generator;
 
 public class User {
     private String userID, email, nama, password;
-    private Enums.UserRole role;
+    private AppEnums.UserRole role;
 
-    public User(String userID, String email, String nama, Enums.UserRole role, String password) {
+    public User(String userID, String email, String nama, AppEnums.UserRole role, String password) {
         this.userID = userID;
         this.email = email;
         this.nama = nama;
@@ -15,7 +15,7 @@ public class User {
         this.password = password;
     }
 
-    public User(String email, String nama, Enums.UserRole role, String password) {
+    public User(String email, String nama, AppEnums.UserRole role, String password) {
         this.userID = Generator.generatePegawaiID(nama, role, email);
         this.email = email;
         this.nama = nama;
@@ -48,11 +48,11 @@ public class User {
         this.nama = nama;
     }
 
-    public Enums.UserRole getRole() {
+    public AppEnums.UserRole getRole() {
         return role;
     }
 
-    public void setRole(Enums.UserRole role) {
+    public void setRole(AppEnums.UserRole role) {
         this.role = role;
     }
 

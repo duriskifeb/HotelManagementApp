@@ -6,6 +6,7 @@ import ViewModel.AuthViewModel.AuthViewModel;
 import static Statics.StaticsInput.readInt;
 import static Statics.StaticsInput.cls;
 import static Statics.StaticsInput.readLine;
+import static View.Components.MainView.appHeader;
 
 import java.io.IOException;
 
@@ -24,17 +25,9 @@ public class MainMenu {
         this.authViewModel = authViewModel;
     }
 
-    public void header() {
-        StaticsInput.cls();
-
-        System.out.println("==============================");
-        System.out.println(" HOTEL MANAGEMENT APLICATION ");
-        System.out.println("==============================");
-    }
-
     public void login() throws IOException {
         do {
-            header();
+            appHeader();
             System.out.println("\nSilahkan pilih menu login");
             System.out.println("1. Login Pegawai");
             System.out.println("2. Login Manager");
@@ -72,7 +65,7 @@ public class MainMenu {
     }
 
     public void loginUser(String UserRole) throws IOException {
-        header();
+        appHeader();
         System.out.println("Login : " + UserRole + "\n");
 
         System.out.print("ID\t  : ");
@@ -98,7 +91,7 @@ public class MainMenu {
     public void menuPegawai() throws IOException {
         do {
 
-            header();
+            appHeader();
             System.out.println("Menu : Pegawai\n");
             System.out.println("1. Fitur 1");
             System.out.println("0. Kembali");
@@ -128,7 +121,7 @@ public class MainMenu {
     public void menuManager() throws IOException {
         do {
 
-            header();
+            appHeader();
             System.out.println("Menu : Manager\n");
             System.out.println("1. Fitur 1");
             System.out.println("0. Kembali");
@@ -157,7 +150,7 @@ public class MainMenu {
     }
 
     public void fitur1() throws IOException {
-        header();
+        appHeader();
         System.out.println("\nIni Fitur 1");
         next();
     }
@@ -169,7 +162,7 @@ public class MainMenu {
     }
 
     public void showMainMenu() {
-        header();
+        appHeader();
         System.out.println("Menu : Pegawai\n");
     }
 }

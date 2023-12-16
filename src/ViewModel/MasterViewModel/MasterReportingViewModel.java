@@ -1,8 +1,6 @@
 package ViewModel.MasterViewModel;
 
-import Data.Enums.Enums;
 import Data.Model.ReportModel;
-import Data.Model.User;
 import Domain.Master.MasterReporting;
 import Domain.Report.Reporting;
 import Util.Formatting;

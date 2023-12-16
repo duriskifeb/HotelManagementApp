@@ -1,15 +1,12 @@
 package ViewModel.MasterViewModel;
 
-import Data.Enums.Enums;
-import Data.Model.Customer;
-import Data.Model.Kamar;
+import Data.AppEnums.AppEnums;
 import Data.Model.Transaksi;
 import Domain.Master.MasterTransaksi;
 import Domain.Transaksi.TransaksiUseCase;
 import Util.Formatting;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class MasterTransaksiViewModel {
     MasterTransaksi masterTransaksi;
@@ -59,7 +56,7 @@ public class MasterTransaksiViewModel {
         commitTransaksi();
     }
 
-    public void bayar(Enums.Pembayaran metodeBayar, double amountBayar) {
+    public void bayar(AppEnums.Pembayaran metodeBayar, double amountBayar) {
         transaksiUseCase.bayar(metodeBayar, amountBayar);
         commitTransaksi();
     }

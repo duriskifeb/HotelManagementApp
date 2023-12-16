@@ -1,9 +1,6 @@
 package Data.DataSource;
 
-import Data.Enums.Enums;
 import Data.Model.Customer;
-import Data.Model.User;
-import Util.Encryption;
 
 import java.util.ArrayList;
 import java.util.Arrays;

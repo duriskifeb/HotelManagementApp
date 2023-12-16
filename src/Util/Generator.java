@@ -1,11 +1,9 @@
 package Util;
 
-import Data.Enums.Enums;
-
-import java.util.Locale;
+import Data.AppEnums.AppEnums;
 
 public class Generator {
-    public static String generatePegawaiID(String name, Enums.UserRole role, String email){
+    public static String generatePegawaiID(String name, AppEnums.UserRole role, String email){
         String result;
 
 
@@ -30,7 +28,7 @@ public class Generator {
         return result.toUpperCase();
     }
 
-    public static String generateTransaksiID(String tanggalTransaksi, String totalPrice, String orderName, String picName, Enums.Pembayaran payment){
+    public static String generateTransaksiID(String tanggalTransaksi, String totalPrice, String orderName, String picName, AppEnums.Pembayaran payment){
         String result;
         result = picName +"-"+ tanggalTransaksi + "-"+ totalPrice + "-" + "-" + orderName + "-"+ payment;
         result = Encryption.hashID(result, 10);

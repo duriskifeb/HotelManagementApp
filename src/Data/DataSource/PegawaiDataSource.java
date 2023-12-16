@@ -1,6 +1,6 @@
 package Data.DataSource;
 
-import Data.Enums.Enums;
+import Data.AppEnums.AppEnums;
 import Data.Model.User;
 import Util.Encryption;
 
@@ -14,14 +14,14 @@ public class PegawaiDataSource {
                             "ADM01",
                             "admin@gmail.com",
                             "ayam",
-                            Enums.UserRole.MANAGER,
+                            AppEnums.UserRole.MANAGER,
                             Encryption.hashPassword("ayamgoyeng")
                     ),
                     new User(
                             "ADM02",
                             "admindua@gmail.com",
                             "bebek",
-                            Enums.UserRole.MANAGER,
+                            AppEnums.UserRole.MANAGER,
                             Encryption.hashPassword("bebekgoyeng")
                     )
             )

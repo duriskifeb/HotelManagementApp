@@ -1,6 +1,6 @@
-package Data.Enums;
+package Data.AppEnums;
 
-public class Enums {
+public class AppEnums {
     // put enums here
     public enum StatusKamar {
         AVAILABLE,

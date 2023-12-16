@@ -1,10 +1,8 @@
 package ViewModel.MasterViewModel;
 
-import Data.Enums.Enums;
-import Data.Model.Customer;
+import Data.AppEnums.AppEnums;
 import Data.Model.Kamar;
 import Domain.Master.MasterKamar;
-import Domain.Master.MasterTransaksi;
 import Util.Formatting;
 
 import static Util.Formatting.formatMessageOutput;
@@ -28,8 +26,8 @@ public class MasterKamarViewModel {
             String noKamar = currentSelectedKamar.getNoKamar();
             int kapasitas = currentSelectedKamar.getKapasitas();
             String harga = Formatting.formatRupiah(currentSelectedKamar.getHarga());
-            Enums.JenisKamar jenis = currentSelectedKamar.getJenisKamar();
-            Enums.StatusKamar status = currentSelectedKamar.getStatusKamar();
+            AppEnums.JenisKamar jenis = currentSelectedKamar.getJenisKamar();
+            AppEnums.StatusKamar status = currentSelectedKamar.getStatusKamar();
             System.out.format("%10s %10s \t%15s \t%10s \t%10s\n", noKamar, kapasitas, harga, jenis, status);
         }
     }
@@ -42,8 +40,8 @@ public class MasterKamarViewModel {
                             String noKamar = kamar.getNoKamar();
                             int kapasitas = kamar.getKapasitas();
                             String harga = Formatting.formatRupiah(kamar.getHarga());
-                            Enums.JenisKamar jenis = kamar.getJenisKamar();
-                            Enums.StatusKamar status = kamar.getStatusKamar();
+                            AppEnums.JenisKamar jenis = kamar.getJenisKamar();
+                            AppEnums.StatusKamar status = kamar.getStatusKamar();
                             System.out.format("%10s %10s \t%15s \t%10s \t%10s\n", noKamar, kapasitas, harga, jenis, status);
 
                         }
@@ -52,9 +50,9 @@ public class MasterKamarViewModel {
     public void addNewKamar(
             String noKamar,
             int kapasitas,
-            Enums.JenisKamar jenis,
+            AppEnums.JenisKamar jenis,
             double harga,
-            Enums.StatusKamar statusKamar
+            AppEnums.StatusKamar statusKamar
     ){
         Kamar kamar = new Kamar(
                 noKamar,
@@ -71,9 +69,9 @@ public class MasterKamarViewModel {
     public void editKamar(
             String noKamar,
             int kapasitas,
-            Enums.JenisKamar jenis,
+            AppEnums.JenisKamar jenis,
             double harga,
-            Enums.StatusKamar statusKamar
+            AppEnums.StatusKamar statusKamar
     ){
         Kamar kamar = new Kamar(
                 noKamar,

@@ -1,15 +1,15 @@
 package Data.Model;
 
-import Data.Enums.Enums;
+import Data.AppEnums.AppEnums;
 
 public class Kamar {
     private String noKamar;
-    private Enums.JenisKamar jenisKamar;
+    private AppEnums.JenisKamar jenisKamar;
     private double harga;
     private int kapasitas;
-    private Enums.StatusKamar statusKamar;
+    private AppEnums.StatusKamar statusKamar;
 
-    public Kamar(String noKamar, Enums.JenisKamar jenisKamar, double harga, int kapasitas, Enums.StatusKamar statusKamar) {
+    public Kamar(String noKamar, AppEnums.JenisKamar jenisKamar, double harga, int kapasitas, AppEnums.StatusKamar statusKamar) {
         this.noKamar = noKamar;
         this.jenisKamar = jenisKamar;
         this.harga = harga;
@@ -25,11 +25,11 @@ public class Kamar {
         this.noKamar = noKamar;
     }
 
-    public Enums.JenisKamar getJenisKamar() {
+    public AppEnums.JenisKamar getJenisKamar() {
         return jenisKamar;
     }
 
-    public void setJenisKamar(Enums.JenisKamar jenisKamar) {
+    public void setJenisKamar(AppEnums.JenisKamar jenisKamar) {
         this.jenisKamar = jenisKamar;
     }
 
@@ -49,11 +49,11 @@ public class Kamar {
         this.kapasitas = kapasitas;
     }
 
-    public Enums.StatusKamar getStatusKamar() {
+    public AppEnums.StatusKamar getStatusKamar() {
         return statusKamar;
     }
 
-    public void setStatusKamar(Enums.StatusKamar statusKamar) {
+    public void setStatusKamar(AppEnums.StatusKamar statusKamar) {
         this.statusKamar = statusKamar;
     }
 }

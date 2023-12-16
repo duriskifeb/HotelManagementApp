@@ -1,6 +1,6 @@
 package Data.Model;
 
-import Data.Enums.Enums;
+import Data.AppEnums.AppEnums;
 import Util.Formatting;
 import Util.Generator;
 
@@ -11,9 +11,9 @@ public class Transaksi {
 
     private String noTransaksi;
     private Date tanggalTransaksi, checkIn, checkOut, startDate, endDate;
-    private Enums.StatusTransaksi statusTransaksi;
-    private Enums.Pembayaran pembayaran;
-    private Enums.StatusTransaksiBayar statusPembayaran;
+    private AppEnums.StatusTransaksi statusTransaksi;
+    private AppEnums.Pembayaran pembayaran;
+    private AppEnums.StatusTransaksiBayar statusPembayaran;
     private User pegawai;
     private ArrayList<Customer> customers; // get(0) customers is the one who order
     private double total;
@@ -25,8 +25,8 @@ public class Transaksi {
     public Transaksi(
             String noTransaksi,
             Date tanggalTransaksi,
-            Enums.StatusTransaksi statusTransaksi,
-            Enums.Pembayaran pembayaran,
+            AppEnums.StatusTransaksi statusTransaksi,
+            AppEnums.Pembayaran pembayaran,
             User pegawai,
             ArrayList<Customer> customers,
             ArrayList<Kamar> kamarOrdered
@@ -44,8 +44,8 @@ public class Transaksi {
 
     public Transaksi(
             Date tanggalTransaksi,
-            Enums.StatusTransaksi statusTransaksi,
-            Enums.Pembayaran pembayaran,
+            AppEnums.StatusTransaksi statusTransaksi,
+            AppEnums.Pembayaran pembayaran,
             User pegawai,
             ArrayList<Customer> customers,
             ArrayList<Kamar> kamarOrdered
@@ -99,19 +99,19 @@ public class Transaksi {
         this.checkOut = checkOut;
     }
 
-    public Enums.StatusTransaksi getStatusTransaksi() {
+    public AppEnums.StatusTransaksi getStatusTransaksi() {
         return statusTransaksi;
     }
 
-    public void setStatusTransaksi(Enums.StatusTransaksi statusTransaksi) {
+    public void setStatusTransaksi(AppEnums.StatusTransaksi statusTransaksi) {
         this.statusTransaksi = statusTransaksi;
     }
 
-    public Enums.Pembayaran getPembayaran() {
+    public AppEnums.Pembayaran getPembayaran() {
         return pembayaran;
     }
 
-    public void setPembayaran(Enums.Pembayaran pembayaran) {
+    public void setPembayaran(AppEnums.Pembayaran pembayaran) {
         this.pembayaran = pembayaran;
     }
 
@@ -169,11 +169,11 @@ public class Transaksi {
         this.paid = paid;
     }
 
-    public Enums.StatusTransaksiBayar getStatusPembayaran() {
+    public AppEnums.StatusTransaksiBayar getStatusPembayaran() {
         return statusPembayaran;
     }
 
-    public void setStatusPembayaran(Enums.StatusTransaksiBayar statusPembayaran) {
+    public void setStatusPembayaran(AppEnums.StatusTransaksiBayar statusPembayaran) {
         this.statusPembayaran = statusPembayaran;
     }
 

@@ -1,16 +1,12 @@
 package ViewModel.TransaksiViewModel;
 
-import Data.Enums.Enums;
-import Data.Model.Customer;
-import Data.Model.Kamar;
+import Data.AppEnums.AppEnums;
 import Data.Model.Transaksi;
 import Data.Model.User;
 import Domain.Transaksi.TransaksiUseCase;
 import Util.Formatting;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 
 public class TransaksiViewModel {
     TransaksiUseCase transaksiUseCase;
@@ -44,7 +40,7 @@ public class TransaksiViewModel {
         updateStateTransaksi();
     }
 
-    public void createInitialTransaksi(String NIK, User pegawai, String noKamar, Enums.Pembayaran payment) {
+    public void createInitialTransaksi(String NIK, User pegawai, String noKamar, AppEnums.Pembayaran payment) {
         transaksiUseCase.createInitialTransaksi(NIK, pegawai, noKamar, payment);
         updateStateTransaksi();
     }
@@ -95,7 +91,7 @@ public class TransaksiViewModel {
 
     }
 
-    public void bayar(Enums.Pembayaran metodeBayar, double amountBayar) {
+    public void bayar(AppEnums.Pembayaran metodeBayar, double amountBayar) {
         if (currentActiveTransaksi != null) {
             transaksiUseCase.bayar(metodeBayar, amountBayar);
             updateStateTransaksi();

@@ -1,11 +1,8 @@
 package Domain.Master;
 
 import Data.DataSource.TransaksiDataSource;
-import Data.Enums.Enums;
-import Data.Model.ReportModel;
+import Data.AppEnums.AppEnums;
 import Data.Model.Transaksi;
-
-import java.util.ArrayList;
 
 import static Util.Formatting.formatMessageOutput;
 
@@ -42,7 +39,7 @@ public class MasterTransaksi {
     public void batalkanTransaksi(){
         if(this.selectedTransaksi != null){
             Transaksi newData = this.selectedTransaksi;
-            newData.setStatusTransaksi(Enums.StatusTransaksi.CANCELLED);
+            newData.setStatusTransaksi(AppEnums.StatusTransaksi.CANCELLED);
             commitEditDataTransaksi(this.selectedTransaksi, newData);
         }else{
             formatMessageOutput("Tidak Ada Data Transaksi yang diplih");
