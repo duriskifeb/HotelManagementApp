@@ -31,7 +31,8 @@ public class Enums {
         PENDING,
         ONGOING,
         DONE,
-        FAILED
+        FAILED,
+        CANCELLED
     }
     public enum StatusTransaksiBayar{
         PENDING_PAYMENT, // belum dibayar sama sekali

@@ -1,6 +1,7 @@
 package Domain.Master;
 
 import Data.DataSource.TransaksiDataSource;
+import Data.Enums.Enums;
 import Data.Model.ReportModel;
 import Data.Model.Transaksi;
 
@@ -10,6 +11,7 @@ import static Util.Formatting.formatMessageOutput;
 
 public class MasterTransaksi {
     TransaksiDataSource dataSource;
+
     public MasterTransaksi(TransaksiDataSource dataSource) {
         this.dataSource = dataSource;
     }
@@ -34,7 +36,21 @@ public class MasterTransaksi {
             formatMessageOutput("Data Tidak Ditemukan");
         }
     }
-    public void editDataTransaksi(Transaksi oldDData, Transaksi newDData){
+
+    // EDITS TRANSAKSI
+
+    // batalkan
+
+    public void batalkanTransaksi(){
+        if(this.selectedTransaksi != null){
+            Transaksi newData = this.selectedTransaksi;
+            newData.setStatusTransaksi(Enums.StatusTransaksi.CANCELLED);
+            commitEditDataTransaksi(this.selectedTransaksi, newData);
+        }else{
+            formatMessageOutput("Tidak Ada Data Transaksi yang diplih");
+        }
+    }
+    private void commitEditDataTransaksi(Transaksi oldDData, Transaksi newDData){
         // find the data's index
         if(cekTransaksi(oldDData.getNoTransaksi())){
             int index = dataSource.getListTransaksi().indexOf(oldDData);
@@ -44,6 +60,9 @@ public class MasterTransaksi {
             formatMessageOutput("Data Tidak Ditemukan");
         }
     }
+
+    // EDITS TRANSAKSI
+
     public void selectTransaksi(String noTransaksi){
          selectedTransaksi = dataSource.getTransaksiDetail(noTransaksi);
          if(selectedTransaksi == null){
@@ -55,5 +74,9 @@ public class MasterTransaksi {
                 transaksi -> transaksi.getNoTransaksi().equals(reportNumber)
         ).findFirst().orElse(null);
         return cek != null; // return data is Found when cek is not nul
+    }
+
+    public Transaksi getSelectedTransaksi() {
+        return this.selectedTransaksi;
     }
 }

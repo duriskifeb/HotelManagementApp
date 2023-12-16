@@ -128,6 +128,7 @@ public class TransaksiUseCase {
                 Formatting.formatMessageOutput("Lunasi dulu untuk bisa checkout");
 
             } else {
+
                 currentActiveTransaksi.setCheckOut(new Date());
                 currentActiveTransaksi.setStatusTransaksi(Enums.StatusTransaksi.DONE);
 
