@@ -72,8 +72,8 @@ public class TransaksiUseCase {
     }
 
     // UPDATES the transaction
-    public void addKamar(String noKamar){
-        if(currentActiveTransaksi != null){
+    public void addKamar(String noKamar) {
+        if (currentActiveTransaksi != null) {
             Kamar kamar = kamarDataSource.getKamar(noKamar);
             ArrayList<Kamar> listKamar = currentActiveTransaksi.getKamarOrdered();
             listKamar.add(kamar);
@@ -89,40 +89,43 @@ public class TransaksiUseCase {
         kamarDataSource.editKamar(index, kamar);
     }
 
-    public void removeKamar(String noKamar){
-        if(currentActiveTransaksi != null){
+    public void removeKamar(String noKamar) {
+        if (currentActiveTransaksi != null) {
             Kamar kamar = kamarDataSource.getKamar(noKamar);
             ArrayList<Kamar> listKamar = currentActiveTransaksi.getKamarOrdered();
-            if(listKamar.size() > 1){
+            if (listKamar.size() > 1) {
                 listKamar.remove(kamar);
                 currentActiveTransaksi.setKamarOrdered(listKamar);
                 updateStatusKamar(kamar, StatusKamar.AVAILABLE);
             }
         }
     }
+
     public void addCustomer(String NIK) {
-        if(currentActiveTransaksi != null){
+        if (currentActiveTransaksi != null) {
             Customer customer = customerDataSource.getCustomer(NIK);
             ArrayList<Customer> listPelanggan = currentActiveTransaksi.getCustomers();
             listPelanggan.add(customer);
             currentActiveTransaksi.setCustomers(listPelanggan);
         }
     }
-    public void removeCustomer(String NIK){
-        if(currentActiveTransaksi != null){
+
+    public void removeCustomer(String NIK) {
+        if (currentActiveTransaksi != null) {
             Customer customer = customerDataSource.getCustomer(NIK);
             ArrayList<Customer> listPelanggan = currentActiveTransaksi.getCustomers();
-            if(listPelanggan.size() > 1){
+            if (listPelanggan.size() > 1) {
                 listPelanggan.remove(customer);
                 currentActiveTransaksi.setCustomers(listPelanggan);
             }
         }
     }
+
     public void checkOut() {
-        // TODO implement
+
         if (currentActiveTransaksi != null) {
             if (currentActiveTransaksi.getStatusPembayaran() != StatusTransaksiBayar.LUNAS) {
-                //TODO @Ryan Lunasi Transaksi Dulu
+                Formatting.formatMessageOutput("Lunasi dulu untuk bisa checkout");
 
             } else {
                 currentActiveTransaksi.setCheckOut(new Date());
@@ -137,35 +140,34 @@ public class TransaksiUseCase {
             }
 
         } else {
-            // TODO @Ryan print error message
+            Formatting.formatMessageOutput("Belum ada data transaksi yang dipilih");
         }
     }
+
     public void checkIn() {
         // TODO implement
         if (currentActiveTransaksi != null) {
             if (currentActiveTransaksi.getStatusPembayaran() != Enums.StatusTransaksiBayar.PENDING_PAYMENT) {
                 currentActiveTransaksi.setCheckIn(new Date());
                 currentActiveTransaksi.setStatusTransaksi(Enums.StatusTransaksi.ONGOING);
-
                 // update all status kamar to occupied
                 for (Kamar kamar : currentActiveTransaksi.getKamarOrdered()) {
                     updateStatusKamar(kamar, StatusKamar.OCCUPIED);
                 }
-
                 commitTransaksi();
 
             } else {
-                // TODO @Ryan error lakukan pembayaran dulu
+                Formatting.formatMessageOutput("Lakukan pembayaran terlebih dahulu untuk bisa chekc in");
             }
         } else {
-            // TODO @Ryan print error message
+            Formatting.formatMessageOutput("Belum ada data transaksi yang dipilih");
         }
     }
+
     public void bayar(Enums.Pembayaran metodeBayar, double amountBayar) {
-        // TODO Implement
         if (currentActiveTransaksi != null) {
             if (currentActiveTransaksi.getStatusPembayaran() == StatusTransaksiBayar.LUNAS) {
-                //TODO Transaksi Sudah Lunas
+                Formatting.formatMessageOutput("Tidak Bisa bayar karena transaksi sudah lunas");
             } else {
                 currentActiveTransaksi.setPembayaran(metodeBayar);
                 currentActiveTransaksi.setStatusTransaksi(Enums.StatusTransaksi.ONGOING);
@@ -177,14 +179,20 @@ public class TransaksiUseCase {
                     currentActiveTransaksi.setStatusPembayaran(StatusTransaksiBayar.PAID);
                 } else {
                     // lunas
-                    currentActiveTransaksi.setStatusPembayaran(StatusTransaksiBayar.LUNAS);
+
+                    if (amountBayar <= 0) {
+                        Formatting.formatMessageOutput("Jumlah bayar tidak valid");
+                    } else {
+                        currentActiveTransaksi.setStatusPembayaran(StatusTransaksiBayar.LUNAS);
+                    }
+
                 }
 
             }
 
 
         } else {
-            // TODO @Ryan print error message
+            Formatting.formatMessageOutput("Belum ada data transaksi yang dipilih");
         }
     }
     // UPDATES the transaction
