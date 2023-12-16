@@ -21,7 +21,7 @@ public class MasterTransaksiViewModel {
     }
 
     // TODO implement
-    Transaksi selectedTransaksi;
+    public Transaksi selectedTransaksi;
 
     // EDITS REGION
     public void addKamar(String noKamar){
@@ -69,7 +69,7 @@ public class MasterTransaksiViewModel {
 
     public void selectTranasksi(String noTransaksi) {
         masterTransaksi.selectTransaksi(noTransaksi);
-        if (masterTransaksi.selectedTransaksi != null) {
+        if (masterTransaksi.getSelectedTransaksi() != null) {
             transaksiUseCase.selectTransaksi(noTransaksi);
             updateStateSelectedTransaksi();
         } else {
