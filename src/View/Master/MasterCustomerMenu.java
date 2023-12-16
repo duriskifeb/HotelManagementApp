@@ -1,7 +1,14 @@
 package View.Master;
 
-public class MasterCustomerMenu {
+import ViewModel.MasterViewModel.MasterCustomerViewModel;
 
-     // TODO @David
+public class MasterCustomerMenu {
+    private final MasterCustomerViewModel masterCustomerVM;
+
+    public MasterCustomerMenu(MasterCustomerViewModel masterCustomerVM) {
+        this.masterCustomerVM = masterCustomerVM;
+    }
+
+    // TODO @David
     // add new menu methods to Create (Register), View, Update, and Delete Customer
 }

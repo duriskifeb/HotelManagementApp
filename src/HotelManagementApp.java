@@ -30,6 +30,18 @@ public class HotelManagementApp {
     }
     private void onCreate(){
         this.authMenu = new AuthMenu(DI.authViewModel);
+
+        this.mainMenu = new MainMenu(DI.authViewModel);
+        this.masterMainMenu = new MasterMainMenu(DI.authViewModel);
+
+        this.masterCustomerMenu = new MasterCustomerMenu(DI.masterCustomerVM);
+        this.masterKamarMenu = new MasterKamarMenu(DI.masterKamarVM);
+        this.masterPegawaiMenu = new MasterPegawaiMenu(DI.masterPegawaiVM);
+        this.masterReportingMenu = new MasterReportingMenu(DI.masterReportingVM);
+        this.masterTransaksiMenu= new MasterTransaksiMenu(DI.masterTransaksiVM);
+
+        this.transaksiMenu = new TransaksiMenu(DI.transaksiVM);
+        this.reportingMenu = new ReportingMenu(DI.reportingVM);
     }
 
     private void onViewCreated(){

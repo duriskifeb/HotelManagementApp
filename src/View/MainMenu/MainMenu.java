@@ -1,6 +1,7 @@
 package View.MainMenu;
 
 import Statics.StaticsInput;
+import ViewModel.AuthViewModel.AuthViewModel;
 
 import static Statics.StaticsInput.readInt;
 import static Statics.StaticsInput.cls;
@@ -10,6 +11,7 @@ import java.io.IOException;
 
 public class MainMenu {
 
+    private  AuthViewModel authViewModel;
     int ch1;
     int ch2;
 
@@ -17,6 +19,10 @@ public class MainMenu {
     String ID_Pegawai;
     String email;
     String pw;
+
+    public MainMenu(AuthViewModel authViewModel) {
+        this.authViewModel = authViewModel;
+    }
 
     public void header() {
         StaticsInput.cls();
