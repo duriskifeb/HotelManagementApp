@@ -15,7 +15,6 @@ public class MainMenu {
 
     // sementara
     String ID_Pegawai;
-    String ID_Manager;
     String email;
     String pw;
 
