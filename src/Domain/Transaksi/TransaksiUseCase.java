@@ -198,14 +198,6 @@ public class TransaksiUseCase {
     }
     // UPDATES the transaction
 
-    public void viewDetailTransaksi() {
-        if (currentActiveTransaksi != null) {
-            //TODO @Ryan print detail transaksi
-
-        } else {
-            Formatting.formatMessageOutput("Belum ada data transaksi yang dipilih");
-        }
-    }
 
     public void selectTransaksi(String noTransaksi) {
         this.currentActiveTransaksi = transaksiDataSource.getTransaksiDetail(noTransaksi);
