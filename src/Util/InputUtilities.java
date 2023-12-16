@@ -1,10 +1,10 @@
-package Statics;
+package Util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class StaticsInput {
+public class InputUtilities {
 
     public static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 

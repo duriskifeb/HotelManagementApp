@@ -1,11 +1,10 @@
 package View.MainMenu;
 
-import Statics.StaticsInput;
 import ViewModel.AuthViewModel.AuthViewModel;
 
-import static Statics.StaticsInput.readInt;
-import static Statics.StaticsInput.cls;
-import static Statics.StaticsInput.readLine;
+import static Util.InputUtilities.readInt;
+import static Util.InputUtilities.cls;
+import static Util.InputUtilities.readLine;
 import static View.Components.MainView.appHeader;
 
 import java.io.IOException;

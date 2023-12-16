@@ -1,6 +1,6 @@
 package View.Auth;
 
-import Statics.StaticsInput;
+import Util.InputUtilities;
 import ViewModel.AuthViewModel.AuthViewModel;
 import View.AppRouter;
 
@@ -24,7 +24,7 @@ public class AuthMenu {
             System.out.println("1 to Login");
             System.out.print("Masukkan Pilihan : ");
             try {
-                inputUser = StaticsInput.input.readLine();
+                inputUser = InputUtilities.input.readLine();
                 switch (inputUser) {
                     case "1":
                         showLoginInputs();
@@ -47,9 +47,9 @@ public class AuthMenu {
 
         try {
             System.out.print("Masukkan ID atau Email : ");
-            String userIDEmail = StaticsInput.input.readLine();
+            String userIDEmail = InputUtilities.input.readLine();
             System.out.print("Masukkan Password : ");
-            String userPass= StaticsInput.input.readLine();
+            String userPass= InputUtilities.input.readLine();
 
             this.authViewModel.doLogin(userIDEmail, userPass);
             if(this.authViewModel.loggedUser != null){

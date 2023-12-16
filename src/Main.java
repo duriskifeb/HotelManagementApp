@@ -1,11 +1,11 @@
 
-import Statics.StaticsInput;
+import Util.InputUtilities;
 
 
 public class Main {
     public static void main(String[] args)  {
         DI.init();
-        StaticsInput.cls();
+        InputUtilities.cls();
         HotelManagementApp app = new HotelManagementApp();
         app.run();
     }

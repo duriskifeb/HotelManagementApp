@@ -1,6 +1,6 @@
 package View.Master;
 
-import Statics.StaticsInput;
+import Util.InputUtilities;
 import View.AppRouter;
 import ViewModel.AuthViewModel.AuthViewModel;
 
@@ -25,7 +25,7 @@ public class MasterMainMenu {
             System.out.println("1 ayam");
             System.out.print("Masukkan Pilihan : ");
             try {
-                inputUser = StaticsInput.input.readLine();
+                inputUser = InputUtilities.input.readLine();
                 switch (inputUser) {
                     case "1":
                         System.out.println("ayam");
