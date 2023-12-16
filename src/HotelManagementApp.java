@@ -1,4 +1,5 @@
 import Util.Formatting;
+import View.AppRouter;
 import View.Auth.AuthMenu;
 import View.MainMenu.MainMenu;
 import View.Master.*;
@@ -6,8 +7,6 @@ import View.Reporting.ReportingMenu;
 import View.Transaksi.TransaksiMenu;
 
 public class HotelManagementApp {
-
-
 
     //MENUS VIEWS
     AuthMenu authMenu;
@@ -55,79 +54,66 @@ public class HotelManagementApp {
     public void run(){
         // app loop
         while(true){
-            switch (AppRouter.activeRoute){
-                case LOGIN:
-                   this.authMenu.showLogin();
-                    break;
+            try{
+                switch (AppRouter.activeRoute){
+                    case LOGIN:
+                        this.authMenu.showLogin();
+                        break;
 
-                case MAIN_MENU:
-                    this.mainMenu.showMainMenu();
-                    break;
+                    case MAIN_MENU:
+                        this.mainMenu.showMainMenu();
+                        break;
 
-                case MASTER_MAIN_MENU:
-                    this.masterMainMenu.showMasterMainMenu();
-                    break;
+                    case MASTER_MAIN_MENU:
+                        this.masterMainMenu.showMasterMainMenu();
+                        break;
 
-                case MASTER_KAMAR:
-                    this.masterKamarMenu.showMasterKamarMenu();
-                    break;
+                    case MASTER_KAMAR:
+                        this.masterKamarMenu.showMasterKamarMenu();
+                        break;
 
-                case MASTER_PEGAWAI:
-                    this.masterPegawaiMenu.showMasterPegawaiMenu();
-                    break;
+                    case MASTER_PEGAWAI:
+                        this.masterPegawaiMenu.showMasterPegawaiMenu();
+                        break;
 
-                case MASTER_CUSTOMER:
-                    this.masterCustomerMenu.showMasterCustomerMenu();
-                    break;
+                    case MASTER_CUSTOMER:
+                        this.masterCustomerMenu.showMasterCustomerMenu();
+                        break;
 
-                case MASTER_REPORTING:
-                    this.masterReportingMenu.showMasterReportingMenu();
-                    break;
+                    case MASTER_REPORTING:
+                        this.masterReportingMenu.showMasterReportingMenu();
+                        break;
 
-                case MASTER_TRANSAKSI:
-                    this.masterTransaksiMenu.showMasterTransaksiMenu();
-                    break;
+                    case MASTER_TRANSAKSI:
+                        this.masterTransaksiMenu.showMasterTransaksiMenu();
+                        break;
 
-                case TRANSAKSI:
-                    this.transaksiMenu.showTransaksiMenu();
-                    break;
+                    case TRANSAKSI:
+                        this.transaksiMenu.showTransaksiMenu();
+                        break;
 
-                case REPORTING:
-                    this.reportingMenu.showReportingMenu();
-                    break;
+                    case REPORTING:
+                        this.reportingMenu.showReportingMenu();
+                        break;
 
-                case EXIT:
-                    Formatting.formatMessageOutput("Terimakasih telah menggunakan aplikasi kami");
-                    Formatting.formatMessageOutput("Exiting");
-                    System.exit(0);
-                    break;
-                default:
-                    Formatting.formatMessageOutput("Invalid Route");
-                    break;
+                    case EXIT:
+                        Formatting.formatMessageOutput("Terimakasih telah menggunakan aplikasi kami");
+                        Formatting.formatMessageOutput("Exiting");
+                        System.exit(0);
+                        break;
+                    default:
+                        Formatting.formatMessageOutput("Invalid Route");
+                        break;
+                }
+            }catch (Exception e){
+                // in case something goes wroong, like the user press CTRL+ c
+                Formatting.formatMessageOutput("Woops, something went wrong : " + e.getMessage());
+                AppRouter.navigateTo(AppRouter.AppRoute.EXIT);
             }
+
         }
     }
 
 
 }
 
-class AppRouter{
-    public static void navigateTo(AppRoute target){
-        activeRoute = target;
-    }
-    protected static AppRoute activeRoute;
-    public enum AppRoute {
-        LOGIN,
-        MAIN_MENU, // main menu pegawai
-        MASTER_MAIN_MENU, // main menu manager
-        MASTER_PEGAWAI,
-        MASTER_CUSTOMER,
-        MASTER_KAMAR,
-        MASTER_TRANSAKSI,
-        MASTER_REPORTING,
-
-        TRANSAKSI,
-        REPORTING,
-        EXIT
-    };
-}

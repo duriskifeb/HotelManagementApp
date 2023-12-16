@@ -169,5 +169,7 @@ public class MainMenu {
     }
 
     public void showMainMenu() {
+        header();
+        System.out.println("Menu : Pegawai\n");
     }
 }
