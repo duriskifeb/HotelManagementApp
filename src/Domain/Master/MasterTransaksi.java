@@ -16,10 +16,8 @@ public class MasterTransaksi {
         this.dataSource = dataSource;
     }
 
-    public Transaksi selectedTransaksi;
-    public ArrayList<Transaksi> getAllTransaksi() {
-        return dataSource.getListTransaksi();
-    }
+    private Transaksi selectedTransaksi;
+
     public void addNewTransaksi(Transaksi report) {
         // check if data already exists
         if(!cekTransaksi(report.getNoTransaksi())){
@@ -79,4 +77,8 @@ public class MasterTransaksi {
     public Transaksi getSelectedTransaksi() {
         return this.selectedTransaksi;
     }
+
+//    public ArrayList<Transaksi> getAllTransaksi() {
+//        return dataSource.getListTransaksi();
+//    }
 }

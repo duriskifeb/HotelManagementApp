@@ -97,7 +97,9 @@ public class MasterTransaksiViewModel {
 
     }
 
-
+    public ArrayList<Transaksi> getAllTransaksi() {
+        return transaksiUseCase.getAllTransaksi();
+    }
 
 }
 
