@@ -21,7 +21,7 @@ public class PegawaiDataSource {
                             "ADM02",
                             "admindua@gmail.com",
                             "bebek",
-                            AppEnums.UserRole.MANAGER,
+                            AppEnums.UserRole.PEGAWAI,
                             Encryption.hashPassword("bebekgoyeng")
                     )
             )

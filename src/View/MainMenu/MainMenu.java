@@ -1,17 +1,20 @@
 package View.MainMenu;
 
+import Util.InputUtilities;
+import View.AppRouter;
 import ViewModel.AuthViewModel.AuthViewModel;
 
 import static Util.InputUtilities.readInt;
 import static Util.InputUtilities.cls;
 import static Util.InputUtilities.readLine;
+import static View.AppRouter.AppRoute.LOGIN;
 import static View.Components.MainView.appHeader;
 
 import java.io.IOException;
 
 public class MainMenu {
 
-    private  AuthViewModel authViewModel;
+    private final AuthViewModel authViewModel;
     int ch1;
     int ch2;
 
@@ -160,8 +163,32 @@ public class MainMenu {
         readLine();
     }
 
+    String inputUser;
     public void showMainMenu() {
-        appHeader();
-        System.out.println("Menu : Pegawai\n");
+        while (AppRouter.activeRoute == AppRouter.AppRoute.MAIN_MENU){
+            System.out.println();
+            appHeader();
+            System.out.println("Selamat Datang : " + authViewModel.loggedUser.getUserID() + " - " + authViewModel.loggedUser.getNama());
+            System.out.println("0 to logout");
+            System.out.println("1 ayam");
+            System.out.print("Masukkan Pilihan : ");
+            try {
+                inputUser = InputUtilities.input.readLine();
+                switch (inputUser) {
+                    case "1":
+                        System.out.println("ayam");
+                        break;
+                    case "0":
+                        authViewModel.doLogout();
+                        AppRouter.navigateTo(LOGIN);
+                        break;
+                    default:
+                        System.out.println("Invalid Choice");
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
     }
 }

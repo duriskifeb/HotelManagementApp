@@ -19,9 +19,11 @@ public class AuthMenu {
 
     public void showLogin() {
         while(AppRouter.activeRoute == LOGIN){
+            System.out.println();
             System.out.println("LOGIN MENU");
             System.out.println("0 to exit");
             System.out.println("1 to Login");
+            System.out.println();
             System.out.print("Masukkan Pilihan : ");
             try {
                 inputUser = InputUtilities.input.readLine();
@@ -44,7 +46,7 @@ public class AuthMenu {
     }
 
     private void showLoginInputs() {
-
+        System.out.println();
         try {
             System.out.print("Masukkan ID atau Email : ");
             String userIDEmail = InputUtilities.input.readLine();
