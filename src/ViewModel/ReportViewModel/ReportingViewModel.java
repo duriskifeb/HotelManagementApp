@@ -17,22 +17,19 @@ public class ReportingViewModel {
         this.reporting = reporting;
     }
 
-    //TODO implement
-
     public ReportModel getGeneratedReport() {
         return reporting.getGeneratedReport();
     }
 
     public void generateReport(Date rangeStart, Date rangeEnd, String picID) {
-
+        reporting.generateReport(rangeStart, rangeEnd, picID);
     }
     public void generateReport(String reportNumber , Date rangeStart, Date rangeEnd, String picID, Date dateCreated) {
-
-
+        reporting.generateReport(reportNumber, rangeStart, rangeEnd, picID, dateCreated);
 
     }
     public void saveReport(){
-
+        reporting.saveReport();
     }
 
 }
