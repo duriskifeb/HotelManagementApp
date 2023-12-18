@@ -72,6 +72,10 @@ public class HotelManagementApp {
                         this.masterKamarMenu.showMasterKamarMenu();
                         break;
 
+                    case SUB_MASTER_DETAIL_KAMAR:
+                        this.masterKamarMenu.showDetailKamarMenu();
+                        break;
+
                     case MASTER_PEGAWAI:
                         this.masterPegawaiMenu.showMasterPegawaiMenu();
                         break;
