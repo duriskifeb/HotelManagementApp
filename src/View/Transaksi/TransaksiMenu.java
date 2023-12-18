@@ -2,6 +2,8 @@ package View.Transaksi;
 
 import ViewModel.TransaksiViewModel.TransaksiViewModel;
 
+import java.awt.*;
+
 public class TransaksiMenu {
 
     private final TransaksiViewModel transaksiVM;
@@ -11,5 +13,6 @@ public class TransaksiMenu {
     }
 
     public void showTransaksiMenu() {
+
     }
 }
