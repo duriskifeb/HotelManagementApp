@@ -46,7 +46,7 @@ public class MasterReportingViewModel {
                     selectedReport.getReportNumber(),
                     rangeStart,
                     rangeEnd,
-                    picID,
+                    picID.isBlank() ? selectedReport.getReportPIC().getUserID() : picID,
                     selectedReport.getDateCreated()
             );
             ReportModel newData = reportingUseCase.getGeneratedReport();

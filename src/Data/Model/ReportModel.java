@@ -4,6 +4,7 @@ import Util.Formatting;
 import Util.Generator;
 import Util.Generator.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,14 +14,14 @@ public class ReportModel {
 
     private String reportNumber;
     private Date dateCreated, dateUpdated;
-    private List<Transaksi> listTransaksi;
+    private ArrayList<Transaksi> listTransaksi;
     private User reportPIC;
 
     public ReportModel(
             String reportNumber,
             Date dateCreated,
             Date dateUpdated,
-            List<Transaksi> listTransaksi,
+            ArrayList<Transaksi> listTransaksi,
             User reportPIC
     ) {
         this.reportNumber = reportNumber;
@@ -32,7 +33,7 @@ public class ReportModel {
 
     public ReportModel(
             Date dateCreated,
-            List<Transaksi> listTransaksi,
+            ArrayList<Transaksi> listTransaksi,
             User reportPIC
     ) {
         String totalPrice = String.valueOf(
@@ -75,11 +76,11 @@ public class ReportModel {
         this.dateUpdated = dateUpdated;
     }
 
-    public List<Transaksi> getListTransaksi() {
+    public ArrayList<Transaksi> getListTransaksi() {
         return listTransaksi;
     }
 
-    public void setListTransaksi(List<Transaksi> listTransaksi) {
+    public void setListTransaksi(ArrayList<Transaksi> listTransaksi) {
         this.listTransaksi = listTransaksi;
     }
 

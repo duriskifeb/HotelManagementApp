@@ -57,9 +57,9 @@ public class Reporting {
         Formatting.formatMessageOutput("Generating Report");
 
         User pic = pegawaiDataSource.getPegawai(picID);
-        ArrayList<Transaksi> listTransaksi = transaksiDataSource.getListTransaksi().stream().filter(
+        ArrayList<Transaksi> listTransaksi = rangeEnd != null  || rangeStart != null ? transaksiDataSource.getListTransaksi().stream().filter(
                 transaksi -> transaksi.getTanggalTransaksi().after(rangeStart) && transaksi.getTanggalTransaksi().before(rangeEnd)
-        ).collect(Collectors.toCollection(ArrayList::new));
+        ).collect(Collectors.toCollection(ArrayList::new)) : reportDataSource.getReport(reportNumber).getListTransaksi();
 
         if(pic != null){
             generatedReport = new ReportModel(

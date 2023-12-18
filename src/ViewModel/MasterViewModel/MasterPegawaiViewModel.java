@@ -16,9 +16,9 @@ public class MasterPegawaiViewModel {
 
     User selectedPegawai;
 
-    public void selectPegawai(String userId){
+    public void selectPegawai(String userId) {
         this.selectedPegawai = masterPegawai.getPegawai(userId);
-        if(selectedPegawai == null){
+        if (selectedPegawai == null) {
             formatMessageOutput("Data Tidak Ditemukan");
         }
     }
@@ -28,26 +28,31 @@ public class MasterPegawaiViewModel {
             String email,
             String password,
             AppEnums.UserRole role
-    ){
-        User newData = new User(email, nama,  role, Encryption.hashPassword(password));
+    ) {
+        User newData = new User(email, nama, role, Encryption.hashPassword(password));
         masterPegawai.addNewPegawai(newData);
     }
 
     public void deletePegawai(String userID) {
         masterPegawai.deletePegawai(userID);
     }
+
     public void editDataPegawai(
             String nama,
             String email,
             AppEnums.UserRole role
-    ){
-        User newData = new User(email, nama,  role, selectedPegawai.getPassword());
+    ) {
 
-        if(selectedPegawai != null){
+        if (selectedPegawai != null) {
+            User newData = new User(
+                    email.isBlank() ? selectedPegawai.getEmail(): email,
+                    nama.isBlank() ? selectedPegawai.getNama() : nama,
+                    role == null ?selectedPegawai.getRole() : role,
+                    selectedPegawai.getPassword()
+            );
             masterPegawai.editDataPegawai(selectedPegawai, newData);
         }
     }
-
 
 
 }

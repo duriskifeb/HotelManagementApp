@@ -50,14 +50,15 @@ public class MasterKamarViewModel {
             double harga,
             AppEnums.StatusKamar statusKamar
     ){
-        Kamar kamar = new Kamar(
-                noKamar,
-                jenis,
-                harga,
-                kapasitas,
-                statusKamar
-        );
+
         if(currentSelectedKamar != null){
+            Kamar kamar = new Kamar(
+                    noKamar.isBlank() ? currentSelectedKamar.getNoKamar() : noKamar,
+                    jenis == null ? currentSelectedKamar.getJenisKamar() : jenis,
+                    harga == 0 ? currentSelectedKamar.getHarga() : harga,
+                    kapasitas == 0 ? currentSelectedKamar.getKapasitas() : kapasitas,
+                    statusKamar == null ? currentSelectedKamar.getStatusKamar() : statusKamar
+            );
             masterKamar.editDataKamar(currentSelectedKamar, kamar);
         }
     }

@@ -34,7 +34,6 @@ public class TransaksiViewModel {
         return transaksiUseCase.getAllTransaksi();
     }
 
-    // TODO implement
     public void commitTransaksi() {
         transaksiUseCase.commitTransaksi();
         updateStateTransaksi();
