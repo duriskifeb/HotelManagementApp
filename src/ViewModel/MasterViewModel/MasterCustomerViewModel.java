@@ -34,15 +34,24 @@ public class MasterCustomerViewModel {
     public void deleteCustomer(String NIK) {
         masterCustomer.deleteCustomer(NIK);
     }
+
+    //delete selected customer
+    public void deleteCustomer() {
+        if(currentSelectedCustomer != null){
+            masterCustomer.deleteCustomer(this.currentSelectedCustomer.getNIK());
+        }
+
+    }
     public void editCustomer(String NIK, String nama, String email, String telp){
-        Customer newData = new Customer(
-                NIK,
-                nama,
-                email,
-                telp
-        );
 
         if(currentSelectedCustomer != null){
+            Customer newData = new Customer(
+                    NIK.isBlank() ? currentSelectedCustomer.getNIK() : NIK,
+                    nama.isBlank() ? currentSelectedCustomer.getNama() : nama,
+                    email.isBlank() ? currentSelectedCustomer.getEmail() : email,
+                    telp.isBlank() ? currentSelectedCustomer.getTelp() : telp
+            );
+
             masterCustomer.editDataCustomer(currentSelectedCustomer, newData);
         }
     }
