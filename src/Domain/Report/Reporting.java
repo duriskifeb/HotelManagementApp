@@ -53,7 +53,6 @@ public class Reporting {
             Formatting.formatMessageOutput("Data PIC tidak ditemukan");
         }
     }
-
     public void generateReport(String reportNumber , Date rangeStart, Date rangeEnd, String picID, Date dateCreated) {
         Formatting.formatMessageOutput("Generating Report");
 

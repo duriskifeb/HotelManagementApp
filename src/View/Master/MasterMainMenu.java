@@ -6,8 +6,7 @@ import ViewModel.AuthViewModel.AuthViewModel;
 
 import java.io.IOException;
 
-import static View.AppRouter.AppRoute.LOGIN;
-import static View.AppRouter.AppRoute.MASTER_MAIN_MENU;
+import static View.AppRouter.AppRoute.*;
 
 public class MasterMainMenu {
     private final AuthViewModel authViewModel;
@@ -28,7 +27,10 @@ public class MasterMainMenu {
                 inputUser = InputUtilities.input.readLine();
                 switch (inputUser) {
                     case "1":
-                        System.out.println("ayam");
+//                        showPilihanSatu();
+                        AppRouter.navigateTo(MASTER_KAMAR);
+
+//                        System.out.println("ayam");
                         break;
                     case "0":
                         authViewModel.doLogout();
@@ -40,6 +42,13 @@ public class MasterMainMenu {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+        }
+    }
+
+    private void showPilihanSatu() {
+        while(AppRouter.activeRoute == MASTER_KAMAR){
+
+
         }
     }
 
