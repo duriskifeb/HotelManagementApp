@@ -21,6 +21,9 @@ public class MasterKamarViewModel {
         }
     }
 
+    public Kamar getSelectedKamar(){
+        return  this.currentSelectedKamar;
+    }
     public void addNewKamar(
             String noKamar,
             int kapasitas,

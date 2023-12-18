@@ -1,6 +1,7 @@
 
 import Util.Encryption;
 import Util.InputUtilities;
+import View.Components.CustomerView;
 
 
 public class Main {
@@ -9,5 +10,9 @@ public class Main {
         InputUtilities.cls();
         HotelManagementApp app = new HotelManagementApp();
         app.run();
+
+//        CustomerView.viewAllDataCustomer(
+//                DI.masterCustomer.getListCustomer()
+//        );
     }
 } 

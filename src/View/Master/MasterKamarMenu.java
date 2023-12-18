@@ -11,12 +11,22 @@ public class MasterKamarMenu {
     }
 
     public void showMasterKamarMenu() {
+        // CONTOH
+        while(AppRouter.activeRoute == AppRouter.AppRoute.MASTER_KAMAR){
+            masterKamarVM.selectKamar("AADS");
+            if(masterKamarVM.getSelectedKamar() != null){
+                AppRouter.navigateTo(AppRouter.AppRoute.SUB_MASTER_DETAIL_KAMAR);
+            }
+
+            // TODO @Daavid pilihan saat sudah pilih kamar
+        }
     }
 
     public void showDetailKamarMenu() {
         System.out.println("Master Detail Kamar");
         while(AppRouter.activeRoute == AppRouter.AppRoute.SUB_MASTER_DETAIL_KAMAR){
 
+            // TODO @Daavid pilihan saat sudah pilih kamar
         }
         // edit ->
         // update
