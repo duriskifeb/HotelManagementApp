@@ -21,16 +21,15 @@ public class MasterMainMenu {
             System.out.println("MENU MANAJER");
             System.out.println("Selamat Datang : " + authViewModel.loggedUser.getUserID() + " - " + authViewModel.loggedUser.getNama());
             System.out.println("0 to logout");
-            System.out.println("1 detail kamar");
+            System.out.println("1 Detail kamar");
+            System.out.println("2 Reporting");
+            System.out.println();
             System.out.print("Masukkan Pilihan : ");
             try {
                 inputUser = InputUtilities.input.readLine();
                 switch (inputUser) {
                     case "1":
                         AppRouter.navigateTo(SUB_MASTER_DETAIL_KAMAR);
-//                        showPilihanSatu();
-
-//                        System.out.println("ayam");
                         break;
                     case "0":
                         authViewModel.doLogout();
@@ -44,13 +43,6 @@ public class MasterMainMenu {
             }
         }
     }
-
-//    private void showPilihanSatu() {
-//        while(AppRouter.activeRoute == MASTER_KAMAR){
-//
-//
-//        }
-//    }
 
     // TODO @David add main menu master to access the all submenus
 

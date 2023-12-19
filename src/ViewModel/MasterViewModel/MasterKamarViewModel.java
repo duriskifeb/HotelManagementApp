@@ -22,7 +22,7 @@ public class MasterKamarViewModel {
     }
 
     public Kamar getSelectedKamar(){
-        return  this.currentSelectedKamar;
+        return this.currentSelectedKamar;
     }
     public void addNewKamar(
             String noKamar,
