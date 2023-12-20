@@ -35,10 +35,10 @@ public class MasterKamarMenu {
 
     String inputUser;
     public void showDetailKamarMenu() {
-        System.out.println();
         while(AppRouter.activeRoute == AppRouter.AppRoute.SUB_MASTER_DETAIL_KAMAR){
-            System.out.println("MASTER DETAIL KAMAR");
-            System.out.println("1. Show detail");
+        System.out.println();
+            System.out.println("MASTER KAMAR");
+            System.out.println("1. Show all kamar");
             System.out.println("2. Edit");
             System.out.println("3. Delete");
             System.out.println("0. Back");
@@ -82,10 +82,13 @@ public class MasterKamarMenu {
 
     private void editMasterKamar() {
         try {
-
+            System.out.println("Pilih kamar");
         System.out.print("No. kamar\t: ");
         String noKamar = InputUtilities.input.readLine();
 
+        masterKamarVM.selectKamar(noKamar);
+
+            System.out.println("\nUbah data");
         System.out.print("Kapasitas\t: ");
         int kapasitas = InputUtilities.input.read();
 
