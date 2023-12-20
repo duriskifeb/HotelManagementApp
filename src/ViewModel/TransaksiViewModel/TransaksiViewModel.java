@@ -53,7 +53,6 @@ public class TransaksiViewModel {
 
     }
 
-
     public void removeKamar(String noKamar) {
         if (currentActiveTransaksi != null) {
             transaksiUseCase.removeKamar(noKamar);

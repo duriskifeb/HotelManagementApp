@@ -91,7 +91,10 @@ public class KamarDataSource {
     }
 
     public void removeKamar(Kamar kamar) {
+
+
         this.listKamar.remove(kamar);
+
     }
 
     public void editKamar(int index, Kamar kamar) {

@@ -128,8 +128,6 @@ public class CustomerDataSource {
                             "firstabdillah1@gail.com",
                             "0821496467119"
                     )
-
-                    // TODO @Ryan lanjutin yan, buat data yang agak banyak
             )
     );
 

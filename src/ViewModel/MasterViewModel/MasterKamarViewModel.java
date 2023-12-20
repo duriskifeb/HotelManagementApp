@@ -5,6 +5,8 @@ import Data.Model.Kamar;
 import Domain.Master.MasterKamar;
 import Util.Formatting;
 
+import java.util.ArrayList;
+
 import static Util.Formatting.formatMessageOutput;
 
 public class MasterKamarViewModel {
@@ -64,4 +66,7 @@ public class MasterKamarViewModel {
     }
 
 
+    public ArrayList<Kamar> getListKamar() {
+        return  masterKamar.getAllKamar();
+    }
 }
