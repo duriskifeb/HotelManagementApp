@@ -29,8 +29,11 @@ public class MasterKamarMenu {
             System.out.println("MASTER KAMAR");
             System.out.println("1. Show All Kamar");
             System.out.println("2. Pilih Kamar");
+            System.out.println("3. Tambah Kamar");
             System.out.println("0. Back");
+            System.out.println();
             try{
+                System.out.print("Masukkan Pilihan : ");
                 inputUser = InputUtilities.input.readLine();
                 switch (inputUser){
                     case "1":
@@ -46,6 +49,9 @@ public class MasterKamarMenu {
                             AppRouter.navigateTo(AppRouter.AppRoute.SUB_MASTER_DETAIL_KAMAR);
                         }
 
+                        break;
+                    case "3":
+                        //TODO @David
                         break;
                     default:
                         formatMessageOutput("Input Tidak Valid");
@@ -103,14 +109,14 @@ public class MasterKamarMenu {
     private void detailMasterKamar() {
         System.out.println(" NO. KAMAR \t\tKAPASITAS \t\tHARGA \t\t\t JENIS \t\tSTATUS");
 
-        viewAllDataKamar(masterKamarVM.getListKamar());
+        viewDataSelectedKamar(masterKamarVM.getSelectedKamar());
     }
 
 
     private void showAllKamar() {
         System.out.println(" NO. KAMAR \t\tKAPASITAS \t\tHARGA \t\t\t JENIS \t\tSTATUS");
 
-        viewDataSelectedKamar(masterKamarVM.getSelectedKamar());
+        viewAllDataKamar(masterKamarVM.getListKamar());
     }
 
     private void editMasterKamar() {
