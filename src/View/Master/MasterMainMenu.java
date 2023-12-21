@@ -21,7 +21,7 @@ public class MasterMainMenu {
             System.out.println("MENU MANAJER");
             System.out.println("Selamat Datang : " + authViewModel.loggedUser.getUserID() + " - " + authViewModel.loggedUser.getNama());
             System.out.println("0 to logout");
-            System.out.println("1 Detail kamar");
+            System.out.println("1 Master Kamar");
             System.out.println("2 Reporting");
             System.out.println();
             System.out.print("Masukkan Pilihan : ");
@@ -29,7 +29,7 @@ public class MasterMainMenu {
                 inputUser = InputUtilities.input.readLine();
                 switch (inputUser) {
                     case "1":
-                        AppRouter.navigateTo(SUB_MASTER_DETAIL_KAMAR);
+                        AppRouter.navigateTo(MASTER_KAMAR);
                         break;
                     case "0":
                         authViewModel.doLogout();

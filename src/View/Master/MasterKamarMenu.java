@@ -1,5 +1,6 @@
 package View.Master;
 
+import static Util.Formatting.formatMessageOutput;
 import static View.AppRouter.AppRoute.MASTER_MAIN_MENU;
 import static View.Components.CustomerView.*;
 import static View.Components.KamarView.*;
@@ -24,12 +25,37 @@ public class MasterKamarMenu {
     public void showMasterKamarMenu() {
         // CONTOH
         while(AppRouter.activeRoute == AppRouter.AppRoute.MASTER_KAMAR){
-            masterKamarVM.selectKamar("AADS");
-            if(masterKamarVM.getSelectedKamar() != null){
-                AppRouter.navigateTo(AppRouter.AppRoute.SUB_MASTER_DETAIL_KAMAR);
+            System.out.println();
+            System.out.println("MASTER KAMAR");
+            System.out.println("1. Show All Kamar");
+            System.out.println("2. Pilih Kamar");
+            System.out.println("0. Back");
+            try{
+                inputUser = InputUtilities.input.readLine();
+                switch (inputUser){
+                    case "1":
+                        System.out.println("All Data Kamar");
+                        showAllKamar();
+                        break;
+                    case "2":
+                        System.out.println("Pilih Kamar");
+                        System.out.print("No. kamar\t: ");
+                        String noKamar = InputUtilities.input.readLine();
+                        masterKamarVM.selectKamar(noKamar);
+                        if(masterKamarVM.getSelectedKamar() != null){
+                            AppRouter.navigateTo(AppRouter.AppRoute.SUB_MASTER_DETAIL_KAMAR);
+                        }
+
+                        break;
+                    default:
+                        formatMessageOutput("Input Tidak Valid");
+                        break;
+                }
+            }catch (Exception e){
+                System.out.println("Error " + e.getMessage());
             }
 
-            // TODO @Daavid pilihan saat sudah pilih kamar
+
         }
     }
 
@@ -37,8 +63,8 @@ public class MasterKamarMenu {
     public void showDetailKamarMenu() {
         while(AppRouter.activeRoute == AppRouter.AppRoute.SUB_MASTER_DETAIL_KAMAR){
         System.out.println();
-            System.out.println("MASTER KAMAR");
-            System.out.println("1. Show all kamar");
+            System.out.println("DETAIL KAMAR");
+            System.out.println("1. Show Detail Kamar");
             System.out.println("2. Edit");
             System.out.println("3. Delete");
             System.out.println("0. Back");
@@ -80,9 +106,16 @@ public class MasterKamarMenu {
         viewAllDataKamar(masterKamarVM.getListKamar());
     }
 
+
+    private void showAllKamar() {
+        System.out.println(" NO. KAMAR \t\tKAPASITAS \t\tHARGA \t\t\t JENIS \t\tSTATUS");
+
+        viewDataSelectedKamar(masterKamarVM.getSelectedKamar());
+    }
+
     private void editMasterKamar() {
         try {
-            System.out.println("Pilih kamar");
+            System.out.println("Ubah Data Kamar (kosongi input jika tidak ingin mengubah data) ");
         System.out.print("No. kamar\t: ");
         String noKamar = InputUtilities.input.readLine();
 
@@ -101,7 +134,7 @@ public class MasterKamarMenu {
         System.out.print("Status kamar\t: ");
         AppEnums.StatusKamar statusKamar = statusKamar();
 
-            System.out.print("Apa anda yakin?(y/n)");
+            System.out.print("Apa anda yakin?(y/n): ");
             String yn = InputUtilities.input.readLine();
             if(yn.equalsIgnoreCase("y")){
                 masterKamarVM.editKamar(noKamar, kapasitas, jenisKamar, harga, statusKamar);
@@ -118,7 +151,7 @@ public class MasterKamarMenu {
         try {
         String noKamar = InputUtilities.input.readLine();
 
-            System.out.println("Anda yakin ingin menghapus kamar?(y/n)");
+            System.out.println("Anda yakin ingin menghapus kamar?(y/n): ");
             String yn = InputUtilities.input.readLine();
             if(yn.equalsIgnoreCase("y")){
                 masterKamarVM.deleteKamar(noKamar);
