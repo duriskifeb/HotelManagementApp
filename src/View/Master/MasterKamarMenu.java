@@ -182,6 +182,7 @@ public class MasterKamarMenu {
     }
 
     private void detailMasterKamar() {
+        InputUtilities.cls();
         System.out.println("SHOW DETAIL");
         System.out.println("================================================================================");
         System.out.println(" NO. KAMAR \tKAPASITAS \tHARGA \t\t JENIS \t\tSTATUS");
@@ -204,10 +205,10 @@ public class MasterKamarMenu {
             int kapasitas = InputUtilities.input.read();
             InputUtilities.input.readLine(); // Biar bawahnya kebaca
 
-            System.out.print("Jenis\t: ");
+            System.out.print("Jenis\t\t: ");
             AppEnums.JenisKamar jenisKamar = jenisKamar();
 
-            System.out.print("Harga\t: ");
+            System.out.print("Harga\t\t: ");
             double harga = InputUtilities.input.read();
             InputUtilities.input.readLine(); // Biar bawahnya kebaca
 
@@ -218,12 +219,17 @@ public class MasterKamarMenu {
             System.out.println();
             System.out.print("Apa anda yakin?(y/n): ");
             inputUser = InputUtilities.input.readLine();
-            
+
             if (inputUser.equalsIgnoreCase("y")) {
                 masterKamarVM.editKamar(masterKamarVM.getSelectedKamar().getNoKamar(), kapasitas, jenisKamar, harga, statusKamar);
             } else {
-                System.out.println("Perubahan dibatalkan");
+                formatMessageOutput("Perubahan dibatalkan");
             }
+            
+            System.out.println();
+            System.out.println("==============================");
+            InputUtilities.pressEnter();
+
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -231,14 +237,24 @@ public class MasterKamarMenu {
 
     private void deleteMasterKamar() {
         try {
+            InputUtilities.cls();
+            System.out.println("==============================");
+            System.out.println("         DELETE KAMAR         ");
+            System.out.println("==============================");
+            System.out.println("Selected kamar : " + masterKamarVM.getSelectedKamar().getNoKamar());
+            System.out.println();
             System.out.print("Anda yakin ingin menghapus kamar ini?(y/n): ");
-            String yn = InputUtilities.input.readLine();
-            if (yn.equalsIgnoreCase("y")) {
+            inputUser = InputUtilities.input.readLine();
+            if (inputUser.equalsIgnoreCase("y")) {
                 masterKamarVM.deleteKamar(masterKamarVM.getSelectedKamar().getNoKamar());
                 AppRouter.navigateTo(SUB_MASTER_DETAIL_KAMAR);
             } else {
                 System.out.println("Perubahan dibatalkan");
             }
+            
+            System.out.println();
+            System.out.println("==============================");
+            InputUtilities.pressEnter();
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
