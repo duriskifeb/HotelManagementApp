@@ -4,7 +4,6 @@ import static Util.Formatting.formatMessageOutput;
 import static Util.Formatting.invalidChoice;
 import static View.AppRouter.AppRoute.MASTER_KAMAR;
 import static View.AppRouter.AppRoute.MASTER_MAIN_MENU;
-import static View.AppRouter.AppRoute.SUB_MASTER_DETAIL_KAMAR;
 import static View.Components.KamarView.*;
 
 import java.io.IOException;
@@ -84,17 +83,17 @@ public class MasterKamarMenu {
             masterKamarVM.selectKamar(noKamar);
             System.out.println("==============================");
             InputUtilities.pressEnter();
-            
+
             if (masterKamarVM.getSelectedKamar() != null) {
                 AppRouter.navigateTo(AppRouter.AppRoute.SUB_MASTER_DETAIL_KAMAR);
             }
-            
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private void addKamar() { 
+    private void addKamar() {
         // kalau di ENTER (kosong) semua munculnya aneh
         // kapasitas dan harga error
         try {
@@ -102,7 +101,7 @@ public class MasterKamarMenu {
             System.out.println("==============================");
             System.out.println("         ADD NEW KAMAR        ");
             System.out.println("==============================");
-            
+
             System.out.print("No. Kamar\t: ");
             String noKamar = InputUtilities.input.readLine();
 
@@ -112,14 +111,14 @@ public class MasterKamarMenu {
 
             System.out.print("Jenis\t\t: ");
             AppEnums.JenisKamar jenis = jenisKamar();
-            
+
             System.out.print("Harga\t\t: ");
             double harga = InputUtilities.input.read();
             InputUtilities.input.readLine(); // biar bawahnya kebaca
 
             System.out.print("Status\t\t: ");
             AppEnums.StatusKamar status = statusKamar();
-            
+
             System.out.println("==============================");
             System.out.println();
             System.out.print("Apa anda yakin?(y/n): ");
@@ -131,7 +130,7 @@ public class MasterKamarMenu {
             } else {
                 formatMessageOutput("Process cancelled");
             }
-            
+
             System.out.println("==============================");
             InputUtilities.pressEnter();
 
@@ -187,8 +186,7 @@ public class MasterKamarMenu {
         System.out.println("================================================================================");
         System.out.println(" NO. KAMAR \tKAPASITAS \tHARGA \t\t JENIS \t\tSTATUS");
         System.out.println("================================================================================");
-        
-        
+
         viewDataSelectedKamar(masterKamarVM.getSelectedKamar());
         System.out.println("================================================================================");
 
@@ -214,7 +212,7 @@ public class MasterKamarMenu {
 
             System.out.print("Status kamar\t: ");
             AppEnums.StatusKamar statusKamar = statusKamar();
-            
+
             System.out.println("==============================");
             System.out.println();
             System.out.print("Apa anda yakin?(y/n): ");
@@ -222,13 +220,15 @@ public class MasterKamarMenu {
 
             if (inputUser.equalsIgnoreCase("y")) {
                 masterKamarVM.editKamar(masterKamarVM.getSelectedKamar().getNoKamar(), kapasitas, jenisKamar, harga, statusKamar);
+                formatMessageOutput("Perubahan disimpan");
+                System.out.println("==============================");
+                InputUtilities.pressEnter();
+                AppRouter.navigateTo(MASTER_KAMAR);
             } else {
                 formatMessageOutput("Perubahan dibatalkan");
+                System.out.println("==============================");
+                InputUtilities.pressEnter();
             }
-            
-            System.out.println();
-            System.out.println("==============================");
-            InputUtilities.pressEnter();
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -247,14 +247,16 @@ public class MasterKamarMenu {
             inputUser = InputUtilities.input.readLine();
             if (inputUser.equalsIgnoreCase("y")) {
                 masterKamarVM.deleteKamar(masterKamarVM.getSelectedKamar().getNoKamar());
-                AppRouter.navigateTo(SUB_MASTER_DETAIL_KAMAR);
+                formatMessageOutput("Kamar dihapus");
+                System.out.println("==============================");
+                InputUtilities.pressEnter();
+                AppRouter.navigateTo(MASTER_KAMAR);
             } else {
-                System.out.println("Perubahan dibatalkan");
+                System.out.println();
+                formatMessageOutput("Perubahan dibatalkan");
+                System.out.println("==============================");
+                InputUtilities.pressEnter();
             }
-            
-            System.out.println();
-            System.out.println("==============================");
-            InputUtilities.pressEnter();
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
