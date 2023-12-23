@@ -34,7 +34,7 @@ public class InputUtilities {
         }
     }
 
-    public static void cls() { // Ini aku ganti set
+    public static void cls() { // Ini aku ganti set biar ga error
         // wont work on IDE
         try {
             String os = System.getProperty("os.name").toLowerCase();

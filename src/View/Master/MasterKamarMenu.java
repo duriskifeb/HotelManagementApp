@@ -2,6 +2,7 @@ package View.Master;
 
 import static Util.Formatting.formatMessageOutput;
 import static Util.Formatting.invalidChoice;
+import static View.AppRouter.AppRoute.MASTER_KAMAR;
 import static View.AppRouter.AppRoute.MASTER_MAIN_MENU;
 import static View.AppRouter.AppRoute.SUB_MASTER_DETAIL_KAMAR;
 import static View.Components.KamarView.*;
@@ -77,24 +78,35 @@ public class MasterKamarMenu {
     }
 
     private void chosingKamar() {
-        InputUtilities.cls();
         try {
+            InputUtilities.cls();
             System.out.println("==============================");
             System.out.println("         CHOOSE KAMAR         ");
             System.out.println("==============================");
             System.out.print("No. kamar\t: ");
             String noKamar = InputUtilities.input.readLine();
             masterKamarVM.selectKamar(noKamar);
+            System.out.println("==============================");
+            InputUtilities.pressEnter();
+            
             if (masterKamarVM.getSelectedKamar() != null) {
                 AppRouter.navigateTo(AppRouter.AppRoute.SUB_MASTER_DETAIL_KAMAR);
             }
+            
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private void addKamar() { // kalau di ENTER (kosong) semua munculnya aneh
+    private void addKamar() { 
+        // kalau di ENTER (kosong) semua munculnya aneh
+        // kapasitas dan harga error
         try {
+            InputUtilities.cls();
+            System.out.println("==============================");
+            System.out.println("         ADD NEW KAMAR        ");
+            System.out.println("==============================");
+            
             System.out.print("No. Kamar\t: ");
             String noKamar = InputUtilities.input.readLine();
 
@@ -102,24 +114,30 @@ public class MasterKamarMenu {
             int kapasitas = InputUtilities.input.read();
             InputUtilities.input.readLine(); // biar bawahnya kebaca
 
-            System.out.print("Jenis\t: ");
+            System.out.print("Jenis\t\t: ");
             AppEnums.JenisKamar jenis = jenisKamar();
-
-            System.out.print("Harga\t: ");
+            
+            System.out.print("Harga\t\t: ");
             double harga = InputUtilities.input.read();
             InputUtilities.input.readLine(); // biar bawahnya kebaca
 
-            System.out.print("Status\t: ");
+            System.out.print("Status\t\t: ");
             AppEnums.StatusKamar status = statusKamar();
-
+            
+            System.out.println("==============================");
+            System.out.println();
             System.out.print("Apa anda yakin?(y/n): ");
             String yn = InputUtilities.input.readLine();
 
             if (yn.equalsIgnoreCase("y")) {
                 masterKamarVM.addNewKamar(noKamar, kapasitas, jenis, harga, status);
+                formatMessageOutput("Kamar added");
             } else {
-                System.out.println("Perubahan dibatalkan");
+                formatMessageOutput("Process cancelled");
             }
+            
+            System.out.println("==============================");
+            InputUtilities.pressEnter();
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -156,7 +174,7 @@ public class MasterKamarMenu {
                         deleteMasterKamar();
                         break;
                     case "0":
-                        AppRouter.navigateTo(MASTER_MAIN_MENU);
+                        AppRouter.navigateTo(MASTER_KAMAR); // Langsung kembali ke "menu manager", bukan ke "master kamar"
                         break;
                     default:
                         System.out.println("Invalid Choice");
