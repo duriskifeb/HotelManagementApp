@@ -16,13 +16,17 @@ public class MasterMainMenu {
     }
 
     String inputUser;
+
     public void showMasterMainMenu() {
-        while(AppRouter.activeRoute == MASTER_MAIN_MENU){
-            System.out.println("MENU MANAJER");
+        InputUtilities.cls();
+        while (AppRouter.activeRoute == MASTER_MAIN_MENU) {
+            System.out.println("==============================");
+            System.out.println("         MENU MANAJER         ");
+            System.out.println("==============================");
             System.out.println("Selamat Datang : " + authViewModel.loggedUser.getUserID() + " - " + authViewModel.loggedUser.getNama());
-            System.out.println("0 to logout");
-            System.out.println("1 Master Kamar");
-            System.out.println("2 Reporting");
+            System.out.println("1. Master Kamar");
+            System.out.println("2. Reporting"); // belum
+            System.out.println("0. Logout");
             System.out.println();
             System.out.print("Masukkan Pilihan : ");
             try {

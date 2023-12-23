@@ -22,12 +22,14 @@ public class MasterKamarMenu {
     String inputUser;
 
     public void showMasterKamarMenu() {
+        InputUtilities.cls();
         while (AppRouter.activeRoute == AppRouter.AppRoute.MASTER_KAMAR) {
-            System.out.println();
-            System.out.println("MASTER KAMAR");
-            System.out.println("1. Show All Kamar");
-            System.out.println("2. Pilih Kamar");
-            System.out.println("3. Tambah Kamar");
+            System.out.println("==============================");
+            System.out.println("         MASTER KAMAR         ");
+            System.out.println("==============================");
+            System.out.println("1. Show all kamar");
+            System.out.println("2. Choose kamar");
+            System.out.println("3. Add kamar");
             System.out.println("0. Back");
             System.out.println();
             try {
@@ -35,11 +37,11 @@ public class MasterKamarMenu {
                 inputUser = InputUtilities.input.readLine();
                 switch (inputUser) {
                     case "1":
-                        System.out.println("All Data Kamar");
+                        System.out.println("SHOW ALL KAMAR");
                         showAllKamar();
                         break;
                     case "2":
-                        System.out.println("Pilih Kamar");
+                        System.out.println("CHOOSE KAMAR");
                         System.out.print("No. kamar\t: ");
                         String noKamar = InputUtilities.input.readLine();
                         masterKamarVM.selectKamar(noKamar);
@@ -48,7 +50,7 @@ public class MasterKamarMenu {
                         }
                         break;
                     case "3":
-                        System.out.println("Tambah Kamar");
+                        System.out.println("ADD KAMAR");
                         addKamar();
                         break;
 
@@ -105,12 +107,14 @@ public class MasterKamarMenu {
     }
 
     public void showDetailKamarMenu() {
+        InputUtilities.cls();
         while (AppRouter.activeRoute == AppRouter.AppRoute.SUB_MASTER_DETAIL_KAMAR) {
-            System.out.println();
+            System.out.println("==============================");
             System.out.println("DETAIL KAMAR - " + masterKamarVM.getSelectedKamar().getNoKamar());
-            System.out.println("1. Show Detail Kamar");
-            System.out.println("2. Edit");
-            System.out.println("3. Delete");
+            System.out.println("==============================");
+            System.out.println("1. Show detail");
+            System.out.println("2. Edit kamar");
+            System.out.println("3. Delete kamar");
             System.out.println("0. Back");
             System.out.println();
             System.out.print("Masukkan Pilihan : ");
@@ -122,11 +126,11 @@ public class MasterKamarMenu {
                         detailMasterKamar();
                         break;
                     case "2":
-                        System.out.println("EDIT");
+                        System.out.println("EDIT KAMAR");
                         editMasterKamar();
                         break;
                     case "3":
-                        System.out.println("DELETE");
+                        System.out.println("DELETE KAMAR");
                         deleteMasterKamar();
                         break;
                     case "0":
