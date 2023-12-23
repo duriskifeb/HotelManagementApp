@@ -9,8 +9,6 @@ import static View.Components.KamarView.*;
 
 import java.io.IOException;
 
-import javax.management.RuntimeErrorException;
-
 import Data.AppEnums.AppEnums;
 import Util.InputUtilities;
 import View.AppRouter;
@@ -47,10 +45,8 @@ public class MasterKamarMenu {
                         chosingKamar();
                         break;
                     case "3":
-                        System.out.println("ADD KAMAR");
                         addKamar();
                         break;
-
                     case "0":
                         AppRouter.navigateTo(MASTER_MAIN_MENU);
                         break;
@@ -127,9 +123,9 @@ public class MasterKamarMenu {
             System.out.println("==============================");
             System.out.println();
             System.out.print("Apa anda yakin?(y/n): ");
-            String yn = InputUtilities.input.readLine();
+            inputUser = InputUtilities.input.readLine();
 
-            if (yn.equalsIgnoreCase("y")) {
+            if (inputUser.equalsIgnoreCase("y")) {
                 masterKamarVM.addNewKamar(noKamar, kapasitas, jenis, harga, status);
                 formatMessageOutput("Kamar added");
             } else {
@@ -162,11 +158,9 @@ public class MasterKamarMenu {
                 inputUser = InputUtilities.input.readLine();
                 switch (inputUser) {
                     case "1":
-                        System.out.println("SHOW DETAIL");
                         detailMasterKamar();
                         break;
                     case "2":
-                        System.out.println("EDIT KAMAR");
                         editMasterKamar();
                         break;
                     case "3":
@@ -177,32 +171,35 @@ public class MasterKamarMenu {
                         AppRouter.navigateTo(MASTER_KAMAR); // Langsung kembali ke "menu manager", bukan ke "master kamar"
                         break;
                     default:
-                        System.out.println("Invalid Choice");
+                        invalidChoice();
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            InputUtilities.pressEnter();
         }
 
         AppRouter.navigateTo(AppRouter.AppRoute.MASTER_MAIN_MENU);
     }
 
     private void detailMasterKamar() {
+        System.out.println("SHOW DETAIL");
+        System.out.println("================================================================================");
         System.out.println(" NO. KAMAR \tKAPASITAS \tHARGA \t\t JENIS \t\tSTATUS");
-
+        System.out.println("================================================================================");
+        
+        
         viewDataSelectedKamar(masterKamarVM.getSelectedKamar());
+        System.out.println("================================================================================");
+
+        InputUtilities.pressEnter();
     }
 
     private void editMasterKamar() {
         try {
-            System.out.println("Ubah Data Kamar (kosongi input jika tidak ingin mengubah data) ");
-            System.out.print("No. kamar\t: ");
-            String noKamar = InputUtilities.input.readLine();
-
-            masterKamarVM.selectKamar(noKamar);
-
-            System.out.println("\nUbah data");
+            InputUtilities.cls();
+            System.out.println("==============================");
+            System.out.println("          EDIT KAMAR          ");
+            System.out.println("==============================");
             System.out.print("Kapasitas\t: ");
             int kapasitas = InputUtilities.input.read();
             InputUtilities.input.readLine(); // Biar bawahnya kebaca
@@ -216,11 +213,14 @@ public class MasterKamarMenu {
 
             System.out.print("Status kamar\t: ");
             AppEnums.StatusKamar statusKamar = statusKamar();
-
+            
+            System.out.println("==============================");
+            System.out.println();
             System.out.print("Apa anda yakin?(y/n): ");
-            String yn = InputUtilities.input.readLine();
-            if (yn.equalsIgnoreCase("y")) {
-                masterKamarVM.editKamar(noKamar, kapasitas, jenisKamar, harga, statusKamar);
+            inputUser = InputUtilities.input.readLine();
+            
+            if (inputUser.equalsIgnoreCase("y")) {
+                masterKamarVM.editKamar(masterKamarVM.getSelectedKamar().getNoKamar(), kapasitas, jenisKamar, harga, statusKamar);
             } else {
                 System.out.println("Perubahan dibatalkan");
             }

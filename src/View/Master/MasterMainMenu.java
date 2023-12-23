@@ -6,7 +6,6 @@ import ViewModel.AuthViewModel.AuthViewModel;
 
 import java.io.IOException;
 
-import static Util.Formatting.formatMessageOutput;
 import static Util.Formatting.invalidChoice;
 import static View.AppRouter.AppRoute.*;
 
