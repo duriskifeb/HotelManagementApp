@@ -34,21 +34,19 @@ public class InputUtilities {
         }
     }
 
-    public static void cls() {
+    public static void cls() { // Ini aku ganti set
         // wont work on IDE
         try {
-            final String os = System.getProperty("os.name");
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
-            if (os.contains("Windows")) {
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor(); // pake ini bisa di Windows set (cuma di Windows), kalo selain windows kurang tau 
-                // Runtime.getRuntime().exec("cls");  Kalo yg ini error
+            String os = System.getProperty("os.name").toLowerCase();
+
+            if (os.contains("win")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
             } else {
-                Runtime.getRuntime().exec("clear");
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
             }
-        } catch (final Exception e) {
-            //  Handle any exceptions.
-            System.err.println("Error : cls() failed: " + e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
