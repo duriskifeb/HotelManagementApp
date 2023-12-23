@@ -19,10 +19,11 @@ public class AuthMenu {
 
     public void showLogin() {
         while(AppRouter.activeRoute == LOGIN){
-            System.out.println();
-            System.out.println("LOGIN MENU");
-            System.out.println("0 to exit");
-            System.out.println("1 to Login");
+            System.out.println("==============================");
+            System.out.println("     HOTEL MANAGEMENT APP     ");
+            System.out.println("==============================");
+            System.out.println("1. Login");
+            System.out.println("0. EXIT");
             System.out.println();
             System.out.print("Masukkan Pilihan : ");
             try {
@@ -41,16 +42,17 @@ public class AuthMenu {
                 throw new RuntimeException(e);
             }
         }
-
-
     }
 
     private void showLoginInputs() {
-        System.out.println();
+        InputUtilities.cls(); // clear layar
+        System.out.println("==============================");
+        System.out.println("          LOGIN MENU          ");
+        System.out.println("==============================");
         try {
-            System.out.print("Masukkan ID atau Email : ");
+            System.out.print("Masukkan ID atau Email\t: ");
             String userIDEmail = InputUtilities.input.readLine();
-            System.out.print("Masukkan Password : ");
+            System.out.print("Masukkan Password\t: ");
             String userPass= InputUtilities.input.readLine();
 
             this.authViewModel.doLogin(userIDEmail, userPass);
@@ -63,13 +65,12 @@ public class AuthMenu {
                         AppRouter.navigateTo(AppRouter.AppRoute.MAIN_MENU);
                         break;
                     default:
-                        System.out.println("HAH!?");
-                        break;
+                    System.out.println("HAH!?");
+                    break;
                 }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 }

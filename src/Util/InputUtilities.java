@@ -41,7 +41,8 @@ public class InputUtilities {
             System.out.print("\033[H\033[2J");
             System.out.flush();
             if (os.contains("Windows")) {
-                Runtime.getRuntime().exec("cls");
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor(); // pake ini bisa di Windows set (cuma di Windows), kalo selain windows kurang tau 
+                // Runtime.getRuntime().exec("cls");  Kalo yg ini error
             } else {
                 Runtime.getRuntime().exec("clear");
             }

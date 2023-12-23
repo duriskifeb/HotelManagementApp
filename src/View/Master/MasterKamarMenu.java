@@ -1,7 +1,6 @@
 package View.Master;
 
 import static Util.Formatting.formatMessageOutput;
-import static View.AppRouter.AppRoute.MASTER_KAMAR;
 import static View.AppRouter.AppRoute.MASTER_MAIN_MENU;
 import static View.AppRouter.AppRoute.SUB_MASTER_DETAIL_KAMAR;
 import static View.Components.KamarView.*;
@@ -9,11 +8,8 @@ import static View.Components.KamarView.*;
 import java.io.IOException;
 
 import Data.AppEnums.AppEnums;
-import Data.DataSource.KamarDataSource;
-import Data.Model.Kamar;
 import Util.InputUtilities;
 import View.AppRouter;
-import View.Components.KamarView;
 import ViewModel.MasterViewModel.MasterKamarViewModel;
 
 public class MasterKamarMenu {
@@ -26,7 +22,6 @@ public class MasterKamarMenu {
     String inputUser;
 
     public void showMasterKamarMenu() {
-        // CONTOH
         while (AppRouter.activeRoute == AppRouter.AppRoute.MASTER_KAMAR) {
             System.out.println();
             System.out.println("MASTER KAMAR");
@@ -70,6 +65,45 @@ public class MasterKamarMenu {
         }
     }
 
+    private void showAllKamar() {
+        System.out.println(" NO. KAMAR \tKAPASITAS \t\tHARGA \t\t\t JENIS \t\tSTATUS");
+
+        viewAllDataKamar(masterKamarVM.getListKamar());
+    }
+
+    private void addKamar() {
+        try {
+            System.out.print("No. Kamar\t: ");
+            String noKamar = InputUtilities.input.readLine();
+
+            System.out.print("Kapasitas\t: ");
+            int kapasitas = InputUtilities.input.read();
+            InputUtilities.input.readLine(); // biar bawahnya kebaca
+
+            System.out.print("Jenis\t: ");
+            AppEnums.JenisKamar jenis = jenisKamar();
+
+            System.out.print("Harga\t: ");
+            double harga = InputUtilities.input.read();
+            InputUtilities.input.readLine(); // biar bawahnya kebaca
+
+            System.out.print("Status\t: ");
+            AppEnums.StatusKamar status = statusKamar();
+
+            System.out.print("Apa anda yakin?(y/n): ");
+            String yn = InputUtilities.input.readLine();
+
+            if (yn.equalsIgnoreCase("y")) {
+                masterKamarVM.addNewKamar(noKamar, kapasitas, jenis, harga, status);
+            } else {
+                System.out.println("Perubahan dibatalkan");
+            }
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
     public void showDetailKamarMenu() {
         while (AppRouter.activeRoute == AppRouter.AppRoute.SUB_MASTER_DETAIL_KAMAR) {
             System.out.println();
@@ -109,6 +143,12 @@ public class MasterKamarMenu {
         AppRouter.navigateTo(AppRouter.AppRoute.MASTER_MAIN_MENU);
     }
 
+    private void detailMasterKamar() {
+        System.out.println(" NO. KAMAR \tKAPASITAS \t\tHARGA \t\t\t JENIS \t\tSTATUS");
+
+        viewDataSelectedKamar(masterKamarVM.getSelectedKamar());
+    }
+
     private void editMasterKamar() {
         try {
             System.out.println("Ubah Data Kamar (kosongi input jika tidak ingin mengubah data) ");
@@ -139,51 +179,6 @@ public class MasterKamarMenu {
             } else {
                 System.out.println("Perubahan dibatalkan");
             }
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-    }
-
-    private void showAllKamar() {
-        System.out.println(" NO. KAMAR \tKAPASITAS \t\tHARGA \t\t\t JENIS \t\tSTATUS");
-
-        viewAllDataKamar(masterKamarVM.getListKamar());
-    }
-
-    private void detailMasterKamar() {
-        System.out.println(" NO. KAMAR \tKAPASITAS \t\tHARGA \t\t\t JENIS \t\tSTATUS");
-
-        viewDataSelectedKamar(masterKamarVM.getSelectedKamar());
-    }
-
-    private void addKamar() {
-        try {
-            System.out.print("No. Kamar\t: ");
-            String noKamar = InputUtilities.input.readLine();
-
-            System.out.print("Kapasitas\t: ");
-            int kapasitas = InputUtilities.input.read();
-            InputUtilities.input.readLine(); // biar bawahnya kebaca
-
-            System.out.print("Jenis\t: ");
-            AppEnums.JenisKamar jenis = jenisKamar();
-
-            System.out.print("Harga\t: ");
-            double harga = InputUtilities.input.read();
-            InputUtilities.input.readLine(); // biar bawahnya kebaca
-
-            System.out.print("Status\t: ");
-            AppEnums.StatusKamar status = statusKamar();
-
-            System.out.print("Apa anda yakin?(y/n): ");
-            String yn = InputUtilities.input.readLine();
-
-            if (yn.equalsIgnoreCase("y")) {
-                masterKamarVM.addNewKamar(noKamar, kapasitas, jenis, harga, status);
-            } else {
-                System.out.println("Perubahan dibatalkan");
-            }
-
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
