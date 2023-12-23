@@ -1,7 +1,9 @@
 package View.Master;
 
 import static Util.Formatting.formatMessageOutput;
+import static View.AppRouter.AppRoute.MASTER_KAMAR;
 import static View.AppRouter.AppRoute.MASTER_MAIN_MENU;
+import static View.AppRouter.AppRoute.SUB_MASTER_DETAIL_KAMAR;
 import static View.Components.KamarView.*;
 
 import java.io.IOException;
@@ -20,6 +22,7 @@ public class MasterKamarMenu {
     public MasterKamarMenu(MasterKamarViewModel masterKamarVM) {
         this.masterKamarVM = masterKamarVM;
     }
+
     String inputUser;
 
     public void showMasterKamarMenu() {
@@ -51,7 +54,7 @@ public class MasterKamarMenu {
                         break;
                     case "3":
                         System.out.println("Tambah Kamar");
-                        tambahKamar();
+                        addKamar();
                         break;
 
                     case "0":
@@ -70,7 +73,7 @@ public class MasterKamarMenu {
     public void showDetailKamarMenu() {
         while (AppRouter.activeRoute == AppRouter.AppRoute.SUB_MASTER_DETAIL_KAMAR) {
             System.out.println();
-            System.out.println("DETAIL KAMAR");
+            System.out.println("DETAIL KAMAR - " + masterKamarVM.getSelectedKamar().getNoKamar());
             System.out.println("1. Show Detail Kamar");
             System.out.println("2. Edit");
             System.out.println("3. Delete");
@@ -143,40 +146,40 @@ public class MasterKamarMenu {
 
     private void showAllKamar() {
         System.out.println(" NO. KAMAR \tKAPASITAS \t\tHARGA \t\t\t JENIS \t\tSTATUS");
-        
+
         viewAllDataKamar(masterKamarVM.getListKamar());
     }
-    
+
     private void detailMasterKamar() {
         System.out.println(" NO. KAMAR \tKAPASITAS \t\tHARGA \t\t\t JENIS \t\tSTATUS");
 
         viewDataSelectedKamar(masterKamarVM.getSelectedKamar());
     }
 
-    private void addKamar(){
-        System.out.print("No. Kamar\t: ");
-        String noKamar = InputUtilities.input.readLine();
-        System.out.print("Kapasitas\t: ");
-        int kapasitas = InputUtilities.input.read();
-        System.out.print("Jenis\t: ");
-        AppEnums.JenisKamar jenis = jenisKamar();
-        System.out.print("Harga\t: ");
-
-        System.out.print("Status\t: ");
-        AppEnums.StatusKamar status = statusKamar();
-
-        masterKamarVM.addNewKamar(0, 0, null, 0, null);
-    }
-
-    private void deleteMasterKamar() {
-        System.out.print("Masukkan no kamar : ");
+    private void addKamar() {
         try {
+            System.out.print("No. Kamar\t: ");
             String noKamar = InputUtilities.input.readLine();
 
-            System.out.println("Anda yakin ingin menghapus kamar?(y/n): ");
+            System.out.print("Kapasitas\t: ");
+            int kapasitas = InputUtilities.input.read();
+            InputUtilities.input.readLine(); // biar bawahnya kebaca
+
+            System.out.print("Jenis\t: ");
+            AppEnums.JenisKamar jenis = jenisKamar();
+
+            System.out.print("Harga\t: ");
+            double harga = InputUtilities.input.read();
+            InputUtilities.input.readLine(); // biar bawahnya kebaca
+
+            System.out.print("Status\t: ");
+            AppEnums.StatusKamar status = statusKamar();
+
+            System.out.print("Apa anda yakin?(y/n): ");
             String yn = InputUtilities.input.readLine();
+
             if (yn.equalsIgnoreCase("y")) {
-                masterKamarVM.deleteKamar(noKamar);
+                masterKamarVM.addNewKamar(noKamar, kapasitas, jenis, harga, status);
             } else {
                 System.out.println("Perubahan dibatalkan");
             }
@@ -186,8 +189,25 @@ public class MasterKamarMenu {
         }
     }
 
-    private AppEnums.JenisKamar jenisKamar(String jenisString) {
+    private void deleteMasterKamar() {
         try {
+            System.out.print("Anda yakin ingin menghapus kamar ini?(y/n): ");
+            String yn = InputUtilities.input.readLine();
+            if (yn.equalsIgnoreCase("y")) {
+                masterKamarVM.deleteKamar(masterKamarVM.getSelectedKamar().getNoKamar());
+                AppRouter.navigateTo(SUB_MASTER_DETAIL_KAMAR);
+            } else {
+                System.out.println("Perubahan dibatalkan");
+            }
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    private AppEnums.JenisKamar jenisKamar() {
+        try {
+            String jenisString = InputUtilities.input.readLine();
             return switch (jenisString.toLowerCase()) {
                 case "single" -> AppEnums.JenisKamar.SINGLE;
                 case "double" -> AppEnums.JenisKamar.DOUBLE;
