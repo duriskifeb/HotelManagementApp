@@ -6,6 +6,8 @@ import ViewModel.AuthViewModel.AuthViewModel;
 
 import java.io.IOException;
 
+import static Util.Formatting.formatMessageOutput;
+import static Util.Formatting.invalidChoice;
 import static View.AppRouter.AppRoute.*;
 
 public class MasterMainMenu {
@@ -18,12 +20,13 @@ public class MasterMainMenu {
     String inputUser;
 
     public void showMasterMainMenu() {
-        InputUtilities.cls();
         while (AppRouter.activeRoute == MASTER_MAIN_MENU) {
+            InputUtilities.cls();
             System.out.println("==============================");
             System.out.println("         MENU MANAJER         ");
             System.out.println("==============================");
             System.out.println("Selamat Datang : " + authViewModel.loggedUser.getUserID() + " - " + authViewModel.loggedUser.getNama());
+            System.out.println();
             System.out.println("1. Master Kamar");
             System.out.println("2. Reporting"); // belum
             System.out.println("0. Logout");
@@ -40,11 +43,12 @@ public class MasterMainMenu {
                         AppRouter.navigateTo(LOGIN);
                         break;
                     default:
-                        System.out.println("Invalid Choice");
+                        invalidChoice();
+                    }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+                
         }
     }
 

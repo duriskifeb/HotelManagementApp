@@ -6,6 +6,8 @@ import View.AppRouter;
 
 import java.io.IOException;
 
+import static Util.Formatting.formatMessageOutput;
+import static Util.Formatting.invalidChoice;
 import static View.AppRouter.AppRoute.LOGIN;
 
 public class AuthMenu {
@@ -18,8 +20,8 @@ public class AuthMenu {
     String inputUser;
 
     public void showLogin() {
-        InputUtilities.cls();
         while (AppRouter.activeRoute == LOGIN) {
+            InputUtilities.cls();
             System.out.println("==============================");
             System.out.println("     HOTEL MANAGEMENT APP     ");
             System.out.println("==============================");
@@ -37,12 +39,12 @@ public class AuthMenu {
                         AppRouter.navigateTo(AppRouter.AppRoute.EXIT);
                         break;
                     default:
-                        System.out.println("Invalid Choice");
+                        invalidChoice();
+                    }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
-            } catch (IOException e) {
-                throw new RuntimeException(e);
             }
-        }
     }
 
     // misal sudah login dan berhasil terus logout, kalau login lagi dengan input yang salah, malah berhasil login dengan akun sebelumnya (Tanpa keluar aplikasi)
@@ -74,6 +76,7 @@ public class AuthMenu {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        System.out.println("==============================");
         InputUtilities.pressEnter();
     }
 }

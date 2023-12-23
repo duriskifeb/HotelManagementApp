@@ -1,11 +1,14 @@
 package View.Master;
 
 import static Util.Formatting.formatMessageOutput;
+import static Util.Formatting.invalidChoice;
 import static View.AppRouter.AppRoute.MASTER_MAIN_MENU;
 import static View.AppRouter.AppRoute.SUB_MASTER_DETAIL_KAMAR;
 import static View.Components.KamarView.*;
 
 import java.io.IOException;
+
+import javax.management.RuntimeErrorException;
 
 import Data.AppEnums.AppEnums;
 import Util.InputUtilities;
@@ -22,8 +25,8 @@ public class MasterKamarMenu {
     String inputUser;
 
     public void showMasterKamarMenu() {
-        InputUtilities.cls();
         while (AppRouter.activeRoute == AppRouter.AppRoute.MASTER_KAMAR) {
+            InputUtilities.cls();
             System.out.println("==============================");
             System.out.println("         MASTER KAMAR         ");
             System.out.println("==============================");
@@ -37,17 +40,10 @@ public class MasterKamarMenu {
                 inputUser = InputUtilities.input.readLine();
                 switch (inputUser) {
                     case "1":
-                        System.out.println("SHOW ALL KAMAR");
                         showAllKamar();
                         break;
                     case "2":
-                        System.out.println("CHOOSE KAMAR");
-                        System.out.print("No. kamar\t: ");
-                        String noKamar = InputUtilities.input.readLine();
-                        masterKamarVM.selectKamar(noKamar);
-                        if (masterKamarVM.getSelectedKamar() != null) {
-                            AppRouter.navigateTo(AppRouter.AppRoute.SUB_MASTER_DETAIL_KAMAR);
-                        }
+                        chosingKamar();
                         break;
                     case "3":
                         System.out.println("ADD KAMAR");
@@ -58,22 +54,46 @@ public class MasterKamarMenu {
                         AppRouter.navigateTo(MASTER_MAIN_MENU);
                         break;
                     default:
-                        formatMessageOutput("Input Tidak Valid");
+                        invalidChoice();
                         break;
                 }
-            } catch (Exception e) {
-                System.out.println("Error " + e.getMessage());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
     }
 
     private void showAllKamar() {
-        System.out.println(" NO. KAMAR \tKAPASITAS \t\tHARGA \t\t\t JENIS \t\tSTATUS");
+        InputUtilities.cls();
+        System.out.println("SHOW ALL KAMAR");
+        System.out.println("================================================================================");
+        System.out.println(" NO. KAMAR \tKAPASITAS \tHARGA \t\t JENIS \t\tSTATUS");
+        System.out.println("================================================================================");
 
         viewAllDataKamar(masterKamarVM.getListKamar());
+        System.out.println("================================================================================");
+
+        InputUtilities.pressEnter();
     }
 
-    private void addKamar() {
+    private void chosingKamar() {
+        InputUtilities.cls();
+        try {
+            System.out.println("==============================");
+            System.out.println("         CHOOSE KAMAR         ");
+            System.out.println("==============================");
+            System.out.print("No. kamar\t: ");
+            String noKamar = InputUtilities.input.readLine();
+            masterKamarVM.selectKamar(noKamar);
+            if (masterKamarVM.getSelectedKamar() != null) {
+                AppRouter.navigateTo(AppRouter.AppRoute.SUB_MASTER_DETAIL_KAMAR);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void addKamar() { // kalau di ENTER (kosong) semua munculnya aneh
         try {
             System.out.print("No. Kamar\t: ");
             String noKamar = InputUtilities.input.readLine();
@@ -107,11 +127,13 @@ public class MasterKamarMenu {
     }
 
     public void showDetailKamarMenu() {
-        InputUtilities.cls();
         while (AppRouter.activeRoute == AppRouter.AppRoute.SUB_MASTER_DETAIL_KAMAR) {
+            InputUtilities.cls();
             System.out.println("==============================");
-            System.out.println("DETAIL KAMAR - " + masterKamarVM.getSelectedKamar().getNoKamar());
+            System.out.println("       SHOW DETAIL KAMAR      ");
             System.out.println("==============================");
+            System.out.println("Selected kamar : " + masterKamarVM.getSelectedKamar().getNoKamar());
+            System.out.println();
             System.out.println("1. Show detail");
             System.out.println("2. Edit kamar");
             System.out.println("3. Delete kamar");
@@ -142,13 +164,14 @@ public class MasterKamarMenu {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+            InputUtilities.pressEnter();
         }
 
         AppRouter.navigateTo(AppRouter.AppRoute.MASTER_MAIN_MENU);
     }
 
     private void detailMasterKamar() {
-        System.out.println(" NO. KAMAR \tKAPASITAS \t\tHARGA \t\t\t JENIS \t\tSTATUS");
+        System.out.println(" NO. KAMAR \tKAPASITAS \tHARGA \t\t JENIS \t\tSTATUS");
 
         viewDataSelectedKamar(masterKamarVM.getSelectedKamar());
     }

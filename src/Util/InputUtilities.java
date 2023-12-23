@@ -53,7 +53,6 @@ public class InputUtilities {
     }
 
     public static void pressEnter(){
-        System.out.println("==============================");
         System.out.println();
         System.out.print("Press ENTER to continue");
         try {
