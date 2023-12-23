@@ -10,26 +10,25 @@ public class AuthViewModel {
     public AuthViewModel(AuthUserCase userCase) {
         this.authUseCase = userCase;
     }
+
     public User loggedUser;
+
     public void doLogin(
             String username, // bisa id bisa email
-            String password
-    ){
+            String password) {
         authUseCase.doLogin(username, password);
-        if(authUseCase.loggedUser != null){
+        if (authUseCase.loggedUser != null) {
             this.loggedUser = authUseCase.loggedUser;
-        }else{
+        } else {
             Formatting.formatMessageOutput("User Not Found");
         }
     }
 
-    public void doLogout(){
+    public void doLogout() {
         authUseCase.doLogout();
     }
 
-
-
-    public void changePassword(String userID, String oldPassword, String newPassword){
+    public void changePassword(String userID, String oldPassword, String newPassword) {
         // TODO
     }
 }

@@ -18,7 +18,8 @@ public class AuthMenu {
     String inputUser;
 
     public void showLogin() {
-        while(AppRouter.activeRoute == LOGIN){
+        InputUtilities.cls();
+        while (AppRouter.activeRoute == LOGIN) {
             System.out.println("==============================");
             System.out.println("     HOTEL MANAGEMENT APP     ");
             System.out.println("==============================");
@@ -44,8 +45,9 @@ public class AuthMenu {
         }
     }
 
+    // misal sudah login dan berhasil terus logout, kalau login lagi dengan input yang salah, malah berhasil login dengan akun sebelumnya (Tanpa keluar aplikasi)
     private void showLoginInputs() {
-        InputUtilities.cls(); // clear layar
+        InputUtilities.cls(); // clear terminal
         System.out.println("==============================");
         System.out.println("          LOGIN MENU          ");
         System.out.println("==============================");
@@ -53,24 +55,25 @@ public class AuthMenu {
             System.out.print("Masukkan ID atau Email\t: ");
             String userIDEmail = InputUtilities.input.readLine();
             System.out.print("Masukkan Password\t: ");
-            String userPass= InputUtilities.input.readLine();
+            String userPass = InputUtilities.input.readLine();
 
             this.authViewModel.doLogin(userIDEmail, userPass);
-            if(this.authViewModel.loggedUser != null){
-                switch (this.authViewModel.loggedUser.getRole()){
-                    case MANAGER :
+            if (this.authViewModel.loggedUser != null) {
+                switch (this.authViewModel.loggedUser.getRole()) {
+                    case MANAGER:
                         AppRouter.navigateTo(AppRouter.AppRoute.MASTER_MAIN_MENU);
                         break;
                     case PEGAWAI:
                         AppRouter.navigateTo(AppRouter.AppRoute.MAIN_MENU);
                         break;
                     default:
-                    System.out.println("HAH!?");
-                    break;
+                        System.out.println("HAH!?");
+                        break;
                 }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        InputUtilities.pressEnter();
     }
 }

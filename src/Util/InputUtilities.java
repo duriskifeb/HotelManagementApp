@@ -51,4 +51,15 @@ public class InputUtilities {
             System.err.println("Error : cls() failed: " + e.getMessage());
         }
     }
+
+    public static void pressEnter(){
+        System.out.println("==============================");
+        System.out.println();
+        System.out.print("Press ENTER to continue");
+        try {
+            InputUtilities.input.readLine();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
 }
