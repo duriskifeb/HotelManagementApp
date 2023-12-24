@@ -64,7 +64,7 @@ public class MasterPegawaiMenu {
 
     private void showAllPegawai() {
         InputUtilities.cls();
-        System.out.println("SHOW ALL KAMAR");
+        System.out.println("SHOW ALL PEGAWAI");
         System.out.println("============================================================");
         System.out.println(" USER ID \tNAMA \t\tEMAIL \t\t ROLE");
         System.out.println("============================================================");
@@ -176,7 +176,16 @@ public class MasterPegawaiMenu {
     }
 
     private void detailPegawai() {
+        InputUtilities.cls();
+        System.out.println("SHOW DETAIL");
+        System.out.println("============================================================");
+        System.out.println(" USER ID \tNAMA \t\tEMAIL \t\t ROLE");
+        System.out.println("============================================================");
 
+        viewSelectedPegawai(masterPegawaiVM.getSelectedPegawai());
+        System.out.println("============================================================");
+
+        InputUtilities.pressEnter();
     }
 
     private void editPegawai() {
