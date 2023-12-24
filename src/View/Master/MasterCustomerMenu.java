@@ -9,7 +9,6 @@ import java.io.IOException;
 
 import Util.InputUtilities;
 import View.AppRouter;
-import View.AppRouter.AppRoute;
 import ViewModel.MasterViewModel.MasterCustomerViewModel;
 
 public class MasterCustomerMenu {
@@ -69,11 +68,32 @@ public class MasterCustomerMenu {
     }
 
     private void choosingCustomer() {
+        try {
+            InputUtilities.cls();
+            System.out.println("==============================");
+            System.out.println("        CHOOSE CUSTOMER       ");
+            System.out.println("==============================");
+            System.out.print("NIK\t: ");
+            String nik = InputUtilities.input.readLine();
+            masterCustomerVM.selectCustomer(nik);
+            System.out.println("==============================");
+            InputUtilities.pressEnter();
 
+            if (masterCustomerVM.getSelectedCustomer() != null) {
+                AppRouter.navigateTo(AppRouter.AppRoute.SUB_MASTER_DETAIL_CUSTOMER);
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void addCustomer() {
 
+    }
+
+    public void showDetailCustomerMenu() {
+        
     }
 
 }
