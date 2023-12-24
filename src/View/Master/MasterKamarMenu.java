@@ -103,14 +103,14 @@ public class MasterKamarMenu {
             String noKamar = InputUtilities.input.readLine();
 
             System.out.print("Kapasitas\t: ");
-            int kapasitas = InputUtilities.input.read();
+            int kapasitas = Integer.parseInt(InputUtilities.input.readLine());
             InputUtilities.input.readLine(); // biar bawahnya kebaca
 
             System.out.print("Jenis\t\t: ");
             AppEnums.JenisKamar jenis = jenisKamar();
 
             System.out.print("Harga\t\t: ");
-            double harga = InputUtilities.input.read();
+            double harga = Double.parseDouble(InputUtilities.input.readLine());
             InputUtilities.input.readLine(); // biar bawahnya kebaca
 
             System.out.print("Status\t\t: ");
