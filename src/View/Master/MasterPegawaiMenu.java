@@ -141,7 +141,7 @@ public class MasterPegawaiMenu {
             System.out.println("==============================");
             System.out.println("      SHOW DETAIL PEGAWAI     ");
             System.out.println("==============================");
-            System.out.println("Selected pegawai : " + masterPegawaiVM.getSelectedPegawai().getUserID());
+            System.out.println("Selected pegawai : " + masterPegawaiVM.getSelectedPegawai().getUserID() + " - " + masterPegawaiVM.getSelectedPegawai().getNama());
             System.out.println();
             System.out.println("1. Show detail");
             System.out.println("2. Edit pegawai");
@@ -189,11 +189,43 @@ public class MasterPegawaiMenu {
     }
 
     private void editPegawai() {
+        try {
+            InputUtilities.cls();
+            System.out.println("==============================");
+            System.out.println("        EDIT NEW PEGAWAI      ");
+            System.out.println("==============================");
 
+            System.out.print("Nama\t\t: ");
+            String nama = InputUtilities.input.readLine();
+
+            System.out.print("Email\t\t: ");
+            String email = InputUtilities.input.readLine();
+
+            System.out.print("Role\t\t: ");
+            AppEnums.UserRole role = role();
+
+            System.out.println("==============================");
+            System.out.println();
+            System.out.print("Apa anda yakin?(y/n): ");
+            inputUser = InputUtilities.input.readLine();
+
+            if (inputUser.equalsIgnoreCase("y")) {
+                masterPegawaiVM.editDataPegawai(nama, email, role);
+                formatMessageOutput("Pegawai editted");
+            } else {
+                formatMessageOutput("Process cancelled");
+            }
+
+            System.out.println("==============================");
+            InputUtilities.pressEnter();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void deletePegawai() {
-
+        
     }
 
     private AppEnums.UserRole role() {

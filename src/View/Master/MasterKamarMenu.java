@@ -220,12 +220,12 @@ public class MasterKamarMenu {
 
             if (inputUser.equalsIgnoreCase("y")) {
                 masterKamarVM.editKamar(masterKamarVM.getSelectedKamar().getNoKamar(), kapasitas, jenisKamar, harga, statusKamar);
-                formatMessageOutput("Perubahan disimpan");
+                formatMessageOutput("Kamar editted");
                 System.out.println("==============================");
                 InputUtilities.pressEnter();
                 AppRouter.navigateTo(MASTER_KAMAR);
             } else {
-                formatMessageOutput("Perubahan dibatalkan");
+                formatMessageOutput("Process cancelled");
                 System.out.println("==============================");
                 InputUtilities.pressEnter();
             }
@@ -247,13 +247,13 @@ public class MasterKamarMenu {
             inputUser = InputUtilities.input.readLine();
             if (inputUser.equalsIgnoreCase("y")) {
                 masterKamarVM.deleteKamar(masterKamarVM.getSelectedKamar().getNoKamar());
-                formatMessageOutput("Kamar dihapus");
+                formatMessageOutput("Kamar deleted");
                 System.out.println("==============================");
                 InputUtilities.pressEnter();
                 AppRouter.navigateTo(MASTER_KAMAR);
             } else {
                 System.out.println();
-                formatMessageOutput("Perubahan dibatalkan");
+                formatMessageOutput("Process cancelledj");
                 System.out.println("==============================");
                 InputUtilities.pressEnter();
             }
