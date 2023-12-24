@@ -6,6 +6,7 @@ import static View.AppRouter.AppRoute.MASTER_CUSTOMER;
 import static View.AppRouter.AppRoute.MASTER_MAIN_MENU;
 import static View.AppRouter.AppRoute.SUB_MASTER_DETAIL_CUSTOMER;
 import static View.Components.CustomerView.viewAllDataCustomer;
+import static View.Components.CustomerView.viewDataSelectedCustomer;
 
 import java.io.IOException;
 
@@ -101,13 +102,13 @@ public class MasterCustomerMenu {
             System.out.print("NIK\t: ");
             String nik = InputUtilities.input.readLine();
 
-            System.out.print("Nama\t\t: ");
+            System.out.print("Nama\t: ");
             String nama = InputUtilities.input.readLine();
 
-            System.out.print("Email\t\t: ");
+            System.out.print("Email\t: ");
             String email = InputUtilities.input.readLine();
 
-            System.out.print("Telp\t\t: ");
+            System.out.print("Telp\t: ");
             String telp = InputUtilities.input.readLine();
 
             System.out.println("==============================");
@@ -117,7 +118,6 @@ public class MasterCustomerMenu {
 
             if (inputUser.equalsIgnoreCase("y")) {
                 masterCustomerVM.addNewCustomer(nik, nama, email, telp);
-                formatMessageOutput("Customer added");
             } else {
                 formatMessageOutput("Process cancelled");
             }
@@ -170,7 +170,13 @@ public class MasterCustomerMenu {
     }
 
     private void detailCustomer() {
+        InputUtilities.cls();
+        System.out.println("SHOW DETAIL");
 
+        viewDataSelectedCustomer(masterCustomerVM.getSelectedCustomer());
+        System.out.println("============================================================");
+
+        InputUtilities.pressEnter();
     }
     
     private void editCustomer() {
