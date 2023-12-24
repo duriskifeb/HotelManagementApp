@@ -4,6 +4,7 @@ import static Util.Formatting.formatMessageOutput;
 import static Util.Formatting.invalidChoice;
 import static View.AppRouter.AppRoute.MASTER_CUSTOMER;
 import static View.AppRouter.AppRoute.MASTER_MAIN_MENU;
+import static View.AppRouter.AppRoute.SUB_MASTER_DETAIL_CUSTOMER;
 import static View.Components.CustomerView.viewAllDataCustomer;
 
 import java.io.IOException;
@@ -130,8 +131,55 @@ public class MasterCustomerMenu {
     }
 
     public void showDetailCustomerMenu() {
+        while (AppRouter.activeRoute == SUB_MASTER_DETAIL_CUSTOMER) {
+            InputUtilities.cls();
+            System.out.println("==============================");
+            System.out.println("      SHOW DETAIL CUSTOMER     ");
+            System.out.println("==============================");
+            System.out.println("Selected customer : " + masterCustomerVM.getSelectedCustomer().getNama());
+            System.out.println();
+            System.out.println("1. Show detail");
+            System.out.println("2. Edit customer");
+            System.out.println("3. Delete customer");
+            System.out.println("0. Back");
+            System.out.println();
+            System.out.print("Masukkan Pilihan : ");
+            try {
+                inputUser = InputUtilities.input.readLine();
+                switch (inputUser) {
+                    case "1":
+                        detailCustomer();
+                        break;
+                    case "2":
+                        editCustomer();
+                        break;
+                    case "3":
+                        deleteCustomer();
+                        break;
+                    case "0":
+                        AppRouter.navigateTo(MASTER_CUSTOMER);
+                        break;
+                    default:
+                        invalidChoice();
+                        break;
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    private void detailCustomer() {
 
     }
+    
+    private void editCustomer() {
+
+    }
+    private void deleteCustomer() {
+
+    }
+
 
 }
 
