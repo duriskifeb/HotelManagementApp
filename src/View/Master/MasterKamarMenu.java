@@ -104,14 +104,14 @@ public class MasterKamarMenu {
 
             System.out.print("Kapasitas\t: ");
             int kapasitas = Integer.parseInt(InputUtilities.input.readLine());
-            InputUtilities.input.readLine(); // biar bawahnya kebaca
+//            InputUtilities.input.readLine(); // biar bawahnya kebaca
 
             System.out.print("Jenis\t\t: ");
             AppEnums.JenisKamar jenis = jenisKamar();
 
             System.out.print("Harga\t\t: ");
             double harga = Double.parseDouble(InputUtilities.input.readLine());
-            InputUtilities.input.readLine(); // biar bawahnya kebaca
+//            InputUtilities.input.readLine(); // biar bawahnya kebaca
 
             System.out.print("Status\t\t: ");
             AppEnums.StatusKamar status = statusKamar();
@@ -122,8 +122,8 @@ public class MasterKamarMenu {
             inputUser = InputUtilities.input.readLine();
 
             if (inputUser.equalsIgnoreCase("y")) {
+                formatMessageOutput("Adding kamar");
                 masterKamarVM.addNewKamar(noKamar, kapasitas, jenis, harga, status);
-                formatMessageOutput("Kamar added");
             } else {
                 formatMessageOutput("Process cancelled");
             }
