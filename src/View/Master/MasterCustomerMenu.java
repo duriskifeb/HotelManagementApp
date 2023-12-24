@@ -180,7 +180,45 @@ public class MasterCustomerMenu {
     }
     
     private void editCustomer() {
+        try {
+            InputUtilities.cls();
+            System.out.println("==============================");
+            System.out.println("          EDIT CUSTOMER        ");
+            System.out.println("==============================");
 
+            System.out.print("NIK\t: ");
+            String nik = InputUtilities.input.readLine();
+
+            System.out.print("Nama\t: ");
+            String nama = InputUtilities.input.readLine();
+
+            System.out.print("Email\t: ");
+            String email = InputUtilities.input.readLine();
+
+            System.out.print("Telp\t: ");
+            String telp = InputUtilities.input.readLine();
+
+            System.out.println("==============================");
+            System.out.println();
+            System.out.print("Apa anda yakin?(y/n): ");
+            inputUser = InputUtilities.input.readLine();
+
+            if (inputUser.equalsIgnoreCase("y")) {
+                masterCustomerVM.editCustomer(nik, nama, email, telp);
+                formatMessageOutput("Pegawai editted");
+                System.out.println("==============================");
+                InputUtilities.pressEnter();
+                AppRouter.navigateTo(MASTER_CUSTOMER);
+            } else {
+                formatMessageOutput("Process cancelled");
+                System.out.println("==============================");
+                InputUtilities.pressEnter();
+            }
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
     private void deleteCustomer() {
 

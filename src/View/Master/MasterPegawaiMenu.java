@@ -189,7 +189,7 @@ public class MasterPegawaiMenu {
         try {
             InputUtilities.cls();
             System.out.println("==============================");
-            System.out.println("        EDIT NEW PEGAWAI      ");
+            System.out.println("          EDIT PEGAWAI        ");
             System.out.println("==============================");
 
             System.out.print("Nama\t\t: ");
