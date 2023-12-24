@@ -225,7 +225,31 @@ public class MasterPegawaiMenu {
     }
 
     private void deletePegawai() {
-        
+        try {
+            InputUtilities.cls();
+            System.out.println("==============================");
+            System.out.println("        DELETE PEGAWAI        ");
+            System.out.println("==============================");
+            System.out.println("Selected pegawai : " + masterPegawaiVM.getSelectedPegawai().getUserID() + " - " + masterPegawaiVM.getSelectedPegawai().getNama());
+            System.out.println();
+            System.out.print("Anda yakin ingin menghapus pegawai ini?(y/n): ");
+            inputUser = InputUtilities.input.readLine();
+            if (inputUser.equalsIgnoreCase("y")) {
+                masterPegawaiVM.deletePegawai(masterPegawaiVM.getSelectedPegawai().getUserID());
+                formatMessageOutput("Pegawai deleted");
+                System.out.println("==============================");
+                InputUtilities.pressEnter();
+                AppRouter.navigateTo(MASTER_PEGAWAI);
+            } else {
+                System.out.println();
+                formatMessageOutput("Process cancelledj");
+                System.out.println("==============================");
+                InputUtilities.pressEnter();
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private AppEnums.UserRole role() {
