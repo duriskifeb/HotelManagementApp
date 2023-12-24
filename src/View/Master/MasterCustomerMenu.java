@@ -61,9 +61,6 @@ public class MasterCustomerMenu {
     private void showAllCustomer() {
         InputUtilities.cls();
         System.out.println("SHOW ALL CUSTOMER");
-        System.out.println("============================================================");
-        System.out.println(" USER ID \tNAMA \t\tEMAIL \t\t ROLE");
-        System.out.println("============================================================");
 
         viewAllDataCustomer(masterCustomerVM.getListCustomers());
         System.out.println("============================================================");
