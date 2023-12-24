@@ -150,7 +150,6 @@ public class MasterPegawaiMenu {
             System.out.println();
             System.out.print("Masukkan Pilihan : ");
             try {
-                System.out.print("Masukkan Pilihan : ");
                 inputUser = InputUtilities.input.readLine();
                 switch (inputUser) {
                     case "1":
@@ -188,7 +187,7 @@ public class MasterPegawaiMenu {
         InputUtilities.pressEnter();
     }
 
-    private void editPegawai() {
+    private void editPegawai() { // setelah mengedit pegawai, User ID berubah secara acak
         try {
             InputUtilities.cls();
             System.out.println("==============================");
@@ -212,12 +211,15 @@ public class MasterPegawaiMenu {
             if (inputUser.equalsIgnoreCase("y")) {
                 masterPegawaiVM.editDataPegawai(nama, email, role);
                 formatMessageOutput("Pegawai editted");
+                System.out.println("==============================");
+                InputUtilities.pressEnter();
+                AppRouter.navigateTo(MASTER_PEGAWAI);
             } else {
                 formatMessageOutput("Process cancelled");
+                System.out.println("==============================");
+                InputUtilities.pressEnter();
             }
 
-            System.out.println("==============================");
-            InputUtilities.pressEnter();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
