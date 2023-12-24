@@ -136,7 +136,7 @@ public class MasterCustomerMenu {
             System.out.println("==============================");
             System.out.println("      SHOW DETAIL CUSTOMER     ");
             System.out.println("==============================");
-            System.out.println("Selected customer : " + masterCustomerVM.getSelectedCustomer().getNama());
+            System.out.println("Selected customer : " + masterCustomerVM.getSelectedCustomer().getNama() + " - " + masterCustomerVM.getSelectedCustomer().getNIK());
             System.out.println();
             System.out.println("1. Show detail");
             System.out.println("2. Edit customer");
@@ -205,7 +205,7 @@ public class MasterCustomerMenu {
 
             if (inputUser.equalsIgnoreCase("y")) {
                 masterCustomerVM.editCustomer(nik, nama, email, telp);
-                formatMessageOutput("Pegawai editted");
+                formatMessageOutput("Customer editted");
                 System.out.println("==============================");
                 InputUtilities.pressEnter();
                 AppRouter.navigateTo(MASTER_CUSTOMER);
@@ -221,7 +221,31 @@ public class MasterCustomerMenu {
         }
     }
     private void deleteCustomer() {
+        try {
+            InputUtilities.cls();
+            System.out.println("==============================");
+            System.out.println("        DELETE CUSTOMER       ");
+            System.out.println("==============================");
+            System.out.println("Selected pegawai : " + masterCustomerVM.getSelectedCustomer().getNama() + " - " + masterCustomerVM.getSelectedCustomer().getNIK());
+            System.out.println();
+            System.out.print("Anda yakin ingin menghapus customer ini?(y/n): ");
+            inputUser = InputUtilities.input.readLine();
+            if (inputUser.equalsIgnoreCase("y")) {
+                masterCustomerVM.deleteCustomer(masterCustomerVM.getSelectedCustomer().getNIK());
+                formatMessageOutput("Customer deleted");
+                System.out.println("==============================");
+                InputUtilities.pressEnter();
+                AppRouter.navigateTo(MASTER_CUSTOMER);
+            } else {
+                System.out.println();
+                formatMessageOutput("Process cancelledj");
+                System.out.println("==============================");
+                InputUtilities.pressEnter();
+            }
 
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
