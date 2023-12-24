@@ -80,6 +80,10 @@ public class HotelManagementApp {
                         this.masterPegawaiMenu.showMasterPegawaiMenu();
                         break;
 
+                    case SUB_MASTER_DETAIL_PEGAWAI:
+                        this.masterPegawaiMenu.showDetailPegawaiMenu();
+                        break;
+
                     case MASTER_CUSTOMER:
                         this.masterCustomerMenu.showMasterCustomerMenu();
                         break;

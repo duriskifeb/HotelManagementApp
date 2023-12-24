@@ -27,7 +27,10 @@ public class MasterMainMenu {
             System.out.println("Selamat Datang : " + authViewModel.loggedUser.getUserID() + " - " + authViewModel.loggedUser.getNama());
             System.out.println();
             System.out.println("1. Master Kamar");
-            System.out.println("2. Reporting"); // belum, Minggu selesai Amiin . . .
+            System.out.println("2. Master Pegawai");
+            System.out.println("3. Master Customer"); // belum, Minggu selesai Amiin . . .
+            System.out.println("4. Transaksi"); // belum, Minggu selesai Amiin . . .
+            System.out.println("5. Reporting"); // belum, Minggu selesai Amiin . . .
             System.out.println("0. Logout");
             System.out.println();
             System.out.print("Masukkan Pilihan : ");
@@ -36,6 +39,9 @@ public class MasterMainMenu {
                 switch (inputUser) {
                     case "1":
                         AppRouter.navigateTo(MASTER_KAMAR);
+                        break;
+                    case "2":
+                        AppRouter.navigateTo(MASTER_PEGAWAI);
                         break;
                     case "0":
                         authViewModel.doLogout();

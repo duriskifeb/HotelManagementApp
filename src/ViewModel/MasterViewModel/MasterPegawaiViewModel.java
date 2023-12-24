@@ -1,11 +1,14 @@
 package ViewModel.MasterViewModel;
 
 import Data.AppEnums.AppEnums;
+import Data.Model.Kamar;
 import Data.Model.User;
 import Domain.Master.MasterPegawai;
 import Util.Encryption;
 
 import static Util.Formatting.formatMessageOutput;
+
+import java.util.ArrayList;
 
 public class MasterPegawaiViewModel {
     MasterPegawai masterPegawai;
@@ -21,6 +24,10 @@ public class MasterPegawaiViewModel {
         if (selectedPegawai == null) {
             formatMessageOutput("Data Tidak Ditemukan");
         }
+    }
+
+    public User getSelectedPegawai(){
+        return this.selectedPegawai;
     }
 
     public void addNewPegawai(
@@ -52,6 +59,10 @@ public class MasterPegawaiViewModel {
             );
             masterPegawai.editDataPegawai(selectedPegawai, newData);
         }
+    }
+
+    public ArrayList<User> getListPegawai() {
+        return  masterPegawai.getAllPegawai();
     }
 
 
