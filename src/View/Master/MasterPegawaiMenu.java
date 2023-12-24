@@ -5,7 +5,6 @@ import static Util.Formatting.invalidChoice;
 import static View.AppRouter.AppRoute.MASTER_MAIN_MENU;
 import static View.AppRouter.AppRoute.MASTER_PEGAWAI;
 import static View.AppRouter.AppRoute.SUB_MASTER_DETAIL_PEGAWAI;
-import static View.Components.KamarView.viewAllDataKamar;
 import static View.Components.PegawaiView.*;
 
 import java.io.IOException;
@@ -13,7 +12,6 @@ import java.io.IOException;
 import Data.AppEnums.AppEnums;
 import Util.InputUtilities;
 import View.AppRouter;
-import View.AppRouter.AppRoute;
 import ViewModel.MasterViewModel.MasterPegawaiViewModel;
 
 public class MasterPegawaiMenu {
@@ -29,10 +27,10 @@ public class MasterPegawaiMenu {
         while (AppRouter.activeRoute == MASTER_PEGAWAI) {
             InputUtilities.cls();
             System.out.println("==============================");
-            System.out.println("         MENU MANAJER         ");
+            System.out.println("         MASTER PEGAWAI         ");
             System.out.println("==============================");
             System.out.println("1. Show all pegawai");
-            System.out.println("2. choose pegawai");
+            System.out.println("2. Choose pegawai");
             System.out.println("3. Add pegawai");
             System.out.println("0. Back");
             System.out.println();
