@@ -62,10 +62,7 @@ public class MasterKamarMenu {
     private void showAllKamar() {
         InputUtilities.cls();
         System.out.println("SHOW ALL KAMAR");
-        System.out.println("================================================================================");
-        System.out.println(" NO. KAMAR \tKAPASITAS \tHARGA \t\t JENIS \t\tSTATUS");
-        System.out.println("================================================================================");
-
+        kamarTableHeader();
         viewAllDataKamar(masterKamarVM.getListKamar());
         System.out.println("================================================================================");
 
@@ -183,10 +180,7 @@ public class MasterKamarMenu {
     private void detailMasterKamar() {
         InputUtilities.cls();
         System.out.println("SHOW DETAIL");
-        System.out.println("================================================================================");
-        System.out.println(" NO. KAMAR \tKAPASITAS \tHARGA \t\t JENIS \t\tSTATUS");
-        System.out.println("================================================================================");
-
+        kamarTableHeader();
         viewDataSelectedKamar(masterKamarVM.getSelectedKamar());
         System.out.println("================================================================================");
 

@@ -7,6 +7,13 @@ import Util.Formatting;
 import java.util.ArrayList;
 
 public class KamarView {
+
+    public static void kamarTableHeader(){
+        System.out.println("================================================================================");
+        System.out.format("%10s %10s \t%15s \t%10s \t%10s\n", "NO KAMAR", "KAPASITAS", "HARGA", "JENIS", "STATUS");
+        System.out.println("================================================================================");
+
+    }
     public static void viewDataSelectedKamar(Kamar selectedKamar) {
         if (selectedKamar != null) {
             String noKamar = selectedKamar.getNoKamar();
@@ -14,7 +21,7 @@ public class KamarView {
             String harga = Formatting.formatRupiah(selectedKamar.getHarga());
             AppEnums.JenisKamar jenis = selectedKamar.getJenisKamar();
             AppEnums.StatusKamar status = selectedKamar.getStatusKamar();
-            System.out.format("%10s %10s \t%15s \t%10s \t%10s\n", noKamar, kapasitas, harga, jenis, status);
+            System.out.format("%10s %10s \t%15s \t%10s \t%10s\n", noKamar, kapasitas+" Person(s)", harga, jenis, status);
         }
     }
 
@@ -29,7 +36,7 @@ public class KamarView {
                             String harga = Formatting.formatRupiah(kamar.getHarga());
                             AppEnums.JenisKamar jenis = kamar.getJenisKamar();
                             AppEnums.StatusKamar status = kamar.getStatusKamar();
-                            System.out.format("%10s %10s \t%15s \t%10s \t%10s\n", noKamar, kapasitas, harga, jenis, status);
+                            System.out.format("%10s %10s \t%15s \t%10s \t%10s\n", noKamar, kapasitas+" Person(s)", harga, jenis, status);
 
                         }
                 );
