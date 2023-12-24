@@ -135,7 +135,7 @@ public class MasterKamarMenu {
             InputUtilities.pressEnter();
 
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 
@@ -230,8 +230,8 @@ public class MasterKamarMenu {
                 InputUtilities.pressEnter();
             }
 
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -258,15 +258,15 @@ public class MasterKamarMenu {
                 InputUtilities.pressEnter();
             }
 
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
     private AppEnums.JenisKamar jenisKamar() {
         try {
-            String jenisString = InputUtilities.input.readLine();
-            return switch (jenisString.toLowerCase()) {
+            String inputJenis = InputUtilities.input.readLine();
+            return switch (inputJenis.toLowerCase()) {
                 case "single" -> AppEnums.JenisKamar.SINGLE;
                 case "double" -> AppEnums.JenisKamar.DOUBLE;
                 case "family" -> AppEnums.JenisKamar.FAMILY;
@@ -274,7 +274,7 @@ public class MasterKamarMenu {
                 case "business" -> AppEnums.JenisKamar.BUSINESS;
                 default -> null;
             };
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.err.println(e.getMessage());
             return null;
         }
@@ -282,15 +282,15 @@ public class MasterKamarMenu {
 
     private AppEnums.StatusKamar statusKamar() {
         try {
-            String statusString = InputUtilities.input.readLine();
-            return switch (statusString.toLowerCase()) {
+            String inputStatus = InputUtilities.input.readLine();
+            return switch (inputStatus.toLowerCase()) {
                 case "available" -> AppEnums.StatusKamar.AVAILABLE;
                 case "booked" -> AppEnums.StatusKamar.BOOKED;
                 case "cleaning" -> AppEnums.StatusKamar.CLEANING;
                 case "occupied" -> AppEnums.StatusKamar.OCCUPIED;
                 default -> null;
             };
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.err.println(e.getMessage());
             return null;
         }

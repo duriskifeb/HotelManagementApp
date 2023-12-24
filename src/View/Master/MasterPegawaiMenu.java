@@ -1,5 +1,6 @@
 package View.Master;
 
+import static Util.Formatting.formatMessageOutput;
 import static Util.Formatting.invalidChoice;
 import static View.AppRouter.AppRoute.MASTER_MAIN_MENU;
 import static View.AppRouter.AppRoute.MASTER_PEGAWAI;
@@ -9,6 +10,7 @@ import static View.Components.PegawaiView.*;
 
 import java.io.IOException;
 
+import Data.AppEnums.AppEnums;
 import Util.InputUtilities;
 import View.AppRouter;
 import View.AppRouter.AppRoute;
@@ -66,7 +68,7 @@ public class MasterPegawaiMenu {
         System.out.println("============================================================");
         System.out.println(" USER ID \tNAMA \t\tEMAIL \t\t ROLE");
         System.out.println("============================================================");
-        
+
         viewAllDataPegawai(masterPegawaiVM.getListPegawai());
         System.out.println("============================================================");
 
@@ -79,7 +81,7 @@ public class MasterPegawaiMenu {
             System.out.println("==============================");
             System.out.println("        CHOOSE PEGAWAI        ");
             System.out.println("==============================");
-            System.out.print("No. kamar\t: ");
+            System.out.print("User ID\t: ");
             String userID = InputUtilities.input.readLine();
             masterPegawaiVM.selectPegawai(userID);
             System.out.println("==============================");
@@ -95,10 +97,45 @@ public class MasterPegawaiMenu {
     }
 
     private void addPegawai() {
+        try {
+            InputUtilities.cls();
+            System.out.println("==============================");
+            System.out.println("        ADD NEW PEGAWAI       ");
+            System.out.println("==============================");
 
+            System.out.print("Nama\t: ");
+            String nama = InputUtilities.input.readLine();
+
+            System.out.print("Email\t: ");
+            String email = InputUtilities.input.readLine();
+
+            System.out.print("Password\t: ");
+            String password = InputUtilities.input.readLine();
+
+            System.out.print("Role\t: ");
+            AppEnums.UserRole role = role();
+
+            System.out.println("==============================");
+            System.out.println();
+            System.out.print("Apa anda yakin?(y/n): ");
+            inputUser = InputUtilities.input.readLine();
+
+            if (inputUser.equalsIgnoreCase("y")) {
+                masterPegawaiVM.addNewPegawai(nama, email, password, role);
+                formatMessageOutput("Pegawai added");
+            } else {
+                formatMessageOutput("Process cancelled");
+            }
+
+            System.out.println("==============================");
+            InputUtilities.pressEnter();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public void showDetailPegawaiMenu(){
+    public void showDetailPegawaiMenu() {
         while (AppRouter.activeRoute == SUB_MASTER_DETAIL_PEGAWAI) {
             InputUtilities.cls();
             System.out.println("==============================");
@@ -137,5 +174,20 @@ public class MasterPegawaiMenu {
             }
         }
     }
-}
 
+    private AppEnums.UserRole role() {
+        try {
+            String inputRole = InputUtilities.input.readLine();
+            return switch(inputRole.toLowerCase()){
+                case "pegawai" -> AppEnums.UserRole.PEGAWAI;
+                case "manager" -> AppEnums.UserRole.MANAGER;
+                default -> null;
+            };
+
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+            return null;
+        }
+
+    }
+}
