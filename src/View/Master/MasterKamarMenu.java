@@ -62,10 +62,7 @@ public class MasterKamarMenu {
     private void showAllKamar() {
         InputUtilities.cls();
         System.out.println("SHOW ALL KAMAR");
-        System.out.println("================================================================================");
-        System.out.println(" NO. KAMAR \tKAPASITAS \tHARGA \t\t JENIS \t\tSTATUS");
-        System.out.println("================================================================================");
-
+        kamarTableHeader();
         viewAllDataKamar(masterKamarVM.getListKamar());
         System.out.println("================================================================================");
 
@@ -106,14 +103,14 @@ public class MasterKamarMenu {
             String noKamar = InputUtilities.input.readLine();
 
             System.out.print("Kapasitas\t: ");
-            int kapasitas = InputUtilities.input.read();
+            int kapasitas = Integer.parseInt(InputUtilities.input.readLine());
             InputUtilities.input.readLine(); // biar bawahnya kebaca
 
             System.out.print("Jenis\t\t: ");
             AppEnums.JenisKamar jenis = jenisKamar();
 
             System.out.print("Harga\t\t: ");
-            double harga = InputUtilities.input.read();
+            double harga = Double.parseDouble(InputUtilities.input.readLine());
             InputUtilities.input.readLine(); // biar bawahnya kebaca
 
             System.out.print("Status\t\t: ");
@@ -183,10 +180,7 @@ public class MasterKamarMenu {
     private void detailMasterKamar() {
         InputUtilities.cls();
         System.out.println("SHOW DETAIL");
-        System.out.println("================================================================================");
-        System.out.println(" NO. KAMAR \tKAPASITAS \tHARGA \t\t JENIS \t\tSTATUS");
-        System.out.println("================================================================================");
-
+        kamarTableHeader();
         viewDataSelectedKamar(masterKamarVM.getSelectedKamar());
         System.out.println("================================================================================");
 
