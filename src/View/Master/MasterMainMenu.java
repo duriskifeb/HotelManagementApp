@@ -43,6 +43,9 @@ public class MasterMainMenu {
                     case "2":
                         AppRouter.navigateTo(MASTER_PEGAWAI);
                         break;
+                    case "3":
+                        AppRouter.navigateTo(MASTER_CUSTOMER);
+                        break;
                     case "0":
                         authViewModel.doLogout();
                         AppRouter.navigateTo(LOGIN);

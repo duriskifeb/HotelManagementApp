@@ -6,6 +6,8 @@ import Domain.Master.MasterCustomer;
 import static Util.Formatting.formatMessageOutput;
 import static View.Components.CustomerView.headerViewCustomer;
 
+import java.util.ArrayList;
+
 public class MasterCustomerViewModel {
     MasterCustomer masterCustomer;
     public MasterCustomerViewModel(MasterCustomer masterCustomer) {
@@ -19,6 +21,10 @@ public class MasterCustomerViewModel {
         if(this.currentSelectedCustomer == null) {
             formatMessageOutput("Data Tidak Ditemukan");
         }
+    }
+
+    public Customer getSelectedCustomer(){
+        return this.currentSelectedCustomer;
     }
 
     public void addNewCustomer(String NIK, String nama, String email, String telp){
@@ -54,6 +60,10 @@ public class MasterCustomerViewModel {
 
             masterCustomer.editDataCustomer(currentSelectedCustomer, newData);
         }
+    }
+
+    public ArrayList<Customer> getListCustomers() {
+        return masterCustomer.getListCustomer();
     }
 
 

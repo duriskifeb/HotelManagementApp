@@ -3,6 +3,7 @@ package View.Master;
 import static Util.Formatting.invalidChoice;
 import static View.AppRouter.AppRoute.MASTER_CUSTOMER;
 import static View.AppRouter.AppRoute.MASTER_MAIN_MENU;
+import static View.Components.CustomerView.viewAllDataCustomer;
 
 import java.io.IOException;
 
@@ -58,7 +59,16 @@ public class MasterCustomerMenu {
     }
 
     private void showAllCustomer() {
+        InputUtilities.cls();
+        System.out.println("SHOW ALL CUSTOMER");
+        System.out.println("============================================================");
+        System.out.println(" USER ID \tNAMA \t\tEMAIL \t\t ROLE");
+        System.out.println("============================================================");
 
+        viewAllDataCustomer(masterCustomerVM.getListCustomers());
+        System.out.println("============================================================");
+
+        InputUtilities.pressEnter();
     }
 
     private void choosingCustomer() {
@@ -66,7 +76,7 @@ public class MasterCustomerMenu {
     }
 
     private void addCustomer() {
-        
+
     }
 
 }
