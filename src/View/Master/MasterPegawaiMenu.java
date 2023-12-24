@@ -184,13 +184,13 @@ public class MasterPegawaiMenu {
     }
 
     private void deletePegawai() {
-        
+
     }
 
     private AppEnums.UserRole role() {
         try {
             String inputRole = InputUtilities.input.readLine();
-            return switch(inputRole.toLowerCase()){
+            return switch (inputRole.toLowerCase()) {
                 case "pegawai" -> AppEnums.UserRole.PEGAWAI;
                 case "manager" -> AppEnums.UserRole.MANAGER;
                 default -> null;
