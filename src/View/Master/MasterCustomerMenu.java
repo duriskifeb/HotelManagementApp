@@ -10,7 +10,6 @@ import static View.Components.CustomerView.viewDataSelectedCustomer;
 
 import java.io.IOException;
 
-import Data.AppEnums.AppEnums;
 import Util.InputUtilities;
 import View.AppRouter;
 import ViewModel.MasterViewModel.MasterCustomerViewModel;
