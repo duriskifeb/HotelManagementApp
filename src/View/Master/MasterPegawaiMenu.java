@@ -103,16 +103,16 @@ public class MasterPegawaiMenu {
             System.out.println("        ADD NEW PEGAWAI       ");
             System.out.println("==============================");
 
-            System.out.print("Nama\t: ");
+            System.out.print("Nama\t\t: ");
             String nama = InputUtilities.input.readLine();
 
-            System.out.print("Email\t: ");
+            System.out.print("Email\t\t: ");
             String email = InputUtilities.input.readLine();
 
             System.out.print("Password\t: ");
             String password = InputUtilities.input.readLine();
 
-            System.out.print("Role\t: ");
+            System.out.print("Role\t\t: ");
             AppEnums.UserRole role = role();
 
             System.out.println("==============================");
@@ -144,8 +144,8 @@ public class MasterPegawaiMenu {
             System.out.println("Selected pegawai : " + masterPegawaiVM.getSelectedPegawai().getUserID());
             System.out.println();
             System.out.println("1. Show detail");
-            System.out.println("2. Edit kamar");
-            System.out.println("3. Delete kamar");
+            System.out.println("2. Edit pegawai");
+            System.out.println("3. Delete pegawai");
             System.out.println("0. Back");
             System.out.println();
             System.out.print("Masukkan Pilihan : ");
@@ -154,16 +154,16 @@ public class MasterPegawaiMenu {
                 inputUser = InputUtilities.input.readLine();
                 switch (inputUser) {
                     case "1":
-                        showAllPegawai();
+                        detailPegawai();
                         break;
                     case "2":
-                        choosingPegawai();
+                        editPegawai();
                         break;
                     case "3":
-                        addPegawai();
+                        deletePegawai();
                         break;
                     case "0":
-                        AppRouter.navigateTo(MASTER_MAIN_MENU);
+                        AppRouter.navigateTo(MASTER_PEGAWAI);
                         break;
                     default:
                         invalidChoice();
@@ -173,6 +173,18 @@ public class MasterPegawaiMenu {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    private void detailPegawai() {
+
+    }
+
+    private void editPegawai() {
+
+    }
+
+    private void deletePegawai() {
+        
     }
 
     private AppEnums.UserRole role() {
