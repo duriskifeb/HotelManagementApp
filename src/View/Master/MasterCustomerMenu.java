@@ -1,5 +1,6 @@
 package View.Master;
 
+import static Util.Formatting.formatMessageOutput;
 import static Util.Formatting.invalidChoice;
 import static View.AppRouter.AppRoute.MASTER_CUSTOMER;
 import static View.AppRouter.AppRoute.MASTER_MAIN_MENU;
@@ -7,6 +8,7 @@ import static View.Components.CustomerView.viewAllDataCustomer;
 
 import java.io.IOException;
 
+import Data.AppEnums.AppEnums;
 import Util.InputUtilities;
 import View.AppRouter;
 import ViewModel.MasterViewModel.MasterCustomerViewModel;
@@ -89,11 +91,46 @@ public class MasterCustomerMenu {
     }
 
     private void addCustomer() {
+        try {
+            InputUtilities.cls();
+            System.out.println("==============================");
+            System.out.println("        ADD NEW CUSTOMER      ");
+            System.out.println("==============================");
+            
+            System.out.print("NIK\t: ");
+            String nik = InputUtilities.input.readLine();
 
+            System.out.print("Nama\t\t: ");
+            String nama = InputUtilities.input.readLine();
+
+            System.out.print("Email\t\t: ");
+            String email = InputUtilities.input.readLine();
+
+            System.out.print("Telp\t\t: ");
+            String telp = InputUtilities.input.readLine();
+
+            System.out.println("==============================");
+            System.out.println();
+            System.out.print("Apa anda yakin?(y/n): ");
+            inputUser = InputUtilities.input.readLine();
+
+            if (inputUser.equalsIgnoreCase("y")) {
+                masterCustomerVM.addNewCustomer(nik, nama, email, telp);
+                formatMessageOutput("Customer added");
+            } else {
+                formatMessageOutput("Process cancelled");
+            }
+
+            System.out.println("==============================");
+            InputUtilities.pressEnter();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void showDetailCustomerMenu() {
-        
+
     }
 
 }
