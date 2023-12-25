@@ -113,7 +113,6 @@ public class MasterCustomerMenu {
 
             System.out.println("==============================");
             System.out.println();
-            1
 
             if (inputUser.equalsIgnoreCase("y")) {
                 masterCustomerVM.addNewCustomer(nik, nama, email, telp);
