@@ -17,6 +17,7 @@ import static Util.Formatting.formatMessageOutput;
 import static View.AppRouter.AppRoute.*;
 import static View.Components.KamarView.viewAllDataKamar;
 import static View.Components.TransaksiView.viewAllTransaksi;
+import static View.Components.TransaksiView.viewDetailSelectedTransaksi;
 
 public class TransaksiMenu {
 
@@ -53,22 +54,18 @@ public class TransaksiMenu {
 
             System.out.print("Masukkan Pilihan : ");
             try {
+
                 inputUser = InputUtilities.input.readLine();
+                System.out.println();
                 switch (inputUser) {
                     case "1":
-                        System.out.println();
                         viewAllTransaksi(transaksiVM.getAllTransaksi());
-                        System.out.println();
                         break;
                     case "2":
-                        System.out.println();
                         initNewTransaksi();
-                        System.out.println();
                         break;
                     case "3":
-                        System.out.println();
                         pilihTransaksi();
-                        System.out.println();
                         break;
                     case "0":
                         AppRouter.navigateTo(MAIN_MENU);
@@ -76,6 +73,7 @@ public class TransaksiMenu {
                     default:
                         System.out.println("Invalid Choice");
                 }
+                System.out.println();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -190,18 +188,19 @@ public class TransaksiMenu {
         }
     }
 
-    private boolean conditionHaveToPay(){
+    private boolean conditionHaveToPay() {
         return transaksiVM.currentActiveTransaksi.getStatusTransaksi() == AppEnums.StatusTransaksi.PENDING
                 || transaksiVM.currentActiveTransaksi.getStatusTransaksi() == AppEnums.StatusTransaksi.ONGOING;
     }
 
-    private boolean conditionCanStillEdit(){
+    private boolean conditionCanStillEdit() {
         return transaksiVM.currentActiveTransaksi.getStatusTransaksi() == AppEnums.StatusTransaksi.PENDING;
     }
 
-    private boolean conditionAlreadyCheckIn(){
+    private boolean conditionAlreadyCheckIn() {
         return transaksiVM.currentActiveTransaksi.getStatusTransaksi() == AppEnums.StatusTransaksi.ONGOING;
     }
+
     public void subTransaksiMenu() {
         while (AppRouter.activeRoute == AppRouter.AppRoute.SUB_TRANSAKSI) {
 //        - lihat detail
@@ -235,60 +234,159 @@ public class TransaksiMenu {
             if (conditionAlreadyCheckIn()) {
                 System.out.println("10. Check Out");
             }
+            System.out.println("11. Commit Transaksi");
             System.out.println("0. Kembali");
 
             System.out.print("Masukkan Pilihan : ");
             try {
                 inputUser = InputUtilities.input.readLine();
-                boolean conditionCantEdit =!conditionCanStillEdit() && Integer.parseInt(inputUser) <= 3 && Integer.parseInt(inputUser) >= 10;
-                boolean conditionHaveToPay =!conditionHaveToPay() && inputUser.equals("2");
-                boolean conditionAlreadyCheckIn =!conditionHaveToPay() && inputUser.equals("10");
+                boolean conditionCantEdit = !conditionCanStillEdit() && Integer.parseInt(inputUser) <= 3 && Integer.parseInt(inputUser) >= 10;
+                boolean conditionHaveToPay = !conditionHaveToPay() && inputUser.equals("2");
+                boolean conditionAlreadyCheckIn = !conditionHaveToPay() && inputUser.equals("10");
 
-                if(conditionCantEdit || conditionHaveToPay || conditionAlreadyCheckIn){
-                    inputUser="";
+                if (conditionCantEdit || conditionHaveToPay || conditionAlreadyCheckIn) {
+                    inputUser = "";
                 }
-
-                //TODO
+                System.out.println();
                 switch (inputUser) {
                     case "1":
-
+                        viewDetailSelectedTransaksi(transaksiVM.currentActiveTransaksi);
                         break;
                     case "2":
-
+                        bayarTransaksi();
                         break;
                     case "3":
-
+                        ubahTanggalMulai();
                         break;
                     case "4":
-
+                        ubahTanggalSelesai();
                         break;
                     case "5":
-
+                        tambahTamu();
                         break;
                     case "6":
-
+                        kurangiTamu();
                         break;
                     case "7":
-
+                        tambahKamar();
                         break;
                     case "8":
-
+                        kurangiKamar();
                         break;
                     case "9":
-
+                        checkIn();
                         break;
                     case "10":
+                        checkOut();
+                        break;
 
+                    case "11":
+                        transaksiVM.commitTransaksi();
                         break;
                     case "0":
+                        transaksiVM.commitTransaksi();
                         AppRouter.navigateTo(TRANSAKSI);
                         break;
                     default:
                         System.out.println("Invalid Choice");
                 }
+                System.out.println();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+        }
+    }
+
+    private void checkOut() {
+        System.out.println("Check out");
+        transaksiVM.checkOut();
+    }
+
+    private void checkIn() {
+        System.out.println("Check in");
+        transaksiVM.checkIn();
+    }
+
+    private void kurangiKamar() {
+        try {
+            System.out.println("Kurangi Kamar");
+            System.out.print("Masukkan Nomor Kamar : ");
+            String noKamar = InputUtilities.input.readLine();
+            transaksiVM.removeKamar(noKamar);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void tambahKamar() {
+        try {
+            System.out.println("Tambakan Kamar");
+            System.out.print("Masukkan Nomor Kamar : ");
+            String noKamar = InputUtilities.input.readLine();
+            transaksiVM.addKamar(noKamar);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void kurangiTamu() {
+        try {
+            System.out.println("Hapus tamu dari transaksi");
+            System.out.print("Masukkan NIK : ");
+            String nik = InputUtilities.input.readLine();
+            transaksiVM.removeCustomer(nik);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void tambahTamu() {
+        System.out.println("tambahkan tamu ke transaksi");
+        String nik = getNIKCustomer();
+        if (!nik.isBlank()) {
+            transaksiVM.addCustomer(nik);
+        }
+    }
+
+    private void ubahTanggalSelesai() {
+        System.out.println("Ubah Tanggal Selesai");
+        System.out.print("Masukkan Tanggal Selesai (dd-MM-yyyy) : ");
+        Date date = InputUtilities.getDateFromInput();
+        if (date != null) {
+            transaksiVM.currentActiveTransaksi.setEndDate(date);
+        } else {
+            formatMessageOutput("Invalid Date");
+        }
+    }
+
+    private void ubahTanggalMulai() {
+        System.out.println("Ubah Tanggal Mulai");
+
+        System.out.print("Masukkan Tanggal Mulai (dd-MM-yyyy) : ");
+        Date date = InputUtilities.getDateFromInput();
+        if (date != null) {
+            transaksiVM.currentActiveTransaksi.setStartDate(date);
+        } else {
+            formatMessageOutput("Invalid Date");
+        }
+    }
+
+    private void bayarTransaksi() {
+        try {
+            System.out.println("Pembayaran Transaksi");
+            double amountBayar = 0;
+            System.out.print("Masukkan Metode Bayar (bank/ cash) : ");
+            AppEnums.Pembayaran metodebayar = InputUtilities.getMetodeBayarFromInput();
+
+            if (metodebayar == AppEnums.Pembayaran.CASH) {
+                System.out.print("Masukkan Amount Bayar : ");
+                amountBayar = Double.parseDouble(InputUtilities.input.readLine());
+            } else {
+                amountBayar = transaksiVM.currentActiveTransaksi.getTotal();
+            }
+            transaksiVM.bayar(metodebayar, amountBayar);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
