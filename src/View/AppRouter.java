@@ -21,6 +21,8 @@ public class AppRouter {
         SUB_PEGAWAI_KAMAR,
         SUB_PEGAWAI_CUSTOMER,
 
+        SUB_PEGAWAI_TRANSAKSI,
+
         // MANAGER
         MASTER_MAIN_MENU, // main menu manager
         MASTER_PEGAWAI,

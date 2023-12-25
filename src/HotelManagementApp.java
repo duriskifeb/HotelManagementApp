@@ -52,7 +52,7 @@ public class HotelManagementApp {
         this.masterReportingMenu = new MasterReportingMenu(DI.masterReportingVM);
         this.masterTransaksiMenu = new MasterTransaksiMenu(DI.masterTransaksiVM);
 
-        this.transaksiMenu = new TransaksiMenu(DI.transaksiVM, DI.authViewModel);
+        this.transaksiMenu = new TransaksiMenu(DI.transaksiVM, DI.masterKamarVM, DI.authViewModel, DI.masterCustomerVM);
         this.reportingMenu = new ReportingMenu(DI.reportingVM, DI.authViewModel);
     }
 
@@ -80,6 +80,10 @@ public class HotelManagementApp {
 
                     case SUB_PEGAWAI_KAMAR:
                         this.pegawaiKamarMenu.showMenuKamar();
+                        break;
+
+                    case SUB_PEGAWAI_TRANSAKSI:
+                        this.transaksiMenu.subTransaksiPegawai();
                         break;
 
                     case MASTER_MAIN_MENU:

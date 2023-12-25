@@ -114,11 +114,11 @@ public class MasterCustomerMenu {
             System.out.println("==============================");
             System.out.println();
 
-            if (inputUser.equalsIgnoreCase("y")) {
+//            if (inputUser.equalsIgnoreCase("y")) {
                 masterCustomerVM.addNewCustomer(nik, nama, email, telp);
-            } else {
-                formatMessageOutput("Process cancelled");
-            }
+//            } else {
+//                formatMessageOutput("Process cancelled");
+//            }
 
             System.out.println("==============================");
             InputUtilities.pressEnter();
