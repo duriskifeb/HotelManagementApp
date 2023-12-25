@@ -8,8 +8,18 @@ public class AppRouter {
     public static AppRoute activeRoute;
 
     public enum AppRoute {
+        // GLOBAL
         LOGIN,
+        EXIT,
+
+        TRANSAKSI,
+        REPORTING,
+
+        // PEGAWAI
         MAIN_MENU, // main menu pegawai
+
+
+        // MANAGER
         MASTER_MAIN_MENU, // main menu manager
         MASTER_PEGAWAI,
         MASTER_CUSTOMER,
@@ -19,9 +29,7 @@ public class AppRouter {
         SUB_MASTER_DETAIL_CUSTOMER,
         MASTER_TRANSAKSI,
         MASTER_REPORTING,
-        TRANSAKSI,
-        REPORTING,
-        EXIT
+
     }
 
     ;

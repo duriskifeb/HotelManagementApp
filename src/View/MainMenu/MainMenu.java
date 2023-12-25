@@ -164,19 +164,34 @@ public class MainMenu {
     }
 
     String inputUser;
+
     public void showMainMenu() {
-        while (AppRouter.activeRoute == AppRouter.AppRoute.MAIN_MENU){
+        while (AppRouter.activeRoute == AppRouter.AppRoute.MAIN_MENU) {
             System.out.println();
             appHeader();
             System.out.println("Selamat Datang : " + authViewModel.loggedUser.getUserID() + " - " + authViewModel.loggedUser.getNama());
-            System.out.println("0 to logout");
-            System.out.println("1 ayam");
+            System.out.println("==============");
+            System.out.println("1. Transaksi");
+            System.out.println("2. Reporting");
+            System.out.println("==============");
+            System.out.println("3. Pelanggan");
+            System.out.println("4. Kamar");
+            System.out.println("0. Logout");
             System.out.print("Masukkan Pilihan : ");
             try {
                 inputUser = InputUtilities.input.readLine();
                 switch (inputUser) {
                     case "1":
-                        System.out.println("ayam");
+                        showMenuTransaksi();
+                        break;
+                    case "2":
+                        showMenuReporting();
+                        break;
+                    case "3":
+                        showMenuPelanggan();
+                        break;
+                    case "4":
+                        showMenuKamar();
                         break;
                     case "0":
                         authViewModel.doLogout();
@@ -190,5 +205,20 @@ public class MainMenu {
             }
         }
 
+    }
+
+    private void showMenuTransaksi() {
+    }
+
+    private void showMenuReporting() {
+        
+    }
+
+    private void showMenuPelanggan() {
+        
+    }
+
+    private void showMenuKamar() {
+        
     }
 }
