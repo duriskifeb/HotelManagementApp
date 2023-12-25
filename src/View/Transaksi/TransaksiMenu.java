@@ -13,6 +13,14 @@ public class TransaksiMenu {
     }
 
     public void showTransaksiMenu() {
-
+//        # Transaksi #
+//- lihat list transaksi
+//- cari transaksi (lihat transaksi detail)
+//- buat transaksi baru
+//- pilih transaksi
+//       - bayar
+//       - check in
+//       - check out
+//      - batalkan transaksi
     }
 }

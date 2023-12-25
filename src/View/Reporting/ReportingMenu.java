@@ -11,4 +11,10 @@ public class ReportingMenu {
 
     public void showReportingMenu() {
     }
+
+
+//        # Laporan #
+//- Buat  (generate) Laporan
+//- Lihat generated laporan
+//- Simpan Laporan
 }

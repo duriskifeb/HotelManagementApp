@@ -38,18 +38,15 @@ public class MainMenu {
                 switch (inputUser) {
                     case "1":
                         AppRouter.navigateTo(TRANSAKSI);
-//                        showMenuTransaksi();
                         break;
                     case "2":
-//                        showMenuReporting();
                         AppRouter.navigateTo(REPORTING);
                         break;
                     case "3":
                         AppRouter.navigateTo(SUB_PEGAWAI_CUSTOMER);
-//                        showMenuPelanggan();
                         break;
                     case "4":
-                        showMenuKamar();
+                        AppRouter.navigateTo(SUB_PEGAWAI_KAMAR);
                         break;
                     case "0":
                         authViewModel.doLogout();
@@ -65,76 +62,4 @@ public class MainMenu {
 
     }
 
-    private void showMenuTransaksi() {
-//        # Transaksi #
-//- lihat list transaksi
-//- cari transaksi (lihat transaksi detail)
-//- buat transaksi baru
-//- pilih transaksi
-//       - bayar
-//       - check in
-//       - check out
-//      - batalkan transaksi
-    }
-
-    private void showMenuReporting() {
-
-//        # Laporan #
-//- Buat  (generate) Laporan
-//- Lihat generated laporan
-//- Simpan Laporan
-        
-    }
-
-    private void showMenuPelanggan() {
-
-        while(AppRouter.activeRoute == SUB_PEGAWAI_CUSTOMER){
-
-            System.out.println();
-            System.out.println("Menu Customer Pegawai");
-            System.out.println("==============");
-            System.out.println("1. Transaksi");
-            System.out.println("0. Kembali");
-
-            System.out.print("Masukkan Pilihan : ");
-            try {
-                inputUser = InputUtilities.input.readLine();
-                switch (inputUser) {
-                    case "1":
-                        AppRouter.navigateTo(TRANSAKSI);
-//                        showMenuTransaksi();
-                        break;
-                    case "2":
-                        break;
-                    case "3":
-                        break;
-                    case "4":
-                        showMenuKamar();
-                        break;
-                    case "0":
-                        AppRouter.navigateTo(LOGIN);
-                        break;
-                    default:
-                        System.out.println("Invalid Choice");
-                }
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-//        # Pelanggan #
-//        - lihat list pelanggan
-//        - register pelanggan
-//                - lihat data detail pelanggan (cari pelanggan)
-        
-    }
-
-    private void showMenuKamar() {
-
-
-//        # Kamar #
-//- lihat list kamar  ( beserta status)
-//- lihat list kamar tersedia
-//- lihat detail kamar (cari kamar)
-        
-    }
 }
