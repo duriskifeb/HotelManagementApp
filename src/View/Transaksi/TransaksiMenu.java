@@ -10,11 +10,11 @@ import ViewModel.TransaksiViewModel.TransaksiViewModel;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.stream.Collectors;
 
 import static Util.Formatting.formatMessageOutput;
-import static View.AppRouter.AppRoute.MAIN_MENU;
-import static View.AppRouter.AppRoute.SUB_TRANSAKSI;
+import static View.AppRouter.AppRoute.*;
 import static View.Components.KamarView.viewAllDataKamar;
 import static View.Components.TransaksiView.viewAllTransaksi;
 
@@ -94,8 +94,12 @@ public class TransaksiMenu {
         System.out.println();
 
         try {
-            String nik = getNIKCustomer();
+            System.out.print("Tanggal Mulai (dd-MM-yyyy) : ");
+            Date startDate = InputUtilities.getDateFromInput();
+            System.out.print("Tanggal Berakhir (dd-MM-yyyy) : ");
+            Date endDate = InputUtilities.getDateFromInput();
 
+            String nik = getNIKCustomer();
             viewAllDataKamar(kamarVM.getListKamar().stream().filter(kamar -> kamar.getStatusKamar() == AppEnums.StatusKamar.AVAILABLE).collect(Collectors.toCollection(ArrayList::new)));
 
             System.out.println();
@@ -108,6 +112,13 @@ public class TransaksiMenu {
                         noKamar,
                         AppEnums.Pembayaran.CASH // default
                 );
+
+                if (transaksiVM.currentActiveTransaksi != null) {
+                    transaksiVM.currentActiveTransaksi.setStartDate(startDate);
+                    transaksiVM.currentActiveTransaksi.setStartDate(endDate);
+                    AppRouter.navigateTo(SUB_TRANSAKSI);
+                }
+
             } else {
                 formatMessageOutput("Data Pelanggan Belum Ada, Lakukan register pelanggan dulu");
             }
@@ -179,7 +190,19 @@ public class TransaksiMenu {
         }
     }
 
-    public void subTransaksiPegawai() {
+    private boolean conditionHaveToPay(){
+        return transaksiVM.currentActiveTransaksi.getStatusTransaksi() == AppEnums.StatusTransaksi.PENDING
+                || transaksiVM.currentActiveTransaksi.getStatusTransaksi() == AppEnums.StatusTransaksi.ONGOING;
+    }
+
+    private boolean conditionCanStillEdit(){
+        return transaksiVM.currentActiveTransaksi.getStatusTransaksi() == AppEnums.StatusTransaksi.PENDING;
+    }
+
+    private boolean conditionAlreadyCheckIn(){
+        return transaksiVM.currentActiveTransaksi.getStatusTransaksi() == AppEnums.StatusTransaksi.ONGOING;
+    }
+    public void subTransaksiMenu() {
         while (AppRouter.activeRoute == AppRouter.AppRoute.SUB_TRANSAKSI) {
 //        - lihat detail
 //       - bayar
@@ -188,6 +211,84 @@ public class TransaksiMenu {
 //      - batalkan transaksi
             // commit transaksi
 
+            System.out.println();
+            System.out.println("============================");
+            System.out.println("Sub-Menu Transaksi " + transaksiVM.currentActiveTransaksi.getNoTransaksi());
+            System.out.println("============================");
+            System.out.println("1. Lihat Detail");
+            if (conditionHaveToPay()) {
+                System.out.println("2. Bayar");
+            }
+            if (conditionCanStillEdit()) {
+                System.out.println("---------------------------");
+                System.out.println("3. Ubah Tanggal Mulai");
+                System.out.println("4. Ubah Tanggal Selesai");
+                System.out.println("---------------------------");
+                System.out.println("5. Tambah Tamu");
+                System.out.println("6. Kurangi Tamu");
+                System.out.println("---------------------------");
+                System.out.println("7. Tambah Kamar");
+                System.out.println("8. Kurangi Kamar");
+                System.out.println("---------------------------");
+                System.out.println("9. Check In");
+            }
+            if (conditionAlreadyCheckIn()) {
+                System.out.println("10. Check Out");
+            }
+            System.out.println("0. Kembali");
+
+            System.out.print("Masukkan Pilihan : ");
+            try {
+                inputUser = InputUtilities.input.readLine();
+                boolean conditionCantEdit =!conditionCanStillEdit() && Integer.parseInt(inputUser) <= 3 && Integer.parseInt(inputUser) >= 10;
+                boolean conditionHaveToPay =!conditionHaveToPay() && inputUser.equals("2");
+                boolean conditionAlreadyCheckIn =!conditionHaveToPay() && inputUser.equals("10");
+
+                if(conditionCantEdit || conditionHaveToPay || conditionAlreadyCheckIn){
+                    inputUser="";
+                }
+
+                //TODO
+                switch (inputUser) {
+                    case "1":
+
+                        break;
+                    case "2":
+
+                        break;
+                    case "3":
+
+                        break;
+                    case "4":
+
+                        break;
+                    case "5":
+
+                        break;
+                    case "6":
+
+                        break;
+                    case "7":
+
+                        break;
+                    case "8":
+
+                        break;
+                    case "9":
+
+                        break;
+                    case "10":
+
+                        break;
+                    case "0":
+                        AppRouter.navigateTo(TRANSAKSI);
+                        break;
+                    default:
+                        System.out.println("Invalid Choice");
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }
