@@ -49,7 +49,8 @@ public class MasterKamarMenu {
                         addKamar();
                         break;
                     case "0":
-                        AppRouter.navigateTo(MASTER_MAIN_MENU);
+                        AppRouter.navigateUp();
+//                        AppRouter.navigateTo(MASTER_MAIN_MENU);
                         break;
                     default:
                         invalidChoice();
@@ -165,7 +166,8 @@ public class MasterKamarMenu {
                         deleteMasterKamar();
                         break;
                     case "0":
-                        AppRouter.navigateTo(MASTER_KAMAR); // Langsung kembali ke "menu manager", bukan ke "master kamar"
+                        AppRouter.navigateUp();
+//                        AppRouter.navigateTo(MASTER_KAMAR); // Langsung kembali ke "menu manager", bukan ke "master kamar"
                         break;
                     default:
                         invalidChoice();

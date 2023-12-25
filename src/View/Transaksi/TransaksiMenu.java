@@ -68,7 +68,8 @@ public class TransaksiMenu {
                         pilihTransaksi();
                         break;
                     case "0":
-                        AppRouter.navigateTo(MAIN_MENU);
+                        AppRouter.navigateUp();
+//                        AppRouter.navigateTo(MAIN_MENU);
                         break;
                     default:
                         System.out.println("Invalid Choice");
@@ -285,7 +286,8 @@ public class TransaksiMenu {
                         break;
                     case "0":
                         transaksiVM.commitTransaksi();
-                        AppRouter.navigateTo(TRANSAKSI);
+                        AppRouter.navigateUp();
+//                        AppRouter.navigateTo(TRANSAKSI);
                         break;
                     default:
                         System.out.println("Invalid Choice");

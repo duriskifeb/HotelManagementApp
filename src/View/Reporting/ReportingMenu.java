@@ -68,7 +68,8 @@ public class ReportingMenu {
                         System.out.println();
                         break;
                     case "0":
-                        AppRouter.navigateTo(MAIN_MENU);
+                        AppRouter.navigateUp();
+//                        AppRouter.navigateTo(MAIN_MENU);
                         break;
                     default:
                         System.out.println("Invalid Choice");
