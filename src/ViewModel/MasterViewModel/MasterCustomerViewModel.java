@@ -17,9 +17,10 @@ public class MasterCustomerViewModel {
     Customer currentSelectedCustomer;
 
     public void selectCustomer(String nik){
+        formatMessageOutput("Search By NIK");
         this.currentSelectedCustomer = masterCustomer.getCustomer(nik);
         if(this.currentSelectedCustomer == null) {
-            formatMessageOutput("Data Tidak Ditemukan");
+            formatMessageOutput("Data NIK Tidak Ditemukan");
         }
     }
 

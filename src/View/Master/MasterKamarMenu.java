@@ -226,7 +226,7 @@ public class MasterKamarMenu {
                 formatMessageOutput("Kamar editted");
                 System.out.println("==============================");
                 InputUtilities.pressEnter();
-                AppRouter.navigateTo(MASTER_KAMAR);
+//                AppRouter.navigateTo(MASTER_KAMAR);
             } else {
                 formatMessageOutput("Process cancelled");
                 System.out.println("==============================");

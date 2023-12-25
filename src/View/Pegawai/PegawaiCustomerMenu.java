@@ -1,10 +1,13 @@
 package View.Pegawai;
 
+import Data.Model.Customer;
 import Util.InputUtilities;
 import View.AppRouter;
 import ViewModel.MasterViewModel.MasterCustomerViewModel;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import static Util.Formatting.formatMessageOutput;
 import static View.AppRouter.AppRoute.*;
@@ -62,20 +65,38 @@ public class PegawaiCustomerMenu {
         }
     }
     private void findCustomer() {
+        System.out.println();
         try {
             InputUtilities.cls();
             System.out.println("==============================");
             System.out.println("        FIND CUSTOMER       ");
             System.out.println("==============================");
-            System.out.print("NIK\t: ");
+            System.out.print("NIK atau Nama\t: ");
             String nik = InputUtilities.input.readLine();
             masterCustomerVM.selectCustomer(nik);
             System.out.println("==============================");
-            InputUtilities.pressEnter();
 
             if (masterCustomerVM.getSelectedCustomer() != null) {
                 // show detail customer
                 detailCustomer();
+            }else{
+                formatMessageOutput("Search By Name");
+                // filter by name
+                final ArrayList<Customer> filteredData = masterCustomerVM
+                        .getListCustomers()
+                        .stream()
+                        .filter(
+                                customer -> customer.getNama().toLowerCase().contains(nik.toLowerCase())
+                        )
+                        .collect(
+                                Collectors.toCollection(ArrayList::new)
+                        );
+                if(!filteredData.isEmpty()){
+                    viewAllDataCustomer(filteredData);
+                }else {
+                    formatMessageOutput("Data Customer Not Found");
+                }
+
             }
 
         } catch (IOException e) {
@@ -93,6 +114,7 @@ public class PegawaiCustomerMenu {
     }
 
     private void registerCustomer() {
+        System.out.println();
         try {
             InputUtilities.cls();
             System.out.println("==============================");
