@@ -1,4 +1,4 @@
-package View.Master;
+package View.MainMenu;
 
 import Util.InputUtilities;
 import View.AppRouter;

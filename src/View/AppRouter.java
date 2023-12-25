@@ -18,6 +18,8 @@ public class AppRouter {
         // PEGAWAI
         MAIN_MENU, // main menu pegawai
 
+        SUB_PEGAWAI_KAMAR,
+        SUB_PEGAWAI_CUSTOMER,
 
         // MANAGER
         MASTER_MAIN_MENU, // main menu manager

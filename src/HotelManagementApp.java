@@ -2,6 +2,7 @@ import Util.Formatting;
 import View.AppRouter;
 import View.Auth.AuthMenu;
 import View.MainMenu.MainMenu;
+import View.MainMenu.MasterMainMenu;
 import View.Master.*;
 import View.Reporting.ReportingMenu;
 import View.Transaksi.TransaksiMenu;
