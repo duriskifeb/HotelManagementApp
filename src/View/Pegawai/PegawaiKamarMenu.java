@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 import static Util.Formatting.formatMessageOutput;
 import static View.AppRouter.AppRoute.*;
+import static View.Components.KamarView.kamarTableHeader;
 import static View.Components.KamarView.viewAllDataKamar;
 
 public class PegawaiKamarMenu {
@@ -30,8 +31,7 @@ public class PegawaiKamarMenu {
 //- lihat list kamar tersedia
 //- lihat detail kamar (cari kamar)
         while(AppRouter.activeRoute == SUB_PEGAWAI_KAMAR){
-
-            System.out.println();
+            InputUtilities.cls();
             System.out.println("============================");
             System.out.println("Menu Kamar Pegawai");
             System.out.println("============================");
@@ -68,7 +68,6 @@ public class PegawaiKamarMenu {
     }
 
     private void findKamarByStatus() {
-        System.out.println();
         InputUtilities.cls();
         System.out.println("==============================");
         System.out.println("        FIND KAMAR       ");
@@ -83,6 +82,7 @@ public class PegawaiKamarMenu {
         AppEnums.StatusKamar status = InputUtilities.getStatusKamarFromInput();
         System.out.println("==============================");
         if(status != null){
+
             final ArrayList<Kamar> filteredData = masterKamarVM
                     .getListKamar()
                     .stream()
@@ -93,6 +93,8 @@ public class PegawaiKamarMenu {
                             Collectors.toCollection(ArrayList::new)
                     );
             if(!filteredData.isEmpty()){
+                InputUtilities.cls();
+                kamarTableHeader();
                 viewAllDataKamar(filteredData);
             }else {
                 formatMessageOutput("Data Kamar Not Found");
@@ -101,13 +103,13 @@ public class PegawaiKamarMenu {
             formatMessageOutput("Status tidak dikenali, menampilkan semua data");
             showAllKamar();
         }
+        InputUtilities.pressEnter();
     }
 
     private void showAllKamar() {
-        System.out.println();
         InputUtilities.cls();
         System.out.println("SHOW ALL KAMAR");
-
+        kamarTableHeader();
         viewAllDataKamar(masterKamarVM.getListKamar());
         System.out.println("============================================================");
 
@@ -115,7 +117,6 @@ public class PegawaiKamarMenu {
     }
 
     private void findKamarBytype() {
-        System.out.println();
         InputUtilities.cls();
         System.out.println("==============================");
         System.out.println("        FIND KAMAR       ");
@@ -141,6 +142,8 @@ public class PegawaiKamarMenu {
                             Collectors.toCollection(ArrayList::new)
                     );
             if(!filteredData.isEmpty()){
+                InputUtilities.cls();
+                kamarTableHeader();
                 viewAllDataKamar(filteredData);
             }else {
                 formatMessageOutput("Data Kamar Not Found");
@@ -149,5 +152,6 @@ public class PegawaiKamarMenu {
             formatMessageOutput("Status tidak dikenali, menampilkan semua data");
             showAllKamar();
         }
+        InputUtilities.cls();
     }
 }

@@ -29,8 +29,7 @@ public class PegawaiCustomerMenu {
 //        - register pelanggan
 //                - lihat data detail pelanggan (cari pelanggan)
         while(AppRouter.activeRoute == SUB_PEGAWAI_CUSTOMER){
-
-            System.out.println();
+            InputUtilities.cls();
             System.out.println("============================");
             System.out.println("Menu Customer Pegawai");
             System.out.println("============================");

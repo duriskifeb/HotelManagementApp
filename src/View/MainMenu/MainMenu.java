@@ -40,29 +40,16 @@ public class MainMenu {
                 inputUser = InputUtilities.input.readLine();
                 switch (inputUser) {
                     case "1":
-<<<<<<< HEAD
-                    AppRouter.navigateTo(SUB_PEGAWAI_KAMAR);
-                        break;
-                    case "2":
-                        AppRouter.navigateTo(SUB_PEGAWAI_CUSTOMER);
-                        break;
-                    case "3":
-                        AppRouter.navigateTo(TRANSAKSI);
-                        break;
-                    case "4":
-                        AppRouter.navigateTo(REPORTING);
-=======
-                        AppRouter.navigateTo(TRANSAKSI);
-                        break;
-                    case "2":
-                        AppRouter.navigateTo(REPORTING);
-                        break;
-                    case "3":
-                        AppRouter.navigateTo(SUB_PEGAWAI_CUSTOMER);
-                        break;
-                    case "4":
                         AppRouter.navigateTo(SUB_PEGAWAI_KAMAR);
->>>>>>> 2a4302f60946b9152fa46a40432d39169657e05e
+                        break;
+                    case "2":
+                        AppRouter.navigateTo(SUB_PEGAWAI_CUSTOMER);
+                        break;
+                    case "3":
+                        AppRouter.navigateTo(TRANSAKSI);
+                        break;
+                    case "4":
+                        AppRouter.navigateTo(REPORTING);
                         break;
                     case "0":
                         authViewModel.doLogout();
@@ -78,7 +65,6 @@ public class MainMenu {
 
     }
 
-<<<<<<< HEAD
     private void showMenuTransaksi() {
         // # Transaksi #
         // - lihat list transaksi
@@ -103,11 +89,13 @@ public class MainMenu {
     private void showMenuPelanggan() {
 
         while (AppRouter.activeRoute == SUB_PEGAWAI_CUSTOMER) {
-
+            InputUtilities.cls();
             System.out.println();
-            System.out.println("Menu Customer Pegawai");
-            System.out.println("==============");
-            System.out.println("1. Transaksi");
+            System.out.println("==============================");
+            System.out.println("         MENU CUSTOMER        ");
+            System.out.println("==============================");
+            System.out.println("1. Show all customers");
+            System.out.println("2. Add new customer");
             System.out.println("0. Kembali");
 
             System.out.print("Masukkan Pilihan : ");
@@ -115,15 +103,10 @@ public class MainMenu {
                 inputUser = InputUtilities.input.readLine();
                 switch (inputUser) {
                     case "1":
-                        AppRouter.navigateTo(TRANSAKSI);
-                        // showMenuTransaksi();
                         break;
                     case "2":
                         break;
                     case "3":
-                        break;
-                    case "4":
-                        showMenuKamar();
                         break;
                     case "0":
                         AppRouter.navigateTo(LOGIN);
@@ -150,6 +133,4 @@ public class MainMenu {
         // - lihat detail kamar (cari kamar)
 
     }
-=======
->>>>>>> 2a4302f60946b9152fa46a40432d39169657e05e
 }

@@ -42,8 +42,7 @@ public class TransaksiMenu {
 //- pilih transaksi
 
         while (AppRouter.activeRoute == AppRouter.AppRoute.TRANSAKSI) {
-
-            System.out.println();
+            InputUtilities.cls();
             System.out.println("============================");
             System.out.println("Menu Transaksi");
             System.out.println("============================");
@@ -59,7 +58,9 @@ public class TransaksiMenu {
                 System.out.println();
                 switch (inputUser) {
                     case "1":
+                    InputUtilities.cls();
                         viewAllTransaksi(transaksiVM.getAllTransaksi());
+                        InputUtilities.pressEnter();
                         break;
                     case "2":
                         initNewTransaksi();
