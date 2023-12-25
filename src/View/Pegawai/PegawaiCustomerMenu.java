@@ -54,7 +54,7 @@ public class PegawaiCustomerMenu {
                         findCustomer();
                         break;
                     case "0":
-                        AppRouter.navigateTo(LOGIN);
+                        AppRouter.navigateTo(MAIN_MENU);
                         break;
                     default:
                         System.out.println("Invalid Choice");

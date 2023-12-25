@@ -1,5 +1,7 @@
 package Util;
 
+import Data.AppEnums.AppEnums;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -57,6 +59,39 @@ public class InputUtilities {
             InputUtilities.input.readLine();
         } catch (Exception e) {
             System.err.println(e.getMessage());
+        }
+    }
+
+    public static AppEnums.JenisKamar getJenisKamarFromInput() {
+        try {
+            String inputJenis = InputUtilities.input.readLine();
+            return switch (inputJenis.toLowerCase()) {
+                case "single" -> AppEnums.JenisKamar.SINGLE;
+                case "double" -> AppEnums.JenisKamar.DOUBLE;
+                case "family" -> AppEnums.JenisKamar.FAMILY;
+                case "vip" -> AppEnums.JenisKamar.VIP;
+                case "business" -> AppEnums.JenisKamar.BUSINESS;
+                default -> null;
+            };
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+            return null;
+        }
+    }
+
+    public static AppEnums.StatusKamar getStatusKamarFromInput() {
+        try {
+            String inputStatus = InputUtilities.input.readLine();
+            return switch (inputStatus.toLowerCase()) {
+                case "available" -> AppEnums.StatusKamar.AVAILABLE;
+                case "booked" -> AppEnums.StatusKamar.BOOKED;
+                case "cleaning" -> AppEnums.StatusKamar.CLEANING;
+                case "occupied" -> AppEnums.StatusKamar.OCCUPIED;
+                default -> null;
+            };
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+            return null;
         }
     }
 }
