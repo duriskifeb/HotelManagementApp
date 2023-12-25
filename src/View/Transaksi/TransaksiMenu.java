@@ -26,7 +26,8 @@ public class TransaksiMenu {
     private final AuthViewModel authViewModel;
     private final MasterCustomerViewModel masterCustomerVM;
 
-    public TransaksiMenu(TransaksiViewModel transaksiVM, MasterKamarViewModel kamarVM, AuthViewModel authViewModel, MasterCustomerViewModel masterCustomerVM) {
+    public TransaksiMenu(TransaksiViewModel transaksiVM, MasterKamarViewModel kamarVM, AuthViewModel authViewModel,
+            MasterCustomerViewModel masterCustomerVM) {
         this.transaksiVM = transaksiVM;
         this.kamarVM = kamarVM;
         this.authViewModel = authViewModel;
@@ -36,10 +37,10 @@ public class TransaksiMenu {
     String inputUser;
 
     public void showTransaksiMenu() {
-        //        # Transaksi #
-//- lihat list transaksi
-//- buat transaksi baru
-//- pilih transaksi
+        // # Transaksi #
+        // - lihat list transaksi
+        // - buat transaksi baru
+        // - pilih transaksi
 
         while (AppRouter.activeRoute == AppRouter.AppRoute.TRANSAKSI) {
             InputUtilities.cls();
@@ -58,7 +59,7 @@ public class TransaksiMenu {
                 System.out.println();
                 switch (inputUser) {
                     case "1":
-                    InputUtilities.cls();
+                        InputUtilities.cls();
                         viewAllTransaksi(transaksiVM.getAllTransaksi());
                         InputUtilities.pressEnter();
                         break;
@@ -70,7 +71,7 @@ public class TransaksiMenu {
                         break;
                     case "0":
                         AppRouter.navigateUp();
-//                        AppRouter.navigateTo(MAIN_MENU);
+                        // AppRouter.navigateTo(MAIN_MENU);
                         break;
                     default:
                         System.out.println("Invalid Choice");
@@ -86,7 +87,7 @@ public class TransaksiMenu {
 
     private void initNewTransaksi() {
 
-
+        InputUtilities.cls();
         System.out.println("============================");
         System.out.println("Initializing Transaction");
         System.out.println("============================");
@@ -100,7 +101,9 @@ public class TransaksiMenu {
             Date endDate = InputUtilities.getDateFromInput();
 
             String nik = getNIKCustomer();
-            viewAllDataKamar(kamarVM.getListKamar().stream().filter(kamar -> kamar.getStatusKamar() == AppEnums.StatusKamar.AVAILABLE).collect(Collectors.toCollection(ArrayList::new)));
+            viewAllDataKamar(kamarVM.getListKamar().stream()
+                    .filter(kamar -> kamar.getStatusKamar() == AppEnums.StatusKamar.AVAILABLE)
+                    .collect(Collectors.toCollection(ArrayList::new)));
 
             System.out.println();
             System.out.print("Masukkan Nomor Kamar yang dipilih dari yang tersedia diatas : ");
@@ -126,7 +129,6 @@ public class TransaksiMenu {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
 
     }
 
@@ -205,11 +207,11 @@ public class TransaksiMenu {
 
     public void subTransaksiMenu() {
         while (AppRouter.activeRoute == AppRouter.AppRoute.SUB_TRANSAKSI) {
-//        - lihat detail
-//       - bayar
-//       - check in
-//       - check out
-//      - batalkan transaksi
+            // - lihat detail
+            // - bayar
+            // - check in
+            // - check out
+            // - batalkan transaksi
             // commit transaksi
 
             System.out.println();
@@ -242,7 +244,8 @@ public class TransaksiMenu {
             System.out.print("Masukkan Pilihan : ");
             try {
                 inputUser = InputUtilities.input.readLine();
-                boolean conditionCantEdit = !conditionCanStillEdit() && Integer.parseInt(inputUser) <= 3 && Integer.parseInt(inputUser) >= 10;
+                boolean conditionCantEdit = !conditionCanStillEdit() && Integer.parseInt(inputUser) <= 3
+                        && Integer.parseInt(inputUser) >= 10;
                 boolean conditionHaveToPay = !conditionHaveToPay() && inputUser.equals("2");
                 boolean conditionAlreadyCheckIn = !conditionHaveToPay() && inputUser.equals("10");
 
@@ -288,7 +291,7 @@ public class TransaksiMenu {
                     case "0":
                         transaksiVM.commitTransaksi();
                         AppRouter.navigateUp();
-//                        AppRouter.navigateTo(TRANSAKSI);
+                        // AppRouter.navigateTo(TRANSAKSI);
                         break;
                     default:
                         System.out.println("Invalid Choice");
