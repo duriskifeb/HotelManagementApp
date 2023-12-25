@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import static Util.Formatting.invalidChoice;
 import static View.AppRouter.AppRoute.LOGIN;
+import static View.Components.MainView.appHeader;
 
 public class AuthMenu {
     private final AuthViewModel authViewModel;
@@ -21,9 +22,7 @@ public class AuthMenu {
     public void showLogin() {
         while (AppRouter.activeRoute == LOGIN) {
             InputUtilities.cls();
-            System.out.println("==============================");
-            System.out.println("     HOTEL MANAGEMENT APP     ");
-            System.out.println("==============================");
+            appHeader();
             System.out.println("1. Login");
             System.out.println("0. EXIT");
             System.out.println();

@@ -62,6 +62,9 @@ public class MasterReportingViewModel {
         masterReporting.deleteReport(reportNumber);
     }
 
+    public ReportModel getAllReport(){
+        return getAllReport();
+    }
 
 
 }
