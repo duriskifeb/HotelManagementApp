@@ -22,6 +22,7 @@ public class MasterKamar {
         // check if kamar already exists
         if(!cekKamar(kamar.getNoKamar())){
             dataSource.addNewKamar(kamar);
+            formatMessageOutput("Kamar Added");
         }else {
             formatMessageOutput("Data Kamar Sudah Ada");
         }

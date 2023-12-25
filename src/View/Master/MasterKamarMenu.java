@@ -104,14 +104,13 @@ public class MasterKamarMenu {
 
             System.out.print("Kapasitas\t: ");
             int kapasitas = Integer.parseInt(InputUtilities.input.readLine());
-//            InputUtilities.input.readLine(); // biar bawahnya kebaca
+
 
             System.out.print("Jenis\t\t: ");
             AppEnums.JenisKamar jenis = jenisKamar();
 
             System.out.print("Harga\t\t: ");
             double harga = Double.parseDouble(InputUtilities.input.readLine());
-//            InputUtilities.input.readLine(); // biar bawahnya kebaca
 
             System.out.print("Status\t\t: ");
             AppEnums.StatusKamar status = statusKamar();
@@ -193,16 +192,20 @@ public class MasterKamarMenu {
             System.out.println("==============================");
             System.out.println("          EDIT KAMAR          ");
             System.out.println("==============================");
+            System.out.println("Kosongi jika tidak ingin mengubah data tertentu");
+            System.out.println();
+
+            System.out.print("No Kamar\t: ");
+            String noKamar = InputUtilities.input.readLine();
+
             System.out.print("Kapasitas\t: ");
-            int kapasitas = InputUtilities.input.read();
-            InputUtilities.input.readLine(); // Biar bawahnya kebaca
+            String kapasitas = InputUtilities.input.readLine();
 
             System.out.print("Jenis\t\t: ");
             AppEnums.JenisKamar jenisKamar = jenisKamar();
 
             System.out.print("Harga\t\t: ");
-            double harga = InputUtilities.input.read();
-            InputUtilities.input.readLine(); // Biar bawahnya kebaca
+            String harga = InputUtilities.input.readLine();
 
             System.out.print("Status kamar\t: ");
             AppEnums.StatusKamar statusKamar = statusKamar();
@@ -213,7 +216,13 @@ public class MasterKamarMenu {
             inputUser = InputUtilities.input.readLine();
 
             if (inputUser.equalsIgnoreCase("y")) {
-                masterKamarVM.editKamar(masterKamarVM.getSelectedKamar().getNoKamar(), kapasitas, jenisKamar, harga, statusKamar);
+                masterKamarVM.editKamar(
+                        noKamar,
+                        kapasitas.isBlank() ? 0 : Integer.parseInt(kapasitas),
+                        jenisKamar,
+                        harga.isBlank() ? 0 : Double.parseDouble(harga),
+                        statusKamar
+                );
                 formatMessageOutput("Kamar editted");
                 System.out.println("==============================");
                 InputUtilities.pressEnter();
