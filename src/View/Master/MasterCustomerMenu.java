@@ -3,8 +3,8 @@ package View.Master;
 import static Util.Formatting.formatMessageOutput;
 import static Util.Formatting.invalidChoice;
 import static View.AppRouter.AppRoute.MASTER_CUSTOMER;
-import static View.AppRouter.AppRoute.MASTER_MAIN_MENU;
 import static View.AppRouter.AppRoute.SUB_MASTER_DETAIL_CUSTOMER;
+import static View.AppRouter.navigateUp;
 import static View.Components.CustomerView.viewAllDataCustomer;
 import static View.Components.CustomerView.viewDataSelectedCustomer;
 
@@ -48,7 +48,8 @@ public class MasterCustomerMenu {
                         addCustomer();
                         break;
                     case "0":
-                        AppRouter.navigateTo(MASTER_MAIN_MENU);
+                        navigateUp();
+//                        AppRouter.navigateTo(MASTER_MAIN_MENU);
                         break;
                     default:
                         invalidChoice();;
@@ -91,6 +92,7 @@ public class MasterCustomerMenu {
         }
     }
 
+
     private void addCustomer() {
         try {
             InputUtilities.cls();
@@ -112,14 +114,12 @@ public class MasterCustomerMenu {
 
             System.out.println("==============================");
             System.out.println();
-            System.out.print("Apa anda yakin?(y/n): ");
-            inputUser = InputUtilities.input.readLine();
 
-            if (inputUser.equalsIgnoreCase("y")) {
+//            if (inputUser.equalsIgnoreCase("y")) {
                 masterCustomerVM.addNewCustomer(nik, nama, email, telp);
-            } else {
-                formatMessageOutput("Process cancelled");
-            }
+//            } else {
+//                formatMessageOutput("Process cancelled");
+//            }
 
             System.out.println("==============================");
             InputUtilities.pressEnter();
@@ -156,7 +156,8 @@ public class MasterCustomerMenu {
                         deleteCustomer();
                         break;
                     case "0":
-                        AppRouter.navigateTo(MASTER_CUSTOMER);
+                        navigateUp();
+//                        AppRouter.navigateTo(MASTER_CUSTOMER);
                         break;
                     default:
                         invalidChoice();

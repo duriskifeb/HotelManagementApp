@@ -2,6 +2,8 @@ package View.Master;
 
 import static Util.Formatting.formatMessageOutput;
 import static Util.Formatting.invalidChoice;
+import static Util.InputUtilities.getJenisKamarFromInput;
+import static Util.InputUtilities.getStatusKamarFromInput;
 import static View.AppRouter.AppRoute.MASTER_KAMAR;
 import static View.AppRouter.AppRoute.MASTER_MAIN_MENU;
 import static View.Components.KamarView.*;
@@ -47,7 +49,8 @@ public class MasterKamarMenu {
                         addKamar();
                         break;
                     case "0":
-                        AppRouter.navigateTo(MASTER_MAIN_MENU);
+                        AppRouter.navigateUp();
+//                        AppRouter.navigateTo(MASTER_MAIN_MENU);
                         break;
                     default:
                         invalidChoice();
@@ -107,13 +110,13 @@ public class MasterKamarMenu {
 
 
             System.out.print("Jenis\t\t: ");
-            AppEnums.JenisKamar jenis = jenisKamar();
+            AppEnums.JenisKamar jenis = getJenisKamarFromInput();
 
             System.out.print("Harga\t\t: ");
             double harga = Double.parseDouble(InputUtilities.input.readLine());
 
             System.out.print("Status\t\t: ");
-            AppEnums.StatusKamar status = statusKamar();
+            AppEnums.StatusKamar status = getStatusKamarFromInput();
 
             System.out.println("==============================");
             System.out.println();
@@ -163,7 +166,8 @@ public class MasterKamarMenu {
                         deleteMasterKamar();
                         break;
                     case "0":
-                        AppRouter.navigateTo(MASTER_KAMAR); // Langsung kembali ke "menu manager", bukan ke "master kamar"
+                        AppRouter.navigateUp();
+//                        AppRouter.navigateTo(MASTER_KAMAR); // Langsung kembali ke "menu manager", bukan ke "master kamar"
                         break;
                     default:
                         invalidChoice();
@@ -202,13 +206,13 @@ public class MasterKamarMenu {
             String kapasitas = InputUtilities.input.readLine();
 
             System.out.print("Jenis\t\t: ");
-            AppEnums.JenisKamar jenisKamar = jenisKamar();
+            AppEnums.JenisKamar jenisKamar = getJenisKamarFromInput();
 
             System.out.print("Harga\t\t: ");
             String harga = InputUtilities.input.readLine();
 
             System.out.print("Status kamar\t: ");
-            AppEnums.StatusKamar statusKamar = statusKamar();
+            AppEnums.StatusKamar statusKamar = getStatusKamarFromInput();
 
             System.out.println("==============================");
             System.out.println();
@@ -226,7 +230,7 @@ public class MasterKamarMenu {
                 formatMessageOutput("Kamar editted");
                 System.out.println("==============================");
                 InputUtilities.pressEnter();
-                AppRouter.navigateTo(MASTER_KAMAR);
+//                AppRouter.navigateTo(MASTER_KAMAR);
             } else {
                 formatMessageOutput("Process cancelled");
                 System.out.println("==============================");
@@ -266,36 +270,5 @@ public class MasterKamarMenu {
         }
     }
 
-    private AppEnums.JenisKamar jenisKamar() {
-        try {
-            String inputJenis = InputUtilities.input.readLine();
-            return switch (inputJenis.toLowerCase()) {
-                case "single" -> AppEnums.JenisKamar.SINGLE;
-                case "double" -> AppEnums.JenisKamar.DOUBLE;
-                case "family" -> AppEnums.JenisKamar.FAMILY;
-                case "vip" -> AppEnums.JenisKamar.VIP;
-                case "business" -> AppEnums.JenisKamar.BUSINESS;
-                default -> null;
-            };
-        } catch (IOException e) {
-            System.err.println(e.getMessage());
-            return null;
-        }
-    }
 
-    private AppEnums.StatusKamar statusKamar() {
-        try {
-            String inputStatus = InputUtilities.input.readLine();
-            return switch (inputStatus.toLowerCase()) {
-                case "available" -> AppEnums.StatusKamar.AVAILABLE;
-                case "booked" -> AppEnums.StatusKamar.BOOKED;
-                case "cleaning" -> AppEnums.StatusKamar.CLEANING;
-                case "occupied" -> AppEnums.StatusKamar.OCCUPIED;
-                default -> null;
-            };
-        } catch (IOException e) {
-            System.err.println(e.getMessage());
-            return null;
-        }
-    }
 }

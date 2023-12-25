@@ -4,6 +4,8 @@ import View.Auth.AuthMenu;
 import View.MainMenu.MainMenu;
 import View.MainMenu.MasterMainMenu;
 import View.Master.*;
+import View.Pegawai.PegawaiCustomerMenu;
+import View.Pegawai.PegawaiKamarMenu;
 import View.Reporting.ReportingMenu;
 import View.Transaksi.TransaksiMenu;
 
@@ -12,6 +14,9 @@ public class HotelManagementApp {
     // MENUS VIEWS
     AuthMenu authMenu;
     MainMenu mainMenu;
+
+    PegawaiCustomerMenu pegawaiCustomerMenu;
+    PegawaiKamarMenu pegawaiKamarMenu;
 
     // masters menus
     MasterCustomerMenu masterCustomerMenu;
@@ -38,14 +43,17 @@ public class HotelManagementApp {
         this.mainMenu = new MainMenu(DI.authViewModel);
         this.masterMainMenu = new MasterMainMenu(DI.authViewModel);
 
+        this.pegawaiCustomerMenu = new PegawaiCustomerMenu(DI.masterCustomerVM);
+        this.pegawaiKamarMenu = new PegawaiKamarMenu(DI.masterKamarVM);
+
         this.masterCustomerMenu = new MasterCustomerMenu(DI.masterCustomerVM);
         this.masterKamarMenu = new MasterKamarMenu(DI.masterKamarVM);
         this.masterPegawaiMenu = new MasterPegawaiMenu(DI.masterPegawaiVM);
         this.masterReportingMenu = new MasterReportingMenu(DI.masterReportingVM);
         this.masterTransaksiMenu = new MasterTransaksiMenu(DI.masterTransaksiVM);
 
-        this.transaksiMenu = new TransaksiMenu(DI.transaksiVM);
-        this.reportingMenu = new ReportingMenu(DI.reportingVM);
+        this.transaksiMenu = new TransaksiMenu(DI.transaksiVM, DI.masterKamarVM, DI.authViewModel, DI.masterCustomerVM);
+        this.reportingMenu = new ReportingMenu(DI.reportingVM, DI.authViewModel);
     }
 
     private void onViewCreated() {
@@ -64,6 +72,18 @@ public class HotelManagementApp {
 
                     case MAIN_MENU:
                         this.mainMenu.showMainMenu();
+                        break;
+
+                    case SUB_PEGAWAI_CUSTOMER:
+                        this.pegawaiCustomerMenu.showMenuPelanggan();
+                        break;
+
+                    case SUB_PEGAWAI_KAMAR:
+                        this.pegawaiKamarMenu.showMenuKamar();
+                        break;
+
+                    case SUB_TRANSAKSI:
+                        this.transaksiMenu.subTransaksiMenu();
                         break;
 
                     case MASTER_MAIN_MENU:

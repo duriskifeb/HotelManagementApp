@@ -8,7 +8,14 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class TransaksiView {
+    public static void headerViewTransaksi(){
+        System.out.println("_______________________________________________________________________________________");
+        System.out.format("%20s %25s %20s %20s\n", "No transaksi", "Customer", "Status", "Tanggal");
+        System.out.println("_______________________________________________________________________________________");
+    }
+
     public static void viewAllTransaksi(ArrayList<Transaksi> listTransaksi) {
+        headerViewTransaksi();
         listTransaksi
                 .stream()
                 .iterator()
@@ -34,17 +41,17 @@ public class TransaksiView {
 
             System.out.println("========================================= DETAIL TRANSAKSI =========================================");
             System.out.println("No Transaksi: " + noTransaksi);
-            System.out.println("PIC : " + "Nama PIC" + "( " + "PIC ID AYAM" + " )");
+            System.out.println("PIC : " + selectedTransaksi.getPegawai().getNama() + "( " + selectedTransaksi.getPegawai().getUserID() + " )");
             System.out.println("---------------------------------------------------------------------------------------------------");
             System.out.println("Pelanggan : " + user);
             System.out.println("Status: " + status);
             System.out.println("Tanggal : " + tanggalTransaksi);
             System.out.println("---------------------------------------------------------------------------------------------------");
-            System.out.println("Start : " + Formatting.formatDate(new Date()));
-            System.out.println("End : " + Formatting.formatDate(new Date()));
+            System.out.println("Start : " + Formatting.formatDate(selectedTransaksi.getStartDate()));
+            System.out.println("End : " + Formatting.formatDate(selectedTransaksi.getEndDate()));
             System.out.println("---------------------------------------------------------------------------------------------------");
-            System.out.println("Check In : " + Formatting.formatDate(new Date()));
-            System.out.println("Check Out : " + Formatting.formatDate(new Date()));
+            System.out.println("Check In : " + Formatting.formatDate(selectedTransaksi.getCheckIn()));
+            System.out.println("Check Out : " + Formatting.formatDate(selectedTransaksi.getCheckOut()));
 
             System.out.println("========================================= DETAIL PESANAN =========================================");
             System.out.println("KAMAR : ");

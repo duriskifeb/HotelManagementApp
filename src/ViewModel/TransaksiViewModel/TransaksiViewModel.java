@@ -35,8 +35,10 @@ public class TransaksiViewModel {
     }
 
     public void commitTransaksi() {
+        System.out.println("Menyimpan Perubahan");
         transaksiUseCase.commitTransaksi();
         updateStateTransaksi();
+
     }
 
     public void createInitialTransaksi(String NIK, User pegawai, String noKamar, AppEnums.Pembayaran payment) {

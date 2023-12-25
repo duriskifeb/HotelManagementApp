@@ -40,6 +40,7 @@ public class MainMenu {
                 inputUser = InputUtilities.input.readLine();
                 switch (inputUser) {
                     case "1":
+<<<<<<< HEAD
                     AppRouter.navigateTo(SUB_PEGAWAI_KAMAR);
                         break;
                     case "2":
@@ -50,6 +51,18 @@ public class MainMenu {
                         break;
                     case "4":
                         AppRouter.navigateTo(REPORTING);
+=======
+                        AppRouter.navigateTo(TRANSAKSI);
+                        break;
+                    case "2":
+                        AppRouter.navigateTo(REPORTING);
+                        break;
+                    case "3":
+                        AppRouter.navigateTo(SUB_PEGAWAI_CUSTOMER);
+                        break;
+                    case "4":
+                        AppRouter.navigateTo(SUB_PEGAWAI_KAMAR);
+>>>>>>> 2a4302f60946b9152fa46a40432d39169657e05e
                         break;
                     case "0":
                         authViewModel.doLogout();
@@ -65,6 +78,7 @@ public class MainMenu {
 
     }
 
+<<<<<<< HEAD
     private void showMenuTransaksi() {
         // # Transaksi #
         // - lihat list transaksi
@@ -136,4 +150,6 @@ public class MainMenu {
         // - lihat detail kamar (cari kamar)
 
     }
+=======
+>>>>>>> 2a4302f60946b9152fa46a40432d39169657e05e
 }

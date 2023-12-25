@@ -48,7 +48,8 @@ public class MasterPegawaiMenu {
                         addPegawai();
                         break;
                     case "0":
-                        AppRouter.navigateTo(MASTER_MAIN_MENU);
+                        AppRouter.navigateUp();
+//                        AppRouter.navigateTo(MASTER_MAIN_MENU);
                         break;
                     default:
                         invalidChoice();
@@ -160,7 +161,8 @@ public class MasterPegawaiMenu {
                         deletePegawai();
                         break;
                     case "0":
-                        AppRouter.navigateTo(MASTER_PEGAWAI);
+                        AppRouter.navigateUp();
+//                        AppRouter.navigateTo(MASTER_PEGAWAI);
                         break;
                     default:
                         invalidChoice();

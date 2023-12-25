@@ -1,8 +1,24 @@
 package View;
 
+import java.util.LinkedList;
+
 public class AppRouter {
+    public static  LinkedList<AppRoute> routeStack = new LinkedList();
     public static void navigateTo(AppRoute target) {
-        activeRoute = target;
+        if(target != AppRoute.EXIT){
+            routeStack.add(target);
+            activeRoute = routeStack.getLast();//target;
+        }else{
+            activeRoute = target;
+        }
+
+    }
+
+    public static void navigateUp(){
+        if(routeStack.size() > 1){
+            routeStack.removeLast();
+            activeRoute = routeStack.getLast();
+        }
     }
 
     public static AppRoute activeRoute;
@@ -14,12 +30,14 @@ public class AppRouter {
 
         TRANSAKSI,
         REPORTING,
+        SUB_TRANSAKSI,
 
         // PEGAWAI
-        MAIN_MENU, // main menu pegawai
+        MAIN_MENU, // main menu pegawai,
 
         SUB_PEGAWAI_KAMAR,
         SUB_PEGAWAI_CUSTOMER,
+
 
         // MANAGER
         MASTER_MAIN_MENU, // main menu manager
