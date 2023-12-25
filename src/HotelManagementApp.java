@@ -46,15 +46,14 @@ public class HotelManagementApp {
         this.pegawaiCustomerMenu = new PegawaiCustomerMenu(DI.masterCustomerVM);
         this.pegawaiKamarMenu = new PegawaiKamarMenu(DI.masterKamarVM);
 
-
         this.masterCustomerMenu = new MasterCustomerMenu(DI.masterCustomerVM);
         this.masterKamarMenu = new MasterKamarMenu(DI.masterKamarVM);
         this.masterPegawaiMenu = new MasterPegawaiMenu(DI.masterPegawaiVM);
         this.masterReportingMenu = new MasterReportingMenu(DI.masterReportingVM);
         this.masterTransaksiMenu = new MasterTransaksiMenu(DI.masterTransaksiVM);
 
-        this.transaksiMenu = new TransaksiMenu(DI.transaksiVM);
-        this.reportingMenu = new ReportingMenu(DI.reportingVM);
+        this.transaksiMenu = new TransaksiMenu(DI.transaksiVM, DI.authViewModel);
+        this.reportingMenu = new ReportingMenu(DI.reportingVM, DI.authViewModel);
     }
 
     private void onViewCreated() {

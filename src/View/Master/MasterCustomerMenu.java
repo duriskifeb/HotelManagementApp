@@ -113,8 +113,7 @@ public class MasterCustomerMenu {
 
             System.out.println("==============================");
             System.out.println();
-            System.out.print("Apa anda yakin?(y/n): ");
-            inputUser = InputUtilities.input.readLine();
+            1
 
             if (inputUser.equalsIgnoreCase("y")) {
                 masterCustomerVM.addNewCustomer(nik, nama, email, telp);

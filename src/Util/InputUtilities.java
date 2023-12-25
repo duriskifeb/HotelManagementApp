@@ -5,6 +5,9 @@ import Data.AppEnums.AppEnums;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class InputUtilities {
 
@@ -91,6 +94,24 @@ public class InputUtilities {
             };
         } catch (IOException e) {
             System.err.println(e.getMessage());
+            return null;
+        }
+    }
+
+    public static Date getDateFromInput() {
+        try {
+            String inputDate = InputUtilities.input.readLine();
+            // Replace "/" with "-" in the input string
+            inputDate = inputDate.replaceAll("/", "-");
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+            // Parse the formatted string to a Date object
+            return dateFormat.parse(inputDate);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+            return null;
+        } catch (ParseException e) {
             return null;
         }
     }

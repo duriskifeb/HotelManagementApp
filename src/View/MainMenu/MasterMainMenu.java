@@ -49,6 +49,9 @@ public class MasterMainMenu {
                     case "4":
                         AppRouter.navigateTo(MASTER_TRANSAKSI);
                         break;
+                    case "5":
+                        AppRouter.navigateTo(MASTER_REPORTING);
+                        break;
                     case "0":
                         authViewModel.doLogout();
                         AppRouter.navigateTo(LOGIN);
