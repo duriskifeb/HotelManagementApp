@@ -8,7 +8,7 @@ import View.Transaksi.TransaksiMenu;
 
 public class HotelManagementApp {
 
-    //MENUS VIEWS
+    // MENUS VIEWS
     AuthMenu authMenu;
     MainMenu mainMenu;
 
@@ -23,13 +23,15 @@ public class HotelManagementApp {
 
     TransaksiMenu transaksiMenu;
     ReportingMenu reportingMenu;
-    //MENUS VIEWS
-    HotelManagementApp(){
+
+    // MENUS VIEWS
+    HotelManagementApp() {
         // init the application here
         onCreate();
         onViewCreated();
     }
-    private void onCreate(){
+
+    private void onCreate() {
         this.authMenu = new AuthMenu(DI.authViewModel);
 
         this.mainMenu = new MainMenu(DI.authViewModel);
@@ -39,23 +41,22 @@ public class HotelManagementApp {
         this.masterKamarMenu = new MasterKamarMenu(DI.masterKamarVM);
         this.masterPegawaiMenu = new MasterPegawaiMenu(DI.masterPegawaiVM);
         this.masterReportingMenu = new MasterReportingMenu(DI.masterReportingVM);
-        this.masterTransaksiMenu= new MasterTransaksiMenu(DI.masterTransaksiVM);
+        this.masterTransaksiMenu = new MasterTransaksiMenu(DI.masterTransaksiVM);
 
         this.transaksiMenu = new TransaksiMenu(DI.transaksiVM);
         this.reportingMenu = new ReportingMenu(DI.reportingVM);
     }
 
-    private void onViewCreated(){
+    private void onViewCreated() {
         // initial route move to Login
         AppRouter.navigateTo(AppRouter.AppRoute.LOGIN);
     }
 
-
-    public void run(){
+    public void run() {
         // app loop
-        while(true){
-            try{
-                switch (AppRouter.activeRoute){
+        while (true) {
+            try {
+                switch (AppRouter.activeRoute) {
                     case LOGIN:
                         this.authMenu.showLogin();
                         break;
@@ -88,6 +89,10 @@ public class HotelManagementApp {
                         this.masterCustomerMenu.showMasterCustomerMenu();
                         break;
 
+                    case SUB_MASTER_DETAIL_CUSTOMER:
+                        this.masterCustomerMenu.showDetailCustomerMenu();
+                        break;
+
                     case MASTER_REPORTING:
                         this.masterReportingMenu.showMasterReportingMenu();
                         break;
@@ -113,7 +118,7 @@ public class HotelManagementApp {
                         Formatting.formatMessageOutput("Invalid Route");
                         break;
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 // in case something goes wroong, like the user press CTRL+ c
                 Formatting.formatMessageOutput("Woops, something went wrong : " + e.getMessage());
                 AppRouter.navigateTo(AppRouter.AppRoute.EXIT);
@@ -122,6 +127,4 @@ public class HotelManagementApp {
         }
     }
 
-
 }
-

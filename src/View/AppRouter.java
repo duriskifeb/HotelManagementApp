@@ -16,6 +16,7 @@ public class AppRouter {
         MASTER_KAMAR,
         SUB_MASTER_DETAIL_KAMAR,
         SUB_MASTER_DETAIL_PEGAWAI,
+        SUB_MASTER_DETAIL_CUSTOMER,
         MASTER_TRANSAKSI,
         MASTER_REPORTING,
         TRANSAKSI,
