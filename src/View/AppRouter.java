@@ -14,14 +14,14 @@ public class AppRouter {
 
         TRANSAKSI,
         REPORTING,
+        SUB_TRANSAKSI,
 
         // PEGAWAI
-        MAIN_MENU, // main menu pegawai
+        MAIN_MENU, // main menu pegawai,
 
         SUB_PEGAWAI_KAMAR,
         SUB_PEGAWAI_CUSTOMER,
 
-        SUB_PEGAWAI_TRANSAKSI,
 
         // MANAGER
         MASTER_MAIN_MENU, // main menu manager

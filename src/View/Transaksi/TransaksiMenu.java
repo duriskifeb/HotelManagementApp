@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 import static Util.Formatting.formatMessageOutput;
 import static View.AppRouter.AppRoute.MAIN_MENU;
-import static View.AppRouter.AppRoute.SUB_PEGAWAI_TRANSAKSI;
+import static View.AppRouter.AppRoute.SUB_TRANSAKSI;
 import static View.Components.KamarView.viewAllDataKamar;
 import static View.Components.TransaksiView.viewAllTransaksi;
 
@@ -172,7 +172,7 @@ public class TransaksiMenu {
             String noTransaksi = InputUtilities.input.readLine();
             transaksiVM.selectTranasksi(noTransaksi);
             if (transaksiVM.currentActiveTransaksi != null) {
-                AppRouter.navigateTo(SUB_PEGAWAI_TRANSAKSI);
+                AppRouter.navigateTo(SUB_TRANSAKSI);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -180,14 +180,13 @@ public class TransaksiMenu {
     }
 
     public void subTransaksiPegawai() {
-        while (AppRouter.activeRoute == AppRouter.AppRoute.SUB_PEGAWAI_TRANSAKSI) {
+        while (AppRouter.activeRoute == AppRouter.AppRoute.SUB_TRANSAKSI) {
 //        - lihat detail
 //       - bayar
 //       - check in
 //       - check out
 //      - batalkan transaksi
             // commit transaksi
-
 
         }
     }

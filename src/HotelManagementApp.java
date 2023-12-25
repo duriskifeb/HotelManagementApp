@@ -82,7 +82,7 @@ public class HotelManagementApp {
                         this.pegawaiKamarMenu.showMenuKamar();
                         break;
 
-                    case SUB_PEGAWAI_TRANSAKSI:
+                    case SUB_TRANSAKSI:
                         this.transaksiMenu.subTransaksiPegawai();
                         break;
 
