@@ -49,6 +49,7 @@ public class AppRouter {
         SUB_MASTER_DETAIL_CUSTOMER,
         MASTER_TRANSAKSI,
         MASTER_REPORTING,
+//        SUB_MASTER_TRANSAKSI,
 
     }
 

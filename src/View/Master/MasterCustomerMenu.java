@@ -9,7 +9,10 @@ import static View.Components.CustomerView.viewAllDataCustomer;
 import static View.Components.CustomerView.viewDataSelectedCustomer;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
+import Data.Model.Customer;
 import Util.InputUtilities;
 import View.AppRouter;
 import ViewModel.MasterViewModel.MasterCustomerViewModel;
@@ -30,8 +33,9 @@ public class MasterCustomerMenu {
             System.out.println("        MASTER CUSTOMER       ");
             System.out.println("==============================");
             System.out.println("1. Show all customer");
-            System.out.println("2. Choose customer");
-            System.out.println("3. Add customer");
+            System.out.println("2. Find customer");
+            System.out.println("3. Choose customer");
+            System.out.println("4. Add customer");
             System.out.println("0. Back");
             System.out.println();
             try {
@@ -42,9 +46,12 @@ public class MasterCustomerMenu {
                         showAllCustomer();
                         break;
                     case "2":
-                        choosingCustomer();
+                        findCustomer();
                         break;
                     case "3":
+                        choosingCustomer();
+                        break;
+                    case "4":
                         addCustomer();
                         break;
                     case "0":
@@ -92,6 +99,45 @@ public class MasterCustomerMenu {
         }
     }
 
+    private void findCustomer() {
+        System.out.println();
+        try {
+            InputUtilities.cls();
+            System.out.println("==============================");
+            System.out.println("        FIND CUSTOMER       ");
+            System.out.println("==============================");
+            System.out.print("NIK atau Nama\t: ");
+            String nik = InputUtilities.input.readLine();
+            masterCustomerVM.selectCustomer(nik);
+            System.out.println("==============================");
+
+            if (masterCustomerVM.getSelectedCustomer() != null) {
+                // show detail customer
+                detailCustomer();
+            }else{
+                formatMessageOutput("Search By Name");
+                // filter by name
+                final ArrayList<Customer> filteredData = masterCustomerVM
+                        .getListCustomers()
+                        .stream()
+                        .filter(
+                                customer -> customer.getNama().toLowerCase().contains(nik.toLowerCase())
+                        )
+                        .collect(
+                                Collectors.toCollection(ArrayList::new)
+                        );
+                if(!filteredData.isEmpty()){
+                    viewAllDataCustomer(filteredData);
+                }else {
+                    formatMessageOutput("Data Customer Not Found");
+                }
+
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     private void addCustomer() {
         try {

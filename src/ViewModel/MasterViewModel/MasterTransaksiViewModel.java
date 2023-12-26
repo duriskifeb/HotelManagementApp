@@ -16,74 +16,81 @@ public class MasterTransaksiViewModel {
         this.transaksiUseCase = transaksiUseCase;
         this.masterTransaksi = masterTransaksi;
     }
-
-    // TODO implement
     public Transaksi selectedTransaksi;
 
     // EDITS REGION
-    public void addKamar(String noKamar) {
-        transaksiUseCase.addKamar(noKamar);
-        commitTransaksi();
-        updateStateSelectedTransaksi();
-    }
+//    public void addKamar(String noKamar) {
+//        transaksiUseCase.addKamar(noKamar);
+//        commitTransaksi();
+//        updateStateSelectedTransaksi();
+//    }
+//
+//    public void removeKamar(String noKamar) {
+//        transaksiUseCase.removeKamar(noKamar);
+//        commitTransaksi();
+//        updateStateSelectedTransaksi();
+//    }
+//
+//    public void addCustomer(String NIK) {
+//        transaksiUseCase.addCustomer(NIK);
+//        commitTransaksi();
+//        updateStateSelectedTransaksi();
+//    }
+//
+//    public void removeCustomer(String NIK) {
+//        transaksiUseCase.removeCustomer(NIK);
+//        commitTransaksi();
+//        updateStateSelectedTransaksi();
+//    }
+//
+//    public void checkOut() {
+//        transaksiUseCase.checkOut();
+//        updateStateSelectedTransaksi();
+//        commitTransaksi();
+//    }
+//
+//    public void checkIn() {
+//        transaksiUseCase.checkIn();
+//        commitTransaksi();
+//    }
 
-    public void removeKamar(String noKamar) {
-        transaksiUseCase.removeKamar(noKamar);
-        commitTransaksi();
-        updateStateSelectedTransaksi();
-    }
-
-    public void addCustomer(String NIK) {
-        transaksiUseCase.addCustomer(NIK);
-        commitTransaksi();
-        updateStateSelectedTransaksi();
-    }
-
-    public void removeCustomer(String NIK) {
-        transaksiUseCase.removeCustomer(NIK);
-        commitTransaksi();
-        updateStateSelectedTransaksi();
-    }
-
-    public void checkOut() {
-        transaksiUseCase.checkOut();
-        updateStateSelectedTransaksi();
-        commitTransaksi();
-    }
-
-    public void checkIn() {
-        transaksiUseCase.checkIn();
-        commitTransaksi();
-    }
-
-    public void bayar(AppEnums.Pembayaran metodeBayar, double amountBayar) {
-        transaksiUseCase.bayar(metodeBayar, amountBayar);
-        commitTransaksi();
-    }
+//    public void bayar(AppEnums.Pembayaran metodeBayar, double amountBayar) {
+//        transaksiUseCase.bayar(metodeBayar, amountBayar);
+//        commitTransaksi();
+//    }
     // EDITS REGION
 
-    public void commitTransaksi() {
-        if (this.selectedTransaksi != null) {
-            transaksiUseCase.commitTransaksi();
-        } else {
-            Formatting.formatMessageOutput("Tidak ada transaksi yang dipilih / data sudah tidak ada");
-        }
-    }
+//    public void commitTransaksi() {
+//        if (this.selectedTransaksi != null) {
+//            transaksiUseCase.commitTransaksi();
+//        } else {
+//            Formatting.formatMessageOutput("Tidak ada transaksi yang dipilih / data sudah tidak ada");
+//        }
+//    }
 
     public void selectTranasksi(String noTransaksi) {
         masterTransaksi.selectTransaksi(noTransaksi);
         if (masterTransaksi.getSelectedTransaksi() != null) {
-            transaksiUseCase.selectTransaksi(noTransaksi);
-            updateStateSelectedTransaksi();
+            this.selectedTransaksi  = masterTransaksi.getSelectedTransaksi();
+//            transaksiUseCase.selectTransaksi(noTransaksi);
+//            updateStateSelectedTransaksi();
         } else {
             Formatting.formatMessageOutput("Pilih transaksi yang akan di edit");
         }
     }
 
-    private void updateStateSelectedTransaksi() {
-        this.selectedTransaksi = transaksiUseCase.getCurrentActiveTransaksi();
-    }
+//    public void updateStateSelectedTransaksi() {
+//        this.selectedTransaksi = transaksiUseCase.getCurrentActiveTransaksi();
+//    }
 
+    public void batalkanTransaksi(){
+        if (selectedTransaksi != null) {
+            masterTransaksi.batalkanTransaksi();
+            this.selectedTransaksi = null;
+        } else {
+            Formatting.formatMessageOutput("Pilih transaksi yang akan di delete");
+        }
+    }
     public void deleteTransaksi() {
         if (selectedTransaksi != null) {
             masterTransaksi.deleteTransaksi(this.selectedTransaksi.getNoTransaksi());
