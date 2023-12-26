@@ -103,7 +103,7 @@ public class MasterTransaksiMenu {
                 String konfirmasi = InputUtilities.input.readLine();
 
                 if(konfirmasi.equalsIgnoreCase("y")) {
-                    masterTransaksiVM.batalkanTransaksi();
+                    masterTransaksiVM.deleteTransaksi();
                 }else{
                     formatMessageOutput("Aksi Dibatalkan");
                 }

@@ -15,14 +15,6 @@ public class MasterTransaksi {
 
     private Transaksi selectedTransaksi;
 
-//    public void addNewTransaksi(Transaksi report) {
-//        // check if data already exists
-//        if(!cekTransaksi(report.getNoTransaksi())){
-//            dataSource.addNewTransaksi(report);
-//        }else {
-//            formatMessageOutput("Data Transaksi Sudah Ada");
-//        }
-//    }
     public void deleteTransaksi(String noTransaksi){
         if(cekTransaksi(noTransaksi)){
             Transaksi transaksi = dataSource.getTransaksiDetail(noTransaksi);
