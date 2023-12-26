@@ -20,6 +20,10 @@ public class MasterReportingViewModel {
 
     ReportModel selectedReport;
 
+    public ReportModel getGeneratedReport(){
+        return selectedReport;
+    }
+
     public void selectReport(String reportNumber){
         selectedReport = masterReporting.selectReport(reportNumber);
         if(selectedReport == null){
