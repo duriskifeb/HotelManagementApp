@@ -19,10 +19,10 @@ import static Util.Formatting.formatMessageOutput;
 
 // act like a cart and its utilities
 public class TransaksiUseCase {
-    TransaksiDataSource transaksiDataSource;
-    CustomerDataSource customerDataSource;
-    KamarDataSource kamarDataSource;
-    PegawaiDataSource pegawaiDataSource;
+    final TransaksiDataSource transaksiDataSource;
+    final CustomerDataSource customerDataSource;
+    final KamarDataSource kamarDataSource;
+    final PegawaiDataSource pegawaiDataSource;
 
     public TransaksiUseCase(
             TransaksiDataSource transaksiDataSource,

@@ -7,7 +7,7 @@ import Data.Model.Transaksi;
 import static Util.Formatting.formatMessageOutput;
 
 public class MasterTransaksi {
-    TransaksiDataSource dataSource;
+    final TransaksiDataSource dataSource;
 
     public MasterTransaksi(TransaksiDataSource dataSource) {
         this.dataSource = dataSource;

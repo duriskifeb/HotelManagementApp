@@ -10,8 +10,8 @@ import java.util.Date;
 import static Util.Formatting.formatMessageOutput;
 
 public class MasterReportingViewModel {
-    MasterReporting masterReporting;
-    Reporting reportingUseCase;
+    final MasterReporting masterReporting;
+    final Reporting reportingUseCase;
     public MasterReportingViewModel(MasterReporting masterReporting, Reporting reportingUseCase) {
         this.masterReporting = masterReporting;
         this.reportingUseCase = reportingUseCase;

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import static Util.Formatting.formatMessageOutput;
 
 public class MasterKamarViewModel {
-    MasterKamar masterKamar;
+    final MasterKamar masterKamar;
 
     public MasterKamarViewModel(MasterKamar masterKamar) {
         this.masterKamar = masterKamar;

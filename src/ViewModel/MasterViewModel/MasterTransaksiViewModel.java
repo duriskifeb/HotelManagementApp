@@ -8,8 +8,8 @@ import Util.Formatting;
 import java.util.ArrayList;
 
 public class MasterTransaksiViewModel {
-    MasterTransaksi masterTransaksi;
-    TransaksiUseCase transaksiUseCase;
+    final MasterTransaksi masterTransaksi;
+    final TransaksiUseCase transaksiUseCase;
 
     public MasterTransaksiViewModel(MasterTransaksi masterTransaksi, TransaksiUseCase transaksiUseCase) {
         this.transaksiUseCase = transaksiUseCase;

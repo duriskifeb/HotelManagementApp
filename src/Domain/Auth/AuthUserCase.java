@@ -7,7 +7,7 @@ import Util.Encryption;
 import static Util.Formatting.formatMessageOutput;
 
 public class AuthUserCase {
-    PegawaiDataSource dataSource;
+    final PegawaiDataSource dataSource;
     public AuthUserCase(PegawaiDataSource dataSource) {
         this.dataSource = dataSource;
     }

@@ -10,7 +10,7 @@ import static Util.Formatting.formatMessageOutput;
 import java.util.ArrayList;
 
 public class MasterPegawaiViewModel {
-    MasterPegawai masterPegawai;
+    final MasterPegawai masterPegawai;
 
     public MasterPegawaiViewModel(MasterPegawai masterPegawai) {
         this.masterPegawai = masterPegawai;

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import static Util.Formatting.formatMessageOutput;
 
 public class MasterKamar {
-    KamarDataSource dataSource;
+    final KamarDataSource dataSource;
 
     public MasterKamar(KamarDataSource dataSource) {
         this.dataSource = dataSource;

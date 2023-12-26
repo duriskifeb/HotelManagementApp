@@ -11,7 +11,7 @@ import java.util.Date;
 
 public class InputUtilities {
 
-    public static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    public static final BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 
     public static String readLine(){
         try {

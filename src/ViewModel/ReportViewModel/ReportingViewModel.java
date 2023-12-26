@@ -6,7 +6,7 @@ import Domain.Report.Reporting;
 import java.util.Date;
 
 public class ReportingViewModel {
-    Reporting reporting;
+    final Reporting reporting;
 
     public ReportingViewModel(Reporting reporting) {
         this.reporting = reporting;
