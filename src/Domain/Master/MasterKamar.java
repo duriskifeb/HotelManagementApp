@@ -2,14 +2,13 @@ package Domain.Master;
 
 import Data.DataSource.KamarDataSource;
 import Data.Model.Kamar;
-import Data.Model.User;
 
 import java.util.ArrayList;
 
 import static Util.Formatting.formatMessageOutput;
 
 public class MasterKamar {
-    KamarDataSource dataSource;
+    final KamarDataSource dataSource;
 
     public MasterKamar(KamarDataSource dataSource) {
         this.dataSource = dataSource;

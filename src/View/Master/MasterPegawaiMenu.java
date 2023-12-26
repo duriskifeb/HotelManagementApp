@@ -2,7 +2,6 @@ package View.Master;
 
 import static Util.Formatting.formatMessageOutput;
 import static Util.Formatting.invalidChoice;
-import static View.AppRouter.AppRoute.MASTER_MAIN_MENU;
 import static View.AppRouter.AppRoute.MASTER_PEGAWAI;
 import static View.AppRouter.AppRoute.SUB_MASTER_DETAIL_PEGAWAI;
 import static View.Components.PegawaiView.*;

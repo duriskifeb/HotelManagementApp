@@ -9,7 +9,7 @@ import static Util.Formatting.formatMessageOutput;
 import java.util.ArrayList;
 
 public class MasterCustomerViewModel {
-    MasterCustomer masterCustomer;
+    final MasterCustomer masterCustomer;
     public MasterCustomerViewModel(MasterCustomer masterCustomer) {
         this.masterCustomer = masterCustomer;
     }

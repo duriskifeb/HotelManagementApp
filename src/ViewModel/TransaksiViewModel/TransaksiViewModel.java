@@ -9,7 +9,7 @@ import Util.Formatting;
 import java.util.ArrayList;
 
 public class TransaksiViewModel {
-    TransaksiUseCase transaksiUseCase;
+    final TransaksiUseCase transaksiUseCase;
 
     public TransaksiViewModel(TransaksiUseCase transaksiUseCase) {
         this.transaksiUseCase = transaksiUseCase;

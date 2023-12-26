@@ -3,7 +3,7 @@ package View;
 import java.util.LinkedList;
 
 public class AppRouter {
-    public static  LinkedList<AppRoute> routeStack = new LinkedList();
+    public static final LinkedList<AppRoute> routeStack = new LinkedList();
     public static void navigateTo(AppRoute target) {
         if(target != AppRoute.EXIT){
             routeStack.add(target);
@@ -49,6 +49,7 @@ public class AppRouter {
         SUB_MASTER_DETAIL_CUSTOMER,
         MASTER_TRANSAKSI,
         MASTER_REPORTING,
+//        SUB_MASTER_TRANSAKSI,
 
     }
 

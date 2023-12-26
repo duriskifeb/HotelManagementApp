@@ -5,7 +5,7 @@ import Domain.Auth.AuthUserCase;
 import Util.Formatting;
 
 public class AuthViewModel {
-    AuthUserCase authUseCase;
+    final AuthUserCase authUseCase;
 
     public AuthViewModel(AuthUserCase userCase) {
         this.authUseCase = userCase;

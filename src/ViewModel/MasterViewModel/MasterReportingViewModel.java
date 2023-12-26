@@ -5,13 +5,14 @@ import Domain.Master.MasterReporting;
 import Domain.Report.Reporting;
 import Util.Formatting;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import static Util.Formatting.formatMessageOutput;
 
 public class MasterReportingViewModel {
-    MasterReporting masterReporting;
-    Reporting reportingUseCase;
+    final MasterReporting masterReporting;
+    final Reporting reportingUseCase;
     public MasterReportingViewModel(MasterReporting masterReporting, Reporting reportingUseCase) {
         this.masterReporting = masterReporting;
         this.reportingUseCase = reportingUseCase;
@@ -62,8 +63,8 @@ public class MasterReportingViewModel {
         masterReporting.deleteReport(reportNumber);
     }
 
-    public ReportModel getAllReport(){
-        return getAllReport();
+    public ArrayList<ReportModel> getAllReport(){
+        return masterReporting.getAllReport();
     }
 
 

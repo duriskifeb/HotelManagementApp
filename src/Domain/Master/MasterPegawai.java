@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import static Util.Formatting.formatMessageOutput;
 
 public class MasterPegawai {
-    PegawaiDataSource dataSource;
+    final PegawaiDataSource dataSource;
 
     public MasterPegawai(PegawaiDataSource dataSource) {
         this.dataSource = dataSource;

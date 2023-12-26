@@ -13,9 +13,9 @@ import java.util.stream.Collectors;
 public class Reporting {
 
 
-    PegawaiDataSource pegawaiDataSource;
-    TransaksiDataSource transaksiDataSource;
-    ReportDataSource reportDataSource;
+    final PegawaiDataSource pegawaiDataSource;
+    final TransaksiDataSource transaksiDataSource;
+    final ReportDataSource reportDataSource;
 
     public Reporting(
             PegawaiDataSource pegawaiDataSource,

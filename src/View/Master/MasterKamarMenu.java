@@ -5,7 +5,6 @@ import static Util.Formatting.invalidChoice;
 import static Util.InputUtilities.getJenisKamarFromInput;
 import static Util.InputUtilities.getStatusKamarFromInput;
 import static View.AppRouter.AppRoute.MASTER_KAMAR;
-import static View.AppRouter.AppRoute.MASTER_MAIN_MENU;
 import static View.Components.KamarView.*;
 
 import java.io.IOException;

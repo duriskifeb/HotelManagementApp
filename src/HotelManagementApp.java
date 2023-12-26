@@ -50,7 +50,8 @@ public class HotelManagementApp {
         this.masterKamarMenu = new MasterKamarMenu(DI.masterKamarVM);
         this.masterPegawaiMenu = new MasterPegawaiMenu(DI.masterPegawaiVM);
         this.masterReportingMenu = new MasterReportingMenu(DI.masterReportingVM);
-        this.masterTransaksiMenu = new MasterTransaksiMenu(DI.masterTransaksiVM);
+        this.masterTransaksiMenu = new MasterTransaksiMenu(
+                DI.masterTransaksiVM, DI.masterCustomerVM, DI.masterKamarVM, DI.authViewModel, DI.transaksiVM);
 
         this.transaksiMenu = new TransaksiMenu(DI.transaksiVM, DI.masterKamarVM, DI.authViewModel, DI.masterCustomerVM);
         this.reportingMenu = new ReportingMenu(DI.reportingVM, DI.authViewModel);

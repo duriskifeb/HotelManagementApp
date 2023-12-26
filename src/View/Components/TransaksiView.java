@@ -5,7 +5,6 @@ import Data.Model.Transaksi;
 import Util.Formatting;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class TransaksiView {
     public static void headerViewTransaksi(){
@@ -67,11 +66,13 @@ public class TransaksiView {
         System.out.println();
 
         System.out.println("CUSTOMER : ");
-        selectedTransaksi.getCustomers().stream().iterator().forEachRemaining(
-                customer -> {
-                    System.out.format("%20s %25s \t%20s \t%20s\n", customer.getNIK(), customer.getNama(), customer.getTelp(), customer.getEmail());
-                }
-        );
+        if (selectedTransaksi != null) {
+            selectedTransaksi.getCustomers().stream().iterator().forEachRemaining(
+                    customer -> {
+                        System.out.format("%20s %25s \t%20s \t%20s\n", customer.getNIK(), customer.getNama(), customer.getTelp(), customer.getEmail());
+                    }
+            );
+        }
 
         System.out.println("========================================= DETAIL BIAYA =========================================");
         System.out.println("TOTAL : " + Formatting.formatRupiah(selectedTransaksi.getTotal()));

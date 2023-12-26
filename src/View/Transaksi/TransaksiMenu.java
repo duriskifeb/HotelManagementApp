@@ -144,7 +144,7 @@ public class TransaksiMenu {
             System.out.println("Data pelanggan tidak ditemukan");
             System.out.print("Daftarkan pelanggan ? (y/n) : ");
             String confirm = InputUtilities.readLine();
-            if (confirm.equalsIgnoreCase("y")) {
+            if (confirm != null && confirm.equalsIgnoreCase("y")) {
                 // register new pelanggan
                 addNewCustomer();
                 result = nik;
@@ -380,7 +380,7 @@ public class TransaksiMenu {
     private void bayarTransaksi() {
         try {
             System.out.println("Pembayaran Transaksi");
-            double amountBayar = 0;
+            double amountBayar;
             System.out.print("Masukkan Metode Bayar (bank/ cash) : ");
             AppEnums.Pembayaran metodebayar = InputUtilities.getMetodeBayarFromInput();
 

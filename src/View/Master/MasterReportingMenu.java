@@ -1,7 +1,6 @@
 package View.Master;
 
 import static View.AppRouter.AppRoute.MASTER_MAIN_MENU;
-import static View.Components.ReportingView.viewAllReports;
 
 import Util.InputUtilities;
 import View.AppRouter;

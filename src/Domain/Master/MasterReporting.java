@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import static Util.Formatting.formatMessageOutput;
 
 public class MasterReporting {
-    ReportDataSource dataSource;
+    final ReportDataSource dataSource;
 
     public MasterReporting(ReportDataSource dataSource) {
         this.dataSource = dataSource;

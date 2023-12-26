@@ -10,7 +10,6 @@ import Data.Model.Customer;
 import Data.Model.Kamar;
 import Data.Model.Transaksi;
 import Data.Model.User;
-import Util.Formatting;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,10 +19,10 @@ import static Util.Formatting.formatMessageOutput;
 
 // act like a cart and its utilities
 public class TransaksiUseCase {
-    TransaksiDataSource transaksiDataSource;
-    CustomerDataSource customerDataSource;
-    KamarDataSource kamarDataSource;
-    PegawaiDataSource pegawaiDataSource;
+    final TransaksiDataSource transaksiDataSource;
+    final CustomerDataSource customerDataSource;
+    final KamarDataSource kamarDataSource;
+    final PegawaiDataSource pegawaiDataSource;
 
     public TransaksiUseCase(
             TransaksiDataSource transaksiDataSource,
