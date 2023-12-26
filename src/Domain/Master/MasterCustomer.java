@@ -2,7 +2,6 @@ package Domain.Master;
 
 import Data.DataSource.CustomerDataSource;
 import Data.Model.Customer;
-import Data.Model.Kamar;
 
 import java.util.ArrayList;
 

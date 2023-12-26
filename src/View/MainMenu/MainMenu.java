@@ -4,11 +4,7 @@ import Util.InputUtilities;
 import View.AppRouter;
 import ViewModel.AuthViewModel.AuthViewModel;
 
-import static Util.InputUtilities.readInt;
-import static Util.InputUtilities.cls;
-import static Util.InputUtilities.readLine;
 import static View.AppRouter.AppRoute.*;
-import static View.Components.MainView.appHeader;
 
 import java.io.IOException;
 

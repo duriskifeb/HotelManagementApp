@@ -5,7 +5,6 @@ import ViewModel.AuthViewModel.AuthViewModel;
 import static View.Components.KamarView.viewAllDataKamar;
 import static View.Components.TransaksiView.headerViewTransaksi;
 import static View.Components.TransaksiView.viewAllTransaksi;
-import static View.Components.TransaksiView.viewDetailSelectedTransaksi;
 import static Util.Formatting.formatMessageOutput;
 
 import java.io.IOException;

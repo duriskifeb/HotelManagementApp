@@ -1,6 +1,5 @@
 package ViewModel.MasterViewModel;
 
-import Data.AppEnums.AppEnums;
 import Data.Model.Transaksi;
 import Domain.Master.MasterTransaksi;
 import Domain.Transaksi.TransaksiUseCase;

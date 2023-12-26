@@ -2,7 +2,6 @@ package Domain.Master;
 
 import Data.DataSource.KamarDataSource;
 import Data.Model.Kamar;
-import Data.Model.User;
 
 import java.util.ArrayList;
 
