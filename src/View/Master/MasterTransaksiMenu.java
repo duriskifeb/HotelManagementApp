@@ -216,7 +216,7 @@ public class MasterTransaksiMenu {
             System.out.println("Data pelanggan tidak ditemukan");
             System.out.print("Daftarkan pelanggan ? (y/n) : ");
             String confirm = InputUtilities.readLine();
-            if (confirm.equalsIgnoreCase("y")) {
+            if (confirm != null && confirm.equalsIgnoreCase("y")) {
                 // register new pelanggan
                 addNewCustomer();
                 result = nik;
