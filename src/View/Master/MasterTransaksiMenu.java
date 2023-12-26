@@ -93,7 +93,7 @@ public class MasterTransaksiMenu {
         System.out.println();
 
         try {
-            System.out.print("Tanggal Mulai (dd-MM-yyyy) : ");
+            System.out.print("Tanggal Mulai (dd-MM-yyyy) : "); 
             Date startDate = InputUtilities.getDateFromInput();
             System.out.print("Tanggal Berakhir (dd-MM-yyyy) : ");
             Date endDate = InputUtilities.getDateFromInput();
