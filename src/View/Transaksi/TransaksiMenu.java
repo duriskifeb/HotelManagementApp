@@ -195,16 +195,7 @@ public class TransaksiMenu {
             System.out.print("Telp\t: ");
             String telp = InputUtilities.input.readLine();
 
-            System.out.println("==============================");
-            System.out.println();
-            System.out.print("Anda yakin?(y/n) : ");
-            inputUser = InputUtilities.input.readLine();
-
-            if (inputUser.equalsIgnoreCase("y")) {
-                masterCustomerVM.addNewCustomer(nik, nama, email, telp);
-            } else {
-                formatMessageOutput("Process cancelled");
-            }
+            masterCustomerVM.addNewCustomer(nik, nama, email, telp);
 
             System.out.println("==============================");
             InputUtilities.pressEnter();
