@@ -28,7 +28,7 @@ public class TransaksiMenu {
     private final MasterCustomerViewModel masterCustomerVM;
 
     public TransaksiMenu(TransaksiViewModel transaksiVM, MasterKamarViewModel kamarVM, AuthViewModel authViewModel,
-                         MasterCustomerViewModel masterCustomerVM) {
+            MasterCustomerViewModel masterCustomerVM) {
         this.transaksiVM = transaksiVM;
         this.kamarVM = kamarVM;
         this.authViewModel = authViewModel;
@@ -237,6 +237,12 @@ public class TransaksiMenu {
         return transaksiVM.currentActiveTransaksi.getStatusTransaksi() == AppEnums.StatusTransaksi.ONGOING;
     }
 
+    private void subTransaksiHeader() {
+        System.out.println("============================");
+        System.out.println("     SUB MENU TRANSAKSI     ");
+        System.out.println("============================");
+    }
+
     public void subTransaksiMenu() {
         while (AppRouter.activeRoute == AppRouter.AppRoute.SUB_TRANSAKSI) {
             // - lihat detail
@@ -247,9 +253,7 @@ public class TransaksiMenu {
             // commit transaksi
 
             InputUtilities.cls();
-            System.out.println("============================");
-            System.out.println("     SUB MENU TRANSAKSI     ");
-            System.out.println("============================");
+            subTransaksiHeader();
             System.out.println("Sub-Menu Transaksi " + transaksiVM.currentActiveTransaksi.getNoTransaksi());
             System.out.println();
             System.out.println("1. Lihat Detail");
@@ -274,7 +278,7 @@ public class TransaksiMenu {
             }
             System.out.println("11. Commit Transaksi");
             System.out.println("0. Kembali");
-
+            System.out.println();
             System.out.print("Masukkan Pilihan : ");
             try {
                 inputUser = InputUtilities.input.readLine();
@@ -287,39 +291,50 @@ public class TransaksiMenu {
                     inputUser = "";
                 }
                 InputUtilities.cls();
+
                 switch (inputUser) {
                     case "1":
                         viewDetailSelectedTransaksi(transaksiVM.currentActiveTransaksi);
                         break;
                     case "2":
+                        subTransaksiHeader();
                         bayarTransaksi();
                         break;
                     case "3":
+                        subTransaksiHeader();
                         ubahTanggalMulai();
                         break;
                     case "4":
+                        subTransaksiHeader();
                         ubahTanggalSelesai();
                         break;
                     case "5":
+                        subTransaksiHeader();
                         tambahTamu();
                         break;
                     case "6":
+                        subTransaksiHeader();
                         kurangiTamu();
                         break;
                     case "7":
+                        subTransaksiHeader();
                         tambahKamar();
                         break;
                     case "8":
+                        subTransaksiHeader();
                         kurangiKamar();
                         break;
                     case "9":
+                        subTransaksiHeader();
                         checkIn();
                         break;
                     case "10":
+                        subTransaksiHeader();
                         checkOut();
                         break;
 
                     case "11":
+                        subTransaksiHeader();
                         transaksiVM.commitTransaksi();
                         break;
                     case "0":

@@ -6,6 +6,8 @@ import Data.Model.User;
 import Domain.Transaksi.TransaksiUseCase;
 import Util.Formatting;
 
+import static Util.Formatting.formatMessageOutput;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -36,7 +38,7 @@ public class TransaksiViewModel {
     }
 
     public void commitTransaksi() {
-        System.out.println("Menyimpan Perubahan");
+        formatMessageOutput("Saving changes");
         transaksiUseCase.commitTransaksi();
         updateStateTransaksi();
 
