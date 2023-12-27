@@ -190,7 +190,7 @@ public class MasterReportingMenu {
             inputUser = InputUtilities.input.readLine();
             if (inputUser.equalsIgnoreCase("y")) {
                 masterReportingVM.editReport(rangeStart, rangeEnd, picID);
-                
+
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
