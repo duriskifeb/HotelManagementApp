@@ -204,7 +204,12 @@ public class TransaksiUseCase {
                     currentActiveTransaksi.setStatusPembayaran(StatusTransaksiBayar.PAID);
                     formatMessageOutput("Pembayaran Berhasil!!");
 
-                    formatMessageOutput("Kembalian : " + (sisa-amountBayar));
+                    double kembalianTemp = sisa-amountBayar;
+                    if(kembalianTemp <0){
+                        formatMessageOutput("Kembalian : " + Math.abs(kembalianTemp));
+                    }
+
+
                     formatMessageOutput("Sisa Tagihan : " +  (currentActiveTransaksi.getTotal()-currentActiveTransaksi.getPaid()));
                 } else {
                     // lunas
@@ -213,7 +218,7 @@ public class TransaksiUseCase {
                     } else {
                         formatMessageOutput("Pembayaran Berhasil!! Transaksi Lunas");
                         currentActiveTransaksi.setStatusPembayaran(StatusTransaksiBayar.LUNAS);
-                        formatMessageOutput("Kembalian : " + (sisa-amountBayar));
+                        formatMessageOutput("Kembalian : " + Math.abs(sisa-amountBayar));
 
                     }
 

@@ -28,7 +28,7 @@ public class TransaksiMenu {
     private final MasterCustomerViewModel masterCustomerVM;
 
     public TransaksiMenu(TransaksiViewModel transaksiVM, MasterKamarViewModel kamarVM, AuthViewModel authViewModel,
-            MasterCustomerViewModel masterCustomerVM) {
+                         MasterCustomerViewModel masterCustomerVM) {
         this.transaksiVM = transaksiVM;
         this.kamarVM = kamarVM;
         this.authViewModel = authViewModel;
@@ -196,15 +196,8 @@ public class TransaksiMenu {
             String telp = InputUtilities.input.readLine();
 
             System.out.println("==============================");
-            System.out.println();
-            System.out.print("Anda yakin?(y/n) : ");
-            inputUser = InputUtilities.input.readLine();
 
-            if (inputUser.equalsIgnoreCase("y")) {
-                masterCustomerVM.addNewCustomer(nik, nama, email, telp);
-            } else {
-                formatMessageOutput("Process cancelled");
-            }
+            masterCustomerVM.addNewCustomer(nik, nama, email, telp);
 
             System.out.println("==============================");
             InputUtilities.pressEnter();
