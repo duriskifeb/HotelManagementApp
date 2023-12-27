@@ -71,7 +71,10 @@ public class TransaksiUseCase {
             ArrayList<Customer> listCustomer = new ArrayList<Customer>();
 
             listKamar.add(kamar);
+            updateStatusKamar(kamar, StatusKamar.BOOKED); //
+
             listCustomer.add(customer);
+
             this.currentActiveTransaksi = new Transaksi(
                     new Date(),
                     startDate,
@@ -126,6 +129,10 @@ public class TransaksiUseCase {
         if (currentActiveTransaksi != null) {
             Customer customer = customerDataSource.getCustomer(NIK);
             ArrayList<Customer> listPelanggan = currentActiveTransaksi.getCustomers();
+            if(listPelanggan.contains(customer)){
+                formatMessageOutput("Data Tamu sudah ada");
+                return;
+            }
             listPelanggan.add(customer);
             currentActiveTransaksi.setCustomers(listPelanggan);
         }

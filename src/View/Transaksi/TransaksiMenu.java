@@ -233,7 +233,7 @@ public class TransaksiMenu {
         return transaksiVM.currentActiveTransaksi.getStatusTransaksi() == AppEnums.StatusTransaksi.PENDING;
     }
 
-    private boolean conditionAlreadyCheckIn() {
+    private boolean conditionOnGoing() {
         return transaksiVM.currentActiveTransaksi.getStatusTransaksi() == AppEnums.StatusTransaksi.ONGOING;
     }
 
@@ -272,9 +272,11 @@ public class TransaksiMenu {
                 System.out.println("8. Kurangi Kamar");
                 System.out.println("---------------------------");
             }
-            if (!conditionAlreadyCheckIn()) {
+            if (conditionOnGoing()) {
                 System.out.println("9. Check In");
-            }else {
+            }
+
+            if(!conditionCanStillEdit() && conditionOnGoing()){
                 System.out.println("10. Check Out");
             }
             System.out.println("11. Commit Transaksi");
