@@ -54,12 +54,6 @@ public class MasterCustomerViewModel {
         masterCustomer.deleteCustomer(NIK);
     }
 
-    //delete selected customer
-//    public void deleteCustomer() {
-//        if(currentSelectedCustomer != null){
-//            masterCustomer.deleteCustomer(this.currentSelectedCustomer.getNIK());
-//        }
-//    }
     public void editCustomer(String NIK, String nama, String email, String telp){
 
         if(currentSelectedCustomer != null){
