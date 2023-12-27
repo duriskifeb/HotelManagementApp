@@ -32,6 +32,7 @@ public class MasterReporting {
         if (cekReport(reportNumber)) {
             ReportModel report = dataSource.getReport(reportNumber);
             dataSource.removeReport(report);
+            formatMessageOutput("Data Dihapus");
         } else {
             formatMessageOutput("Data Tidak Ditemukan");
         }

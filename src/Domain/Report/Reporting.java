@@ -46,7 +46,9 @@ public class Reporting {
             generatedReport = new ReportModel(
                     dateCreated,
                     listTransaksi,
-                    pic
+                    pic,
+                    rangeStart,
+                    rangeEnd
             );
             Formatting.formatMessageOutput("Report Generated");
         }else{
@@ -67,7 +69,9 @@ public class Reporting {
                     dateCreated,
                     new Date(),
                     listTransaksi,
-                    pic
+                    pic,
+                    rangeStart,
+                    rangeEnd
             );
 
             Formatting.formatMessageOutput("Report Generated");

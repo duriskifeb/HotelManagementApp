@@ -1,7 +1,7 @@
 package View.Master;
 
 import static Util.Formatting.formatMessageOutput;
-import static View.AppRouter.AppRoute.SUB_MASTER_DETAIL_DETAIL_REPORTING;
+import static View.AppRouter.AppRoute.SUB_MASTER_DETAIL_REPORTING;
 import static View.Components.ReportingView.*;
 // import static View.AppRouter.AppRoute.MASTER_MAIN_MENU;
 
@@ -44,7 +44,7 @@ public class MasterReportingMenu {
                 System.out.println();
                 switch (inputUser) {
                     case "1":
-                        headerViewTransaksi();
+                        headerViewReporting();
                         viewAllReports(masterReportingVM.getAllReport());
                         break;
                     case "2":
@@ -92,7 +92,7 @@ public class MasterReportingMenu {
             String noLaporan = InputUtilities.input.readLine();
             masterReportingVM.selectReport(noLaporan);
             if(masterReportingVM.getSelectedReport() != null){
-                AppRouter.navigateTo(SUB_MASTER_DETAIL_DETAIL_REPORTING);
+                AppRouter.navigateTo(SUB_MASTER_DETAIL_REPORTING);
             }
         } catch (IOException e) {
             formatMessageOutput(e.getMessage());
@@ -128,5 +128,94 @@ public class MasterReportingMenu {
 
     public void showDetailReportingMenu() {
         // delete and edit
+        while (AppRouter.activeRoute == SUB_MASTER_DETAIL_REPORTING) {
+            InputUtilities.cls();
+            System.out.println("============================");
+            System.out.println("      DETAIL REPORTING      ");
+            System.out.println("============================");
+            System.out.println("1. Lihat Detail");
+            System.out.println("2. Edit Laporan");
+            System.out.println("3. Hapus Laporan");
+            System.out.println("0. Kembali");
+
+            System.out.print("Masukkan Pilihan : ");
+            try {
+
+                inputUser = InputUtilities.input.readLine();
+                System.out.println();
+                switch (inputUser) {
+                    case "1":
+                        headerViewReporting();
+                        viewDetailSelectedReport(masterReportingVM.getSelectedReport());
+                        InputUtilities.pressEnter();
+                        break;
+                    case "2":
+                        editLaporan();
+                        break;
+
+                    case "3":
+                        hapusLaporan();
+                        break;
+                    case "0":
+                        AppRouter.navigateUp();
+                        break;
+                    default:
+                        formatMessageOutput("Invalid Choice");
+                }
+                System.out.println();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+    }
+
+    private void editLaporan() {
+        InputUtilities.cls();
+        System.out.println("==============================");
+        System.out.println("Edit Laporan");
+        System.out.println("==============================");
+        System.out.println("Kosongi input jika tidak ingin mengedit data");
+        try {
+            System.out.print("Tanggal range awal (dd-mm-yyyy) : ");
+            Date rangeStart = InputUtilities.getDateFromInput();
+
+            System.out.print("Tanggal range akhir (dd-mm-yyyy) : ");
+            Date rangeEnd = InputUtilities.getDateFromInput();
+
+            System.out.print("Pic ID : ");
+            String picID = InputUtilities.input.readLine();
+
+            System.out.print("Apa anda yakin?(y/n): ");
+            inputUser = InputUtilities.input.readLine();
+            if (inputUser.equalsIgnoreCase("y")) {
+                masterReportingVM.editReport(rangeStart, rangeEnd, picID);
+                
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+
+    }
+
+    private void hapusLaporan() {
+        System.out.println("Hapus Laporan");
+        System.out.print("Apa anda yakin ingin menghapus laporan?(y/n): ");
+        try {
+            inputUser = InputUtilities.input.readLine();
+            if(inputUser.equalsIgnoreCase("y")){
+                masterReportingVM.deleteReport(masterReportingVM.getSelectedReport().getReportNumber());
+                if(masterReportingVM.getSelectedReport() == null){
+                    AppRouter.navigateUp();
+                }
+
+            }else{
+                System.out.println("Operasi Dibatalkan");
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

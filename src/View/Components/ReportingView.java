@@ -14,7 +14,7 @@ import static View.Components.TransaksiView.viewAllTransaksi;
 
 public class ReportingView {
 
-    public static void headerViewTransaksi(){
+    public static void headerViewReporting(){
         System.out.println("_______________________________________________________________________________________");
         System.out.format("%20s %25s %20s %20s\n", "No Report", "PIC ID", "Date Created", "Date Updated");
         System.out.println("_______________________________________________________________________________________");

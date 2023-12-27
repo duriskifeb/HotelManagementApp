@@ -52,8 +52,8 @@ public class MasterReportingViewModel {
         if(selectedReport != null){
             reportingUseCase.generateReport(
                     selectedReport.getReportNumber(),
-                    rangeStart,
-                    rangeEnd,
+                    rangeStart == null ? selectedReport.getRangeStart() : rangeStart,
+                    rangeEnd == null ? selectedReport.getRangeEnd() : rangeEnd,
                     picID.isBlank() ? selectedReport.getReportPIC().getUserID() : picID,
                     selectedReport.getDateCreated()
             );
@@ -68,6 +68,7 @@ public class MasterReportingViewModel {
 
     public void deleteReport(String reportNumber){
         masterReporting.deleteReport(reportNumber);
+        selectedReport = null;
     }
 
     public ArrayList<ReportModel> getAllReport(){
