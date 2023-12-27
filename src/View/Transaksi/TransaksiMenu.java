@@ -195,8 +195,6 @@ public class TransaksiMenu {
             System.out.print("Telp\t: ");
             String telp = InputUtilities.input.readLine();
 
-            System.out.println("==============================");
-
             masterCustomerVM.addNewCustomer(nik, nama, email, telp);
 
             System.out.println("==============================");
@@ -208,8 +206,9 @@ public class TransaksiMenu {
     }
 
     private void pilihTransaksi() {
+        InputUtilities.cls();
         System.out.println("==============================");
-        System.out.println("       ADD NEW TRANSAKSI      ");
+        System.out.println("       PILIH TRANSAKSI      ");
         System.out.println("==============================");
 
         System.out.println("Pilih Transaksi ");
@@ -249,7 +248,7 @@ public class TransaksiMenu {
 
             InputUtilities.cls();
             System.out.println("============================");
-            System.out.println("SUB MENU TRANSAKSI");
+            System.out.println("     SUB MENU TRANSAKSI     ");
             System.out.println("============================");
             System.out.println("Sub-Menu Transaksi " + transaksiVM.currentActiveTransaksi.getNoTransaksi());
             System.out.println();
@@ -287,7 +286,7 @@ public class TransaksiMenu {
                 if (conditionCantEdit || conditionHaveToPay || conditionAlreadyCheckIn) {
                     inputUser = "";
                 }
-                System.out.println();
+                InputUtilities.cls();
                 switch (inputUser) {
                     case "1":
                         viewDetailSelectedTransaksi(transaksiVM.currentActiveTransaksi);
@@ -330,7 +329,11 @@ public class TransaksiMenu {
                         break;
                     default:
                         System.out.println("Invalid Choice");
+
                 }
+
+                System.out.println("==============================");
+                InputUtilities.pressEnter();
                 System.out.println();
             } catch (IOException e) {
                 throw new RuntimeException(e);

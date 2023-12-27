@@ -2,6 +2,7 @@ package View.Master;
 
 import ViewModel.AuthViewModel.AuthViewModel;
 
+import static View.Components.KamarView.kamarTableHeader;
 import static View.Components.KamarView.viewAllDataKamar;
 import static View.Components.TransaksiView.headerViewTransaksi;
 import static View.Components.TransaksiView.viewAllTransaksi;
@@ -65,7 +66,7 @@ public class MasterTransaksiMenu {
                         showAllTransaksi();
                         break;
                     case "2":
-                        newTransaksi();
+                        initNewTransaksi();
                         break;
                     case "3":
                         chooseTransaksi();
@@ -142,7 +143,34 @@ public class MasterTransaksiMenu {
         InputUtilities.pressEnter();
     }
 
-    private void newTransaksi() {
+    private void initNewTransaksi() {
+
+        InputUtilities.cls();
+        System.out.println("============================");
+        System.out.println("     BUAT TRANSAKSI BARU    ");
+        System.out.println("============================");
+        System.out.println("Format tanggal (DD-MM-YYYY)");
+        System.out.println();
+
+        System.out.print("Tanggal Mulai\t : ");
+        Date startDate = InputUtilities.getDateFromInput();
+        System.out.print("Tanggal Berakhir : ");
+        Date endDate = InputUtilities.getDateFromInput();
+        String nik = getNIKCustomer();
+
+        if (!nik.isBlank()) {
+            chooseKamar(startDate, endDate, nik);
+            System.out.println("================================================================================");
+        } else {
+            formatMessageOutput("Pastikan data pelanggan ada");
+            System.out.println("============================");
+        }
+
+        InputUtilities.pressEnter();
+
+    }
+
+    private void chooseKamar(Date startDate, Date endDate, String nik) {
         InputUtilities.cls();
         System.out.println("============================");
         System.out.println("        NEW TRANSAKSI       ");
@@ -151,24 +179,20 @@ public class MasterTransaksiMenu {
         System.out.println();
 
         try {
-            System.out.print("Tanggal Mulai (dd-MM-yyyy) : ");
-            Date startDate = InputUtilities.getDateFromInput();
-            System.out.print("Tanggal Berakhir (dd-MM-yyyy) : ");
-            Date endDate = InputUtilities.getDateFromInput();
+            InputUtilities.cls();
 
-            String nik = getNIKCustomer();
-            System.out.println("============================");
-            System.out.println();
-
+            System.out.println("PILIH KAMAR ");
+            kamarTableHeader();
             viewAllDataKamar(masterKamarVM.getListKamar().stream()
                     .filter(kamar -> kamar.getStatusKamar() == AppEnums.StatusKamar.AVAILABLE)
                     .collect(Collectors.toCollection(ArrayList::new)));
+            System.out.println("================================================================================");
 
             System.out.println();
             System.out.print("Masukkan Nomor Kamar yang dipilih dari yang tersedia diatas : ");
             String noKamar = InputUtilities.input.readLine();
-            if (!nik.isBlank()) {
-                if(!(noKamar.isBlank())) {
+            
+                if (!(noKamar.isBlank())) {
                     transaksiViewModel.createInitialTransaksi(
                             startDate,
                             endDate,
@@ -182,11 +206,6 @@ public class MasterTransaksiMenu {
                         AppRouter.navigateTo(AppRouter.AppRoute.SUB_TRANSAKSI);
                     }
                 }
-
-
-            } else {
-                formatMessageOutput("Data Pelanggan Belum Ada, Lakukan register pelanggan dulu");
-            }
 
         } catch (IOException e) {
             throw new RuntimeException(e);
