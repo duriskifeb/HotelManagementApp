@@ -51,8 +51,8 @@ public class TransaksiMenu {
             System.out.println("1. Lihat List Transaksi");
             System.out.println("2. Buat Transaksi Baru");
             System.out.println("3. Pilih Transaksi");
-            System.out.println();
             System.out.println("0. Kembali");
+            System.out.println();
 
             System.out.print("Masukkan Pilihan : ");
             try {
@@ -88,7 +88,7 @@ public class TransaksiMenu {
     private void showAllTransaksi() {
         InputUtilities.cls();
         viewAllTransaksi(transaksiVM.getAllTransaksi());
-        System.out.println("================================================================================");
+        System.out.println("=======================================================================================");
         InputUtilities.pressEnter();
     }
 
@@ -100,16 +100,27 @@ public class TransaksiMenu {
         System.out.println("============================");
         System.out.println("Format tanggal (DD-MM-YYYY)");
         System.out.println();
-        
-        try {
-            System.out.print("Tanggal Mulai\t : ");
-            Date startDate = InputUtilities.getDateFromInput();
-            System.out.print("Tanggal Berakhir : ");
-            Date endDate = InputUtilities.getDateFromInput();
-            String nik = getNIKCustomer();
-            
+
+        System.out.print("Tanggal Mulai\t : ");
+        Date startDate = InputUtilities.getDateFromInput();
+        System.out.print("Tanggal Berakhir : ");
+        Date endDate = InputUtilities.getDateFromInput();
+        String nik = getNIKCustomer();
+
+        if (!nik.isBlank()) {
+            choiceKamar(startDate, endDate, nik);
+            System.out.println("================================================================================");
+        } else {
+            formatMessageOutput("Pastikan data pelanggan ada");
             System.out.println("============================");
-            InputUtilities.pressEnter();
+        }
+
+        InputUtilities.pressEnter();
+
+    }
+
+    private void choiceKamar(Date startDate, Date endDate, String nik) {
+        try {
             InputUtilities.cls();
 
             System.out.println("PILIH KAMAR ");
@@ -118,38 +129,30 @@ public class TransaksiMenu {
                     .filter(kamar -> kamar.getStatusKamar() == AppEnums.StatusKamar.AVAILABLE)
                     .collect(Collectors.toCollection(ArrayList::new)));
             System.out.println("================================================================================");
-            
+
             System.out.println();
             System.out.print("Masukkan Nomor Kamar yang dipilih dari yang tersedia diatas : ");
             String noKamar = InputUtilities.input.readLine();
-            if (!nik.isBlank()) {
-                if(!noKamar.isBlank()){
-                    transaksiVM.createInitialTransaksi(
-                            startDate,
-                            endDate,
-                            nik,
-                            authViewModel.loggedUser,
-                            noKamar,
-                            AppEnums.Pembayaran.CASH // default
-                    );
+            if (!noKamar.isBlank()) {
+                transaksiVM.createInitialTransaksi(
+                        startDate,
+                        endDate,
+                        nik,
+                        authViewModel.loggedUser,
+                        noKamar,
+                        AppEnums.Pembayaran.CASH // default
+                );
 
-                    if (transaksiVM.currentActiveTransaksi != null) {
-                        AppRouter.navigateTo(SUB_TRANSAKSI);
-                    }
+                if (transaksiVM.currentActiveTransaksi != null) {
+                    AppRouter.navigateTo(SUB_TRANSAKSI);
                 }
-
-
-            } else {
-                formatMessageOutput("Data Pelanggan Belum Ada, Lakukan register pelanggan dulu");
             }
-            System.out.println("================================================================================");
+
             System.out.println();
-            InputUtilities.pressEnter();
-
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            formatMessageOutput(e.getMessage());
+            // throw new RuntimeException(e);
         }
-
     }
 
     private String getNIKCustomer() {
@@ -175,6 +178,7 @@ public class TransaksiMenu {
 
     private void addNewCustomer() {
         try {
+            InputUtilities.cls();
             System.out.println("==============================");
             System.out.println("       ADD NEW CUSTOMER       ");
             System.out.println("==============================");
@@ -191,7 +195,16 @@ public class TransaksiMenu {
             System.out.print("Telp\t: ");
             String telp = InputUtilities.input.readLine();
 
-            masterCustomerVM.addNewCustomer(nik, nama, email, telp);
+            System.out.println("==============================");
+            System.out.println();
+            System.out.print("Anda yakin?(y/n) : ");
+            inputUser = InputUtilities.input.readLine();
+
+            if (inputUser.equalsIgnoreCase("y")) {
+                masterCustomerVM.addNewCustomer(nik, nama, email, telp);
+            } else {
+                formatMessageOutput("Process cancelled");
+            }
 
             System.out.println("==============================");
             InputUtilities.pressEnter();
