@@ -26,6 +26,7 @@ public class AuthViewModel {
 
     public void doLogout() {
         authUseCase.doLogout();
+        this.loggedUser = null;
     }
 
     public void changePassword(String userID, String oldPassword, String newPassword) {
