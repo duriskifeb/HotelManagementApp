@@ -1,6 +1,7 @@
 package Domain.Master;
 
 import Data.DataSource.KamarDataSource;
+import Data.Model.Customer;
 import Data.Model.Kamar;
 
 import java.util.ArrayList;
@@ -18,14 +19,26 @@ public class MasterKamar {
         return dataSource.getListKamar();
     }
     public void addKamar(Kamar kamar) {
+
         // check if kamar already exists
         if(!cekKamar(kamar.getNoKamar())){
-            dataSource.addNewKamar(kamar);
-            formatMessageOutput("Kamar Added");
+            if(dataIsValid(kamar)){
+                dataSource.addNewKamar(kamar);
+                formatMessageOutput("Kamar Added");
+            }else {
+                formatMessageOutput("Invalid Input Data");
+            }
+
         }else {
             formatMessageOutput("Data Kamar Sudah Ada");
         }
     }
+    private boolean dataIsValid(Kamar kamar) {
+        // check if one of the data is blank is ok
+        // but if all blank data is not valid
+        return !(kamar.getNoKamar().isBlank() && kamar.getKapasitas() == 0 && kamar.getStatusKamar() == null && kamar.getJenisKamar() == null);
+    }
+
     public void deleteKamar(String nomorKamar){
         if(cekKamar(nomorKamar)){
             Kamar kamar = getKamar(nomorKamar);
