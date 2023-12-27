@@ -139,7 +139,7 @@ public class MasterTransaksiMenu {
 
     private void showAllTransaksi() {
         InputUtilities.cls();
-        headerViewTransaksi();
+        // headerViewTransaksi();
         viewAllTransaksi(masterTransaksiVM.getAllTransaksi());
         InputUtilities.pressEnter();
     }
@@ -149,16 +149,19 @@ public class MasterTransaksiMenu {
         System.out.println("============================");
         System.out.println("        NEW TRANSAKSI       ");
         System.out.println("============================");
-
+        
         System.out.println();
-
+        
         try {
             System.out.print("Tanggal Mulai (dd-MM-yyyy) : "); 
             Date startDate = InputUtilities.getDateFromInput();
             System.out.print("Tanggal Berakhir (dd-MM-yyyy) : ");
             Date endDate = InputUtilities.getDateFromInput();
-
+            
             String nik = getNIKCustomer();
+            System.out.println("============================");
+            System.out.println();
+            
             viewAllDataKamar(masterKamarVM.getListKamar().stream()
                     .filter(kamar -> kamar.getStatusKamar() == AppEnums.StatusKamar.AVAILABLE)
                     .collect(Collectors.toCollection(ArrayList::new)));
@@ -179,14 +182,18 @@ public class MasterTransaksiMenu {
                 if (transaksiViewModel.currentActiveTransaksi != null) {
                     AppRouter.navigateTo(AppRouter.AppRoute.SUB_TRANSAKSI);
                 }
-
+                
             } else {
                 formatMessageOutput("Data Pelanggan Belum Ada, Lakukan register pelanggan dulu");
             }
-
+            
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        
+        System.out.println("============================");
+        InputUtilities.pressEnter();
+        
     }
 
     private void chooseTransaksi() {
