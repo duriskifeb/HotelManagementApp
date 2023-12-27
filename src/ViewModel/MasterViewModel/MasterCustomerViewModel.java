@@ -36,19 +36,30 @@ public class MasterCustomerViewModel {
                 email,
                 telp
         );
-        masterCustomer.addCustomer(customer);
+        // chek is data valid
+        if(dataIsValid(customer)){
+            masterCustomer.addCustomer(customer);
+        }else{
+            formatMessageOutput("Data Tidak Valid");
+        }
     }
+
+    private boolean dataIsValid(Customer customer) {
+        // check if one of the data is blank is ok
+        // but if all blank data is not valid
+        return !(customer.getNama().isBlank() && customer.getEmail().isBlank() && customer.getNIK().isBlank() && customer.getTelp().isBlank());
+    }
+
     public void deleteCustomer(String NIK) {
         masterCustomer.deleteCustomer(NIK);
     }
 
     //delete selected customer
-    public void deleteCustomer() {
-        if(currentSelectedCustomer != null){
-            masterCustomer.deleteCustomer(this.currentSelectedCustomer.getNIK());
-        }
-
-    }
+//    public void deleteCustomer() {
+//        if(currentSelectedCustomer != null){
+//            masterCustomer.deleteCustomer(this.currentSelectedCustomer.getNIK());
+//        }
+//    }
     public void editCustomer(String NIK, String nama, String email, String telp){
 
         if(currentSelectedCustomer != null){

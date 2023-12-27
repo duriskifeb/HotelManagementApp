@@ -18,7 +18,7 @@ public class Formatting {
         }
         Locale locale = new Locale("id", "ID");
         DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, locale);
-        String dateResult = dateFormat.format(new Date());
+        String dateResult = dateFormat.format(date);
         return dateResult;
     }
 

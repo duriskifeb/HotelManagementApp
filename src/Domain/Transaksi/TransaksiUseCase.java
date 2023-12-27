@@ -51,7 +51,7 @@ public class TransaksiUseCase {
     public void commitTransaksi() {
         if (currentActiveTransaksi != null) {
             int cekIndex = transaksiDataSource.getListTransaksi().indexOf(currentActiveTransaksi);
-            if (cekIndex != -1) {
+            if (cekIndex == -1) {
                 transaksiDataSource.addNewTransaksi(currentActiveTransaksi);
             } else {
                 transaksiDataSource.editTransasi(cekIndex, currentActiveTransaksi);

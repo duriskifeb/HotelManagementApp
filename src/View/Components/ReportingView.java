@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.stream.Collectors;
 
 import static Data.AppEnums.AppEnums.StatusTransaksi.*;
+import static Util.Formatting.formatMessageOutput;
 import static View.Components.TransaksiView.viewAllTransaksi;
 
 public class ReportingView {
