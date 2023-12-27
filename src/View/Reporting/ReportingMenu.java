@@ -39,7 +39,7 @@ public class ReportingMenu {
             System.out.println("2. Lihat Generated Laporan");
             System.out.println("3. Simpan Laporan");
             System.out.println("0. Kembali");
-
+            System.out.println();
             System.out.print("Masukkan Pilihan : ");
             try {
                 inputUser = InputUtilities.input.readLine();

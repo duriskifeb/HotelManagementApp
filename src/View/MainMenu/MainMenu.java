@@ -31,6 +31,7 @@ public class MainMenu {
             System.out.println("3. Transaksi");
             System.out.println("4. Reporting");
             System.out.println("0. Logout");
+            System.out.println();
             System.out.print("Masukkan Pilihan : ");
             try {
                 inputUser = InputUtilities.input.readLine();

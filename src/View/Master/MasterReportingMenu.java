@@ -40,7 +40,7 @@ public class MasterReportingMenu {
             System.out.println("4. Simpan Laporan");
             System.out.println("5. Pilih Laporan");
             System.out.println("0. Kembali");
-
+            System.out.println();
             System.out.print("Masukkan Pilihan : ");
             try {
 

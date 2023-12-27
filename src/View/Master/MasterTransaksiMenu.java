@@ -32,8 +32,7 @@ public class MasterTransaksiMenu {
             MasterCustomerViewModel masterCustomerVM,
             MasterKamarViewModel masterKamarVM,
             AuthViewModel authViewModel,
-            TransaksiViewModel transaksiViewModel
-    ) {
+            TransaksiViewModel transaksiViewModel) {
         this.masterTransaksiVM = masterTransaksiVM;
         this.masterCustomerVM = masterCustomerVM;
         this.masterKamarVM = masterKamarVM;
@@ -55,7 +54,7 @@ public class MasterTransaksiMenu {
             System.out.println("4. Batalkan Transaksi");
             System.out.println("5. Hapus Transaksi");
             System.out.println("0. Kembali");
-
+            System.out.println();
             System.out.print("Masukkan Pilihan : ");
             try {
 
@@ -101,9 +100,9 @@ public class MasterTransaksiMenu {
                 System.out.print("Apakah anda yakin ingin menghapus transaksi ? (y/n) : ");
                 String konfirmasi = InputUtilities.input.readLine();
 
-                if(konfirmasi.equalsIgnoreCase("y")) {
+                if (konfirmasi.equalsIgnoreCase("y")) {
                     masterTransaksiVM.deleteTransaksi();
-                }else{
+                } else {
                     formatMessageOutput("Aksi Dibatalkan");
                 }
 
@@ -112,7 +111,6 @@ public class MasterTransaksiMenu {
             throw new RuntimeException(e);
         }
     }
-
 
     private void batalkanTransaksi() {
         System.out.println("Batalkan Transaksi ");
@@ -124,9 +122,9 @@ public class MasterTransaksiMenu {
                 System.out.print("Apakah anda yakin ingin membatalkan transaksi ? (y/n) : ");
                 String konfirmasi = InputUtilities.input.readLine();
 
-                if(konfirmasi.equalsIgnoreCase("y")) {
+                if (konfirmasi.equalsIgnoreCase("y")) {
                     masterTransaksiVM.batalkanTransaksi();
-                }else{
+                } else {
                     formatMessageOutput("Aksi Dibatalkan");
                 }
 
@@ -149,19 +147,19 @@ public class MasterTransaksiMenu {
         System.out.println("============================");
         System.out.println("        NEW TRANSAKSI       ");
         System.out.println("============================");
-        
+
         System.out.println();
-        
+
         try {
-            System.out.print("Tanggal Mulai (dd-MM-yyyy) : "); 
+            System.out.print("Tanggal Mulai (dd-MM-yyyy) : ");
             Date startDate = InputUtilities.getDateFromInput();
             System.out.print("Tanggal Berakhir (dd-MM-yyyy) : ");
             Date endDate = InputUtilities.getDateFromInput();
-            
+
             String nik = getNIKCustomer();
             System.out.println("============================");
             System.out.println();
-            
+
             viewAllDataKamar(masterKamarVM.getListKamar().stream()
                     .filter(kamar -> kamar.getStatusKamar() == AppEnums.StatusKamar.AVAILABLE)
                     .collect(Collectors.toCollection(ArrayList::new)));
@@ -185,18 +183,18 @@ public class MasterTransaksiMenu {
                     }
                 }
 
-                
+
             } else {
                 formatMessageOutput("Data Pelanggan Belum Ada, Lakukan register pelanggan dulu");
             }
-            
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        
+
         System.out.println("============================");
         InputUtilities.pressEnter();
-        
+
     }
 
     private void chooseTransaksi() {

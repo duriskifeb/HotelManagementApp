@@ -39,7 +39,7 @@ public class PegawaiKamarMenu {
             System.out.println("2. Cari Kamar (berdasarkan status)");
             System.out.println("3. Cari Kamar (berdasarkan tipe)");
             System.out.println("0. Kembali");
-
+            System.out.println();
             System.out.print("Masukkan Pilihan : ");
             try {
                 inputUser = InputUtilities.input.readLine();

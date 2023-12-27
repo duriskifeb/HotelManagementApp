@@ -37,7 +37,7 @@ public class PegawaiCustomerMenu {
             System.out.println("2. Register Pelanggan");
             System.out.println("3. Cari Pelanggan");
             System.out.println("0. Kembali");
-
+            System.out.println();
             System.out.print("Masukkan Pilihan : ");
             try {
                 inputUser = InputUtilities.input.readLine();
