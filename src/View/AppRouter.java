@@ -21,7 +21,7 @@ public class AppRouter {
         if(routeStack.size() > 1){
             routeStack.removeLast();
             formatMessageOutput("Route Stack After RemoveLast" + routeStack);
-            formatMessageOutput("Target Up Route" + routeStack.getLast());
+            formatMessageOutput("Target Up Route " + routeStack.getLast());
             activeRoute = routeStack.getLast();
         }
     }
