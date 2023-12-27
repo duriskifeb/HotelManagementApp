@@ -110,6 +110,8 @@ public class TransaksiMenu {
             String noKamar = InputUtilities.input.readLine();
             if (!nik.isBlank()) {
                 transaksiVM.createInitialTransaksi(
+                        startDate,
+                        endDate,
                         nik,
                         authViewModel.loggedUser,
                         noKamar,

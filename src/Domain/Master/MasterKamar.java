@@ -39,6 +39,7 @@ public class MasterKamar {
         if(cekKamar(oldDData.getNoKamar())){
             int index = dataSource.getListKamar().indexOf(oldDData);
             dataSource.editKamar(index, newDData);
+
         }else{
             // data not found
             formatMessageOutput("Data Tidak Ditemukan");
@@ -47,7 +48,7 @@ public class MasterKamar {
     public Kamar getKamar(String nomorKamar){
        return dataSource.getKamar(nomorKamar);
     }
-    private boolean cekKamar(String noKamar) {
+    public boolean cekKamar(String noKamar) {
         Kamar cek = dataSource.getListKamar().stream().filter(
                 cekKamar -> cekKamar.getNoKamar().equals(noKamar)
         ).findFirst().orElse(null);
