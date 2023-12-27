@@ -25,6 +25,8 @@ public class Transaksi {
     public Transaksi(
             String noTransaksi,
             Date tanggalTransaksi,
+            Date startDate,
+            Date endDate,
             AppEnums.StatusTransaksi statusTransaksi,
             AppEnums.Pembayaran pembayaran,
             User pegawai,
@@ -38,19 +40,25 @@ public class Transaksi {
         this.pegawai = pegawai;
         this.customers = customers;
         this.kamarOrdered = kamarOrdered;
+        this.startDate = startDate;
+        this.endDate = endDate;
 
     }
 
 
     public Transaksi(
             Date tanggalTransaksi,
+            Date startDate,
+            Date endDate,
             AppEnums.StatusTransaksi statusTransaksi,
             AppEnums.Pembayaran pembayaran,
             User pegawai,
             ArrayList<Customer> customers,
             ArrayList<Kamar> kamarOrdered
-    ) {
 
+    ) {
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.noTransaksi = Generator.generateTransaksiID(
                 Formatting.formatDate(tanggalTransaksi),
                 String.valueOf(this.getTotal()),

@@ -59,16 +59,18 @@ public class TransaksiUseCase {
         }
     }
 
-    public void createInitialTransaksi(String nik, User pegawai, String noKamar, Pembayaran payment) {
+    public void createInitialTransaksi(Date startDate, Date endDate, String nik, User pegawai, String noKamar, Pembayaran payment) {
         Customer customer = customerDataSource.getCustomer(nik);
         Kamar kamar = kamarDataSource.getKamar(noKamar);
         if(customer == null){
-            formatMessageOutput("Data Customer Tidak Diperlukan");
+            formatMessageOutput("Data Customer Tidak Ditemukan");
         } else if (kamar.getStatusKamar() != StatusKamar.AVAILABLE) {
             formatMessageOutput("Kamar Sedang Digunakan");
         }else{
             this.currentActiveTransaksi = new Transaksi(
                     new Date(),
+                    startDate,
+                    endDate,
                     StatusTransaksi.PENDING,
                     payment,
                     pegawai,
@@ -78,6 +80,7 @@ public class TransaksiUseCase {
                     new ArrayList<Kamar>(
                             Arrays.asList(kamar)
                     )
+
             );
         }
 

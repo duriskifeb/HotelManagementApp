@@ -168,6 +168,8 @@ public class MasterTransaksiMenu {
             String noKamar = InputUtilities.input.readLine();
             if (!nik.isBlank()) {
                 transaksiViewModel.createInitialTransaksi(
+                        startDate,
+                        endDate,
                         nik,
                         authViewModel.loggedUser,
                         noKamar,
@@ -175,9 +177,6 @@ public class MasterTransaksiMenu {
                 );
 
                 if (transaksiViewModel.currentActiveTransaksi != null) {
-                    transaksiViewModel.currentActiveTransaksi.setStartDate(startDate);
-                    transaksiViewModel.currentActiveTransaksi.setStartDate(endDate);
-
                     AppRouter.navigateTo(AppRouter.AppRoute.SUB_TRANSAKSI);
                 }
 
@@ -206,7 +205,7 @@ public class MasterTransaksiMenu {
 
     private String getNIKCustomer() {
         String result = "";
-        System.out.print("Masukkan NIK");
+        System.out.print("Masukkan NIK : ");
         String nik = InputUtilities.readLine();
 
         masterCustomerVM.selectCustomer(nik);
@@ -240,6 +239,7 @@ public class MasterTransaksiMenu {
             String telp = InputUtilities.input.readLine();
 
             masterCustomerVM.addNewCustomer(nik, nama, email, telp);
+
 
             System.out.println("==============================");
             InputUtilities.pressEnter();
