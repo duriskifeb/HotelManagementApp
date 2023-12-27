@@ -106,7 +106,7 @@ public class ReportModel {
     }
 
     public Date getRangeEnd() {
-        return rangeEnd;
+        return this.rangeEnd;
     }
 
     public void setRangeEnd(Date rangeEnd) {
@@ -114,7 +114,8 @@ public class ReportModel {
     }
 
     public Date getRangeStart() {
-        return rangeStart;
+
+        return this.rangeStart;
     }
 
     public void setRangeStart(Date rangeStart) {
