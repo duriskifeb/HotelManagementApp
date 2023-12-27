@@ -56,8 +56,8 @@ public class ReportingView {
             System.out.println("No Report: " + selectedReport.getReportNumber());
             System.out.println("PIC : " +  selectedReport.getReportPIC().getNama() + "( " + selectedReport.getReportPIC().getUserID() + " )");
             System.out.println("---------------------------------------------------------------------------------------------------");
-            System.out.println("Start : " + Formatting.formatDate(new Date()));
-            System.out.println("End : " + Formatting.formatDate(new Date()));
+            System.out.println("Start : " + Formatting.formatDate(selectedReport.getRangeStart()));
+            System.out.println("End : " + Formatting.formatDate(selectedReport.getRangeEnd()));
             System.out.println("---------------------------------------------------------------------------------------------------");
 
             System.out.println("========================================= DETAIL TRANSAKSI =========================================");
