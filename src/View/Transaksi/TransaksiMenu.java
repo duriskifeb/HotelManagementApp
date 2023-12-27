@@ -119,8 +119,8 @@ public class TransaksiMenu {
                 );
 
                 if (transaksiVM.currentActiveTransaksi != null) {
-                    transaksiVM.currentActiveTransaksi.setStartDate(startDate);
-                    transaksiVM.currentActiveTransaksi.setStartDate(endDate);
+//                    transaksiVM.currentActiveTransaksi.setStartDate(startDate);
+//                    transaksiVM.currentActiveTransaksi.setStartDate(endDate);
                     AppRouter.navigateTo(SUB_TRANSAKSI);
                 }
 

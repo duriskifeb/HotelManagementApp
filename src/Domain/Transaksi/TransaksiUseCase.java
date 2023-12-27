@@ -67,6 +67,11 @@ public class TransaksiUseCase {
         } else if (kamar.getStatusKamar() != StatusKamar.AVAILABLE) {
             formatMessageOutput("Kamar Sedang Digunakan");
         }else{
+            ArrayList<Kamar> listKamar = new ArrayList<Kamar>();
+            ArrayList<Customer> listCustomer = new ArrayList<Customer>();
+
+            listKamar.add(kamar);
+            listCustomer.add(customer);
             this.currentActiveTransaksi = new Transaksi(
                     new Date(),
                     startDate,
@@ -74,12 +79,8 @@ public class TransaksiUseCase {
                     StatusTransaksi.PENDING,
                     payment,
                     pegawai,
-                    new ArrayList<Customer>(
-                            Arrays.asList(customer)
-                    ),
-                    new ArrayList<Kamar>(
-                            Arrays.asList(kamar)
-                    )
+                    listCustomer,
+                    listKamar
 
             );
         }
