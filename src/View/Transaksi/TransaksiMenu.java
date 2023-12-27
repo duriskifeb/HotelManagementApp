@@ -271,9 +271,10 @@ public class TransaksiMenu {
                 System.out.println("7. Tambah Kamar");
                 System.out.println("8. Kurangi Kamar");
                 System.out.println("---------------------------");
-                System.out.println("9. Check In");
             }
-            if (conditionAlreadyCheckIn()) {
+            if (!conditionAlreadyCheckIn()) {
+                System.out.println("9. Check In");
+            }else {
                 System.out.println("10. Check Out");
             }
             System.out.println("11. Commit Transaksi");
