@@ -1,6 +1,9 @@
 package View.Master;
 
 import static Util.Formatting.formatMessageOutput;
+import static Util.InputUtilities.pressEnter;
+import static View.AppRouter.navigateTo;
+import static View.AppRouter.AppRoute.MASTER_MAIN_MENU;
 import static View.AppRouter.AppRoute.MASTER_REPORTING;
 import static View.AppRouter.AppRoute.SUB_MASTER_DETAIL_REPORTING;
 import static View.Components.ReportingView.*;
@@ -45,10 +48,10 @@ public class MasterReportingMenu {
                 System.out.println();
                 switch (inputUser) {
                     case "1":
-                        headerViewReporting();
-                        viewAllReports(masterReportingVM.getAllReport());
+                        showAllReport();
                         break;
                     case "2":
+                        InputUtilities.cls();
                         if (masterReportingVM.getGeneratedReport() != null) {
                             System.out.println("Ada data yang sudah di generate");
                             System.out.print("Apakah anda ingin generate ulang? (y/n): ");
@@ -65,6 +68,7 @@ public class MasterReportingMenu {
                         InputUtilities.pressEnter();
                         break;
                     case "4":
+                        System.out.println("==============================");
                         simpanLaporan();
                         InputUtilities.pressEnter();
                         break;
@@ -72,7 +76,8 @@ public class MasterReportingMenu {
                         pilihLaporan();
                         break;
                     case "0":
-//                        AppRouter.navigateUp();
+                        navigateTo(MASTER_MAIN_MENU);
+                        // AppRouter.navigateUp();
 
                         break;
                     default:
@@ -86,25 +91,39 @@ public class MasterReportingMenu {
         }
     }
 
+    private void showAllReport() {
+        InputUtilities.cls();
+        headerViewReporting();
+        viewAllReports(masterReportingVM.getAllReport());
+        InputUtilities.pressEnter();
+    }
+
     private void pilihLaporan() {
+        InputUtilities.cls();
+        System.out.println("==============================");
+        System.out.println("         CHOOSE REPORT        ");
+        System.out.println("==============================");
 
         System.out.println("Pilih Laporan");
         System.out.print("Nomor Laporan\t: ");
         try {
             String noLaporan = InputUtilities.input.readLine();
             masterReportingVM.selectReport(noLaporan);
-            if(masterReportingVM.getSelectedReport() != null){
+            if (masterReportingVM.getSelectedReport() != null) {
                 AppRouter.navigateTo(SUB_MASTER_DETAIL_REPORTING);
             }
         } catch (IOException e) {
             formatMessageOutput(e.getMessage());
         }
+        InputUtilities.pressEnter();
     }
 
     private void generateLaporan() {
-
-        System.out.println("Generating report...");
-
+        InputUtilities.cls();
+        System.out.println("==============================");
+        System.out.println("      GENERATE NEW REPORT     ");
+        System.out.println("==============================");
+        
         System.out.print("Masukkan Range Tanggal Awal (dd-MM-yyyy) : ");
         Date dateStart = InputUtilities.getDateFromInput();
 
@@ -116,6 +135,9 @@ public class MasterReportingMenu {
         } else {
             formatMessageOutput("Invalid Date");
         }
+
+        System.out.println("==============================");
+        InputUtilities.pressEnter();
 
     }
 
@@ -160,7 +182,7 @@ public class MasterReportingMenu {
                         break;
                     case "0":
                         AppRouter.navigateTo(MASTER_REPORTING);
-//                        AppRouter.navigateUp();
+                        // AppRouter.navigateUp();
                         break;
                     default:
                         formatMessageOutput("Invalid Choice");
@@ -176,7 +198,7 @@ public class MasterReportingMenu {
     private void editLaporan() {
         InputUtilities.cls();
         System.out.println("==============================");
-        System.out.println("Edit Laporan");
+        System.out.println("          EDIT REPORT         ");
         System.out.println("==============================");
         System.out.println("Kosongi input jika tidak ingin mengedit data");
         try {
@@ -191,31 +213,33 @@ public class MasterReportingMenu {
 
             System.out.print("Apa anda yakin?(y/n): ");
             inputUser = InputUtilities.input.readLine();
+
             if (inputUser.equalsIgnoreCase("y")) {
                 masterReportingVM.editReport(rangeStart, rangeEnd, picID);
-
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
-
+        System.out.println("==============================");
+        InputUtilities.pressEnter();
     }
 
     private void hapusLaporan() {
-        System.out.println("Hapus Laporan");
+        InputUtilities.cls();
+        System.out.println("==============================");
+        System.out.println("         DELETE REPORT        ");
+        System.out.println("==============================");
         System.out.print("Apa anda yakin ingin menghapus laporan?(y/n): ");
         try {
             inputUser = InputUtilities.input.readLine();
-            if(inputUser.equalsIgnoreCase("y")){
+            if (inputUser.equalsIgnoreCase("y")) {
                 masterReportingVM.deleteReport(masterReportingVM.getSelectedReport().getReportNumber());
-                if(masterReportingVM.getSelectedReport() == null){
+                if (masterReportingVM.getSelectedReport() == null) {
                     AppRouter.navigateTo(MASTER_REPORTING);
-//                    AppRouter.navigateUp();
+                    // AppRouter.navigateUp();
                 }
 
-            }else{
+            } else {
                 System.out.println("Operasi Dibatalkan");
             }
         } catch (IOException e) {

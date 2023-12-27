@@ -218,6 +218,7 @@ public class MasterTransaksiMenu {
         masterCustomerVM.selectCustomer(nik);
         if (masterCustomerVM.getSelectedCustomer() != null) {
             result = nik;
+            System.out.println("Customer selected: " + masterCustomerVM.getSelectedCustomer().getNama());
         } else {
             System.out.println("Data pelanggan tidak ditemukan");
             System.out.print("Daftarkan pelanggan ? (y/n) : ");
@@ -246,7 +247,6 @@ public class MasterTransaksiMenu {
             String telp = InputUtilities.input.readLine();
 
             masterCustomerVM.addNewCustomer(nik, nama, email, telp);
-
 
             System.out.println("==============================");
             InputUtilities.pressEnter();
