@@ -68,6 +68,7 @@ public class MasterReportingMenu {
                         InputUtilities.pressEnter();
                         break;
                     case "4":
+                        System.out.println("==============================");
                         simpanLaporan();
                         InputUtilities.pressEnter();
                         break;
@@ -98,6 +99,7 @@ public class MasterReportingMenu {
     }
 
     private void pilihLaporan() {
+        InputUtilities.cls();
         System.out.println("==============================");
         System.out.println("         CHOOSE REPORT        ");
         System.out.println("==============================");
@@ -113,6 +115,7 @@ public class MasterReportingMenu {
         } catch (IOException e) {
             formatMessageOutput(e.getMessage());
         }
+        InputUtilities.pressEnter();
     }
 
     private void generateLaporan() {
@@ -120,7 +123,7 @@ public class MasterReportingMenu {
         System.out.println("==============================");
         System.out.println("      GENERATE NEW REPORT     ");
         System.out.println("==============================");
-
+        
         System.out.print("Masukkan Range Tanggal Awal (dd-MM-yyyy) : ");
         Date dateStart = InputUtilities.getDateFromInput();
 
@@ -133,6 +136,7 @@ public class MasterReportingMenu {
             formatMessageOutput("Invalid Date");
         }
 
+        System.out.println("==============================");
         InputUtilities.pressEnter();
 
     }
@@ -216,6 +220,7 @@ public class MasterReportingMenu {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        System.out.println("==============================");
         InputUtilities.pressEnter();
     }
 
