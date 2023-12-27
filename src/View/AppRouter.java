@@ -2,6 +2,8 @@ package View;
 
 import java.util.LinkedList;
 
+import static Util.Formatting.formatMessageOutput;
+
 public class AppRouter {
     public static final LinkedList<AppRoute> routeStack = new LinkedList();
     public static void navigateTo(AppRoute target) {
@@ -15,8 +17,11 @@ public class AppRouter {
     }
 
     public static void navigateUp(){
+        formatMessageOutput("Current Route Stack " + routeStack);
         if(routeStack.size() > 1){
             routeStack.removeLast();
+            formatMessageOutput("Route Stack After RemoveLast" + routeStack);
+            formatMessageOutput("Target Up Route" + routeStack.getLast());
             activeRoute = routeStack.getLast();
         }
     }
