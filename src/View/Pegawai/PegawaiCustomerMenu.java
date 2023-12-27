@@ -107,7 +107,7 @@ public class PegawaiCustomerMenu {
         System.out.println("SHOW DETAIL");
 
         viewDataSelectedCustomer(masterCustomerVM.getSelectedCustomer());
-        System.out.println("============================================================");
+        System.out.println("=======================================================================================");
 
         InputUtilities.pressEnter();
     }
@@ -155,7 +155,7 @@ public class PegawaiCustomerMenu {
         System.out.println("SHOW ALL CUSTOMER");
 
         viewAllDataCustomer(masterCustomerVM.getListCustomers());
-        System.out.println("============================================================");
+        System.out.println("=======================================================================================");
 
         InputUtilities.pressEnter();
     }

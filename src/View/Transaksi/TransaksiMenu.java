@@ -45,7 +45,7 @@ public class TransaksiMenu {
         while (AppRouter.activeRoute == AppRouter.AppRoute.TRANSAKSI) {
             InputUtilities.cls();
             System.out.println("============================");
-            System.out.println("Menu Transaksi");
+            System.out.println("       MENU TRANSAKSI       ");
             System.out.println("============================");
             System.out.println("1. Lihat List Transaksi");
             System.out.println("2. Buat Transaksi Baru");
@@ -89,7 +89,7 @@ public class TransaksiMenu {
 
         InputUtilities.cls();
         System.out.println("============================");
-        System.out.println("Initializing Transaction");
+        System.out.println("     BUAT TRANSAKSI BARU    ");
         System.out.println("============================");
 
         System.out.println();
