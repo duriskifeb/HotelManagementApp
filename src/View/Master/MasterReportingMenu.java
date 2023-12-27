@@ -1,6 +1,8 @@
 package View.Master;
 
 import static Util.Formatting.formatMessageOutput;
+import static View.AppRouter.navigateTo;
+import static View.AppRouter.AppRoute.MASTER_MAIN_MENU;
 import static View.AppRouter.AppRoute.MASTER_REPORTING;
 import static View.AppRouter.AppRoute.SUB_MASTER_DETAIL_REPORTING;
 import static View.Components.ReportingView.*;
@@ -72,7 +74,8 @@ public class MasterReportingMenu {
                         pilihLaporan();
                         break;
                     case "0":
-//                        AppRouter.navigateUp();
+                        navigateTo(MASTER_MAIN_MENU);
+                        // AppRouter.navigateUp();
 
                         break;
                     default:
@@ -93,7 +96,7 @@ public class MasterReportingMenu {
         try {
             String noLaporan = InputUtilities.input.readLine();
             masterReportingVM.selectReport(noLaporan);
-            if(masterReportingVM.getSelectedReport() != null){
+            if (masterReportingVM.getSelectedReport() != null) {
                 AppRouter.navigateTo(SUB_MASTER_DETAIL_REPORTING);
             }
         } catch (IOException e) {
@@ -160,7 +163,7 @@ public class MasterReportingMenu {
                         break;
                     case "0":
                         AppRouter.navigateTo(MASTER_REPORTING);
-//                        AppRouter.navigateUp();
+                        // AppRouter.navigateUp();
                         break;
                     default:
                         formatMessageOutput("Invalid Choice");
@@ -199,8 +202,6 @@ public class MasterReportingMenu {
             throw new RuntimeException(e);
         }
 
-
-
     }
 
     private void hapusLaporan() {
@@ -208,14 +209,14 @@ public class MasterReportingMenu {
         System.out.print("Apa anda yakin ingin menghapus laporan?(y/n): ");
         try {
             inputUser = InputUtilities.input.readLine();
-            if(inputUser.equalsIgnoreCase("y")){
+            if (inputUser.equalsIgnoreCase("y")) {
                 masterReportingVM.deleteReport(masterReportingVM.getSelectedReport().getReportNumber());
-                if(masterReportingVM.getSelectedReport() == null){
+                if (masterReportingVM.getSelectedReport() == null) {
                     AppRouter.navigateTo(MASTER_REPORTING);
-//                    AppRouter.navigateUp();
+                    // AppRouter.navigateUp();
                 }
 
-            }else{
+            } else {
                 System.out.println("Operasi Dibatalkan");
             }
         } catch (IOException e) {
