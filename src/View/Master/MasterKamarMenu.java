@@ -127,6 +127,7 @@ public class MasterKamarMenu {
 
             if (inputUser.equalsIgnoreCase("y")) {
                 formatMessageOutput("Adding kamar");
+
                 masterKamarVM.addNewKamar(noKamar, kapasitas, jenis, harga, status);
             } else {
                 formatMessageOutput("Process cancelled");
@@ -136,7 +137,8 @@ public class MasterKamarMenu {
             InputUtilities.pressEnter();
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            formatMessageOutput("Error: " + e.getMessage());
+//            throw new RuntimeException(e);
         }
     }
 
