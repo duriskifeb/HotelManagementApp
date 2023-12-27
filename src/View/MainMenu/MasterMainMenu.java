@@ -20,6 +20,7 @@ public class MasterMainMenu {
 
     public void showMasterMainMenu() {
         while (AppRouter.activeRoute == MASTER_MAIN_MENU) {
+            System.out.println(AppRouter.activeRoute);
             InputUtilities.cls();
             System.out.println("==============================");
             System.out.println("         MENU MANAJER         ");

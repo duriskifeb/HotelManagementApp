@@ -25,8 +25,8 @@ public class MasterKamarMenu {
     String inputUser;
 
     public void showMasterKamarMenu() {
-        inputUser = null;
         while (AppRouter.activeRoute == AppRouter.AppRoute.MASTER_KAMAR) {
+            System.out.println("Inside master kamar " + AppRouter.activeRoute);
             InputUtilities.cls();
             System.out.println("==============================");
             System.out.println("         MASTER KAMAR         ");
@@ -168,6 +168,8 @@ public class MasterKamarMenu {
                         deleteMasterKamar();
                         break;
                     case "0":
+
+                        masterKamarVM.clearSelectedKamar();
                         AppRouter.navigateTo(MASTER_KAMAR); //
                         break;
                     default:
@@ -177,8 +179,6 @@ public class MasterKamarMenu {
                 throw new RuntimeException(e);
             }
         }
-
-        AppRouter.navigateTo(MASTER_MAIN_MENU);
     }
 
     private void detailMasterKamar() {

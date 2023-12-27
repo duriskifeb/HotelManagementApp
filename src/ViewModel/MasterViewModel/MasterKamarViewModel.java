@@ -77,4 +77,8 @@ public class MasterKamarViewModel {
     public ArrayList<Kamar> getListKamar() {
         return  masterKamar.getAllKamar();
     }
+
+    public void clearSelectedKamar() {
+        this.currentSelectedKamar = null;
+    }
 }
