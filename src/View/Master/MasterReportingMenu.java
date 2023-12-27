@@ -1,8 +1,9 @@
 package View.Master;
 
 import static Util.Formatting.formatMessageOutput;
+import static View.AppRouter.AppRoute.SUB_MASTER_DETAIL_DETAIL_REPORTING;
+import static View.Components.ReportingView.*;
 // import static View.AppRouter.AppRoute.MASTER_MAIN_MENU;
-import static View.Components.ReportingView.viewDetailSelectedReport;
 
 import java.io.IOException;
 import java.util.Date;
@@ -29,9 +30,11 @@ public class MasterReportingMenu {
             System.out.println("============================");
             System.out.println("      MASTER REPORTING      ");
             System.out.println("============================");
-            System.out.println("1. Buat Laporan");
-            System.out.println("2. Lihat Laporan");
-            System.out.println("3. Simpan Laporan");
+            System.out.println("1. Lihat Semua Laporan");
+            System.out.println("2. Buat Laporan");
+            System.out.println("3. Lihat Generated Laporan");
+            System.out.println("4. Simpan Laporan");
+            System.out.println("5. Pilih Laporan");
             System.out.println("0. Kembali");
 
             System.out.print("Masukkan Pilihan : ");
@@ -41,7 +44,10 @@ public class MasterReportingMenu {
                 System.out.println();
                 switch (inputUser) {
                     case "1":
-                        System.out.println();
+                        headerViewTransaksi();
+                        viewAllReports(masterReportingVM.getAllReport());
+                        break;
+                    case "2":
                         if (masterReportingVM.getGeneratedReport() != null) {
                             System.out.println("Ada data yang sudah di generate");
                             System.out.print("Apakah anda ingin generate ulang? (y/n): ");
@@ -52,14 +58,17 @@ public class MasterReportingMenu {
                         }
                         generateLaporan();
                         break;
-                    case "2":
+                    case "3":
                         InputUtilities.cls();
-                        lihatLaporan();
+                        lihatGeneratedLaporan();
                         InputUtilities.pressEnter();
                         break;
-                    case "3":
+                    case "4":
                         simpanLaporan();
                         InputUtilities.pressEnter();
+                        break;
+                    case "5":
+                        pilihLaporan();
                         break;
                     case "0":
                         AppRouter.navigateUp();
@@ -72,6 +81,21 @@ public class MasterReportingMenu {
                 throw new RuntimeException(e);
             }
 
+        }
+    }
+
+    private void pilihLaporan() {
+
+        System.out.println("Pilih Laporan");
+        System.out.print("Nomor Laporan\t: ");
+        try {
+            String noLaporan = InputUtilities.input.readLine();
+            masterReportingVM.selectReport(noLaporan);
+            if(masterReportingVM.getSelectedReport() != null){
+                AppRouter.navigateTo(SUB_MASTER_DETAIL_DETAIL_REPORTING);
+            }
+        } catch (IOException e) {
+            formatMessageOutput(e.getMessage());
         }
     }
 
@@ -93,12 +117,16 @@ public class MasterReportingMenu {
 
     }
 
-    private void lihatLaporan() {
+    private void lihatGeneratedLaporan() {
         viewDetailSelectedReport(masterReportingVM.getGeneratedReport());
     }
 
     private void simpanLaporan() {
         masterReportingVM.saveNewGeneratedReport();
 
+    }
+
+    public void showDetailReportingMenu() {
+        // delete and edit
     }
 }

@@ -31,6 +31,9 @@ public class MasterReportingViewModel {
         }
     }
 
+    public ReportModel getSelectedReport(){
+        return selectedReport;
+    }
     public void generateNewReport(Date rangeStart, Date rangeEnd, String picID){
         reportingUseCase.generateReport(rangeStart, rangeEnd, picID);
         selectedReport = reportingUseCase.getGeneratedReport();

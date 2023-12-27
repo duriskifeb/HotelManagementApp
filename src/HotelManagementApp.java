@@ -49,7 +49,7 @@ public class HotelManagementApp {
         this.masterCustomerMenu = new MasterCustomerMenu(DI.masterCustomerVM);
         this.masterKamarMenu = new MasterKamarMenu(DI.masterKamarVM);
         this.masterPegawaiMenu = new MasterPegawaiMenu(DI.masterPegawaiVM);
-        this.masterReportingMenu = new MasterReportingMenu(DI.masterReportingVM);
+        this.masterReportingMenu = new MasterReportingMenu(DI.masterReportingVM, DI.authViewModel);
         this.masterTransaksiMenu = new MasterTransaksiMenu(
                 DI.masterTransaksiVM, DI.masterCustomerVM, DI.masterKamarVM, DI.authViewModel, DI.transaksiVM);
 
@@ -114,7 +114,9 @@ public class HotelManagementApp {
                     case SUB_MASTER_DETAIL_CUSTOMER:
                         this.masterCustomerMenu.showDetailCustomerMenu();
                         break;
-
+                    case SUB_MASTER_DETAIL_DETAIL_REPORTING:
+                            this.masterReportingMenu.showDetailReportingMenu();
+                            break;
                     case MASTER_REPORTING:
                         this.masterReportingMenu.showMasterReportingMenu();
                         break;
