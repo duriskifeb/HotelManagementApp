@@ -73,8 +73,7 @@ public class PegawaiCustomerMenu {
             System.out.print("NIK atau Nama\t: ");
             String nik = InputUtilities.input.readLine();
             masterCustomerVM.selectCustomer(nik);
-            System.out.println("==============================");
-
+            
             if (masterCustomerVM.getSelectedCustomer() != null) {
                 // show detail customer
                 detailCustomer();
@@ -95,7 +94,9 @@ public class PegawaiCustomerMenu {
                 }else {
                     formatMessageOutput("Data Customer Not Found");
                 }
-
+                System.out.println("==============================");
+                InputUtilities.pressEnter();
+                
             }
 
         } catch (IOException e) {
@@ -107,7 +108,7 @@ public class PegawaiCustomerMenu {
         System.out.println("SHOW DETAIL");
 
         viewDataSelectedCustomer(masterCustomerVM.getSelectedCustomer());
-        System.out.println("============================================================");
+        System.out.println("=======================================================================================");
 
         InputUtilities.pressEnter();
     }
@@ -155,7 +156,7 @@ public class PegawaiCustomerMenu {
         System.out.println("SHOW ALL CUSTOMER");
 
         viewAllDataCustomer(masterCustomerVM.getListCustomers());
-        System.out.println("============================================================");
+        System.out.println("=======================================================================================");
 
         InputUtilities.pressEnter();
     }

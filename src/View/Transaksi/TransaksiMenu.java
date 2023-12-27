@@ -45,7 +45,7 @@ public class TransaksiMenu {
         while (AppRouter.activeRoute == AppRouter.AppRoute.TRANSAKSI) {
             InputUtilities.cls();
             System.out.println("============================");
-            System.out.println("Menu Transaksi");
+            System.out.println("       MENU TRANSAKSI       ");
             System.out.println("============================");
             System.out.println("1. Lihat List Transaksi");
             System.out.println("2. Buat Transaksi Baru");
@@ -59,9 +59,7 @@ public class TransaksiMenu {
                 System.out.println();
                 switch (inputUser) {
                     case "1":
-                        InputUtilities.cls();
-                        viewAllTransaksi(transaksiVM.getAllTransaksi());
-                        InputUtilities.pressEnter();
+                        showAllTransaksi();
                         break;
                     case "2":
                         initNewTransaksi();
@@ -71,7 +69,7 @@ public class TransaksiMenu {
                         break;
                     case "0":
 
-                         AppRouter.navigateTo(MAIN_MENU);
+                        AppRouter.navigateTo(MAIN_MENU);
                         break;
                     default:
                         System.out.println("Invalid Choice");
@@ -85,11 +83,17 @@ public class TransaksiMenu {
 
     }
 
+    private void showAllTransaksi() {
+        InputUtilities.cls();
+        viewAllTransaksi(transaksiVM.getAllTransaksi());
+        InputUtilities.pressEnter();
+    }
+
     private void initNewTransaksi() {
 
         InputUtilities.cls();
         System.out.println("============================");
-        System.out.println("Initializing Transaction");
+        System.out.println("     BUAT TRANSAKSI BARU    ");
         System.out.println("============================");
 
         System.out.println();
@@ -119,8 +123,8 @@ public class TransaksiMenu {
                 );
 
                 if (transaksiVM.currentActiveTransaksi != null) {
-//                    transaksiVM.currentActiveTransaksi.setStartDate(startDate);
-//                    transaksiVM.currentActiveTransaksi.setStartDate(endDate);
+                    // transaksiVM.currentActiveTransaksi.setStartDate(startDate);
+                    // transaksiVM.currentActiveTransaksi.setStartDate(endDate);
                     AppRouter.navigateTo(SUB_TRANSAKSI);
                 }
 
@@ -157,6 +161,10 @@ public class TransaksiMenu {
 
     private void addNewCustomer() {
         try {
+            System.out.println("==============================");
+            System.out.println("       ADD NEW CUSTOMER       ");
+            System.out.println("==============================");
+
             System.out.print("NIK\t: ");
             String nik = InputUtilities.input.readLine();
 
@@ -180,6 +188,9 @@ public class TransaksiMenu {
     }
 
     private void pilihTransaksi() {
+        System.out.println("==============================");
+        System.out.println("       ADD NEW TRANSAKSI      ");
+        System.out.println("==============================");
 
         System.out.println("Pilih Transaksi ");
         System.out.print("Masukkan No Transaksi : ");
@@ -218,8 +229,10 @@ public class TransaksiMenu {
 
             System.out.println();
             System.out.println("============================");
-            System.out.println("Sub-Menu Transaksi " + transaksiVM.currentActiveTransaksi.getNoTransaksi());
+            System.out.println("SUB MENU TRANSAKSI");
             System.out.println("============================");
+            System.out.println("Sub-Menu Transaksi " + transaksiVM.currentActiveTransaksi.getNoTransaksi());
+            System.out.println();
             System.out.println("1. Lihat Detail");
             if (conditionHaveToPay()) {
                 System.out.println("2. Bayar");
@@ -293,7 +306,7 @@ public class TransaksiMenu {
                     case "0":
                         transaksiVM.commitTransaksi();
 
-                         AppRouter.navigateTo(TRANSAKSI);
+                        AppRouter.navigateTo(TRANSAKSI);
                         break;
                     default:
                         System.out.println("Invalid Choice");

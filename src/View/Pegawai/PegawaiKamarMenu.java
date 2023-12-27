@@ -103,6 +103,7 @@ public class PegawaiKamarMenu {
             formatMessageOutput("Status tidak dikenali, menampilkan semua data");
             showAllKamar();
         }
+        System.out.println("============================================================");
         InputUtilities.pressEnter();
     }
 
@@ -112,7 +113,7 @@ public class PegawaiKamarMenu {
         kamarTableHeader();
         viewAllDataKamar(masterKamarVM.getListKamar());
         System.out.println("============================================================");
-
+        
         InputUtilities.pressEnter();
     }
 
@@ -152,6 +153,7 @@ public class PegawaiKamarMenu {
             formatMessageOutput("Status tidak dikenali, menampilkan semua data");
             showAllKamar();
         }
-        InputUtilities.cls();
+        System.out.println("============================================================");
+        InputUtilities.pressEnter();
     }
 }
