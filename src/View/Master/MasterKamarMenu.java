@@ -5,6 +5,7 @@ import static Util.Formatting.invalidChoice;
 import static Util.InputUtilities.getJenisKamarFromInput;
 import static Util.InputUtilities.getStatusKamarFromInput;
 import static View.AppRouter.AppRoute.MASTER_KAMAR;
+import static View.AppRouter.AppRoute.MASTER_MAIN_MENU;
 import static View.Components.KamarView.*;
 
 import java.io.IOException;
@@ -24,6 +25,7 @@ public class MasterKamarMenu {
     String inputUser;
 
     public void showMasterKamarMenu() {
+        inputUser = null;
         while (AppRouter.activeRoute == AppRouter.AppRoute.MASTER_KAMAR) {
             InputUtilities.cls();
             System.out.println("==============================");
@@ -48,8 +50,7 @@ public class MasterKamarMenu {
                         addKamar();
                         break;
                     case "0":
-                        AppRouter.navigateUp();
-//                        AppRouter.navigateTo(MASTER_MAIN_MENU);
+                        AppRouter.navigateTo(MASTER_MAIN_MENU);
                         break;
                     default:
                         invalidChoice();
@@ -167,8 +168,7 @@ public class MasterKamarMenu {
                         deleteMasterKamar();
                         break;
                     case "0":
-                        AppRouter.navigateUp();
-//                        AppRouter.navigateTo(MASTER_KAMAR); // Langsung kembali ke "menu manager", bukan ke "master kamar"
+                        AppRouter.navigateTo(MASTER_KAMAR); //
                         break;
                     default:
                         invalidChoice();
@@ -178,7 +178,7 @@ public class MasterKamarMenu {
             }
         }
 
-        AppRouter.navigateTo(AppRouter.AppRoute.MASTER_MAIN_MENU);
+        AppRouter.navigateTo(MASTER_MAIN_MENU);
     }
 
     private void detailMasterKamar() {
@@ -230,7 +230,7 @@ public class MasterKamarMenu {
                 );
                 formatMessageOutput("Kamar editted");
                 System.out.println("==============================");
-                InputUtilities.pressEnter();
+//                InputUtilities.pressEnter();
 //                AppRouter.navigateTo(MASTER_KAMAR);
             } else {
                 formatMessageOutput("Process cancelled");

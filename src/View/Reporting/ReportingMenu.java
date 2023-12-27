@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.Date;
 
 import static Util.Formatting.formatMessageOutput;
+import static View.AppRouter.AppRoute.MAIN_MENU;
 import static View.AppRouter.activeRoute;
 import static View.Components.ReportingView.viewDetailSelectedReport;
 
@@ -67,8 +68,8 @@ public class ReportingMenu {
                         System.out.println();
                         break;
                     case "0":
-                        AppRouter.navigateUp();
-//                        AppRouter.navigateTo(MAIN_MENU);
+
+                        AppRouter.navigateTo(MAIN_MENU);
                         break;
                     default:
                         System.out.println("Invalid Choice");

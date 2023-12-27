@@ -1,6 +1,7 @@
 package View.Master;
 
 import static Util.Formatting.formatMessageOutput;
+import static View.AppRouter.AppRoute.MASTER_REPORTING;
 import static View.AppRouter.AppRoute.SUB_MASTER_DETAIL_REPORTING;
 import static View.Components.ReportingView.*;
 // import static View.AppRouter.AppRoute.MASTER_MAIN_MENU;
@@ -71,7 +72,8 @@ public class MasterReportingMenu {
                         pilihLaporan();
                         break;
                     case "0":
-                        AppRouter.navigateUp();
+//                        AppRouter.navigateUp();
+
                         break;
                     default:
                         formatMessageOutput("Invalid Choice");
@@ -157,7 +159,8 @@ public class MasterReportingMenu {
                         hapusLaporan();
                         break;
                     case "0":
-                        AppRouter.navigateUp();
+                        AppRouter.navigateTo(MASTER_REPORTING);
+//                        AppRouter.navigateUp();
                         break;
                     default:
                         formatMessageOutput("Invalid Choice");
@@ -208,7 +211,8 @@ public class MasterReportingMenu {
             if(inputUser.equalsIgnoreCase("y")){
                 masterReportingVM.deleteReport(masterReportingVM.getSelectedReport().getReportNumber());
                 if(masterReportingVM.getSelectedReport() == null){
-                    AppRouter.navigateUp();
+                    AppRouter.navigateTo(MASTER_REPORTING);
+//                    AppRouter.navigateUp();
                 }
 
             }else{

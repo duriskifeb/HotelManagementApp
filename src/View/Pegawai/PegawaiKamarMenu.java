@@ -55,8 +55,8 @@ public class PegawaiKamarMenu {
                         findKamarBytype();
                         break;
                     case "0":
-                        AppRouter.navigateUp();
-//                        AppRouter.navigateTo(MAIN_MENU);
+//                        AppRouter.navigateUp();
+                        AppRouter.navigateTo(MAIN_MENU);
                         break;
                     default:
                         System.out.println("Invalid Choice");

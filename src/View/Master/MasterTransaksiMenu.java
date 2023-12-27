@@ -78,7 +78,7 @@ public class MasterTransaksiMenu {
                         hapusTransaksi();
                         break;
                     case "0":
-                        AppRouter.navigateUp();
+                        AppRouter.navigateTo(AppRouter.AppRoute.MASTER_MAIN_MENU);
                         break;
                     default:
                         formatMessageOutput("Invalid Choice");

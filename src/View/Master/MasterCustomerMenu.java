@@ -2,9 +2,8 @@ package View.Master;
 
 import static Util.Formatting.formatMessageOutput;
 import static Util.Formatting.invalidChoice;
-import static View.AppRouter.AppRoute.MASTER_CUSTOMER;
-import static View.AppRouter.AppRoute.SUB_MASTER_DETAIL_CUSTOMER;
-import static View.AppRouter.navigateUp;
+
+import static View.AppRouter.AppRoute.*;
 import static View.Components.CustomerView.viewAllDataCustomer;
 import static View.Components.CustomerView.viewDataSelectedCustomer;
 
@@ -55,8 +54,8 @@ public class MasterCustomerMenu {
                         addCustomer();
                         break;
                     case "0":
-                        navigateUp();
-//                        AppRouter.navigateTo(MASTER_MAIN_MENU);
+
+                        AppRouter.navigateTo(MASTER_MAIN_MENU);
                         break;
                     default:
                         invalidChoice();;
@@ -114,7 +113,7 @@ public class MasterCustomerMenu {
             if (masterCustomerVM.getSelectedCustomer() != null) {
                 // show detail customer
                 detailCustomer();
-            }else{
+            } else {
                 formatMessageOutput("Search By Name");
                 // filter by name
                 final ArrayList<Customer> filteredData = masterCustomerVM
@@ -126,9 +125,9 @@ public class MasterCustomerMenu {
                         .collect(
                                 Collectors.toCollection(ArrayList::new)
                         );
-                if(!filteredData.isEmpty()){
+                if (!filteredData.isEmpty()) {
                     viewAllDataCustomer(filteredData);
-                }else {
+                } else {
                     formatMessageOutput("Data Customer Not Found");
                 }
 
@@ -145,7 +144,7 @@ public class MasterCustomerMenu {
             System.out.println("==============================");
             System.out.println("        ADD NEW CUSTOMER      ");
             System.out.println("==============================");
-            
+
             System.out.print("NIK\t: ");
             String nik = InputUtilities.input.readLine();
 
@@ -159,9 +158,10 @@ public class MasterCustomerMenu {
             String telp = InputUtilities.input.readLine();
 
             System.out.println("==============================");
+            System.out.println();
 
 //            if (inputUser.equalsIgnoreCase("y")) {
-                masterCustomerVM.addNewCustomer(nik, nama, email, telp);
+            masterCustomerVM.addNewCustomer(nik, nama, email, telp);
 //            } else {
 //                formatMessageOutput("Process cancelled");
 //            }
@@ -201,8 +201,8 @@ public class MasterCustomerMenu {
                         deleteCustomer();
                         break;
                     case "0":
-                        navigateUp();
-//                        AppRouter.navigateTo(MASTER_CUSTOMER);
+
+                        AppRouter.navigateTo(MASTER_CUSTOMER);
                         break;
                     default:
                         invalidChoice();
@@ -223,7 +223,7 @@ public class MasterCustomerMenu {
 
         InputUtilities.pressEnter();
     }
-    
+
     private void editCustomer() {
         try {
             InputUtilities.cls();
@@ -253,7 +253,8 @@ public class MasterCustomerMenu {
                 formatMessageOutput("Customer editted");
                 System.out.println("==============================");
                 InputUtilities.pressEnter();
-                AppRouter.navigateUp();
+
+                AppRouter.navigateTo(MASTER_CUSTOMER);
             } else {
                 formatMessageOutput("Process cancelled");
                 System.out.println("==============================");
@@ -265,6 +266,7 @@ public class MasterCustomerMenu {
             throw new RuntimeException(e);
         }
     }
+
     private void deleteCustomer() {
         try {
             InputUtilities.cls();
@@ -280,10 +282,10 @@ public class MasterCustomerMenu {
                 formatMessageOutput("Customer deleted");
                 System.out.println("==============================");
                 InputUtilities.pressEnter();
-                AppRouter.navigateUp();
+                AppRouter.navigateTo(MASTER_CUSTOMER);
             } else {
                 System.out.println();
-                formatMessageOutput("Process cancelled");
+                formatMessageOutput("Process cancelledj");
                 System.out.println("==============================");
                 InputUtilities.pressEnter();
             }
@@ -296,5 +298,3 @@ public class MasterCustomerMenu {
 
 }
 
-// TODO @David
-// add new menu methods to Create (Register), View, Update, and Delete Customer

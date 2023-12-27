@@ -2,8 +2,7 @@ package View.Master;
 
 import static Util.Formatting.formatMessageOutput;
 import static Util.Formatting.invalidChoice;
-import static View.AppRouter.AppRoute.MASTER_PEGAWAI;
-import static View.AppRouter.AppRoute.SUB_MASTER_DETAIL_PEGAWAI;
+import static View.AppRouter.AppRoute.*;
 import static View.Components.PegawaiView.*;
 
 import java.io.IOException;
@@ -47,8 +46,8 @@ public class MasterPegawaiMenu {
                         addPegawai();
                         break;
                     case "0":
-                        AppRouter.navigateUp();
-//                        AppRouter.navigateTo(MASTER_MAIN_MENU);
+
+                        AppRouter.navigateTo(MASTER_MAIN_MENU);
                         break;
                     default:
                         invalidChoice();
@@ -162,8 +161,8 @@ public class MasterPegawaiMenu {
                         deletePegawai();
                         break;
                     case "0":
-                        AppRouter.navigateUp();
-//                        AppRouter.navigateTo(MASTER_PEGAWAI);
+
+                        AppRouter.navigateTo(MASTER_PEGAWAI);
                         break;
                     default:
                         invalidChoice();
