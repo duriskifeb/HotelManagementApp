@@ -254,7 +254,8 @@ public class MasterCustomerMenu {
                 formatMessageOutput("Customer editted");
                 System.out.println("==============================");
                 InputUtilities.pressEnter();
-                AppRouter.navigateTo(MASTER_CUSTOMER);
+                AppRouter.navigateUp();
+//                AppRouter.navigateTo(MASTER_CUSTOMER);
             } else {
                 formatMessageOutput("Process cancelled");
                 System.out.println("==============================");
