@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 import static Util.Formatting.formatMessageOutput;
 import static View.AppRouter.AppRoute.*;
+import static View.Components.KamarView.kamarTableHeader;
 import static View.Components.KamarView.viewAllDataKamar;
 import static View.Components.TransaksiView.viewAllTransaksi;
 import static View.Components.TransaksiView.viewDetailSelectedTransaksi;
@@ -95,19 +96,22 @@ public class TransaksiMenu {
         System.out.println("============================");
         System.out.println("     BUAT TRANSAKSI BARU    ");
         System.out.println("============================");
-
+        
         System.out.println();
 
         try {
-            System.out.print("Tanggal Mulai (dd-MM-yyyy) : ");
+            System.out.print("Tanggal Mulai (dd-MM-yyyy)\t: ");
             Date startDate = InputUtilities.getDateFromInput();
-            System.out.print("Tanggal Berakhir (dd-MM-yyyy) : ");
+            System.out.print("Tanggal Berakhir (dd-MM-yyyy)\t: ");
             Date endDate = InputUtilities.getDateFromInput();
-
             String nik = getNIKCustomer();
+            System.out.println();
+
+            kamarTableHeader();
             viewAllDataKamar(kamarVM.getListKamar().stream()
                     .filter(kamar -> kamar.getStatusKamar() == AppEnums.StatusKamar.AVAILABLE)
                     .collect(Collectors.toCollection(ArrayList::new)));
+            System.out.println("================================================================================");
 
             System.out.println();
             System.out.print("Masukkan Nomor Kamar yang dipilih dari yang tersedia diatas : ");
@@ -131,6 +135,8 @@ public class TransaksiMenu {
             } else {
                 formatMessageOutput("Data Pelanggan Belum Ada, Lakukan register pelanggan dulu");
             }
+            System.out.println("============================");
+            InputUtilities.pressEnter();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -140,7 +146,7 @@ public class TransaksiMenu {
 
     private String getNIKCustomer() {
         String result = "";
-        System.out.print("Masukkan NIK");
+        System.out.print("Masukkan NIK\t\t: ");
         String nik = InputUtilities.readLine();
 
         masterCustomerVM.selectCustomer(nik);
@@ -227,7 +233,7 @@ public class TransaksiMenu {
             // - batalkan transaksi
             // commit transaksi
 
-            System.out.println();
+            InputUtilities.cls();
             System.out.println("============================");
             System.out.println("SUB MENU TRANSAKSI");
             System.out.println("============================");
