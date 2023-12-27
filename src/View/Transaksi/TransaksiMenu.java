@@ -51,6 +51,7 @@ public class TransaksiMenu {
             System.out.println("1. Lihat List Transaksi");
             System.out.println("2. Buat Transaksi Baru");
             System.out.println("3. Pilih Transaksi");
+            System.out.println();
             System.out.println("0. Kembali");
 
             System.out.print("Masukkan Pilihan : ");
@@ -87,6 +88,7 @@ public class TransaksiMenu {
     private void showAllTransaksi() {
         InputUtilities.cls();
         viewAllTransaksi(transaksiVM.getAllTransaksi());
+        System.out.println("================================================================================");
         InputUtilities.pressEnter();
     }
 
@@ -96,23 +98,27 @@ public class TransaksiMenu {
         System.out.println("============================");
         System.out.println("     BUAT TRANSAKSI BARU    ");
         System.out.println("============================");
-        
+        System.out.println("Format tanggal (DD-MM-YYYY)");
         System.out.println();
-
+        
         try {
-            System.out.print("Tanggal Mulai (dd-MM-yyyy)\t: ");
+            System.out.print("Tanggal Mulai\t : ");
             Date startDate = InputUtilities.getDateFromInput();
-            System.out.print("Tanggal Berakhir (dd-MM-yyyy)\t: ");
+            System.out.print("Tanggal Berakhir : ");
             Date endDate = InputUtilities.getDateFromInput();
             String nik = getNIKCustomer();
-            System.out.println();
+            
+            System.out.println("============================");
+            InputUtilities.pressEnter();
+            InputUtilities.cls();
 
+            System.out.println("PILIH KAMAR ");
             kamarTableHeader();
             viewAllDataKamar(kamarVM.getListKamar().stream()
                     .filter(kamar -> kamar.getStatusKamar() == AppEnums.StatusKamar.AVAILABLE)
                     .collect(Collectors.toCollection(ArrayList::new)));
             System.out.println("================================================================================");
-
+            
             System.out.println();
             System.out.print("Masukkan Nomor Kamar yang dipilih dari yang tersedia diatas : ");
             String noKamar = InputUtilities.input.readLine();
@@ -135,7 +141,8 @@ public class TransaksiMenu {
             } else {
                 formatMessageOutput("Data Pelanggan Belum Ada, Lakukan register pelanggan dulu");
             }
-            System.out.println("============================");
+            System.out.println("================================================================================");
+            System.out.println();
             InputUtilities.pressEnter();
 
         } catch (IOException e) {
@@ -146,7 +153,7 @@ public class TransaksiMenu {
 
     private String getNIKCustomer() {
         String result = "";
-        System.out.print("Masukkan NIK\t\t: ");
+        System.out.print("Masukkan NIK\t : ");
         String nik = InputUtilities.readLine();
 
         masterCustomerVM.selectCustomer(nik);
