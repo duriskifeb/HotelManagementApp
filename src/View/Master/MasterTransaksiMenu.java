@@ -4,7 +4,6 @@ import ViewModel.AuthViewModel.AuthViewModel;
 
 import static View.Components.KamarView.kamarTableHeader;
 import static View.Components.KamarView.viewAllDataKamar;
-import static View.Components.TransaksiView.headerViewTransaksi;
 import static View.Components.TransaksiView.viewAllTransaksi;
 import static Util.Formatting.formatMessageOutput;
 
@@ -160,7 +159,7 @@ public class MasterTransaksiMenu {
 
         if (!nik.isBlank()) {
             chooseKamar(startDate, endDate, nik);
-            System.out.println("================================================================================");
+            System.out.println("====================================================================================================");
         } else {
             formatMessageOutput("Pastikan data pelanggan ada");
             System.out.println("============================");
@@ -186,7 +185,7 @@ public class MasterTransaksiMenu {
             viewAllDataKamar(masterKamarVM.getListKamar().stream()
                     .filter(kamar -> kamar.getStatusKamar() == AppEnums.StatusKamar.AVAILABLE)
                     .collect(Collectors.toCollection(ArrayList::new)));
-            System.out.println("================================================================================");
+            System.out.println("====================================================================================================");
 
             System.out.println();
             System.out.print("Masukkan Nomor Kamar yang dipilih dari yang tersedia diatas : ");

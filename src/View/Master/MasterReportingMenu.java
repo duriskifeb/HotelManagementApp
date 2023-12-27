@@ -123,11 +123,11 @@ public class MasterReportingMenu {
         System.out.println("==============================");
         System.out.println("      GENERATE NEW REPORT     ");
         System.out.println("==============================");
-        
-        System.out.print("Masukkan Range Tanggal Awal (dd-MM-yyyy) : ");
+        System.out.println("Format tanggal (DD-MM-YYYY)");
+        System.out.print("Masukkan Range Tanggal Awal\t: ");
         Date dateStart = InputUtilities.getDateFromInput();
 
-        System.out.print("Masukkan Range Tanggal Akhir (dd-MM-yyyy) : ");
+        System.out.print("Masukkan Range Tanggal Akhir\t: ");
         Date dateEnd = InputUtilities.getDateFromInput();
 
         if (dateStart != null && dateEnd != null) {

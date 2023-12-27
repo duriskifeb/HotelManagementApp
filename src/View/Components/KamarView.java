@@ -9,9 +9,9 @@ import java.util.ArrayList;
 public class KamarView {
 
     public static void kamarTableHeader(){
-        System.out.println("================================================================================");
+        System.out.println("====================================================================================================");
         System.out.format("%10s \t%10s \t%15s \t%10s \t%10s\n", "NO KAMAR", "KAPASITAS", "HARGA", "JENIS", "STATUS");
-        System.out.println("================================================================================");
+        System.out.println("====================================================================================================");
 
     }
     public static void viewDataSelectedKamar(Kamar selectedKamar) {

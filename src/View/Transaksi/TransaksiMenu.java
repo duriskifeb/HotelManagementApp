@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.stream.Collectors;
 
+import static Data.AppEnums.AppEnums.StatusTransaksi.DONE;
 import static Util.Formatting.formatMessageOutput;
 import static View.AppRouter.AppRoute.*;
 import static View.Components.KamarView.kamarTableHeader;
@@ -88,7 +89,8 @@ public class TransaksiMenu {
     private void showAllTransaksi() {
         InputUtilities.cls();
         viewAllTransaksi(transaksiVM.getAllTransaksi());
-        System.out.println("=======================================================================================");
+        System.out.println(
+                "====================================================================================================");
         InputUtilities.pressEnter();
     }
 
@@ -109,7 +111,8 @@ public class TransaksiMenu {
 
         if (!nik.isBlank()) {
             choiceKamar(startDate, endDate, nik);
-            System.out.println("================================================================================");
+            System.out.println(
+                    "====================================================================================================");
         } else {
             formatMessageOutput("Pastikan data pelanggan ada");
             System.out.println("============================");
@@ -128,7 +131,8 @@ public class TransaksiMenu {
             viewAllDataKamar(kamarVM.getListKamar().stream()
                     .filter(kamar -> kamar.getStatusKamar() == AppEnums.StatusKamar.AVAILABLE)
                     .collect(Collectors.toCollection(ArrayList::new)));
-            System.out.println("================================================================================");
+            System.out.println(
+                    "====================================================================================================");
 
             System.out.println();
             System.out.print("Masukkan Nomor Kamar yang dipilih dari yang tersedia diatas : ");
@@ -172,7 +176,7 @@ public class TransaksiMenu {
                 addNewCustomer();
                 System.out.println("==============================");
                 InputUtilities.pressEnter();
-                
+
                 result = nik;
             }
         }
@@ -226,7 +230,8 @@ public class TransaksiMenu {
 
     private boolean conditionHaveToPay() {
         return transaksiVM.currentActiveTransaksi.getStatusTransaksi() == AppEnums.StatusTransaksi.PENDING
-                || transaksiVM.currentActiveTransaksi.getStatusTransaksi() == AppEnums.StatusTransaksi.ONGOING;
+                || transaksiVM.currentActiveTransaksi.getStatusTransaksi() == AppEnums.StatusTransaksi.ONGOING
+                || transaksiVM.currentActiveTransaksi.getStatusPembayaran() != AppEnums.StatusTransaksiBayar.LUNAS;
     }
 
     private boolean conditionCanStillEdit() {
@@ -276,7 +281,7 @@ public class TransaksiMenu {
                 System.out.println("9. Check In");
             }
 
-            if(!conditionCanStillEdit() && conditionOnGoing()){
+            if (!conditionCanStillEdit() && conditionOnGoing()) {
                 System.out.println("10. Check Out");
             }
             System.out.println("11. Commit Transaksi");
@@ -289,8 +294,9 @@ public class TransaksiMenu {
                         && Integer.parseInt(inputUser) >= 10;
                 boolean conditionHaveToPay = !conditionHaveToPay() && inputUser.equals("2");
                 boolean conditionAlreadyCheckIn = !conditionHaveToPay() && inputUser.equals("10");
+                boolean conditionCantCheckin = (!conditionOnGoing()) && inputUser.equals("9");
 
-                if (conditionCantEdit || conditionHaveToPay || conditionAlreadyCheckIn) {
+                if (conditionCantEdit || conditionHaveToPay || conditionAlreadyCheckIn || conditionCantCheckin) {
                     inputUser = "";
                 }
                 InputUtilities.cls();
@@ -298,47 +304,68 @@ public class TransaksiMenu {
                 switch (inputUser) {
                     case "1":
                         viewDetailSelectedTransaksi(transaksiVM.currentActiveTransaksi);
+                        InputUtilities.pressEnter();
                         break;
                     case "2":
                         subTransaksiHeader();
                         bayarTransaksi();
+                        System.out.println("==============================");
+                        InputUtilities.pressEnter();
                         break;
                     case "3":
                         subTransaksiHeader();
                         ubahTanggalMulai();
+                        System.out.println("==============================");
+                        InputUtilities.pressEnter();
                         break;
                     case "4":
                         subTransaksiHeader();
                         ubahTanggalSelesai();
+                        System.out.println("==============================");
+                        InputUtilities.pressEnter();
                         break;
                     case "5":
                         subTransaksiHeader();
                         tambahTamu();
+                        System.out.println("==============================");
+                        InputUtilities.pressEnter();
                         break;
                     case "6":
                         subTransaksiHeader();
                         kurangiTamu();
+                        System.out.println("==============================");
+                        InputUtilities.pressEnter();
                         break;
                     case "7":
                         subTransaksiHeader();
                         tambahKamar();
+                        System.out.println("==============================");
+                        InputUtilities.pressEnter();
                         break;
                     case "8":
                         subTransaksiHeader();
                         kurangiKamar();
+                        System.out.println("==============================");
+                        InputUtilities.pressEnter();
                         break;
                     case "9":
                         subTransaksiHeader();
                         checkIn();
+                        System.out.println("==============================");
+                        InputUtilities.pressEnter();
                         break;
                     case "10":
                         subTransaksiHeader();
                         checkOut();
+                        System.out.println("==============================");
+                        InputUtilities.pressEnter();
                         break;
 
                     case "11":
                         subTransaksiHeader();
                         transaksiVM.commitTransaksi();
+                        System.out.println("==============================");
+                        InputUtilities.pressEnter();
                         break;
                     case "0":
                         transaksiVM.commitTransaksi();
@@ -347,12 +374,11 @@ public class TransaksiMenu {
                         break;
                     default:
                         System.out.println("Invalid Choice");
+                        System.out.println("==============================");
+                        InputUtilities.pressEnter();
 
                 }
 
-                System.out.println("==============================");
-                InputUtilities.pressEnter();
-                System.out.println();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
