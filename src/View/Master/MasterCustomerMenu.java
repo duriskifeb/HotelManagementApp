@@ -159,7 +159,6 @@ public class MasterCustomerMenu {
             String telp = InputUtilities.input.readLine();
 
             System.out.println("==============================");
-            System.out.println();
 
 //            if (inputUser.equalsIgnoreCase("y")) {
                 masterCustomerVM.addNewCustomer(nik, nama, email, telp);
@@ -254,7 +253,7 @@ public class MasterCustomerMenu {
                 formatMessageOutput("Customer editted");
                 System.out.println("==============================");
                 InputUtilities.pressEnter();
-                AppRouter.navigateTo(MASTER_CUSTOMER);
+                AppRouter.navigateUp();
             } else {
                 formatMessageOutput("Process cancelled");
                 System.out.println("==============================");
@@ -281,10 +280,10 @@ public class MasterCustomerMenu {
                 formatMessageOutput("Customer deleted");
                 System.out.println("==============================");
                 InputUtilities.pressEnter();
-                AppRouter.navigateTo(MASTER_CUSTOMER);
+                AppRouter.navigateUp();
             } else {
                 System.out.println();
-                formatMessageOutput("Process cancelledj");
+                formatMessageOutput("Process cancelled");
                 System.out.println("==============================");
                 InputUtilities.pressEnter();
             }

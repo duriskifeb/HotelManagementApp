@@ -86,6 +86,8 @@ public class MasterPegawaiMenu {
             InputUtilities.pressEnter();
 
             if (masterPegawaiVM.getSelectedPegawai() != null) {
+                System.out.println();
+                formatMessageOutput("Pegawai found");
                 AppRouter.navigateTo(AppRouter.AppRoute.SUB_MASTER_DETAIL_PEGAWAI);
             }
 

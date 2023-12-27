@@ -84,6 +84,8 @@ public class MasterKamarMenu {
             InputUtilities.pressEnter();
 
             if (masterKamarVM.getSelectedKamar() != null) {
+                System.out.println();
+                formatMessageOutput("Kamar found");
                 AppRouter.navigateTo(AppRouter.AppRoute.SUB_MASTER_DETAIL_KAMAR);
             }
 
