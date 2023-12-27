@@ -59,9 +59,7 @@ public class TransaksiMenu {
                 System.out.println();
                 switch (inputUser) {
                     case "1":
-                        InputUtilities.cls();
-                        viewAllTransaksi(transaksiVM.getAllTransaksi());
-                        InputUtilities.pressEnter();
+                        showAllTransaksi();
                         break;
                     case "2":
                         initNewTransaksi();
@@ -83,6 +81,12 @@ public class TransaksiMenu {
 
         }
 
+    }
+
+    private void showAllTransaksi() {
+        InputUtilities.cls();
+        viewAllTransaksi(transaksiVM.getAllTransaksi());
+        InputUtilities.pressEnter();
     }
 
     private void initNewTransaksi() {

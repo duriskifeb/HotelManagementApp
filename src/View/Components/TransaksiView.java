@@ -8,9 +8,9 @@ import java.util.ArrayList;
 
 public class TransaksiView {
     public static void headerViewTransaksi(){
-        System.out.println("_______________________________________________________________________________________");
+        System.out.println("=======================================================================================");
         System.out.format("%20s %25s %20s %20s\n", "No transaksi", "Customer", "Status", "Tanggal");
-        System.out.println("_______________________________________________________________________________________");
+        System.out.println("=======================================================================================");
     }
 
     public static void viewAllTransaksi(ArrayList<Transaksi> listTransaksi) {
