@@ -170,6 +170,9 @@ public class TransaksiMenu {
             if (confirm != null && confirm.equalsIgnoreCase("y")) {
                 // register new pelanggan
                 addNewCustomer();
+                System.out.println("==============================");
+                InputUtilities.pressEnter();
+                
                 result = nik;
             }
         }
@@ -196,9 +199,6 @@ public class TransaksiMenu {
             String telp = InputUtilities.input.readLine();
 
             masterCustomerVM.addNewCustomer(nik, nama, email, telp);
-
-            System.out.println("==============================");
-            InputUtilities.pressEnter();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -437,18 +437,17 @@ public class TransaksiMenu {
             System.out.print("Masukkan Metode Bayar (bank/ cash) : ");
             AppEnums.Pembayaran metodebayar = InputUtilities.getMetodeBayarFromInput();
 
-            if(metodebayar == null) {
+            if (metodebayar == null) {
                 formatMessageOutput("Please enter a valid method");
                 return;
             }
             if (metodebayar == AppEnums.Pembayaran.CASH) {
-                    System.out.print("Masukkan Amount Bayar : ");
-                    amountBayar = Double.parseDouble(InputUtilities.input.readLine());
+                System.out.print("Masukkan Amount Bayar : ");
+                amountBayar = Double.parseDouble(InputUtilities.input.readLine());
             } else {
-                    amountBayar = transaksiVM.currentActiveTransaksi.getTotal();
+                amountBayar = transaksiVM.currentActiveTransaksi.getTotal();
             }
             transaksiVM.bayar(metodebayar, amountBayar);
-
 
         } catch (IOException e) {
             throw new RuntimeException(e);
