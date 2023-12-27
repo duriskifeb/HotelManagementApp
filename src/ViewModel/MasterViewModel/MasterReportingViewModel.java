@@ -59,6 +59,7 @@ public class MasterReportingViewModel {
             );
             ReportModel newData = reportingUseCase.getGeneratedReport();
             masterReporting.editDataReport(selectedReport, newData);
+            this.selectedReport=newData;
         }else{
             Formatting.formatMessageOutput("Pilih data untuk di edit");
             // print tidak ada data yang dipilih untuk diedit
