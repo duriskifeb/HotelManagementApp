@@ -170,18 +170,21 @@ public class MasterTransaksiMenu {
             System.out.print("Masukkan Nomor Kamar yang dipilih dari yang tersedia diatas : ");
             String noKamar = InputUtilities.input.readLine();
             if (!nik.isBlank()) {
-                transaksiViewModel.createInitialTransaksi(
-                        startDate,
-                        endDate,
-                        nik,
-                        authViewModel.loggedUser,
-                        noKamar,
-                        AppEnums.Pembayaran.CASH // default
-                );
+                if(!(noKamar.isBlank())) {
+                    transaksiViewModel.createInitialTransaksi(
+                            startDate,
+                            endDate,
+                            nik,
+                            authViewModel.loggedUser,
+                            noKamar,
+                            AppEnums.Pembayaran.CASH // default
+                    );
 
-                if (transaksiViewModel.currentActiveTransaksi != null) {
-                    AppRouter.navigateTo(AppRouter.AppRoute.SUB_TRANSAKSI);
+                    if (transaksiViewModel.currentActiveTransaksi != null) {
+                        AppRouter.navigateTo(AppRouter.AppRoute.SUB_TRANSAKSI);
+                    }
                 }
+
                 
             } else {
                 formatMessageOutput("Data Pelanggan Belum Ada, Lakukan register pelanggan dulu");
