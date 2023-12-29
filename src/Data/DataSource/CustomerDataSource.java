@@ -125,7 +125,7 @@ public class CustomerDataSource {
                     new Customer(
                             "1201230030",
                             "Arap",
-                            "firstabdillah1@gail.com",
+                            "firstabdillah1@gmail.com",
                             "0821496467119"
                     )
             )
