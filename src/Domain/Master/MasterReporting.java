@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import static Util.Formatting.formatMessageOutput;
 
 public class MasterReporting {
-    ReportDataSource dataSource;
+    final ReportDataSource dataSource;
 
     public MasterReporting(ReportDataSource dataSource) {
         this.dataSource = dataSource;
@@ -32,6 +32,7 @@ public class MasterReporting {
         if (cekReport(reportNumber)) {
             ReportModel report = dataSource.getReport(reportNumber);
             dataSource.removeReport(report);
+            formatMessageOutput("Data Dihapus");
         } else {
             formatMessageOutput("Data Tidak Ditemukan");
         }

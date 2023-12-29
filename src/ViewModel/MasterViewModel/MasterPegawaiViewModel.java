@@ -7,8 +7,10 @@ import Util.Encryption;
 
 import static Util.Formatting.formatMessageOutput;
 
+import java.util.ArrayList;
+
 public class MasterPegawaiViewModel {
-    MasterPegawai masterPegawai;
+    final MasterPegawai masterPegawai;
 
     public MasterPegawaiViewModel(MasterPegawai masterPegawai) {
         this.masterPegawai = masterPegawai;
@@ -21,6 +23,10 @@ public class MasterPegawaiViewModel {
         if (selectedPegawai == null) {
             formatMessageOutput("Data Tidak Ditemukan");
         }
+    }
+
+    public User getSelectedPegawai(){
+        return this.selectedPegawai;
     }
 
     public void addNewPegawai(
@@ -52,6 +58,10 @@ public class MasterPegawaiViewModel {
             );
             masterPegawai.editDataPegawai(selectedPegawai, newData);
         }
+    }
+
+    public ArrayList<User> getListPegawai() {
+        return  masterPegawai.getAllPegawai();
     }
 
 

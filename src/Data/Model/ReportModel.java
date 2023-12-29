@@ -2,16 +2,19 @@ package Data.Model;
 
 import Util.Formatting;
 import Util.Generator;
-import Util.Generator.*;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.stream.Collectors;
 
 
 public class ReportModel {
 
+    private Date rangeEnd;
+
+
+
+    private  Date rangeStart;
     private String reportNumber;
     private Date dateCreated, dateUpdated;
     private ArrayList<Transaksi> listTransaksi;
@@ -22,19 +25,26 @@ public class ReportModel {
             Date dateCreated,
             Date dateUpdated,
             ArrayList<Transaksi> listTransaksi,
-            User reportPIC
+            User reportPIC,
+            Date rangeStart,
+            Date rangeEnd
     ) {
         this.reportNumber = reportNumber;
         this.dateCreated = dateCreated;
         this.dateUpdated = dateUpdated;
         this.listTransaksi = listTransaksi;
         this.reportPIC = reportPIC;
+
+        this.rangeStart = rangeStart;
+        this.rangeEnd = rangeEnd;
     }
 
     public ReportModel(
             Date dateCreated,
             ArrayList<Transaksi> listTransaksi,
-            User reportPIC
+            User reportPIC,
+            Date rangeStart,
+            Date rangeEnd
     ) {
         String totalPrice = String.valueOf(
           listTransaksi.stream().mapToDouble(Transaksi::getTotal).sum()
@@ -50,6 +60,9 @@ public class ReportModel {
         this.dateCreated = dateCreated;
         this.listTransaksi = listTransaksi;
         this.reportPIC = reportPIC;
+
+        this.rangeStart = rangeStart;
+        this.rangeEnd = rangeEnd;
     }
 
     public String getReportNumber() {
@@ -90,5 +103,22 @@ public class ReportModel {
 
     public void setReportPIC(User reportPIC) {
         this.reportPIC = reportPIC;
+    }
+
+    public Date getRangeEnd() {
+        return this.rangeEnd;
+    }
+
+    public void setRangeEnd(Date rangeEnd) {
+        this.rangeEnd = rangeEnd;
+    }
+
+    public Date getRangeStart() {
+
+        return this.rangeStart;
+    }
+
+    public void setRangeStart(Date rangeStart) {
+        this.rangeStart = rangeStart;
     }
 }

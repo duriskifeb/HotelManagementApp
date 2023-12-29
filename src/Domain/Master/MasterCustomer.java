@@ -2,14 +2,13 @@ package Domain.Master;
 
 import Data.DataSource.CustomerDataSource;
 import Data.Model.Customer;
-import Data.Model.Kamar;
 
 import java.util.ArrayList;
 
 import static Util.Formatting.formatMessageOutput;
 
 public class MasterCustomer {
-    CustomerDataSource dataSource;
+    final CustomerDataSource dataSource;
 
     public MasterCustomer(CustomerDataSource dataSource) {
         this.dataSource = dataSource;

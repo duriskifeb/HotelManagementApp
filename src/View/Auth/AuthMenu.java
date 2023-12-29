@@ -6,7 +6,9 @@ import View.AppRouter;
 
 import java.io.IOException;
 
+import static Util.Formatting.invalidChoice;
 import static View.AppRouter.AppRoute.LOGIN;
+import static View.Components.MainView.appHeader;
 
 public class AuthMenu {
     private final AuthViewModel authViewModel;
@@ -18,11 +20,11 @@ public class AuthMenu {
     String inputUser;
 
     public void showLogin() {
-        while(AppRouter.activeRoute == LOGIN){
-            System.out.println();
-            System.out.println("LOGIN MENU");
-            System.out.println("0 to exit");
-            System.out.println("1 to Login");
+        while (AppRouter.activeRoute == LOGIN) {
+            InputUtilities.cls();
+            appHeader();
+            System.out.println("1. Login");
+            System.out.println("0. EXIT");
             System.out.println();
             System.out.print("Masukkan Pilihan : ");
             try {
@@ -35,28 +37,30 @@ public class AuthMenu {
                         AppRouter.navigateTo(AppRouter.AppRoute.EXIT);
                         break;
                     default:
-                        System.out.println("Invalid Choice");
+                        invalidChoice();
+                    }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
-            } catch (IOException e) {
-                throw new RuntimeException(e);
             }
-        }
-
-
     }
 
+    // misal sudah login dan berhasil terus logout, kalau login lagi dengan input yang salah, malah berhasil login dengan akun sebelumnya (Tanpa keluar aplikasi)
     private void showLoginInputs() {
-        System.out.println();
+        InputUtilities.cls(); // clear terminal
+        System.out.println("==============================");
+        System.out.println("          LOGIN MENU          ");
+        System.out.println("==============================");
         try {
-            System.out.print("Masukkan ID atau Email : ");
+            System.out.print("Masukkan ID atau Email\t: ");
             String userIDEmail = InputUtilities.input.readLine();
-            System.out.print("Masukkan Password : ");
-            String userPass= InputUtilities.input.readLine();
+            System.out.print("Masukkan Password\t: ");
+            String userPass = InputUtilities.input.readLine();
 
             this.authViewModel.doLogin(userIDEmail, userPass);
-            if(this.authViewModel.loggedUser != null){
-                switch (this.authViewModel.loggedUser.getRole()){
-                    case MANAGER :
+            if (this.authViewModel.loggedUser != null) {
+                switch (this.authViewModel.loggedUser.getRole()) {
+                    case MANAGER:
                         AppRouter.navigateTo(AppRouter.AppRoute.MASTER_MAIN_MENU);
                         break;
                     case PEGAWAI:
@@ -70,6 +74,7 @@ public class AuthMenu {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
+        System.out.println("==============================");
+        InputUtilities.pressEnter();
     }
 }

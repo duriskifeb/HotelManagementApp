@@ -10,18 +10,19 @@ import Data.Model.Customer;
 import Data.Model.Kamar;
 import Data.Model.Transaksi;
 import Data.Model.User;
-import Util.Formatting;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
+import static Util.Formatting.formatMessageOutput;
+
 // act like a cart and its utilities
 public class TransaksiUseCase {
-    TransaksiDataSource transaksiDataSource;
-    CustomerDataSource customerDataSource;
-    KamarDataSource kamarDataSource;
-    PegawaiDataSource pegawaiDataSource;
+    final TransaksiDataSource transaksiDataSource;
+    final CustomerDataSource customerDataSource;
+    final KamarDataSource kamarDataSource;
+    final PegawaiDataSource pegawaiDataSource;
 
     public TransaksiUseCase(
             TransaksiDataSource transaksiDataSource,
@@ -50,7 +51,7 @@ public class TransaksiUseCase {
     public void commitTransaksi() {
         if (currentActiveTransaksi != null) {
             int cekIndex = transaksiDataSource.getListTransaksi().indexOf(currentActiveTransaksi);
-            if (cekIndex != -1) {
+            if (cekIndex == -1) {
                 transaksiDataSource.addNewTransaksi(currentActiveTransaksi);
             } else {
                 transaksiDataSource.editTransasi(cekIndex, currentActiveTransaksi);
@@ -58,25 +59,32 @@ public class TransaksiUseCase {
         }
     }
 
-    public void createInitialTransaksi(String nik, User pegawai, String noKamar, Pembayaran payment) {
+    public void createInitialTransaksi(Date startDate, Date endDate, String nik, User pegawai, String noKamar, Pembayaran payment) {
         Customer customer = customerDataSource.getCustomer(nik);
         Kamar kamar = kamarDataSource.getKamar(noKamar);
         if(customer == null){
-            Formatting.formatMessageOutput("Data Customer Tidak Diperlukan");
+            formatMessageOutput("Data Customer Tidak Ditemukan");
         } else if (kamar.getStatusKamar() != StatusKamar.AVAILABLE) {
-            Formatting.formatMessageOutput("Kamar Sedang Digunakan");
+            formatMessageOutput("Kamar Sedang Digunakan");
         }else{
+            ArrayList<Kamar> listKamar = new ArrayList<Kamar>();
+            ArrayList<Customer> listCustomer = new ArrayList<Customer>();
+
+            listKamar.add(kamar);
+            updateStatusKamar(kamar, StatusKamar.BOOKED); //
+
+            listCustomer.add(customer);
+
             this.currentActiveTransaksi = new Transaksi(
                     new Date(),
+                    startDate,
+                    endDate,
                     StatusTransaksi.PENDING,
                     payment,
                     pegawai,
-                    new ArrayList<Customer>(
-                            Arrays.asList(customer)
-                    ),
-                    new ArrayList<Kamar>(
-                            Arrays.asList(kamar)
-                    )
+                    listCustomer,
+                    listKamar
+
             );
         }
 
@@ -121,6 +129,10 @@ public class TransaksiUseCase {
         if (currentActiveTransaksi != null) {
             Customer customer = customerDataSource.getCustomer(NIK);
             ArrayList<Customer> listPelanggan = currentActiveTransaksi.getCustomers();
+            if(listPelanggan.contains(customer)){
+                formatMessageOutput("Data Tamu sudah ada");
+                return;
+            }
             listPelanggan.add(customer);
             currentActiveTransaksi.setCustomers(listPelanggan);
         }
@@ -141,7 +153,7 @@ public class TransaksiUseCase {
 
         if (currentActiveTransaksi != null) {
             if (currentActiveTransaksi.getStatusPembayaran() != StatusTransaksiBayar.LUNAS) {
-                Formatting.formatMessageOutput("Lunasi dulu untuk bisa checkout");
+                formatMessageOutput("Lunasi dulu untuk bisa checkout");
 
             } else {
 
@@ -157,7 +169,7 @@ public class TransaksiUseCase {
             }
 
         } else {
-            Formatting.formatMessageOutput("Belum ada data transaksi yang dipilih");
+            formatMessageOutput("Belum ada data transaksi yang dipilih");
         }
     }
 
@@ -174,33 +186,47 @@ public class TransaksiUseCase {
                 commitTransaksi();
 
             } else {
-                Formatting.formatMessageOutput("Lakukan pembayaran terlebih dahulu untuk bisa chekc in");
+                formatMessageOutput("Lakukan pembayaran terlebih dahulu untuk bisa chekc in");
             }
         } else {
-            Formatting.formatMessageOutput("Belum ada data transaksi yang dipilih");
+            formatMessageOutput("Belum ada data transaksi yang dipilih");
         }
     }
 
     public void bayar(AppEnums.Pembayaran metodeBayar, double amountBayar) {
         if (currentActiveTransaksi != null) {
             if (currentActiveTransaksi.getStatusPembayaran() == StatusTransaksiBayar.LUNAS) {
-                Formatting.formatMessageOutput("Tidak Bisa bayar karena transaksi sudah lunas");
+                formatMessageOutput("Tidak Bisa bayar karena transaksi sudah lunas");
             } else {
                 currentActiveTransaksi.setPembayaran(metodeBayar);
                 currentActiveTransaksi.setStatusTransaksi(AppEnums.StatusTransaksi.ONGOING);
+
+                double sisa = currentActiveTransaksi.getTotal()-currentActiveTransaksi.getPaid();
+
                 currentActiveTransaksi.setPaid(
                         currentActiveTransaksi.getPaid() + amountBayar
                 );
 
                 if (currentActiveTransaksi.getPaid() > 0 && currentActiveTransaksi.getPaid() < currentActiveTransaksi.getTotal()) {
                     currentActiveTransaksi.setStatusPembayaran(StatusTransaksiBayar.PAID);
+                    formatMessageOutput("Pembayaran Berhasil!!");
+
+                    double kembalianTemp = sisa-amountBayar;
+                    if(kembalianTemp <0){
+                        formatMessageOutput("Kembalian : " + Math.abs(kembalianTemp));
+                    }
+
+
+                    formatMessageOutput("Sisa Tagihan : " +  (currentActiveTransaksi.getTotal()-currentActiveTransaksi.getPaid()));
                 } else {
                     // lunas
-
                     if (amountBayar <= 0) {
-                        Formatting.formatMessageOutput("Jumlah bayar tidak valid");
+                        formatMessageOutput("Jumlah bayar tidak valid");
                     } else {
+                        formatMessageOutput("Pembayaran Berhasil!! Transaksi Lunas");
                         currentActiveTransaksi.setStatusPembayaran(StatusTransaksiBayar.LUNAS);
+                        formatMessageOutput("Kembalian : " + Math.abs(sisa-amountBayar));
+
                     }
 
                 }
@@ -209,7 +235,7 @@ public class TransaksiUseCase {
 
 
         } else {
-            Formatting.formatMessageOutput("Belum ada data transaksi yang dipilih");
+            formatMessageOutput("Belum ada data transaksi yang dipilih");
         }
     }
     // UPDATES the transaction
@@ -218,7 +244,7 @@ public class TransaksiUseCase {
     public void selectTransaksi(String noTransaksi) {
         this.currentActiveTransaksi = transaksiDataSource.getTransaksiDetail(noTransaksi);
         if (currentActiveTransaksi == null) {
-            Formatting.formatMessageOutput("Data Not Found");
+            formatMessageOutput("Data Not Found");
         }
     }
 

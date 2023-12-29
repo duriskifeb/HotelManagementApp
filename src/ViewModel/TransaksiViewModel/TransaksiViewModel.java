@@ -6,10 +6,13 @@ import Data.Model.User;
 import Domain.Transaksi.TransaksiUseCase;
 import Util.Formatting;
 
+import static Util.Formatting.formatMessageOutput;
+
 import java.util.ArrayList;
+import java.util.Date;
 
 public class TransaksiViewModel {
-    TransaksiUseCase transaksiUseCase;
+    final TransaksiUseCase transaksiUseCase;
 
     public TransaksiViewModel(TransaksiUseCase transaksiUseCase) {
         this.transaksiUseCase = transaksiUseCase;
@@ -35,12 +38,14 @@ public class TransaksiViewModel {
     }
 
     public void commitTransaksi() {
+        formatMessageOutput("Saving changes");
         transaksiUseCase.commitTransaksi();
         updateStateTransaksi();
+
     }
 
-    public void createInitialTransaksi(String NIK, User pegawai, String noKamar, AppEnums.Pembayaran payment) {
-        transaksiUseCase.createInitialTransaksi(NIK, pegawai, noKamar, payment);
+    public void createInitialTransaksi(Date startDate, Date endDate, String NIK, User pegawai, String noKamar, AppEnums.Pembayaran payment) {
+        transaksiUseCase.createInitialTransaksi(startDate, endDate, NIK, pegawai, noKamar, payment);
         updateStateTransaksi();
     }
 

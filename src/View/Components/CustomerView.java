@@ -7,9 +7,9 @@ import java.util.ArrayList;
 public class CustomerView {
 
     public static void headerViewCustomer(){
-        System.out.println("_______________________________________________________________________________________");
+        System.out.println("=======================================================================================");
         System.out.format("%10s %25s %20s %20s\n", "NIK", "Nama", "No telp", "Email");
-        System.out.println("_______________________________________________________________________________________");
+        System.out.println("=======================================================================================");
     }
 
     public static void viewDataSelectedCustomer(Customer selectedCustomer){
