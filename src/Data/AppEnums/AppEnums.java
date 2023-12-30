@@ -38,7 +38,7 @@ public class AppEnums {
         PENDING_PAYMENT, // belum dibayar sama sekali
         PAID, // sudah dibayar tapi belum lunas
         LUNAS,
-        PAID_BACK,
+        REFUND, // REFUND
     }
 
 }

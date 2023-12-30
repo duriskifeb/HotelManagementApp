@@ -9,11 +9,7 @@ import java.util.stream.Collectors;
 
 
 public class ReportModel {
-
     private Date rangeEnd;
-
-
-
     private  Date rangeStart;
     private String reportNumber;
     private Date dateCreated, dateUpdated;
