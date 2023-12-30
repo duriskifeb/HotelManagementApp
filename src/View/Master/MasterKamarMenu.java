@@ -26,7 +26,7 @@ public class MasterKamarMenu {
 
     public void showMasterKamarMenu() {
         while (AppRouter.activeRoute == AppRouter.AppRoute.MASTER_KAMAR) {
-            System.out.println("Inside master kamar " + AppRouter.activeRoute);
+//            System.out.println("Inside master kamar " + AppRouter.activeRoute);
             InputUtilities.cls();
             System.out.println("==============================");
             System.out.println("         MASTER KAMAR         ");
