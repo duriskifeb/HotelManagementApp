@@ -60,6 +60,7 @@ public class TransaksiUseCase {
     }
 
     public void createInitialTransaksi(Date startDate, Date endDate, String nik, User pegawai, String noKamar, Pembayaran payment) {
+        this.currentActiveTransaksi = null;
         Customer customer = customerDataSource.getCustomer(nik);
         Kamar kamar = kamarDataSource.getKamar(noKamar);
         if(customer == null){
