@@ -3,10 +3,10 @@
 
 ### [Group 12]
 - [MUHAMMAD ASTHI SETA ARI YUWANA (1201230019)](github.com/AkuraDiary)
-`as lead programmer`
+`lead programmer`
   
 - [DAVID WAHYU HERDYANSYAH (1201230011)](github.com/David-NTB)
-`second lead programmer`
+`second programmer`
 
 - [RYAN ADIKA WICAKSANA (1201230016)](github.com/Xianzunn)
 `report and documenter`
