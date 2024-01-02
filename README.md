@@ -1,20 +1,28 @@
 # Hotel Management App 🥙
 ### [ Type ] : College Project
 
-### [Group]
-- MUHAMMAD ASTHI SETA ARI YUWANA (1201230019)
-`as the lead programmer`
+### [Group 12]
+- [MUHAMMAD ASTHI SETA ARI YUWANA (1201230019)](github.com/AkuraDiary)
+`as lead programmer`
   
-- DAVID WAHYU HERDYANSYAH (1201230011)
+- [DAVID WAHYU HERDYANSYAH (1201230011)](github.com/David-NTB)
 `second lead programmer`
 
-- RYAN ADIKA WICAKSANA (1201230016)
+- [RYAN ADIKA WICAKSANA (1201230016)](github.com/Xianzunn)
 `report and documenter`
 
 [ Description ] :
 This is a group project to fulfil complete the final ALPRO class practicum assignment
 A simple cli hotel management app build with Java. 
 We're trying to implement the MVVM architecture also using Dependency Injection principle
+
+The main features is
+
+- Multi-role user login
+- Data CRUD
+- Transaction
+- Reporting
+
 
 ## Would you like to try it? 🥘
 
