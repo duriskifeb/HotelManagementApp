@@ -63,11 +63,11 @@ public class TransaksiUseCase {
         this.currentActiveTransaksi = null;
         Customer customer = customerDataSource.getCustomer(nik);
         Kamar kamar = kamarDataSource.getKamar(noKamar);
-        if(customer == null){
+        if (customer == null) {
             formatMessageOutput("Data Customer Tidak Ditemukan");
         } else if (kamar.getStatusKamar() != StatusKamar.AVAILABLE) {
             formatMessageOutput("Kamar Sedang Digunakan");
-        }else{
+        } else {
             ArrayList<Kamar> listKamar = new ArrayList<Kamar>();
             ArrayList<Customer> listCustomer = new ArrayList<Customer>();
 
@@ -95,7 +95,7 @@ public class TransaksiUseCase {
     public void addKamar(String noKamar) {
         if (currentActiveTransaksi != null) {
             Kamar kamar = kamarDataSource.getKamar(noKamar);
-            if(kamar != null && kamar.getStatusKamar() == StatusKamar.AVAILABLE){
+            if (kamar != null && kamar.getStatusKamar() == StatusKamar.AVAILABLE) {
                 ArrayList<Kamar> listKamar = currentActiveTransaksi.getKamarOrdered();
                 listKamar.add(kamar);
                 currentActiveTransaksi.setKamarOrdered(listKamar);
@@ -115,7 +115,7 @@ public class TransaksiUseCase {
     public void removeKamar(String noKamar) {
         if (currentActiveTransaksi != null) {
             Kamar kamar = kamarDataSource.getKamar(noKamar);
-            if(kamar != null) {
+            if (kamar != null) {
                 ArrayList<Kamar> listKamar = currentActiveTransaksi.getKamarOrdered();
                 if (listKamar.size() > 1) {
                     listKamar.remove(kamar);
@@ -130,7 +130,7 @@ public class TransaksiUseCase {
         if (currentActiveTransaksi != null) {
             Customer customer = customerDataSource.getCustomer(NIK);
             ArrayList<Customer> listPelanggan = currentActiveTransaksi.getCustomers();
-            if(listPelanggan.contains(customer)){
+            if (listPelanggan.contains(customer)) {
                 formatMessageOutput("Data Tamu sudah ada");
                 return;
             }
@@ -195,48 +195,57 @@ public class TransaksiUseCase {
     }
 
     public void bayar(AppEnums.Pembayaran metodeBayar, double amountBayar) {
-        if (currentActiveTransaksi != null) {
-            if (currentActiveTransaksi.getStatusPembayaran() == StatusTransaksiBayar.LUNAS) {
-                formatMessageOutput("Tidak Bisa bayar karena transaksi sudah lunas");
-            } else {
-                currentActiveTransaksi.setPembayaran(metodeBayar);
-                currentActiveTransaksi.setStatusTransaksi(AppEnums.StatusTransaksi.ONGOING);
 
-                double sisa = currentActiveTransaksi.getTotal()-currentActiveTransaksi.getPaid();
-
-                currentActiveTransaksi.setPaid(
-                        currentActiveTransaksi.getPaid() + amountBayar
-                );
-
-                if (currentActiveTransaksi.getPaid() > 0 && currentActiveTransaksi.getPaid() < currentActiveTransaksi.getTotal()) {
-                    currentActiveTransaksi.setStatusPembayaran(StatusTransaksiBayar.PAID);
-                    formatMessageOutput("Pembayaran Berhasil!!");
-
-                    double kembalianTemp = sisa-amountBayar;
-                    if(kembalianTemp <0){
-                        formatMessageOutput("Kembalian : " + Math.abs(kembalianTemp));
-                    }
-
-
-                    formatMessageOutput("Sisa Tagihan : " +  (currentActiveTransaksi.getTotal()-currentActiveTransaksi.getPaid()));
-                } else {
-                    // lunas
-                    if (amountBayar <= 0) {
-                        formatMessageOutput("Jumlah bayar tidak valid");
-                    } else {
-                        formatMessageOutput("Pembayaran Berhasil!! Transaksi Lunas");
-                        currentActiveTransaksi.setStatusPembayaran(StatusTransaksiBayar.LUNAS);
-                        formatMessageOutput("Kembalian : " + Math.abs(sisa-amountBayar));
-
-                    }
-
-                }
-
-            }
-
-
-        } else {
+        if (currentActiveTransaksi == null) {
             formatMessageOutput("Belum ada data transaksi yang dipilih");
+            return;
+        }
+
+        if (currentActiveTransaksi.getStatusPembayaran() == StatusTransaksiBayar.LUNAS) {
+            formatMessageOutput("Tidak Bisa bayar karena transaksi sudah lunas");
+            return;
+        }
+
+        // amount bayar tidak valid
+        if (amountBayar <= 0) {
+            formatMessageOutput("Jumlah bayar tidak valid");
+            return;
+        }
+
+        currentActiveTransaksi.setPembayaran(metodeBayar);
+
+        currentActiveTransaksi.setStatusTransaksi(AppEnums.StatusTransaksi.ONGOING);
+
+        // hitung sisa yang harus dibayarkan
+        double yangHarusDibayarkan = currentActiveTransaksi.getTotal() - currentActiveTransaksi.getPaid();
+
+
+        // hitung kembalian
+        double kembalianPembayaran = yangHarusDibayarkan - amountBayar;
+
+
+        // set amount yang dibayarkan
+        currentActiveTransaksi.setPaid(
+                currentActiveTransaksi.getPaid() + yangHarusDibayarkan
+        );
+
+        // update status pembayaran
+        currentActiveTransaksi.setStatusPembayaran(StatusTransaksiBayar.PAID);
+        formatMessageOutput("Pembayaran Berhasil!!");
+
+        if (kembalianPembayaran < 0) {
+            // kalau ada kembalian
+            formatMessageOutput("Kembalian : " + Math.abs(kembalianPembayaran));
+        }
+
+        formatMessageOutput("Sisa Tagihan : " + (currentActiveTransaksi.getTotal() - currentActiveTransaksi.getPaid()));
+
+        // kalau transaksi lunas
+        if (currentActiveTransaksi.getPaid() > 0 && currentActiveTransaksi.getPaid() > currentActiveTransaksi.getTotal()) {
+            // lunas
+            formatMessageOutput("Pembayaran Berhasil!! Transaksi Lunas");
+            currentActiveTransaksi.setStatusPembayaran(StatusTransaksiBayar.LUNAS);
+            formatMessageOutput("Kembalian : " + Math.abs(yangHarusDibayarkan - amountBayar));
         }
     }
     // UPDATES the transaction
