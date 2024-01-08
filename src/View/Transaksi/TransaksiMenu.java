@@ -291,6 +291,9 @@ public class TransaksiMenu {
             System.out.print("Masukkan Pilihan : ");
             try {
                 inputUser = InputUtilities.input.readLine();
+                if(inputUser.isBlank()){
+                    inputUser = "13";
+                }
                 boolean conditionCantEdit = !conditionCanStillEdit() && Integer.parseInt(inputUser) <= 3
                         && Integer.parseInt(inputUser) >= 10;
                 boolean conditionHaveToPay = !conditionHaveToPay() && inputUser.equals("2");
@@ -298,7 +301,7 @@ public class TransaksiMenu {
                 boolean conditionCantCheckin = (!conditionOnGoing()) && inputUser.equals("9");
 
                 if (conditionCantEdit || conditionHaveToPay || conditionAlreadyCheckIn || conditionCantCheckin) {
-                    inputUser = "";
+                    inputUser = "13";
                 }
                 InputUtilities.cls();
 
