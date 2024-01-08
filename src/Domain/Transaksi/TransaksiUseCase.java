@@ -245,7 +245,7 @@ public class TransaksiUseCase {
 
         } else {
             currentActiveTransaksi.setPaid(
-                    yangHarusDibayarkan
+                    currentActiveTransaksi.getPaid() + yangHarusDibayarkan
             );
         }
 
