@@ -61,7 +61,8 @@ public class MasterMainMenu {
                         invalidChoice();
                     }
                 } catch (IOException e) {
-                    throw new RuntimeException(e);
+                System.out.println("invalid input");
+//                    throw new RuntimeException(e);
                 }
                 
         }

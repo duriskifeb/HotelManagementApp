@@ -43,6 +43,8 @@ public class Transaksi {
         this.startDate = startDate;
         this.endDate = endDate;
 
+//        calculateTotal();
+
     }
 
 
@@ -74,6 +76,8 @@ public class Transaksi {
         this.statusTransaksi = statusTransaksi;
         this.pembayaran = pembayaran;
         this.pegawai = pegawai;
+
+//        calculateTotal();
 
     }
 
@@ -149,9 +153,13 @@ public class Transaksi {
     public void calculateTotal() {
         // sum the total
         this.total = 0;
-        int interval = endDate.compareTo(startDate);
+
+        long diff = endDate.getTime() - startDate.getTime();
+         long intervalDay = (diff / (1000 * 60 * 60 * 24)%365) ; //endDate.compareTo(startDate);
+
+//        System.out.println("Interval: " + intervalDay);
         for(Kamar kamar : this.kamarOrdered){
-            this.total += kamar.getHarga()*interval;
+            this.total += kamar.getHarga()*intervalDay;
         }
 
     }

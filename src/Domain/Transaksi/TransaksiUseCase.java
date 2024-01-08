@@ -213,32 +213,52 @@ public class TransaksiUseCase {
         }
 
         currentActiveTransaksi.setPembayaran(metodeBayar);
-
         currentActiveTransaksi.setStatusTransaksi(AppEnums.StatusTransaksi.ONGOING);
 
         // hitung sisa yang harus dibayarkan
         double yangHarusDibayarkan = currentActiveTransaksi.getTotal() - currentActiveTransaksi.getPaid();
+        double sisatagihan =0;
+
+//        System.out.println("yang harus dibayarkan " + yangHarusDibayarkan);
+        if (metodeBayar == Pembayaran.CASH) {
+
+            // hitung kembalian
+            double kembalianPembayaran =  yangHarusDibayarkan - amountBayar;
+
+//            System.out.println("kembalian " + kembalianPembayaran);
+//            sisatagihan = //Math.abs(currentActiveTransaksi.getPaid() + (amountBayar - yangHarusDibayarkan));
+            if (kembalianPembayaran < 0) {
+                // kalau ada kembalian
+                formatMessageOutput("Kembalian : " + Math.abs(kembalianPembayaran));
+
+                sisatagihan = 0;
+                currentActiveTransaksi.setPaid(currentActiveTransaksi.getPaid() + yangHarusDibayarkan);
+
+            }else{
+                currentActiveTransaksi.setPaid(
+                        yangHarusDibayarkan-kembalianPembayaran
+                );
+                sisatagihan = kembalianPembayaran;//currentActiveTransaksi.getTotal() - currentActiveTransaksi.getPaid();//yangHarusDibayarkan;// yangHarusDibayarkan - kembalianPembayaran;
+            }
+
+//            System.out.println("sisa tagihan " + sisatagihan);
+
+        } else {
+            currentActiveTransaksi.setPaid(
+                    yangHarusDibayarkan
+            );
+        }
 
 
-        // hitung kembalian
-        double kembalianPembayaran = yangHarusDibayarkan - amountBayar;
 
-
-        // set amount yang dibayarkan
-        currentActiveTransaksi.setPaid(
-                currentActiveTransaksi.getPaid() + yangHarusDibayarkan
-        );
 
         // update status pembayaran
         currentActiveTransaksi.setStatusPembayaran(StatusTransaksiBayar.PAID);
+
         formatMessageOutput("Pembayaran Berhasil!!");
 
-        if (kembalianPembayaran < 0) {
-            // kalau ada kembalian
-            formatMessageOutput("Kembalian : " + Math.abs(kembalianPembayaran));
-        }
 
-        formatMessageOutput("Sisa Tagihan : " + (currentActiveTransaksi.getTotal() - currentActiveTransaksi.getPaid()));
+        formatMessageOutput("Sisa Tagihan : " + sisatagihan);
 
         // kalau transaksi lunas
         if (currentActiveTransaksi.getPaid() > 0 && currentActiveTransaksi.getPaid() > currentActiveTransaksi.getTotal()) {
@@ -247,6 +267,7 @@ public class TransaksiUseCase {
             currentActiveTransaksi.setStatusPembayaran(StatusTransaksiBayar.LUNAS);
             formatMessageOutput("Kembalian : " + Math.abs(yangHarusDibayarkan - amountBayar));
         }
+
     }
     // UPDATES the transaction
 
