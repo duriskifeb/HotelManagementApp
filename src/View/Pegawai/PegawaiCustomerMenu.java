@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 import static Util.Formatting.formatMessageOutput;
+import static Util.Formatting.invalidChoice;
 import static View.AppRouter.AppRoute.*;
 import static View.Components.CustomerView.viewAllDataCustomer;
 import static View.Components.CustomerView.viewDataSelectedCustomer;
@@ -100,7 +101,7 @@ public class PegawaiCustomerMenu {
             }
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            invalidChoice();
         }
     }
     private void detailCustomer() {
@@ -148,7 +149,7 @@ public class PegawaiCustomerMenu {
             InputUtilities.pressEnter();
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            invalidChoice();
         }
     }
     private void showAllCustomer() {

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 import static Util.Formatting.formatMessageOutput;
+import static Util.Formatting.invalidChoice;
 import static View.AppRouter.AppRoute.*;
 import static View.Components.KamarView.kamarTableHeader;
 import static View.Components.KamarView.viewAllDataKamar;
@@ -62,7 +63,7 @@ public class PegawaiKamarMenu {
                         System.out.println("Invalid Choice");
                 }
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                invalidChoice();
             }
         }
     }

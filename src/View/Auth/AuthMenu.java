@@ -40,7 +40,7 @@ public class AuthMenu {
                         invalidChoice();
                     }
                 } catch (IOException e) {
-                    throw new RuntimeException(e);
+                    invalidChoice();
                 }
             }
     }
@@ -72,7 +72,7 @@ public class AuthMenu {
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            invalidChoice();
         }
         System.out.println("==============================");
         InputUtilities.pressEnter();

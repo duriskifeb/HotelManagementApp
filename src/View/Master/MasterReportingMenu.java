@@ -1,6 +1,7 @@
 package View.Master;
 
 import static Util.Formatting.formatMessageOutput;
+import static Util.Formatting.invalidChoice;
 import static Util.InputUtilities.pressEnter;
 import static View.AppRouter.navigateTo;
 import static View.AppRouter.AppRoute.MASTER_MAIN_MENU;
@@ -85,7 +86,7 @@ public class MasterReportingMenu {
                 }
                 System.out.println();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                invalidChoice();
             }
 
         }
@@ -189,7 +190,7 @@ public class MasterReportingMenu {
                 }
                 System.out.println();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                invalidChoice();
             }
         }
 
@@ -218,7 +219,7 @@ public class MasterReportingMenu {
                 masterReportingVM.editReport(rangeStart, rangeEnd, picID);
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            invalidChoice();
         }
         System.out.println("==============================");
         InputUtilities.pressEnter();
@@ -243,7 +244,7 @@ public class MasterReportingMenu {
                 System.out.println("Operasi Dibatalkan");
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            invalidChoice();
         }
     }
 }

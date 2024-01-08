@@ -56,7 +56,7 @@ public class MainMenu {
                         System.out.println("Invalid Choice");
                 }
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                System.out.println("Invalid Choice");
             }
         }
 

@@ -62,7 +62,7 @@ public class MasterCustomerMenu {
                         break;
                 }
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                invalidChoice();
             }
         }
     }
@@ -94,7 +94,7 @@ public class MasterCustomerMenu {
             }
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            invalidChoice();
         }
     }
 
@@ -134,7 +134,7 @@ public class MasterCustomerMenu {
             }
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            invalidChoice();
         }
     }
 
@@ -170,7 +170,7 @@ public class MasterCustomerMenu {
             InputUtilities.pressEnter();
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            invalidChoice();
         }
     }
 
@@ -209,7 +209,7 @@ public class MasterCustomerMenu {
                         break;
                 }
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                invalidChoice();
             }
         }
     }
@@ -263,7 +263,7 @@ public class MasterCustomerMenu {
 
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            invalidChoice();
         }
     }
 
@@ -291,7 +291,7 @@ public class MasterCustomerMenu {
             }
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            invalidChoice();
         }
     }
 

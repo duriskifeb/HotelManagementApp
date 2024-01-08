@@ -54,7 +54,7 @@ public class MasterPegawaiMenu {
                         break;
                 }
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                invalidChoice();
             }
         }
     }
@@ -91,7 +91,7 @@ public class MasterPegawaiMenu {
             }
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            invalidChoice();
         }
     }
 
@@ -130,7 +130,7 @@ public class MasterPegawaiMenu {
             InputUtilities.pressEnter();
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            invalidChoice();
         }
     }
 
@@ -169,7 +169,7 @@ public class MasterPegawaiMenu {
                         break;
                 }
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                invalidChoice();
             }
         }
     }
@@ -222,7 +222,7 @@ public class MasterPegawaiMenu {
 
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            invalidChoice();
         }
     }
 
@@ -250,7 +250,7 @@ public class MasterPegawaiMenu {
             }
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            invalidChoice();
         }
     }
 

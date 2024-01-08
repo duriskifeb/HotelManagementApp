@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 import static Data.AppEnums.AppEnums.StatusTransaksi.DONE;
 import static Util.Formatting.formatMessageOutput;
+import static Util.Formatting.invalidChoice;
 import static View.AppRouter.AppRoute.*;
 import static View.Components.KamarView.kamarTableHeader;
 import static View.Components.KamarView.viewAllDataKamar;
@@ -79,7 +80,7 @@ public class TransaksiMenu {
                 }
                 System.out.println();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                invalidChoice();
             }
 
         }
@@ -205,7 +206,7 @@ public class TransaksiMenu {
             masterCustomerVM.addNewCustomer(nik, nama, email, telp);
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            invalidChoice();
         }
     }
 
@@ -224,7 +225,7 @@ public class TransaksiMenu {
                 AppRouter.navigateTo(SUB_TRANSAKSI);
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            invalidChoice();
         }
     }
 
@@ -380,7 +381,7 @@ public class TransaksiMenu {
                 }
 
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                invalidChoice();
             }
         }
     }
@@ -402,7 +403,7 @@ public class TransaksiMenu {
             String noKamar = InputUtilities.input.readLine();
             transaksiVM.removeKamar(noKamar);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            invalidChoice();
         }
     }
 
@@ -413,7 +414,7 @@ public class TransaksiMenu {
             String noKamar = InputUtilities.input.readLine();
             transaksiVM.addKamar(noKamar);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            invalidChoice();
         }
     }
 
@@ -424,7 +425,7 @@ public class TransaksiMenu {
             String nik = InputUtilities.input.readLine();
             transaksiVM.removeCustomer(nik);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            invalidChoice();
         }
     }
 
@@ -479,7 +480,7 @@ public class TransaksiMenu {
             transaksiVM.bayar(metodebayar, amountBayar);
 
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            invalidChoice();
         }
     }
 }

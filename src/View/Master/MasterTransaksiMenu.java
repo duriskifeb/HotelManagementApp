@@ -2,6 +2,7 @@ package View.Master;
 
 import ViewModel.AuthViewModel.AuthViewModel;
 
+import static Util.Formatting.invalidChoice;
 import static View.Components.KamarView.kamarTableHeader;
 import static View.Components.KamarView.viewAllDataKamar;
 import static View.Components.TransaksiView.viewAllTransaksi;
@@ -84,7 +85,7 @@ public class MasterTransaksiMenu {
                 }
                 System.out.println();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                invalidChoice();
             }
 
         }
@@ -108,7 +109,7 @@ public class MasterTransaksiMenu {
 
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            invalidChoice();
         }
     }
 
@@ -130,7 +131,7 @@ public class MasterTransaksiMenu {
 
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            invalidChoice();
         }
 
     }

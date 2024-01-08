@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.Date;
 
 import static Util.Formatting.formatMessageOutput;
+import static Util.Formatting.invalidChoice;
 import static View.AppRouter.AppRoute.MAIN_MENU;
 import static View.AppRouter.activeRoute;
 import static View.Components.ReportingView.viewDetailSelectedReport;
@@ -75,7 +76,7 @@ public class ReportingMenu {
                         System.out.println("Invalid Choice");
                 }
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                invalidChoice();
             }
 
         }
