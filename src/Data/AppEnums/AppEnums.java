@@ -19,7 +19,7 @@ public class AppEnums {
 
     public enum UserRole {
         PEGAWAI,
-        MANAGER
+        MANAGER,
     }
 
     public enum Pembayaran{
