@@ -6,7 +6,6 @@ public class Generator {
     public static String generatePegawaiID(String name, AppEnums.UserRole role, String email){
         String result;
 
-
         result = name +"-"+ email;
         result = Encryption.hashID(result, 5);
         switch (role){

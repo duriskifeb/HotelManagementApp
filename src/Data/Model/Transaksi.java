@@ -9,6 +9,7 @@ import java.util.Date;
 
 public class Transaksi {
 
+    //inisiasi 
     private String noTransaksi;
     private Date tanggalTransaksi, checkIn, checkOut, startDate, endDate;
     private AppEnums.StatusTransaksi statusTransaksi;

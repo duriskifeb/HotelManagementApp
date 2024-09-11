@@ -148,6 +148,7 @@ public class CustomerDataSource {
         listCustomer.set(index, customer);
     }
 
+    //this metode using stream API Java 8 
     public Customer getCustomer(String NIK){
         return listCustomer.stream().filter(
                 cekCust -> cekCust.getNIK().equals(NIK)

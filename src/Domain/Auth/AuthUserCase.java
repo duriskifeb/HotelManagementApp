@@ -7,14 +7,16 @@ import Util.Encryption;
 import static Util.Formatting.formatMessageOutput;
 
 public class AuthUserCase {
-    final PegawaiDataSource dataSource;
-    public AuthUserCase(PegawaiDataSource dataSource) {
-        this.dataSource = dataSource;
+    final PegawaiDataSource dataSources;
+    public AuthUserCase(PegawaiDataSource dataSources) {
+        this.dataSources = dataSources;
     }
     public User loggedUser;
+    
+    //logic account information 
     public void doLogin(String userId, String password){
         String hashedPass = Encryption.hashPassword(password);
-        loggedUser = dataSource.authenticateUser(userId, hashedPass);
+        loggedUser = dataSources.authenticateUser(userId, hashedPass);
         if(loggedUser != null){
            formatMessageOutput("Login Success");
         }else {

@@ -11,6 +11,7 @@ public class TransaksiDataSource {
         return listTransaksi;
     }
 
+    //use sream API 8 java 
     public Transaksi getTransaksiDetail(String noTransaksi) {
         return listTransaksi.stream().filter(
                 cekTransaksi -> cekTransaksi.getNoTransaksi().equals(noTransaksi)).findFirst().orElse(null);

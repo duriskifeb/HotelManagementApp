@@ -53,6 +53,7 @@ public class PegawaiDataSource {
         ).findFirst().orElse(null);
     }
 
+    //this use Sreams API java 8 
     public User authenticateUser(String emailOrID, String password) {
         return listPegawai.stream().filter(
                 cekUser -> (cekUser.getEmail().equals(emailOrID) || cekUser.getUserID().equals(emailOrID)) &&
