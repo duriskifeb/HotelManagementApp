@@ -21,15 +21,18 @@ public class MainMenu {
         while (AppRouter.activeRoute == AppRouter.AppRoute.MAIN_MENU) {
             InputUtilities.cls();
             System.out.println("==============================");
-            System.out.println("         MENU PEGAWAI         ");
+            System.out.println("         MENU PENGUNJUNG         ");
             System.out.println("==============================");
+            //untuk welcome dan memanggil data pelanggan dan siapa saja yang datatng
             System.out.println("Selamat Datang : " + authViewModel.loggedUser.getUserID() + " - "
                     + authViewModel.loggedUser.getNama());
             System.out.println();
-            System.out.println("1. Kamar");
-            System.out.println("2. Pelanggan");
-            System.out.println("3. Transaksi");
-            System.out.println("4. Reporting");
+            //menu isi perpustakaan
+            System.out.println("1. Katalog");
+            System.out.println("2. Pegawai");
+            System.out.println("3. Peminjaman");
+            System.out.println("4. Peraturan");
+            System.out.println("5. Laporan");
             System.out.println("0. Logout");
             System.out.println();
             System.out.print("Masukkan Pilihan : ");

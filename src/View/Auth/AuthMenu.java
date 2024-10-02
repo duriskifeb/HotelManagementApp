@@ -77,4 +77,33 @@ public class AuthMenu {
         System.out.println("==============================");
         InputUtilities.pressEnter();
     }
+    // register
+    private void showRegistrationInputs() {
+    InputUtilities.cls(); // clear terminal
+    System.out.println("==============================");
+    System.out.println("          REGISTRATION MENU          ");
+    System.out.println("==============================");
+    try {
+        System.out.print("Masukkan ID atau Email\t: ");
+        String userIDEmail = InputUtilities.input.readLine();
+        System.out.print("Masukkan Password\t: ");
+        String userPass = InputUtilities.input.readLine();
+        System.out.print("Masukkan Nama Lengkap\t: ");
+        String fullName = InputUtilities.input.readLine();
+        System.out.print("Masukkan Role (MANAGER/PEGAWAI)\t: ");
+        String role = InputUtilities.input.readLine();
+
+        this.authViewModel.doRegister(userIDEmail, userPass, fullName, role);
+        if (this.authViewModel.registeredUser  != null) {
+            System.out.println("Registration successful!");
+            showLoginInputs();
+        } else {
+            System.out.println("Registration failed. Please try again.");
+        }
+    } catch (IOException e) {
+        invalidChoice();
+    }
+    System.out.println("==============================");
+    InputUtilities.pressEnter();
+}
 }

@@ -28,4 +28,16 @@ public class AuthUserCase {
         loggedUser = null;
     }
 
+    //register role
+    public void doRegister(String userId, String password, String fullName, String role) {
+        String hashedPass = Encryption.hashPassword(password);
+        User user = new User(userId, hashedPass, fullName, role);
+        registeredUser = dataSources.registerUser(user);
+        if (registeredUser != null) {
+            formatMessageOutput("Registration Success");
+        } else {
+            formatMessageOutput("Registration Failed");
+        }
+    }
+
 }

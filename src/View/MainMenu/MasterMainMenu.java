@@ -23,7 +23,7 @@ public class MasterMainMenu {
 //            System.out.println(AppRouter.activeRoute);
             InputUtilities.cls();
             System.out.println("==============================");
-            System.out.println("         MENU MANAJER         ");
+            System.out.println("         MENU PENGELOLA PERPUS         ");
             System.out.println("==============================");
             System.out.println("Selamat Datang : " + authViewModel.loggedUser.getUserID() + " - " + authViewModel.loggedUser.getNama());
             System.out.println();

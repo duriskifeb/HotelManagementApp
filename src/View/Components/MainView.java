@@ -4,7 +4,7 @@ public class MainView {
 
     public static void appHeader() {
         System.out.println("==============================");
-        System.out.println("     HOTEL MANAGEMENT APP     ");
+        System.out.println("     *Perpustakaan Management*   ");
         System.out.println("==============================");
     }
 
